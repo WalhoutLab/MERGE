@@ -1,0 +1,891 @@
+	Abbreviation	Name	Formula	Charge	Comments	BiGG	Other names
+C05684	selnt	Selenite	O3Se	-2.0	charge based on MetaCyc		
+C00492	raffin	Raffinose	C18H32O16	0	BiGG compound	raffin	Melitose, Melitriose, Gossypose, 6G-alpha-D-galactosylsucrose
+CC0020	m4mpdol	(alpha-D-Mannosyl)4-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol	C156H256N2O42P2	-2.0	assumed n=18 for the number of isoprene units; designated as G00006 in KEGG nomenclature	m4macchitppdol,m4mpdol_L,m4mpdol_U	
+C05172	selnp	Selenophosphate	H2O3PSe	-1	BiGG compound	selnp	Selenophosphoric acid
+C00307	cdpchol	CDPcholine	C14H25N4O11P2	-1	BiGG compound	cdpchol	CDP-choline, Cytidine 5'-diphosphocholine, Citicoline
+C02512	cyanala	Beta cyanoalanine	C4H5N2O2	-1.0	charge based on MetaCyc		3-Cyano-L-alanine, L-3-Cyanoalanine, L-beta-Cyanoalanine
+C00322	2oxoadp	2-Oxoadipate	C6H6O5	-2	BiGG compound	2oxoadp	2-Oxoadipic acid
+CC0055	lps_BAC	Lipopolysaccharide (bacteria)	C171H297N4O88P2	-7.0	charge is based on matching BiGG compounds	lps_EC	
+C00416	pa_pl	Phosphatidic acid (phospholipids)	C3H5O4PFULLRCO2FULLR2CO2	-2.0	charge based on human version in BiGG	pa_hs,pa_Hp	Phosphatidate, Phosphatidic acid, 1,2-Diacyl-sn-glycerol 3-phosphate, 3-sn-Phosphatidate
+C00100	ppcoa	Propanoyl-CoA	C24H36N7O17P3S	-4	BiGG compound	ppcoa	Propionyl-CoA, Propionyl coenzyme A
+CC0081	alpa_tag	Lysophosphatidic acid (TAG)	C3H6O5PFULLR4CO2	-2.0	charge based on human version in BiGG	alpa_hs	
+C15647	alkenac2gp	2-Acyl-1-(1-alkenyl)-sn-glycero-3-phosphate	C4H5O7PRRC2H2	-2.0	followed CEL nomenclature in creating formula; charge based on similar compounds in MetaCyc		
+CC0056	lipa_BAC	KDO(2)-lipid (A)	C110H196N2O39P2	-6.0	charge is based on matching BiGG compounds	lipa	
+C00256	lac-D	D-Lactate	C3H5O3	-1	BiGG compound	lac-D	(R)-Lactate, D-Lactic acid, D-2-Hydroxypropanoic acid, D-2-Hydroxypropionic acid
+C01277	pail4p	1-Phosphatidyl-1D-myo-inositol 4-phosphate 	C9H15O12P2FULLRCO2FULLR2CO2	-3.0	charge based on human version in BiGG	pail4p_hs	1-Phosphatidyl-1D-myo-inositol 4-phosphate, Phosphatidylinositol 4-phosphate, 1,2-Diacyl-sn-glycero-3-phospho-(1'-myo-inositol-4'-phosphate)
+CC0062	ddcrn	dodecanoyl carnitine	C19H37NO4	0.0	charge and formula based on other acyl carnitines		
+C05981	pail345p	phosphatidylinositol-3,4,5-trisphosphate 	C9H13O18P4FULLRCO2FULLR2CO2	-7.0	charge based on human version in BiGG	pail345p_hs	Phosphatidylinositol-3,4,5-trisphosphate, 1-Phosphatidyl-1D-myo-inositol 3,4,5-trisphosphate, 1,2-Diacyl-sn-glycero-3-phospho-(1'-myo-inositol-3',4',5'-bisphosphate)
+C00620	r1p	alpha-D-Ribose 1-phosphate	C5H9O8P	-2	BiGG compound	r1p	Ribose 1-phosphate, D-Ribose 1-phosphate
+CC0105	eicostetcrn	Eicosatetranoyl carnitine	C27H45NO4	0.0	charge and formula based on other acyl carnitines	eicostetcrn	
+C00140	acgam	N-Acetyl-D-glucosamine	C8H15NO6	0	BiGG compound	acgam	N-Acetylchitosamine, 2-Acetamido-2-deoxy-D-glucose, GlcNAc
+C01639	trnacys	tRNA(Cys)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnacys	
+C00152	asn-L	L-Asparagine	C4H8N2O3	0	BiGG compound	asn-L	2-Aminosuccinamic acid
+C05269	3ohcoa	3-Oxohexanoyl-CoA	C27H40N7O18P3S	-4	BiGG compound	3ohcoa	3-Ketohexanoyl-CoA
+C04227	octpmn	Octopamine	C8H12NO2	1.0	charge based on Metacyc		1-(4-Hydroxyphenyl)-2-aminoethanol, p-Hydroxyphenylethanolamine
+C02949	4hbzcoa	4-hydroxybenoyl-CoA	C28H36N7O18P3S	-4	BiGG compound	4hbzcoa	4-Hydroxybenzoyl-CoA
+CC0078	fa17c9	cis-9,10-methylenehexadecanoic acid	C17H31O2	-1.0	charge is obvious based on general rules and similar compounds		
+C00051	gthrd	Reduced glutathione	C10H16N3O6S	-1	BiGG compound	gthrd	Glutathione, 5-L-Glutamyl-L-cysteinylglycine, N-(N-gamma-L-Glutamyl-L-cysteinyl)glycine, gamma-L-Glutamyl-L-cysteinyl-glycine, GSH
+C00469	etoh	Ethanol	C2H6O	0	BiGG compound	etoh	Ethyl alcohol, Methylcarbinol
+C03758	dopa	Dopamine	C8H12NO2	1	BiGG compound	dopa	4-(2-Aminoethyl)-1,2-benzenediol, 4-(2-Aminoethyl)benzene-1,2-diol, 3,4-Dihydroxyphenethylamine, 2-(3,4-Dihydroxyphenyl)ethylamine
+C05259	3ohdcoa	3-Oxohexadecanoyl-CoA	C37H60N7O18P3S	-4	BiGG compound	3ohdcoa	3-Oxopalmitoyl-CoA, 3-Ketopalmitoyl-CoA
+C04895	ahdt	"2-Amino-4-hydroxy-6-(erythro-1,2,3-trihydroxypropyl)dihydropteridine triphosphate"	C9H12N5O13P3	-4	BiGG compound	ahdt	7,8-Dihydroneopterin 3'-triphosphate, 2-Amino-4-hydroxy-6-(erythro-1,2,3-trihydroxypropyl)dihydropteridine triphosphate, 6-(L-erythro-1,2-Dihydroxypropyl 3-triphosphate)-7,8-dihydropterin, 6-[(1S,2R)-1,2-Dihydroxy-3-triphosphooxypropyl]-7,8-dihydropterin
+C00086	urea	Urea	CH4N2O	0	BiGG compound	urea	Carbamide
+C00342	trdrd	Reduced thioredoxin	XH2	0	BiGG compound	trdrd	Thioredoxin
+C00052	udpgal	UDPgalactose	C15H22N2O17P2	-2	BiGG compound	udpgal	UDP-alpha-D-galactose, UDP-D-galactose, UDP-galactose, UDP-D-galactopyranose, UDP-alpha-D-galactopyranose
+C04537	chito2pdol	N,N'-Diacetylchitobiosyldiphosphodolichol	C126H206N2O17P2	-2.0	assumed n=18 for the number of isoprene units	chito2pdol_L,chito2pdol_U	Chitobiosyldiphosphodolichol
+CC0007	3npdhb_me	3-nonaprenyl-4-hydroxy-5-methoxybenzoate	C53H79O4	-1.0	charge based on 3dpdhb_me in BIGG		
+C04317	ak2lgchol	1-Alkyl-2-lyso-sn-glycero-3-phosphocholine	C8H19NO6PRC2H4	0.0	charge based on human version in BiGG	ak2lgchol_hs	1-Organyl-2-lyso-sn-glycero-3-phosphocholine, 1-Radyl-2-lyso-sn-glycero-3-phosphocholine, 1-Alkyl-sn-glycero-3-phosphocholine
+C03451	lgt-S	(R)-S-Lactoylglutathione	C13H20N3O8S	-1	BiGG compound	lgt-S	S-D-Lactoylglutathione
+CC0158	rq9h2	Rhodoquinonol-9	C53H83NO3	0.0	charge and formula based on rq9 and qh2		
+C01652	trnatrp	tRNA(Trp)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnatrp	
+C02050	lnlccoa	linoleic coenzyme A	C39H62N7O17P3S	-4	BiGG compound	lnlccoa	Linoleoyl-CoA, (9Z,12Z)-Octadecadienoyl-CoA
+C01326	cyan	Hydrogen cyanide	CHN	0	BiGG compound	cyan	HCN, Cyanide
+C05382	s7p	Sedoheptulose 7-phosphate	C7H13O10P	-2	BiGG compound	s7p	D-Sedoheptulose 7-phosphate, D-altro-Heptulose 7-phosphate, altro-Heptulose 7-phosphate
+C00016	fad	Flavin adenine dinucleotide oxidized	C27H31N9O15P2	-2	BiGG compound	fad	FAD, Flavin adenine dinucleotide
+C00067	fald	Formaldehyde	CH2O	0	BiGG compound	fald	Methanal, Oxomethane, Oxomethylene, Methylene oxide, Formalin
+C01045	Nforglu	N-Formyl-L-glutamate	C6H9NO5	0	BiGG compound	Nforglu	
+C05512	din	Deoxyinosine	C10H12N4O4	0	BiGG compound	din	
+CC0104	tmndnccrn	Timnodonyl carnitine	C27H43NO4	0.0	charge and formula based on other acyl carnitines	tmndnccrn	
+C00114	chol	Choline	C5H14NO	1	BiGG compound	chol	Bilineurine
+CC0077	fa16p1n7	Palmitoleic acid	C16H29O2	-1.0	charge is obvious based on general rules and similar compounds. | See CC0067 for custom fatty acid nomenclature		
+C01083	tre	Trehalose	C12H22O11	0	BiGG compound	tre	alpha,alpha-Trehalose, alpha,alpha'-Trehalose
+C04751	5aizc	5-amino-1-(5-phospho-D-ribosyl)imidazole-4-carboxylate	C9H11N3O9P	-3	BiGG compound	5aizc	1-(5-Phospho-D-ribosyl)-5-amino-4-imidazolecarboxylate, 1-(5'-Phosphoribosyl)-5-amino-4-imidazolecarboxylate, 1-(5'-Phosphoribosyl)-5-amino-4-carboxyimidazole, 5'-Phosphoribosyl-5-amino-4-imidazolecarboxylate, 1-(5'-Phosphoribosyl)-4-carboxy-5-aminoimidazole, 5'-Phosphoribosyl-4-carboxy-5-aminoimidazole
+CC0117	prot_mito	Mitochondrial protein	X	0.0	for biomass equation; charge does not matter		
+C05467	cholcoaone	"3alpha,7alpha,12alpha-Trihydroxy-5beta-24-oxocholestanoyl-CoA"	C48H74N7O21P3S	-4	BiGG compound	cholcoaone	3alpha,7alpha,12alpha-Trihydroxy-5beta-24-oxocholestanoyl-CoA, 3alpha,7alpha,12alpha-Trihydroxy-24-oxo-5beta-cholestanoyl-CoA
+C00399	q	Ubiquinone	C14H18O4	0	BiGG compound	q	Coenzyme Q, CoQ, Q
+C00036	oaa	Oxaloacetate	C4H2O5	-2	BiGG compound	oaa	Oxalacetic acid, Oxaloacetic acid, 2-Oxobutanedioic acid, 2-Oxosuccinic acid, keto-Oxaloacetate
+C00112	cdp	CDP	C9H12N3O11P2	-3	BiGG compound	cdp	Cytidine 5'-diphosphate, Cytidine diphosphate
+C00208	malt	Maltose	C12H22O11	0	BiGG compound	malt	Malt sugar, alpha-D-Glucopyranosyl-(1->4)-D-glucopyranose
+C00055	cmp	CMP	C9H12N3O8P	-2	BiGG compound	cmp	Cytidine-5'-monophosphate, Cytidylic acid
+C00031	glc-D	D-Glucose	C6H12O6	0	BiGG compound	glc-D	Grape sugar, Dextrose, Glucose, D-Glucopyranose
+C00894	prpncoa	Propenoyl-CoA	C24H34N7O17P3S	-4	BiGG compound	prpncoa	Acryloyl-CoA, Acrylyl-CoA
+C01242	alpro	S-Aminomethyldihydrolipoylprotein	CH6NS2X	1	BiGG compound	alpro	[Protein]-S8-aminomethyldihydrolipoyllysine, H-Protein-S-aminomethyldihydrolipoyllysine
+C00295	orot	Orotate	C5H3N2O4	-1	BiGG compound	orot	Orotic acid, Uracil-6-carboxylic acid
+C05258	3hhdcoa	(S)-3-Hydroxyhexadecanoyl-CoA	C37H62N7O18P3S	-4	BiGG compound	3hhdcoa	
+CC0009	2np6mobq	2-nonaprenyl-6-methoxy-1,4-benzoquinone	C52H78O3	0.0	charge based on 2dp6mobq in BIGG		
+C00448	frdp	Farnesyl diphosphate	C15H25O7P2	-3	BiGG compound	frdp	trans,trans-Farnesyl diphosphate, Farnesyl pyrophosphate, 2-trans,6-trans-Farnesyl diphosphate, (2E,6E)-Farnesyl diphosphate
+C00170	5mta	5-Methylthioadenosine	C11H15N5O3S	0	BiGG compound	5mta	5'-Methylthioadenosine, Methylthioadenosine, S-Methyl-5'-thioadenosine, 5'-Deoxy-5'-(methylthio)adenosine, Thiomethyladenosine, MTA
+C02679	ddca	Dodecanoate (n-C12:0)	C12H23O2	-1	BiGG compound	ddca	Dodecanoic acid, Dodecanoate, Dodecylcarboxylate, Lauric acid
+C01879	5oxpro	5-Oxoproline	C5H6NO3	-1	BiGG compound	5oxpro	Pidolic acid, Pyroglutamic acid, 5-Pyrrolidone-2-carboxylic acid, Pyroglutamate, 5-Oxo-L-proline, L-Pyroglutamic acid, L-5-Pyrrolidone-2-carboxylic acid
+C03373	air	5-amino-1-(5-phospho-D-ribosyl)imidazole	C8H12N3O7P	-2	BiGG compound	air	Aminoimidazole ribotide, AIR, 1-(5'-Phosphoribosyl)-5-aminoimidazole, 5'-Phosphoribosyl-5-aminoimidazole, 1-(5-Phospho-D-ribosyl)-5-aminoimidazole
+C17332	xol25one	7alpha,25-Dihydroxy-4-cholesten-3-one	C27H44O3	0.0	charge based on similar compounds in BiGG		
+C05273	td2coa	trans-Tetradec-2-enoyl-CoA	C35H56N7O17P3S	-4	BiGG compound	td2coa	(2E)-Tetradecenoyl-CoA
+CC0025	g1m8mpdol	alpha-D-Glucosyl-(alpha-D-mannosyl)8-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol	C186H306N2O67P2	-2.0	assumed n=18 for the number of isoprene units; designated as G10598 in KEGG nomenclature	g1m8mpdol_L,g1m8mpdol_U	
+C00672	2dr1p	2-Deoxy-D-ribose 1-phosphate	C5H9O7P	-2	BiGG compound	2dr1p	2-Deoxy-alpha-D-ribose 1-phosphate
+C02163	argtrna	L-Arginyl-tRNA(Arg)	C6H15N4O2R	2.0	tRNA formula in BiGG was modified for mass balance	argtrna	L-Arginyl-tRNA
+CC0147	pcollg_tri	Procollagen (trimerized)	X	0.0	charge does not matter		
+C00394	gdpg	GDP-D-glucose	C16H23N5O16P2	-2.0	charge and formula based on gdpmann; confirmed by MetaCyc		GDP-glucose, GDP-alpha-D-glucose
+C00407	ile-L	L-Isoleucine	C6H13NO2	0	BiGG compound	ile-L	2-Amino-3-methylvaleric acid
+C00750	sprm	Spermine	C10H30N4	4	BiGG compound	sprm	N,N'-Bis(3-aminopropyl)-1,4-butanediamine
+CC0037	l2fn2m2masn	{[galactosyl-(1,4)-N-Acetyl-glucosaminyl-(1,2)-mannosyl-(1,3)-],[N-acetyl-glucosaminyl-(1,2)-mannosyl-(1,6)-]mannosyl-(1,4)-N-acetyl-glucosaminyl-(1,4)-[fucosyl-(1,6)]-N-acetyl-glucosaminyl}asparagine	C68H113N4O49X	0.0	designated as G00017 in KEGG nomenclature	l2fn2m2masn	
+C00532	abt	L-Arabinitol	C5H12O5	0	BiGG compound	abt	L-Arabitol, L-Arabinol, L-Lyxitol
+CC0041	fnm2masn	MGnFuc	C48H80N3O34X	0.0	named according to PMID: 12603202; designated as G10770 in KEGG nomenclature 		
+C01168	psd5p	Pseudouridine 5'-phosphate	C9H11N2O9P	-2	BiGG compound	psd5p	
+C02992	thrtrna	L-Threonyl-tRNA(Thr)	C4H9NO3R	1.0	tRNA formula in BiGG was modified for mass balance	thrtrna	
+CC0113	fa15p0isocrn	Fatty acyl (C15:iso) carnitine	C22H43NO4	0.0	charge and formula based on other acyl carnitines. | See CC0067 for custom fatty acid nomenclature; iso stands for isomer		
+C03968	akgp	1-Alkyl-sn-glycerol 3-phosphate	C3H6O6PRC2H4	-2.0	charge based on human version in BiGG	akgp_hs	1-Alkyl-sn-glycero-3-phosphate, 1-O-Alkyl-sn-glycerol 3-phosphate
+C01637	trnaasn	tRNA(Asn)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnaasn	
+C00286	dgtp	dGTP	C10H12N5O13P3	-4	BiGG compound	dgtp	2'-Deoxyguanosine 5'-triphosphate, Deoxyguanosine 5'-triphosphate, Deoxyguanosine triphosphate
+C01638	trnaasp	tRNA(Asp)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnaasp	
+C17937	eumelanin	Eumelanin	C8H3NO3	0.0	charge and formula based on reaction with ind56qn, balanced as in SEED		
+CC0091	fa8p1n3coa	Intermediary fatty acid C8:1	C29H44N7O17P3S	-4.0	charge is obvious based on general rules and similar compounds. | See CC0067 for custom fatty acid nomenclature		
+C00235	dmpp	Dimethylallyl diphosphate	C5H9O7P2	-3	BiGG compound	dmpp	2-Isopentenyl diphosphate, delta2-Isopentenyl diphosphate, Dimethylallyl pyrophosphate, DMAPP, Monoprenyl diphosphate, Prenyl diphosphate
+C04756	alkenac2gpe	1-alkenyl 2-acylglycerol 3-phosphoethanolamine plasmalogen	C6H12NO7PRRC2H2	0.0	second R is from alcohol	dak2gpe_hs	O-1-Alk-1-enyl-2-acyl-sn-glycero-3-phosphoethanolamine, Phosphatidalethanolamine, Plasmenylethanolamine, Ethanolamineplasmalogen, 2-Acyl-1-(1-alkenyl)-sn-glycero-3-phosphoethanolamine, 1-Alkenyl-2-acylglycerophosphoethanolamine
+C04570	etfrd	Electron transfer flavoprotein reduced	RH2	0	BiGG compound	etfrd	Reduced electron-transferring flavoprotein, Reduced electron-transfer flavoprotein
+CC0102	lnlccrn	Linoleyl carnitine	C25H45NO4	0.0	charge and formula based on other acyl carnitines	lnlccrn	
+C05519	athr-L	L-Allo-threonine	C4H9NO3	0	BiGG compound	athr-L	L-Allothreonine
+C04640	fpram	2-(Formamido)-N1-(5-phospho-D-ribosyl)acetamidine	C8H15N3O8P	-1	BiGG compound	fpram	2-(Formamido)-N1-(5'-phosphoribosyl)acetamidine, 1-(5'-Phosphoribosyl)-N-formylglycinamidine, 5'-Phosphoribosyl-N-formylglycinamidine, 5'-Phosphoribosylformylglycinamidine
+C03021	Asn-X-Ser/Thr	protein-linked asparagine residue (N-glycosylation site)	XH	0	BiGG compound	Asn-X-Ser/Thr	Protein asparagine, Protein L-asparagine
+C00063	ctp	CTP	C9H12N3O14P3	-4	BiGG compound	ctp	Cytidine 5'-triphosphate, Cytidine triphosphate
+C06341	xoltri27	"7-alpha,27-Dihydroxycholesterol"	C27H46O3	0	BiGG compound	xoltri27	7alpha,27-Dihydroxycholesterol, Cholest-5-ene-3beta,7alpha,26-triol, Cholest-5-ene-3beta,7alpha,27-triol
+CC0217	forssman_ce	Forssman hapten	C54H94N3O28R	0.0	charge based on similar glycans		
+CC0022	m6mpdol	(alpha-D-Mannosyl)6-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol	C168H276N2O52P2	-2.0	assumed n=18 for the number of isoprene units; designated as G10596 in KEGG nomenclature	m8mpdol_L,m8mpdol_U	
+CC0150	tropcollgtyrX	Tropocollagen L-tyrosine (cross-linked)	X	0.0	charge does not matter		
+C00412	stcoa	Stearoyl-CoA (n-C18:0CoA)	C39H66N7O17P3S	-4	BiGG compound	stcoa	Stearoyl-CoA, Stearyl-CoA, Stearyl coenzyme A
+C06002	2mop	2-Methyl-3-oxopropanoate	C4H5O3	-1	BiGG compound	2mop	(S)-Methylmalonate semialdehyde
+C00705	dcdp	dCDP	C9H12N3O10P2	-3	BiGG compound	dcdp	2'-Deoxycytidine diphosphate, 2'-Deoxycytidine 5'-diphosphate
+C00048	glx	Glyoxylate	C2H1O3	-1	BiGG compound	glx	Glyoxalate, Glyoxylic acid
+C01205	3aib-D	D-3-Amino-isobutanoate	C4H9NO2	0	BiGG compound	3aib-D	(R)-3-Amino-2-methylpropanoate
+C01650	trnaser	tRNA(Ser)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnaser	
+C00026	akg	2-Oxoglutarate	C5H4O5	-2	BiGG compound	akg	Oxoglutaric acid, 2-Ketoglutaric acid, alpha-Ketoglutaric acid
+CC0096	fa9p0isocoa	Fatty acyl (C9:iso) coa	C30H48N7O17P3S	-4.0	charge is obvious based on general rules and similar compounds. | See CC0067 for custom fatty acid nomenclature; iso stands for isomer	acoa	
+C00459	dttp	dTTP	C10H13N2O14P3	-4	BiGG compound	dttp	Deoxythymidine triphosphate, Deoxythymidine 5'-triphosphate, TTP
+C15980	2mbcoa	2-Methylbutanoyl-CoA	C26H40N7O17P3S	-4	BiGG compound	2mbcoa	(S)-2-Methylbutanoyl-CoA
+C01931	lystrna	L-Lysine-tRNA (Lys)	C6H15N2O2R	2.0	tRNA formula in BiGG was modified for mass balance	lystrna	L-Lysyl-tRNA, L-Lysyl-tRNA(Lys)
+C00224	aps	Adenosine 5'-phosphosulfate	C10H12N5O10PS	-2	BiGG compound	aps	Adenylyl sulfate, APS, 5'-Adenylyl sulfate
+C00881	dcyt	Deoxycytidine	C9H13N3O4	0	BiGG compound	dcyt	2'-Deoxycytidine
+C00455	nmn	NMN	C11H14N2O8P	-1	BiGG compound	nmn	Nicotinamide D-ribonucleotide, Nicotinamide mononucleotide, Nicotinamide ribonucleotide, Nicotinamide nucleotide, beta-Nicotinamide D-ribonucleotide, beta-Nicotinamide ribonucleotide, beta-Nicotinamide mononucleotide
+C00899	retinol-cis-11	cis-11-retinol	C20H30O	0	BiGG compound	retinol-cis-11	11-cis-Retinol
+C01245	mi145p	"1D-myo-Inositol 1,4,5-trisphosphate"	C6H9O15P3	-6	BiGG compound	mi145p	D-myo-Inositol 1,4,5-trisphosphate, 1D-myo-Inositol 1,4,5-trisphosphate, Inositol 1,4,5-trisphosphate, Ins(1,4,5)P3
+C00334	4abut	4-Aminobutanoate	C4H9NO2	0	BiGG compound	4abut	4-Aminobutanoic acid, 4-Aminobutyrate, 4-Aminobutyric acid, gamma-Aminobutyric acid, GABA
+C01530	ocdca	octadecanoate (n-C18:0)	C18H35O2	-1	BiGG compound	ocdca	Octadecanoic acid, Stearate, Stearic acid
+C00250	pydx	Pyridoxal	C8H9NO3	0	BiGG compound	pydx	
+C01210	methamp	N-Methylethanolamine phosphate	C3H9NO4P	-1.0	based on Metacyc		
+C00355	34dhphe	"3,4-Dihydroxy-L-phenylalanine"	C9H11NO4	0	BiGG compound	34dhphe	3,4-Dihydroxy-L-phenylalanine, L-Dopa, 3-Hydroxy-L-tyrosine, L-beta-(3,4-Dihydroxyphenyl)alanine, Levodopa, Dihydroxy-L-phenylalanine
+C03127	iletrna	L-Isoleucyl-tRNA(Ile)	C6H13NO2R	1.0	tRNA formula in BiGG was modified for mass balance	iletrna	
+C03794	dcamp	"N6-(1,2-Dicarboxyethyl)-AMP"	C14H14N5O11P	-4	BiGG compound	dcamp	N6-(1,2-Dicarboxyethyl)-AMP, N6-(1,2-Dicarboxyethyl)AMP, Adenylosuccinate, Adenylosuccinic acid
+C00440	5mthf	5-Methyltetrahydrofolate	C20H24N7O6	-1	BiGG compound	5mthf	
+C00040	Rtotalcoa	R total Coenzyme A	CO2FULLRC21H31N7O15P3S	-4	BiGG compound	Rtotalcoa	Acyl-CoA, Acyl coenzyme A
+C01181	4tmeabutn	4-Trimethylammoniobutanoate	C7H15NO2	0	BiGG compound	4tmeabutn	Butyro-betaine, gamma-Butyrobetaine
+CC0095	fa17p0isocoa	Fatty acyl (C17:iso) coa	C38H64N7O17P3S	-4.0	charge is obvious based on general rules and similar compounds. | See CC0067 for custom fatty acid nomenclature; iso stands for isomer	acoa	
+C00357	acgam6p	N-Acetyl-D-glucosamine 6-phosphate	C8H14NO9P	-2	BiGG compound	acgam6p	
+C02642	cala	N-Carbamoyl-beta-alanine	C4H7N2O3	-1	BiGG compound	cala	3-Ureidopropionate, 3-Ureidopropanoate, beta-Ureidopropionic acid
+C03912	1pyr5c	1-Pyrroline-5-carboxylate	C5H6NO2	-1	BiGG compound	1pyr5c	(S)-1-Pyrroline-5-carboxylate, L-1-Pyrroline-5-carboxylate
+C03595	dlnlcgcoa	dihomo-gamma-linolenyl coenzyme A	C41H64N7O17P3S	-4	BiGG compound	dlnlcgcoa	8,11,14-Eicosatrienoyl-CoA, 8,11,14-Icosatrienoyl-CoA, (8Z,11Z,14Z)-Icosatrienoyl-CoA
+CC0068	vacccoa	Vaccenyl coenzyme A	C39H64N7O17P3S	-4.0	BiGG compound	vacccoa	
+C00570	cdpea	CDPethanolamine	C11H19N4O11P2	-1	BiGG compound	cdpea	CDP-ethanolamine, Cytidine diphosphate ethanolamine
+CC0039	m3masn	M4Gn2	C40H67N2O30X	0.0	named according to PMID: 12603202 		
+CC0054	peptido_BAC	Peptidoglycan subunit of bacteria	C40H62N8O21	-2.0	charge is based on matching BiGG compounds	peptido_EC,peptido_TB2,peptido_TB1	
+CC0075	apohemeprotein	Apohemeprotein	X	0.0	designed for hypothetical reaction RCC0076		
+CC0154	pepasn	Peptide L-asparagine	XC4H6N2O2	0.0	formula and charge based on MetaCyc		
+C16638	serptrna	O-Phosphoseryl-tRNA(Sec)	C3H7NO6PR	0.0	charge based on MetaCyc		
+CC0203	spc_ce	sphingosylphosphorylcholine 	C24H52N2O5P	1.0	charge based on human version in BiGG	spc_hs	
+CC0089	fa14p2n6coa	Intermediary fatty acid C14:2	C35H54N7O17P3S	-4.0	charge is obvious based on general rules and similar compounds. | See CC0067 for custom fatty acid nomenclature		
+C02871	pepasp	Peptide L-aspartate	XC4H4NO3	-1.0	charge and formula based on MetaCyc; protein charge (that of X) is ignored		
+C05579	ind56qn	Indole-5,6-quinone	C8H5NO2	0.0	charge based on MetaCyc and 3DMET		
+C01132	acgal	N-Acetyl-D-galactosamine	C8H15NO6	0	BiGG compound	acgal	N-Acetyl-D-chondrosamine, 2-Acetamido-2-deoxy-D-galactose
+C04582	5mdru1p	5-Methylthio-5-deoxy-D-ribulose 1-phosphate	C6H11O7PS	-2	BiGG compound	5mdru1p	S-Methyl-5-thio-D-ribulose 1-phosphate
+C00636	man1p	D-Mannose 1-phosphate	C6H11O9P	-2	BiGG compound	man1p	alpha-D-Mannose 1-phosphate
+C01078	pcollgpro	Procollagen L-proline (to be modified)	XH	0.0	charge does not matter		Procollagen L-proline
+C00536	pppi	Inorganic triphosphate	HO10P3	-4	BiGG compound	pppi	Triphosphate, Triphosphoric acid, Tripolyphosphate
+C02165	leuktrB4	Leukotriene B4	C20H31O4	-1	BiGG compound	leuktrB4	(6Z,8E,10E,14Z)-(5S,12R)-5,12-Dihydroxyeicosa-6,8,10,14-tetraenoate, (6Z,8E,10E,14Z)-(5S,12R)-5,12-Dihydroxyicosa-6,8,10,14-tetraenoate, LTB4
+C02985	fuc1p-L	L-Fucose 1-phosphate	C6H11O8P	-2.0	BiGG compound		6-Deoxy-L-galactose 1-phosphate, beta-L-Fucose 1-phosphate
+C00047	lys-L	L-Lysine	C6H15N2O2	1	BiGG compound	lys-L	Lysine acid, 2,6-Diaminohexanoic acid
+C01640	trnagln	tRNA(Gln)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnagln	
+C00245	taur	Taurine	C2H7NO3S	0	BiGG compound	taur	2-Aminoethanesulfonic acid, Aminoethylsulfonic acid
+C00877	b2coa	Crotonoyl-CoA	C25H36N7O17P3S	-4	BiGG compound	b2coa	Crotonyl-CoA, 2-Butenoyl-CoA, trans-But-2-enoyl-CoA, But-2-enoyl-CoA, (E)-But-2-enoyl-CoA
+C14818	fe2	Fe2+	Fe	2.0	BiGG compound	fe2	Fe(II), Ferrous ion, Iron(2+)
+C14819	fe3	Fe3+	Fe	3	BiGG compound	fe3	Fe(III), Ferric ion, Iron(3+)
+C01641	trnaglu	tRNA (Glu)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnaglu	tRNA(Glu)
+C01642	trnagly	tRNA(Gly)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnagly	
+C03479	5fthf	5-Formyltetrahydrofolate	C20H21N7O7	-2	BiGG compound	5fthf	Folinic acid, Leucovorin, L(-)-5-Formyl-5,6,7,8-tetrahydrofolic acid
+CC0103	dlnlcgcrn	dihomo-gamma-linolenyl carnitine	C27H47NO4	0.0	charge and formula based on other acyl carnitines	dlnlcgcrn	
+C00141	3mob	3-Methyl-2-oxobutanoate	C5H7O3	-1	BiGG compound	3mob	3-Methyl-2-oxobutanoic acid, 3-Methyl-2-oxobutyric acid, 2-Oxo-3-methylbutanoate, 2-Oxoisovalerate, 2-Oxoisopentanoate, alpha-Ketovaline, 2-Ketovaline, 2-Keto-3-methylbutyric acid
+C01996	ach	Acetylcholine	C7H16NO2	1	BiGG compound	ach	O-Acetylcholine
+C05686	adsel	Adenylylselenate	C10H12N5O10PSe	-2	BiGG compound	adsel	Adenosine-5'-phosphoselenate
+C01246	dolglcp	Dolichyl beta-D-glucosyl phosphate	C116H190O9P	-1.0	assumed n=18 for the number of isoprene units	dolglcp_L,dolglcp_U	
+C00704	o2s	Superoxide anion	O2	-1	BiGG compound	o2s	O2.-, O2-
+C16682	retinol-9-cis	9-cis-retinol	C20H30O	0	BiGG compound	retinol-9-cis	
+C03765	4hoxpacd	4-Hydroxyphenylacetaldehyde	C8H8O2	0	BiGG compound	4hoxpacd	2-(4-Hydroxyphenyl)acetaldehyde
+C02412	glytrna	Glycyl-tRNA(Gly)	C2H5NO2R	1.0	tRNA formula in BiGG was modified for mass balance	glytrna	
+C05335	selmeth	Selenomethionine	C5H11NO2Se	0	BiGG compound	selmeth	L-Selenomethionine
+C00422	tag	triacylglycerol	C3H5FULLR4CO2FULLR5CO2FULLR3CO2	0.0	charge is obvious based on general rules and similar compounds	tag_hs	Triglyceride
+C00154	pmtcoa	Palmitoyl-CoA (n-C16:0CoA)	C37H62N7O17P3S	-4	BiGG compound	pmtcoa	Palmitoyl-CoA, Hexadecanoyl-CoA
+CC0050	BAC	Bacteria in diet	X	0.0	represents bacterial diet; charge does not matter		
+C20658	ac_adprib	O-Acetyl-ADP-ribose	C17H23N5O15P2	-2.0	charge based on MetaCyc		2'-O-Acetyl-ADP-ribose, AADPR
+C00387	gsn	Guanosine	C10H13N5O5	0	BiGG compound	gsn	
+C11557	pail5p	1-Phosphatidyl-1D-myo-inositol 5-phosphate 	C9H15O12P2FULLRCO2FULLR2CO2	-3.0	charge based on human version in BiGG	pail5p_hs	1-Phosphatidyl-1D-myo-inositol 5-phosphate, 1,2-Diacyl-sn-glycero-3-phospho-(1'-myo-inositol-5'-phosphate)
+C00330	dgsn	Deoxyguanosine	C10H13N5O4	0	BiGG compound	dgsn	2'-Deoxyguanosine
+C03345	2mb2coa	trans-2-Methylbut-2-enoyl-CoA	C26H38N7O17P3S	-4	BiGG compound	2mb2coa	2-Methylbut-2-enoyl-CoA, Tiglyl-CoA, (E)-2-Methylcrotonoyl-CoA, Methylcrotonoyl-CoA, Methylcrotonyl-CoA, Tigloyl-CoA, 2-Methylcrotanoyl-CoA
+C15520	xoltri25	"7-alpha,25-Dihydroxycholesterol"	C27H46O3	0	BiGG compound	xoltri25	Cholest-5-ene-3beta,7alpha,25-triol, 7alpha,25-Dihydroxycholesterol, 5-Cholesten-3beta,7alpha,25-triol, 3beta,7alpha,25-Trihydroxycholest-5-ene
+C16162	lnlncacoa	alpha-Linolenoyl-CoA	C39H60N7O17P3S	-4	BiGG compound	lnlncacoa	(9Z,12Z,15Z)-Octadecatrienoyl-CoA
+C04405	3hmbcoa	(S)-3-Hydroxy-2-methylbutyryl-CoA	C26H40N7O18P3S	-4	BiGG compound	3hmbcoa	(2S,3S)-3-Hydroxy-2-methylbutanoyl-CoA
+C05787	bildglcur	Bilirubin beta-diglucuronide	C45H50N4O18	-2	BiGG compound	bildglcur	Bilirubin-bisglucuronoside
+C01419	cgly	Cys-Gly	C5H10N2O3S	0	BiGG compound	cgly	L-Cysteinylglycine
+C00096	gdpmann	GDP-D-mannose	C16H23N5O16P2	-2	BiGG compound	gdpmann	GDP-mannose, GDP-alpha-D-mannose
+CC0005	7thf	heptaglutamyl folate (THF)	C49H57N13O24	-8.0	BiGG compound	7thf	
+C00632	3hanthrn	3-Hydroxyanthranilate	C7H7NO3	0	BiGG compound	3hanthrn	3-Hydroxyanthranilic acid
+CC0118	prot_other	Non-mitochondrial protein	X	0.0	for biomass equation; charge does not matter		
+C16681	retinal-cis-9	cis-9-retinal	C20H28O	0	BiGG compound	retinal-cis-9	9-cis-Retinal
+C05212	akac2gchol	1-alkyl 2-acylglycerol 3-phosphocholine	C9H18NO7PRRC2H4	0.0	second R is from alcohol	ak2gchol_hs	1-Radyl-2-acyl-sn-glycero-3-phosphocholine, 1-Organyl-2-acyl-sn-glycero-3-phosphocholine, 2-Acyl-1-alkyl-sn-glycero-3-phosphocholine
+C03069	3mb2coa	3-Methylbut-2-enoyl-CoA	C26H38N7O17P3S	-4	BiGG compound	3mb2coa	3-Methylcrotonyl-CoA, 3-Methylcrotonoyl-CoA, Dimethylacryloyl-CoA
+C05356	5HPET	"5-Hydroperoxy-6-trans-8,11,14-cis-eicosatetraenoate"	C20H31O4	-1	BiGG compound	5HPET	5(S)-HPETE, 5(S)-Hydroperoxy-6-trans-8,11,14-cis-eicosatetraenoic acid, (6E,8Z,11Z,14Z)-(5S)-5-Hydroperoxyeicosa-6,8,11,14-tetraenoate, (6E,8Z,11Z,14Z)-(5S)-5-Hydroperoxyeicosa-6,8,11,14-tetraenoic acid, (5S,6E,8Z,11Z,14Z)-5-Hydroperoxyicosa-6,8,11,14-tetraenoate
+C00089	sucr	Sucrose	C12H22O11	0	BiGG compound	sucr	Cane sugar, Saccharose, 1-alpha-D-Glucopyranosyl-2-beta-D-fructofuranoside
+C00156	4hbz	4-Hydroxybenzoate	C7H5O3	-1	BiGG compound	4hbz	Hydroxybenzoic acid, 4-Hydroxybenzoic acid, Hydroxybenzenecarboxylic acid
+C15670	hemea	heme A	C49H54FeN4O6	0.0	charge based on the heme convention used (see C00126)	hemeA_#1	
+C15672	hemeo	heme O	C49H56FeN4O5	0.0	charge based on the heme convention used (see C00126)	hemeo	
+C00131	datp	dATP	C10H12N5O12P3	-4	BiGG compound	datp	2'-Deoxyadenosine 5'-triphosphate, Deoxyadenosine 5'-triphosphate, Deoxyadenosine triphosphate
+C00996	ficytb	Ferricytochrome b5	X	0.0	based on R00100; charge is assumed and is not important as long as ficytb and focytb are of the same charge. | Reaction for electron accepting is : 2XH --> 2X + 2e + 2H+ ; consistent with R00100		
+C00042	succ	Succinate	C4H4O4	-2	BiGG compound	succ	Succinic acid, Butanedionic acid, Ethylenesuccinic acid
+C00136	btcoa	Butanoyl-CoA	C25H38N7O17P3S	-4	BiGG compound	btcoa	Butyryl-CoA
+C05267	3oocoa	3-Oxooctanoyl-CoA	C29H44N7O18P3S	-4	BiGG compound	3oocoa	
+C01885	mag	monoacylglycerol 2 	C3H7O2FULLR4CO2	0.0	charge based on human version in BiGG	mag_hs	1-Acylglycerol, Glyceride, Monoglyceride, Monoacylglycerol, 1-Monoacylglycerol
+C05455	xol7aone	7alpha-Hydroxycholest-4-en-3-one	C27H44O2	0	BiGG compound	xol7aone	
+C05938	4hglusa	L-4-Hydroxyglutamate semialdehyde	C5H9NO4	0	BiGG compound	4hglusa	
+C00559	dad-2	Deoxyadenosine	C10H13N5O3	0	BiGG compound	dad-2	2'-Deoxyadenosine
+C02076	sedh	sedoheptulose	C7H14O7	0.0	charge is obvious based on general rules and similar compounds		D-altro-Heptulose, D-Sedoheptulose, Volemulose
+CC0079	fa19c11	cis-11,12-methyleneoctadecanoic acid	C19H35O2	-1.0	charge is obvious based on general rules and similar compounds		
+C00121	rib-D	D-Ribose	C5H10O5	0	BiGG compound	rib-D	
+C03035	lnlncgcoa	gamma-linolenoyl-CoA	C39H60N7O17P3S	-4	BiGG compound	lnlncgcoa	
+C00473	retinol	Retinol	C20H30O	0	BiGG compound	retinol	all-trans-Retinol, Vitamin A, Vitamin A1
+C00125	ficytC	Ferricytochrome c	C42H42FeN8O8S2R4	1.0	charge changed from +3 to +1. BIGG charging convention seems to not take into account the carboxyl groups of porphyrin structure.  However, these have to be taken into account during cytochrome synthesis.  The adjusted charge convention is consistent with mass balance	ficytC	Cytochrome c3+
+C01644	trnaile	tRNA(Ile)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnaile	
+C03508	2aobut	L-2-Amino-3-oxobutanoate	C4H7NO3	0	BiGG compound	2aobut	L-2-Amino-3-oxobutanoic acid, L-2-Amino-acetoacetate, (S)-2-Amino-3-oxobutanoic acid
+C00486	bilirub	Bilirubin	C33H34N4O6	-2	BiGG compound	bilirub	
+C02415	Nlys	Histone-L-Lysine	XC6H13N2O	1.0	based on peplys	peplys	
+C00606	3sala	3-Sulfino-L-alanine	C3H5NO4S	-2	BiGG compound	3sala	L-Cysteinesulfinic acid, 3-Sulphino-L-alanine, 3-Sulfinoalanine
+C00449	saccrp-L	L-Saccharopine	C11H19N2O6	-1	BiGG compound	saccrp-L	N6-(L-1,3-Dicarboxypropyl)-L-lysine, Saccharopine, N-[(S)-5-Amino-5-carboxypentyl]-L-glutamic acid
+C00233	4mop	4-Methyl-2-oxopentanoate	C6H9O3	-1	BiGG compound	4mop	2-Oxoisocaproate
+C06482	sectrna	L-Selenocysteinyl-tRNA(Sec)	C3H7NO2SeR	1.0	tRNA formula in BiGG was modified for mass balance	sectrna	
+CC0153	Ntmelys	Histone N6,N6,N6-trimethyl-L-lysine	XC9H19N2O	1.0	formula and charge based on MetaCyc	Ntmelys	
+C16163	strdnccoa	stearidonyl coenzyme A	C39H58N7O17P3S	-4	BiGG compound	strdnccoa	(6Z,9Z,12Z,15Z)-Octadecatetraenoyl-CoA, Stearidonoyl-CoA
+C00353	ttc-ggdp	"trans,trans,cis-Geranylgeranyl diphosphate"	C20H33O7P2	-3	BiGG compound	ttc-ggdp	Geranylgeranyl diphosphate, Geranylgeranyl pyrophosphate, all-trans-Geranylgeranyl diphosphate, all-trans-Geranylgeranyl pyrophosphate, (2E,6E,10E)-3,7,11,15-Tetramethylhexadeca-2,6,10,14-tetraen-1-yl diphosphate
+C00275	man6p	D-Mannose 6-phosphate	C6H11O9P	-2	BiGG compound	man6p	
+C01137	ametam	S-Adenosylmethioninamine	C14H24N6O3S	2	BiGG compound	ametam	(5-Deoxy-5-adenosyl)(3-aminopropyl)methylsulfonium, (5-Deoxy-5-adenosyl)(3-aminopropyl)methylsulfonium cation, S-Adenosyl-(5')-3-methylthiopropylamine, S-Adenosyl 3-(methylthio)propylamine, Decarboxy-AdoMet
+CC0145	pcollg_mod	Procollagen (modified protein)	X	0.0	charge does not matter		
+C05275	dc2coa	trans-Dec-2-enoyl-CoA	C31H48N7O17P3S	-4	BiGG compound	dc2coa	(2E)-Decenoyl-CoA
+C14180	hmgth	hydroxymethylglutathione	C11H18N3O7S	-1	BiGG compound	hmgth	S-(Hydroxymethyl)glutathione
+C04230	lpchol	Lysophosphatidylcholine	C8H19NO5PFULLRCO2	0.0	charge is based on matching BiGG compounds	lpchol_hs	1-Acyl-sn-glycero-3-phosphocholine, 1-Acyl-sn-glycerol-3-phosphocholine, alpha-Acylglycerophosphocholine, 2-Lysolecithin, 2-Lysophosphatidylcholine, 1-Acylglycerophosphocholine
+C04475	akac2gpe	1-alkyl 2-acylglycerol 3-phosphoethanolamine	C6H12O7NPRRC2H4	0.0	second R is from alcohol	ak2gpe_hs	1-Alkyl-2-acylglycerophosphoethanolamine, 1-Radyl-2-acyl-sn-glycero-3-phosphoethanolamine, 1-Organyl-2-acyl-sn-glycero-3-phosphoethanolamine, O-1-Alkyl-2-acyl-sn-glycero-3-phosphoethanolamine, 2-Acyl-1-alkyl-sn-glycero-3-phosphoethanolamine
+C01653	trnaval	tRNA(Val)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnaval	
+C00081	itp	ITP	C10H11N4O14P3	-4	BiGG compound	itp	Inosine 5'-triphosphate, Inosine triphosphate, Inosine tripolyphosphate
+C05924	molybd	Molybdopterin	C10H11N5O6PS2	-3.0	charge beased on MetaCyc and 3DMET		Pyranopterin, H2Dtpp-mP
+CC0204	dhcrm_ce	dihydroceramide 	C19H40NO2FULLRCO	0.0	charge based on human version in BiGG	dhcrm_hs	
+C03715	akdhap	Alkyl-glycerone 3-phosphate	C3H4O6PRC2H4	-2.0	charge based on human version in BiGG		O-Alkylglycerone phosphate, Dihydroxyacetone phosphate alkyl ether
+C00185	clb	Cellobiose	C12H22O11	0.0	charge is obvious based on general rules and similar compounds		1-beta-D-Glucopyranosyl-4-D-glucopyranose
+C00044	gtp	GTP	C10H12N5O14P3	-4	BiGG compound	gtp	Guanosine 5'-triphosphate
+C00130	imp	IMP	C10H11N4O8P	-2	BiGG compound	imp	Inosinic acid, Inosine monophosphate, Inosine 5'-monophosphate, Inosine 5'-phosphate, 5'-Inosinate, 5'-Inosinic acid, 5'-Inosine monophosphate, 5'-IMP
+C03402	asntrna	L-Asparaginyl-tRNA(Asn)	C4H8N2O3R	1.0	tRNA formula in BiGG was modified for mass balance	asntrna	Asn-tRNA(Asn), Asparaginyl-tRNA(Asn)
+C01272	mi1345p	"1D-myo-Inositol 1,3,4,5-tetrakisphosphate"	C6H8O18P4	-8	BiGG compound	mi1345p	1D-myo-Inositol 1,3,4,5-tetrakisphosphate, D-myo-Inositol 1,3,4,5-tetrakisphosphate, Inositol 1,3,4,5-tetrakisphosphate
+C00643	5htrp	5-Hydroxy-L-tryptophan	C11H12N2O3	0	BiGG compound	5htrp	Oxitriptan
+C00882	dpcoa	Dephospho-CoA	C21H33N7O13P2S	-2	BiGG compound	dpcoa	Dephosphocoenzyme A, 3'-Dephospho-CoA
+C01762	xtsn	Xanthosine	C10H12N4O6	0	BiGG compound	xtsn	
+C03090	pram	5-Phospho-beta-D-ribosylamine	C5H11NO7P	-1	BiGG compound	pram	5-Phosphoribosylamine, 5-Phospho-D-ribosylamine, 5-Phosphoribosyl-1-amine
+C01645	trnaleu	tRNA(Leu)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnaleu	
+C00078	trp-L	L-Tryptophan	C11H12N2O2	0	BiGG compound	trp-L	Tryptophan, (S)-alpha-Amino-beta-(3-indolyl)-propionic acid
+C00029	udpg	UDPglucose	C15H22N2O17P2	-2	BiGG compound	udpg	UDP-glucose, UDP-D-glucose, Uridine diphosphate glucose, UDP-alpha-D-glucose
+C00004	nadh	Nicotinamide adenine dinucleotide - reduced	C21H27N7O14P2	-2	BiGG compound	nadh	NADH, DPNH, Reduced nicotinamide adenine dinucleotide
+C02700	Lfmkynr	L-Formylkynurenine	C11H12N2O4	0	BiGG compound	Lfmkynr	N-Formyl-L-kynurenine, N-Formylkynurenine
+C00242	gua	Guanine	C5H5N5O	0	BiGG compound	gua	2-Amino-6-hydroxypurine
+C05528	3spyr	3-Sulfopyruvate	C3H2O6S	-2	BiGG compound	3spyr	3-Sulfopyruvic acid
+C00126	focytC	Ferrocytochrome C	C42H42FeN8O8S2R4	0.0	charge changed from +2 to 0. BIGG charging convention seems to not take into account the carboxyl groups of porphyrin structure.  However, these have to be taken into account during cytochrome synthesis.  The adjusted charge convention is consistent with mass balance	focytC	Cytochrome c2+, Reduced cytochrome c
+C00390	qh2	Ubiquinol	C14H20O4	0	BiGG compound	qh2	QH2, CoQH2
+C00079	phe-L	L-Phenylalanine	C9H11NO2	0	BiGG compound	phe-L	(S)-alpha-Amino-beta-phenylpropionic acid
+C00006	nadp	Nicotinamide adenine dinucleotide phosphate	C21H25N7O17P3	-3	BiGG compound	nadp	NADP+, NADP, beta-Nicotinamide adenine dinucleotide phosphate, TPN, Triphosphopyridine nucleotide, beta-NADP+
+C01635	trnaala	tRNA(Ala)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnaala	
+C00886	alatrna	L-Alanyl-tRNA(Ala)	C3H7NO2R	1.0	tRNA formula in BiGG was modified for mass balance	alatrna	L-Alanyl-tRNA
+C03201	akac2g	1-alkyl 2-acylglycerol	C4H6O4RRC2H4	0.0	charge based on human version in BiGG	ak2g_hs	1-Alkyl-2-acylglycerol, 2-Acyl-1-alkyl-sn-glycerol
+C01211	pcollg5hlys	Procollagen 5-hydroxy-L-lysine	XHO	1.0	formula is adjusted to CEL model; charge is according to MetaCyc	pcollg5hlys	Procollagen L-erythro-5-hydroxylysine
+C03455	retpalm-cis-11	11-cis-Retinyl palmitate	C36H60O2	0.0	charge based on 11-cis-retfa in BIGG		
+C01252	4aphdob	"4-(2-Aminophenyl)-2,4-dioxobutanoate"	C10H8NO4	-1	BiGG compound	4aphdob	4-(2-Aminophenyl)-2,4-dioxobutanoate
+C05446	xoltetrol	"3alpha,7alpha,12alpha,26-Tetrahydroxy-5beta-cholestane"	C27H48O4	0	BiGG compound	xoltetrol	3alpha,7alpha,12alpha,26-Tetrahydroxy-5beta-cholestane, 5beta-Cholestane-3alpha,7alpha,12alpha,26-tetraol, 5beta-Cholestane-3alpha,7alpha,12alpha,26-tetrol
+C04376	fgam	N2-Formyl-N1-(5-phospho-D-ribosyl)glycinamide	C8H13N2O9P	-2	BiGG compound	fgam	5'-Phosphoribosyl-N-formylglycinamide, N-Formyl-GAR, N-Formylglycinamide ribonucleotide
+C00999	focytb	Ferrocytochrome b5	XH	0.0	based on R00100; charge is assumed and is not important as long as ficytb and focytb are of the same charge. | Reaction for electron accepting is : 2XH --> 2X + 2e + 2H+ ; consistent with R00100		
+C00159	man	D-Mannose	C6H12O6	0	BiGG compound	man	Mannose, Seminose, Carubinose
+C01060	35diotyr	"3,5-Diiodo-L-tyrosine"	C9H9I2NO3	0	BiGG compound	35diotyr	3,5-Diiodo-L-tyrosine, 3,5-Diiodotyrosine, L-Diiodotyrosine
+C00103	g1p	D-Glucose 1-phosphate	C6H11O9P	-2	BiGG compound	g1p	alpha-D-Glucose 1-phosphate, Cori ester, D-Glucose alpha-1-phosphate
+CC0210	sphs1p_ce	Sphingosine 1-phosphate	C19H39NO5P	-1.0	charge based on matching BiGG compound	sphs1p	
+C00584	prostge2	Prostaglandin E2	C20H31O5	-1	BiGG compound	prostge2	(5Z,13E)-(15S)-11alpha,15-Dihydroxy-9-oxoprosta-5,13-dienoate, (5Z,13E)-(15S)-11alpha,15-Dihydroxy-9-oxoprost-13-enoate, Dinoprostone, PGE2
+C04248	gpail	D-glucosaminylphosphatidylinositol	C15H28NO13PFULLRCO2FULLR2CO2	0.0	charge based on human version in BiGG	gpail_hs	6-(alpha-D-Glucosaminyl)-1-phosphatidyl-1D-myo-inositol
+C04438	acg3pe	1-Acyl-sn-glycero-3-phosphoethanolamine;2-Acyl-sn-glycero-3-phosphoethanolamine	C6H13NO7PR	0.0	charge is obvious based on general rules and similar compounds		1-Acyl-sn-glycero-3-phosphoethanolamine, L-2-Lysophosphatidylethanolamine
+CC0018	protSgerCmet	Protein C-terminal S-geranylgeranyl-L-cysteine methyl ester	C26H43N2O3SR(C2H2NOR)n	0.0	(C2H2NOR)n represents the repetitive peptide; the sign would depend on the protein but taken zero by convention		
+C01613	stachyose	Stachyose	C24H42O21	0.0	change and formula based on MetaCyc		
+C18125	acg3ps	1-Acyl-sn-glycero-3-phosphoserine	C7H12NO9PR	-1.0	charge is obvious based on general rules and similar compounds		
+C05984	2hb	2-Hydroxybutyrate	C4H7O3	-1	BiGG compound	2hb	2-Hydroxybutanoic acid, 2-Hydroxybutyric acid
+CC0038	nm3masn	M4Gn3	C48H80N3O35X	0.0	named according to PMID: 12603202 		
+C02918	1mncam	1-Methylnicotinamide	C7H9N2O	1	BiGG compound	1mncam	N(1)-Methylnicotinamide
+CC0211	sphings_ce	Sphingosine	C19H40NO2	1.0	charge based on matching BiGG compound	sphings	
+C00097	cys-L	L-Cysteine	C3H7NO2S	0	BiGG compound	cys-L	L-2-Amino-3-mercaptopropionic acid
+C00219	arachd	arachidonic acid	C20H31O2	-1	BiGG compound	arachd	Arachidonate, (5Z,8Z,11Z,14Z)-Icosatetraenoic acid, cis-5,8,11,14-Eicosatetraenoic acid
+C00909	leuktrA4	Leukotriene A4	C20H29O3	-1	BiGG compound	leuktrA4	LTA4, (7E,9E,11Z,14Z)-(5S,6S)-5,6-Epoxyeicosa-7,9,11,14-tetraenoic acid, (7E,9E,11Z,14Z)-(5S,6S)-5,6-Epoxyeicosa-7,9,11,14-tetraenoate, (7E,9E,11Z,14Z)-(5S,6S)-5,6-Epoxyicosa-7,9,11,14-tetraenoate, (5S,6S,7E,9E,11Z,14Z)-5,6-Epoxyicosa-7,9,11,14-tetraenoate
+C17343	cholcoas	"3alpha,7alpha,12alpha-Trihydroxy-5beta-cholestanoyl-CoA(S)"	C48H76N7O20P3S	-4	BiGG compound	cholcoas	(25S)-3alpha,7alpha,12alpha-Trihydroxy-5beta-cholestan-26-oyl-CoA
+C15613	cholcoar	"3alpha,7alpha,12alpha-Trihydroxy-5beta-cholestanoyl-CoA"	C48H76N7O20P3S	-4	BiGG compound	cholcoar	(25R)-3alpha,7alpha,12alpha-Trihydroxy-5beta-cholestan-26-oyl-CoA
+C00475	cytd	Cytidine	C9H13N3O5	0	BiGG compound	cytd	
+C00155	hcys-L	L-Homocysteine	C4H9NO2S	0	BiGG compound	hcys-L	L-2-Amino-4-mercaptobutyric acid, Homocysteine
+C01177	mi1p-D	1D-myo-Inositol 1-phosphate	C6H11O9P	-2	BiGG compound	mi1p-D	Inositol 1-phosphate, myo-Inositol 1-phosphate, D-myo-Inositol 1-phosphate, 1D-myo-Inositol 1-monophosphate
+C00232	sucsal	Succinic semialdehyde	C4H5O3	-1	BiGG compound	sucsal	Succinate semialdehyde, 4-Oxobutanoate
+C05668	3hpcoa	3-Hydroxypropionyl-CoA	C24H36N7O18P3S	-4	BiGG compound	3hpcoa	3-Hydroxypropionyl coenzyme A, 3-Hydroxypropanoyl-CoA, 3-Hydroxypropanoyl coenzymeA, beta-Hydroxypropionyl-CoA
+C00527	glutcoa	Glutaryl-CoA	C26H37N7O19P3S	-5	BiGG compound	glutcoa	
+C00032	pheme	Protoheme	C34H30FeN4O4	0.0	charge changed from -2 to 0. BIGG charging convention seems to not take into account the carboxyl groups of porphyrin structure.  However, these have to be taken into account during cytochrome synthesis.  The adjusted charge convention is consistent with mass balance.  	pheme	Heme, Haem, Heme B, Protoheme IX
+C00780	srtn	Serotonin	C10H13N2O	1	BiGG compound	srtn	3-(2-Aminoethyl)-1H-indol-5-ol, 5-Hydroxytryptamine, Enteramine
+C04853	leuktrB4woh	w-hydroxyl leukotriene B4	C20H31O5	-1	BiGG compound	leuktrB4woh	20-OH-Leukotriene B4, 20-OH-LTB4, 20-Hydroxy-leukotriene B4, (6Z,8E,10E,14Z)-(5S,12R)-5,12,20-Trihydroxyeicosa-6,8,10,14-tetraenoate, (6Z,8E,10E,14Z)-(5S,12R)-5,12,20-Trihydroxyicosa-6,8,10,14-tetraenoate
+C05841	nicrns	Nicotinate D-ribonucleoside	C11H13NO6	0	BiGG compound	nicrns	beta-D-Ribosylnicotinate
+C20120	protSfar	S-Farnesyl protein	C20H33N2O3SR(C2H2NOR)n(C2H2NOR)n	0.0	formula adjusted to a system where peptide account is consistent with reaction balancing; (C2H2NOR)n represents the repetitive peptide, first group in the C terminal, second in the N terminal; the sign would depend on the protein but taken zero by convention		S-Farnesyl protein C-terminal CAAX
+C05272	hdd2coa	trans-Hexadec-2-enoyl-CoA	C37H60N7O17P3S	-4	BiGG compound	hdd2coa	trans-2-Hexadecenoyl-CoA, (2E)-Hexadecenoyl-CoA
+C02051	lpro	Lipoylprotein	S2X	0	BiGG compound	lpro	H-Protein-lipoyllysine
+C05945	argp	L-Arginine phosphate	C6H14N4O5P	-1.0	BiGG compound		N5-[Imino(phosphonoamino)methyl]L-ornithine, omega-N-Phosphoarginine, Arginine phosphate, L-Arginine-NG-phosphoric acid, Phosphoarginine A, N-Phospho-L-arginine, N(omega)-Phospho-L-arginine, Phosphoarginine
+C05823	mercplac	3-Mercaptolactate	C3H5O3S	-1	BiGG compound	mercplac	L-3-Mercaptolactate, (R)-3-Mercaptolactate
+C00077	orn	Ornithine	C5H13N2O2	1	BiGG compound	orn	L-Ornithine, (S)-2,5-Diaminovaleric acid, (S)-2,5-Diaminopentanoic acid, (S)-2,5-Diaminopentanoate
+C02094	caro	beta-Carotene	C40H56	0	BiGG compound	caro	all-trans-beta-Carotene
+C00437	acorn	N2-Acetyl-L-ornithine	C7H14N2O3	0	BiGG compound	acorn	N-Acetylornithine
+C00534	pydam	Pyridoxamine	C8H13N2O2	1	BiGG compound	pydam	PM
+C05460	cholcoads	"3alpha,7alpha,12alpha-Trihydroxy-5beta-cholest-24-enoyl-CoA"	C48H74N7O20P3S	-4	BiGG compound	cholcoads	3alpha,7alpha,12alpha-Trihydroxy-5beta-cholest-24-enoyl-CoA
+C00519	hyptaur	Hypotaurine	C2H6NO2S	-1	BiGG compound	hyptaur	2-Aminoethanesulfinic acid
+C03885	3nphb	3-Nonaprenyl-4-hydroxybenzoate	C52H77O3	-1.0	charge based on 3ocphb and 3dphb in BIGG		Nonaprenyl-4-hydroxybenzoate
+C00181	xyl-D	D-Xylose	C5H10O5	0	BiGG compound	xyl-D	Wood sugar
+CC0122	Rtotal7	R total 7	C2H2O2R	-1.0	R group starts from third carbon to satisfy mass balance with the convention used in ether-lipid metabolism	Rtotal,Rtotal2,Rtotal3	
+CC0133	Rtotal6	R total 6	CO2R	-1.0	charge is based on matching BiGG compounds	Rtotal,Rtotal2,Rtotal3	
+CC0085	Rtotal5	R total 5 position	CO2FULLR5	-1.0	charge is based on matching BiGG compounds	Rtotal,Rtotal2,Rtotal3	
+CC0083	Rtotal4	R total 4 position	CO2FULLR4	-1.0	charge is based on matching BiGG compounds	Rtotal,Rtotal2,Rtotal3	
+CC0087	Rtotal3	R total 3 position	CO2FULLR3	-1.0	charge is based on matching BiGG compounds	Rtotal,Rtotal2,Rtotal3	
+CC0001	Rtotal2	R total 2 position	CO2FULLR2	-1.0	charge is based on matching BiGG compounds	Rtotal,Rtotal2,Rtotal3	
+C00957	mercppyr	Mercaptopyruvate	C3H3O3S	-1	BiGG compound	mercppyr	3-Mercaptopyruvic acid, 3-Mercaptopyruvate
+C18126	lpglyc	1-Acyl-sn-glycero-3-phosphoglycerol	C7H13O9PR	-1.0	charge is obvious based on general rules and similar compounds	2agpg181,2agpg180,2agpg161,2agpg160,2agpg141,2agpg140,2agpg120,1agpg181,1agpg180,1agpg161,1agpg160,1agpg141,1agpg140,1agpg120,agpg_EC,1glyc_hs	
+C04501	acgam1p	N-Acetyl-D-glucosamine 1-phosphate	C8H14NO9P	-2	BiGG compound	acgam1p	N-Acetyl-alpha-D-glucosamine 1-phosphate
+C15610	xol27oh	27-Hydroxycholesterol	C27H46O2	0	BiGG compound	xol27oh	Cholest-5-ene-3beta,26-diol, Cholest-5-ene-3beta,27-diol, 26-Hydroxycholesterol
+C00002	atp	ATP	C10H12N5O13P3	-4	BiGG compound	atp	Adenosine 5'-triphosphate
+C05260	3htdcoa	(S)-3-Hydroxytetradecanoyl-CoA	C35H58N7O18P3S	-4	BiGG compound	3htdcoa	
+C06424	ttdca	tetradecanoate (n-C14:0)	C14H27O2	-1	BiGG compound	ttdca	Tetradecanoic acid, Tetradecanoate, Myristic acid
+C00258	glyc-R	(R)-Glycerate	C3H5O4	-1	BiGG compound	glyc-R	D-Glycerate, Glycerate, Glyceric acid
+C05947	e4hglu	L-erythro-4-Hydroxyglutamate	C5H8NO5	-1	BiGG compound	e4hglu	
+C03125	cystrna	L-Cysteinyl-tRNA(Cys)	C3H7NO2SR	1.0	tRNA formula in BiGG was modified for mass balance	cystrna	
+CC0049	polyadprib	poly adp ribose	C15H19N5O13P2	-2.0	formula of monomeric unit used; charge based on adprib		
+CC0059	pg_BAC	Phosphatidylglycerol (bacteria)	C8H12O10PR2	-1.0	charge is based on matching BiGG compounds	pglyc_hs,pg190,pg181,pg180,pg161,pg160190,pg160,pg141,pg140,pg120,pg_SA,pg_EC,pg_HP,pg_SC	
+CC0080	pa_tag	Phosphatidic acid (TAG)	C3H5O4PFULLR4CO2FULLR5CO2	-2.0	charge based on human version in BiGG	pa_hs,pa_Hp	
+C05688	selcys	Selenocysteine	C3H7NO2Se	0	BiGG compound	selcys	L-Selenocysteine
+CC0137	ISclustprot	Iron-sulfur cluster protein	XFe2S2	6.0	represents general iron-sulfur cluster protein with the cluster loaded. | Charge unknown, arbitrarily set at 6 to warrant mass balance with relative charges		
+C03892	pgp	phosphatidyl glycerol phosphate 	C6H11O9P2FULLRCO2FULLR2CO2	-3.0	charge based on human version in BiGG	pgp_hs	Phosphatidylglycerophosphate, 3(3-sn-Phosphatidyl)-sn-glycerol 1-phosphate, 3(3-Phosphatidyl-)L-glycerol 1-phosphate, 1,2-Diacyl-sn-glycero-3-phospho-sn-glycerol 3'-phosphate
+CC0123	Rtotal6coa	R total 6 Coenzyme A	CO2RC21H31N7O15P3S	-4.0	charge is based on matching BiGG compounds	Rtotalcoa,Rtotal2coa,Rtotal3coa,acoa	
+C01573	pdipht	Peptide diphthine	C14H21N5O4R2	0.0	formula based on KEGG, charge based on BIGG and MetaCyc		Diphthine, EF-2 diphthine, Elongation factor 2 diphthine
+C00719	glyb	Glycine betaine	C5H11NO2	0	BiGG compound	glyb	Betaine, Trimethylaminoacetate, N,N,N-Trimethylglycine, Trimethylammonioacetate
+CC0024	m8mpdol	(alpha-D-Mannosyl)8-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol	C180H296N2O62P2	-2.0	assumed n=18 for the number of isoprene units; designated as G00007 in KEGG nomenclature	m8mpdol_L,m8mpdol_U	
+CC0200	h_pumped	proton (pumped)	H	1.0	Introduced during the first model update to separate V-ATPase function from that of F-ATPase.		
+C03492	4ppan	D-4'-Phosphopantothenate	C9H15NO8P	-3	BiGG compound	4ppan	(R)-4'-Phosphopantothenate
+CC0155	pepasn3oh	Peptide 3-hydroxy-L-asparagine	XC4H6N2O3	0.0	formula and charge based on MetaCyc		
+C05332	peamn	Phenethylamine	C8H12N	1	BiGG compound	peamn	2-Phenylethylamine, beta-Phenylethylamine, Phenylethylamine
+C00061	fmn	FMN	C17H19N4O9P	-2	BiGG compound	fmn	Riboflavin-5-phosphate, Flavin mononucleotide
+C00116	glyc	Glycerol	C3H8O3	0	BiGG compound	glyc	Glycerin, 1,2,3-Trihydroxypropane, 1,2,3-Propanetriol
+C01165	glu5sa	L-Glutamate 5-semialdehyde	C5H9NO3	0	BiGG compound	glu5sa	L-Glutamate gamma-semialdehyde
+C00312	xylu-L	L-Xylulose	C5H10O5	0	BiGG compound	xylu-L	L-threo-Pentulose, L-Lyxulose
+CC0042	fm2masn	MMFuc	C40H67N2O29X	0.0	named according to PMID: 12603202 		
+C00109	2obut	2-Oxobutanoate	C4H5O3	-1	BiGG compound	2obut	2-Ketobutyric acid, 2-Oxobutyric acid, 2-Oxobutyrate, 2-Oxobutanoic acid, alpha-Ketobutyric acid, alpha-Ketobutyrate
+C00310	xylu-D	D-Xylulose	C5H10O5	0	BiGG compound	xylu-D	D-threo-Pentulose, D-Lyxulose
+C00681	alpa_pl	Lysophosphatidic acid (phospholipids)	C3H6O5PFULLRCO2	-2.0	charge based on human version in BiGG	alpa_hs	1-Acyl-sn-glycerol 3-phosphate, 2-Lysophosphatidate, Lysophosphatidate, Lysophosphatidic acid
+C01143	5dpmev	(R)-5-Diphosphomevalonate	C6H10O10P2	-4	BiGG compound	5dpmev	
+CC0144	pcollg_rest	Procollagen (unmodified portion)	X	0.0	charge does not matter		
+C00015	udp	UDP	C9H11N2O12P2	-3	BiGG compound	udp	Uridine 5'-diphosphate
+CC0052	rna_BAC	RNA component of bacterial diet	X	0.0	charge does not matter		
+C00262	hxan	Hypoxanthine	C5H4N4O	0	BiGG compound	hxan	Purine-6-ol
+C00376	retinal	Retinal	C20H28O	0	BiGG compound	retinal	Vitamin A aldehyde, Retinene, all-trans-Retinal, all-trans-Vitamin A aldehyde, all-trans-Retinene
+C17336	xol27one	7alpha,26-Dihydroxy-4-cholesten-3-one	C27H44O3	0.0	charge based on similar compounds in BiGG		
+C00014	nh4	Ammonium	H4N	1.0	BiGG compound	nh4	Ammonia, NH3
+CC0094	fa15p0isocoa	Fatty acyl (C15:iso) coa	C36H60N7O17P3S	-4.0	charge is obvious based on general rules and similar compounds. | See CC0067 for custom fatty acid nomenclature; iso stands for isomer	acoa	
+C00857	dnad	Deamino-NAD+	C21H24N6O15P2	-2	BiGG compound	dnad	Deamido-NAD+, Deamido-NAD
+C00429	56dura	"5,6-dihydrouracil"	C4H6N2O2	0	BiGG compound	56dura	5,6-Dihydrouracil, Dihydro-2,4(1H,3H)-pyrimidinedione, Dihydrouracile, Dihydrouracil, 5,6-Dihydro-2,4-dihydroxypyrimidine, Hydrouracil, 2,4-Dioxotetrahydropyrimidine
+C00178	thym	Thymine	C5H6N2O2	0	BiGG compound	thym	5-Methyluracil
+C01243	mi134p	"1D-myo-Inositol 1,3,4-trisphosphate"	C6H9O15P3	-6	BiGG compound	mi134p	1D-myo-Inositol 1,3,4-trisphosphate, D-myo-Inositol 1,3,4-trisphosphate, Inositol 1,3,4-trisphosphate
+CC0084	Rtotal4coa	R total 4 coenzyme A	CO2FULLR4C21H31N7O15P3S	-4.0	charge is based on matching BiGG compounds	Rtotalcoa,Rtotal2coa,Rtotal3coa,acoa	
+CC0060	ps_BAC	Phosphatidylserine (bacteria)	C8H11NO10PR2	-1.0	charge is based on matching BiGG compounds	ps181,ps180,ps161,ps160,ps141,ps140,ps120,ps_SA,ps_hs,ps_EC,ps_HP,ps_SC	
+C01107	5pmev	(R)-5-Phosphomevalonate	C6H10O7P	-3	BiGG compound	5pmev	(R)-5-Phosphomevaloonic acid, (R)-Mevalonic acid 5-phosphate
+CC0202	crmp_ce	Ceramide 1-phosphate	C19H37NO5PFULLRCO	-2.0	charge based on human version in BiGG	crmp_hs	
+C00641	dag_pl	diacylglycerol (phospholipids)	C3H6OFULLRCO2FULLR2CO2	0.0	charge based on human version in BiGG	dag_hs	1,2-Diacyl-sn-glycerol, 1,2-Diacylglycerol, L-1,2-Diacylglycerol
+C00655	xmp	Xanthosine 5'-phosphate	C10H11N4O9P	-2	BiGG compound	xmp	Xanthylic acid, XMP, (9-D-Ribosylxanthine)-5'-phosphate
+CC0003	Rtotal3coa	R total 3 Coenzyme A	CO2FULLR3C21H31N7O15P3S	-4.0	charge is based on matching BiGG compounds	Rtotalcoa,Rtotal2coa,Rtotal3coa,acoa	
+C00388	hista	Histamine	C5H10N3	1	BiGG compound	hista	1H-Imidazole-4-ethanamine, 2-(4-Imidazolyl)ethylamine
+C01921	gchola	glycocholate	C26H43NO6	0	BiGG compound	gchola	Glycocholic acid, 3alpha,7alpha,12alpha-Trihydroxy-5beta-cholan-24-oylglycine
+C02047	leutrna	L-Leucyl-tRNA(Leu)	C6H13NO2R	1.0	tRNA formula in BiGG was modified for mass balance	leutrna	L-Leucyl-tRNA
+C00344	pglyc	phosphatidylglycerol 	C6H12O6PFULLRCO2FULLR2CO2	-1.0	charge based on human version in BiGG	pglyc_hs	Phosphatidylglycerol, 3-(3-sn-Phosphatidyl)glycerol, 3(3-Phosphatidyl-)glycerol, PtdGro
+CC0205	crm_ce	ceramide 	C19H38NO2FULLRCO	0.0	charge based on human version in BiGG	crm_hs	
+C00546	mthgxl	Methylglyoxal	C3H4O2	0	BiGG compound	mthgxl	Pyruvaldehyde, Pyruvic aldehyde, 2-Ketopropionaldehyde, 2-Oxopropanal
+C00070	fattyald	Fatty aldehyde	RC2H3O	0.0	charge is zero since this is an aldehyde		Copper, Cu+, Cu2+, Cu(II)
+CC0064	pa_BAC	Phosphatidate  (bacteria)	C5H5O8PR2	-2.0	charge is based on matching BiGG compounds	pa_SA,pa_EC	
+C11556	pail35p	1-phosphatidyl-1D-myo-inositol 3,5-bisphosphate(5-)	C9H14O15P3FULLRCO2FULLR2CO2	-5.0	BiGG compound		1-Phosphatidyl-1D-myo-inositol 3,5-bisphosphate, 1,2-Diacyl-sn-glycero-3-phospho-(1'-myo-inositol-3',5'-bisphosphate)
+C00288	hco3	Bicarbonate	CHO3	-1	BiGG compound	hco3	HCO3-, Hydrogencarbonate, Acid carbonate
+C00345	6pgc	6-Phospho-D-gluconate	C6H10O10P	-3	BiGG compound	6pgc	
+C15519	xol25oh	25-Hydroxycholesterol	C27H46O2	0	BiGG compound	xol25oh	Cholest-5-ene-3beta,25-diol
+C04734	fprica	5-Formamido-1-(5-phospho-D-ribosyl)imidazole-4-carboxamide	C10H13N4O9P	-2	BiGG compound	fprica	1-(5'-Phosphoribosyl)-5-formamido-4-imidazolecarboxamide, 5'-Phosphoribosyl-5-formamido-4-imidazolecarboxamide, 5-Formamido-1-(5-phosphoribosyl)imidazole-4-carboxamide, FAICAR
+C00167	udpglcur	UDP-D-glucuronate	C15H19N2O18P2	-3	BiGG compound	udpglcur	UDP-glucuronate, UDPglucuronate, UDP-alpha-D-glucuronate
+CC0135	vacc	Vaccenic acid	C18H33O2	-1.0	BiGG compound	vacc	
+C00082	tyr-L	L-Tyrosine	C9H11NO3	0	BiGG compound	tyr-L	(S)-3-(p-Hydroxyphenyl)alanine, (S)-2-Amino-3-(p-hydroxyphenyl)propionic acid, Tyrosine
+C00695	cholate	Cholate	C24H39O5	-1	BiGG compound	cholate	Cholic acid, 3alpha,7alpha,12alpha-Trihydroxy-5beta-cholanate, 3alpha,7alpha,12alpha-Trihydroxy-5beta-cholanic acid
+CC0136	apoISclustprot	apo iron-sulfur cluster protein	X	0.0	represents apo form of general iron-sulfur cluster protein. | Charge unknown, arbitrarily set at 0 to warrant mass balance with relative charges		
+C04188	5mdr1p	5-Methylthio-5-deoxy-D-ribose 1-phosphate	C6H11O7PS	-2	BiGG compound	5mdr1p	S-Methyl-5-thio-D-ribose 1-phosphate, S-Methyl-5-thio-alpha-D-ribose 1-phosphate, S-Methyl-5-thio-5-deoxy-D-ribose 1-phosphate
+C01528	seln	Selenide	HSe	-1	BiGG compound	seln	Hydrogen selenide
+C04540	acBgamamAsn	N4-(Acetyl-beta-D-glucosaminyl)asparagine	C12H21N3O8	0.0	charge and formula based on MetaCyc		N4-(beta-N-Acetyl-D-glucosaminyl)-L-asparagine, 1-beta-Aspartyl-N-acetyl-D-glucosaminylamine
+C01036	4mlacac	4-Maleylacetoacetate	C8H6O6	-2	BiGG compound	4mlacac	4-Maleylacetoacetic acid
+C00445	methf	"5,10-Methenyltetrahydrofolate"	C20H20N7O6	-1	BiGG compound	methf	5,10-Methenyltetrahydrofolate
+C04722	thcholstoic	"3alpha,7alpha,12alpha-Trihydroxy-5beta-cholestanoate"	C27H45O5	-1	BiGG compound	thcholstoic	3alpha,7alpha,12alpha-Trihydroxy-5beta-cholestanoate, 3alpha,7alpha,12alpha-Trihydroxy-5beta-cholestan-26-oate, 3alpha,7alpha,12alpha-Trihydroxy-5beta-cholestanate
+C04352	4ppcys	N-((R)-4-Phosphopantothenoyl)-L-cysteine	C12H20N2O9PS	-3	BiGG compound	4ppcys	(R)-4'-Phosphopantothenoyl-L-cysteine, N-[(R)-4'-Phosphopantothenoyl]-L-cysteine
+C00188	thr-L	L-Threonine	C4H9NO3	0	BiGG compound	thr-L	2-Amino-3-hydroxybutyric acid
+C15650	dkmpp	"2,3-diketo-5-methylthio-1-phosphopentane"	C6H9O6PS	-2	BiGG compound	dkmpp	2,3-Diketo-5-methylthiopentyl-1-phosphate, 5-(Methylthio)-2,3-dioxopentyl phosphate
+C00072	ascb-L	L-Ascorbate	C6H8O6	0	BiGG compound	ascb-L	Ascorbate, Ascorbic acid, L-Ascorbic acid, Vitamin C
+C04076	L2aadp6sa	L-2-Aminoadipate 6-semialdehyde	C6H11NO3	0	BiGG compound	L2aadp6sa	2-Aminoadipate 6-semialdehyde, L-Allysine, Allysine, (S)-2-Amino-6-oxohexanoate
+C00483	tym	Tyramine	C8H12NO	1	BiGG compound	tym	2-(p-Hydroxyphenyl)ethylamine
+C01179	34hpp	3-(4-Hydroxyphenyl)pyruvate	C9H7O4	-1	BiGG compound	34hpp	4-Hydroxyphenylpyruvate, p-Hydroxyphenylpyruvic acid
+CC0002	Rtotal2coa	R total 2 coenzyme A	CO2FULLR2C21H31N7O15P3S	-4.0	charge is based on matching BiGG compounds	Rtotalcoa,Rtotal2coa,Rtotal3coa,acoa	
+C01194	pail	Phosphatidylinositol	C9H16O9PFULLRCO2FULLR2CO2	-1.0	charge is based on matching BiGG compounds	pail_hs	1-Phosphatidyl-D-myo-inositol, 1-Phosphatidyl-1D-myo-inositol, 1-Phosphatidyl-myo-inositol, Phosphatidyl-1D-myo-inositol, (3-Phosphatidyl)-1-D-inositol, 1,2-Diacyl-sn-glycero-3-phosphoinositol
+C00022	pyr	Pyruvate	C3H3O3	-1	BiGG compound	pyr	Pyruvic acid, 2-Oxopropanoate, 2-Oxopropanoic acid, Pyroracemic acid
+C00021	ahcys	S-Adenosyl-L-homocysteine	C14H20N6O5S	0	BiGG compound	ahcys	S-Adenosylhomocysteine
+C00785	urcan	Urocanate	C6H5N2O2	-1	BiGG compound	urcan	Urocanic acid
+C20119	protCys	Protein-cysteine	C5H9N2O3SR(C2H2NOR)n(C2H2NOR)n	0.0	(C2H2NOR)n represents the repetitive peptide; the sign would depend on the protein but taken zero by convention		Protein C-terminal CAAX
+C00231	xu5p-D	D-Xylulose 5-phosphate	C5H9O8P	-2	BiGG compound	xu5p-D	
+C00191	glcur	D-Glucuronate	C6H9O7	-1	BiGG compound	glcur	Glucuronic acid, Glucuronate
+C00853	cbl1	Cob(I)alamin	C62H88CoN13O14P	-1	BiGG compound	cbl1	Cbl, Vitamin B12s
+C05545	Ndmelys	Histone N6,N6-dimethyl-L-lysine	XC8H17N2O	1.0	formula and charge inferred from MetaCyc	Ndmelys	Protein N6,N6-dimethyl-L-lysine
+C00506	Lcyst	L-Cysteate	C3H6NO5S	-1	BiGG compound	Lcyst	L-Cysteic acid, 3-Sulfoalanine, 2-Amino-3-sulfopropionic acid
+C00101	thf	"5,6,7,8-Tetrahydrofolate"	C19H21N7O6	-2	BiGG compound	thf	Tetrahydrofolate, 5,6,7,8-Tetrahydrofolate, Tetrahydrofolic acid, THF, (6S)-Tetrahydrofolate, (6S)-Tetrahydrofolic acid, (6S)-THFA
+C03820	acakg	2-Acetyl-1-alkyl-sn-glycerol	C5H9O4RC2H4	0.0	charge is obvious based on general rules and similar compounds		1-Alkyl-2-acetyl-sn-glycerol, 1-O-Alkyl-2-acetyl-sn-glycerol
+C03672	34hpl	3-(4-Hydroxyphenyl)lactate	C9H9O4	-1	BiGG compound	34hpl	4-Hydroxyphenyllactate, p-Hydroxyphenyllactate, 2-Hydroxy-3-(4-hydroxyphenyl)propanoate
+C00091	succoa	Succinyl-CoA	C25H35N7O19P3S	-5	BiGG compound	succoa	Succinyl coenzyme A
+CC0086	Rtotal5coa	R total 5 coenzyme A	CO2FULLR5C21H31N7O15P3S	-4.0	charge is based on matching BiGG compounds	Rtotalcoa,Rtotal2coa,Rtotal3coa,acoa	
+C05827	3mldz	3-Methylimidazole acetaldehyde	C6H8N2O	0	BiGG compound	3mldz	Methylimidazole acetaldehyde, 1-Methylimidazole-4-acetaldehyde, Methylimidazoleacetaldehyde
+C00106	ura	Uracil	C4H4N2O2	0	BiGG compound	ura	
+C03824	am6sa	2-Aminomuconate 6-semialdehyde	C6H7NO3	0	BiGG compound	am6sa	2-Aminomuconate semialdehyde
+CC0132	Glycans	Glycan pool	X	0.0	charge does not matter		
+C00575	camp	cAMP	C10H11N5O6P	-1	BiGG compound	camp	3',5'-Cyclic AMP, Cyclic adenylic acid, Cyclic AMP, Adenosine 3',5'-phosphate, Adenosine 3',5'-cyclic phosphate
+C04409	cmusa	2-Amino-3-carboxymuconate semialdehyde	C7H6NO5	-1	BiGG compound	cmusa	2-Amino-3-(3-oxoprop-1-enyl)-but-2-enedioate, 2-Amino-3-(3-oxoprop-1-en-1-yl)but-2-enedioate
+C00299	uri	Uridine	C9H12N2O6	0	BiGG compound	uri	
+C00283	h2s	Hydrogen sulfide	H2S	0	BiGG compound	h2s	Hydrogen-sulfide, H2S, Sulfide
+C00001	h2o	H2O	H2O	0	BiGG compound	h2o	Water
+C05828	3mlda	3-Methylimidazoleacetic acid	C6H7N2O2	-1	BiGG compound	3mlda	Methylimidazoleacetic acid, Tele-methylimidazoleacetic acid, 1-Methyl-4-imidazoleacetic acid, 1-Methylimidazole-4-acetate, Methylimidazoleacetate
+C00085	f6p	D-Fructose 6-phosphate	C6H11O9P	-2	BiGG compound	f6p	D-Fructose 6-phosphoric acid, Neuberg ester
+C02670	glac	"D-glucurono-6,3-lactone"	C6H8O6	0	BiGG compound	glac	D-Glucuronolactone, Glucurone, D-Glucurono-3,6-lactone, D-Glucurone
+C00418	mev-R	(R)-Mevalonate	C6H11O4	-1	BiGG compound	mev-R	Mevalonic acid, 3,5-Dihydroxy-3-methylvaleric acid
+C00035	gdp	GDP	C10H12N5O11P2	-3	BiGG compound	gdp	Guanosine 5'-diphosphate, Guanosine diphosphate
+C01239	acBgamam	N-Acetyl-beta-D-glucosaminylamine	C8H16N2O5	0.0	charge and formula based on MetaCyc		
+C00234	10fthf	10-Formyltetrahydrofolate	C20H21N7O7	-2	BiGG compound	10fthf	10-Formyl-THF
+C02984	asptrna	L-Aspartyl-tRNA(Asp)	C4H6NO4R	0.0	tRNA formula in BiGG was modified for mass balance	asptrna	
+C02939	ivcoa	Isovaleryl-CoA	C26H40N7O17P3S	-4	BiGG compound	ivcoa	3-Methylbutanoyl-CoA
+C00362	dgmp	dGMP	C10H12N5O7P	-2	BiGG compound	dgmp	2'-Deoxyguanosine 5'-monophosphate, 2'-Deoxyguanosine 5'-phosphate, Deoxyguanylic acid, Deoxyguanosine monophosphate
+C00621	doldp	Dolichol diphosphate	C110H179O7P2	-3.0	assumed n=18 for the number of isoprene units	doldp	Dolichyl diphosphate
+C05980	clpn	Cardiolipin	C9H16O9P2FULLRCO2FULLR2CO2FULLRCO2FULLR2CO2	-2.0	charge is based on matching BiGG compounds	clpn181,clpn180,clpn161,clpn160190,clpn160,clpn141,clpn140,clpn120,clpn_SA,clpn_hs,clpn_HP,clpn_EC	Diphosphatidylglycerol, 1',3'-Bis(1,2-diacyl-sn-glycero-3-phospho)-sn-glycerol
+C00689	tre6p	"alpha,alpha'-Trehalose 6-phosphate"	C12H21O14P	-2	BiGG compound	tre6p	alpha,alpha'-Trehalose 6-phosphate, Trehalose 6-phosphate
+CC0053	dna_BAC	DNA component of bacterial diet	X	0.0	charge does not matter		
+CC0035	n2m2masn	((N-acetyl-D-glucosaminyl)2-(alpha-D-mannosyl)2-beta-D-mannosyl-diacetylchitobiosyl)-L-asparagine (protein)	C50H83N4O35X	0.0	designated as G00015 in KEGG nomenclature	n2m2masn	
+C00337	dhor-S	(S)-Dihydroorotate	C5H5N2O4	-1	BiGG compound	dhor-S	(S)-4,5-Dihydroorotate, L-Dihydroorotate, L-Dihydroorotic acid, Dihydro-L-orotic acid
+C16217	3hodcoa	(S)-3-Hydroxyoctadecanoyl-CoA	C39H66N7O18P3S	-4	BiGG compound	3hodcoa	3-Hydroxyoctadecanoyl-CoA, 3-Hydroxystearoyl-CoA, beta-Hydroxystearoyl-CoA
+CC0012	q9	Ubiquinone-9	C54H82O4	0.0	charge based on all quinones in BIGG	q8,q6,q10,q	
+CC0013	q8	Ubiquinone-8	C49H74O4	0.0	BiGG compound	q8	
+C00190	udpxyl	UDP-D-xylose	C14H20N2O16P2	-2	BiGG compound	udpxyl	UDP-xylose, UDP-alpha-D-xylose
+C00800	guln	L-Gulonate	C6H11O7	-1	BiGG compound	guln	L-Gulonic acid, Gulonate, Gulonic acid
+CC0026	g2m8mpdol	(alpha-D-Glucosyl)2-(alpha-D-mannosyl)8-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol	C192H316N2O72P2	-2.0	assumed n=18 for the number of isoprene units; designated as G10599 in KEGG nomenclature	g2m8mpdol_L,g2m8mpdol_U	
+C04874	dhnpt	Dihydroneopterin	C9H13N5O4	0	BiGG compound	dhnpt	2-Amino-4-hydroxy-6-(D-erythro-1,2,3-trihydroxypropyl)-7,8-dihydropteridine, 7,8-Dihydroneopterin
+C00239	dcmp	dCMP	C9H12N3O7P	-2	BiGG compound	dcmp	Deoxycytidylic acid, Deoxycytidine monophosphate, Deoxycytidylate, 2'-Deoxycytidine 5'-monophosphate
+C01161	34dhpha	3-4-Dihydroxyphenylacetate	C8H7O4	-1.0	BiGG compound		3,4-Dihydroxyphenylacetate, 3,4-Dihydroxyphenylacetic acid, Homoprotocatechuate
+C00119	prpp	5-Phospho-alpha-D-ribose 1-diphosphate	C5H8O14P3	-5	BiGG compound	prpp	5-Phosphoribosyl diphosphate, 5-Phosphoribosyl 1-pyrophosphate, PRPP
+C03372	adhap	1-Acyl-glycerone 3-phosphate	C4H4O7PR	-2.0	charge based on human version in BiGG	1agly3p_SC	Acylglycerone phosphate, Dihydroxyacetone phosphate acyl ester
+CC0045	nbglycogen	non-branching glycogen	C6H10O5	0.0	"glycogen" in BIGG nomenclature		
+C00523	andrstrn	Androsterone	C19H30O2	0	BiGG compound	andrstrn	3alpha-Hydroxy-5alpha-androstan-17-one
+CC0033	nm4masn	(N-acetyl-D-glucosaminyl-(alpha-D-mannosyl)4-beta-D-mannosyl-diacetylchitobiosyl)-L-asparagine (protein)	C54H90N3O40X	0.0	designated as G00013 in KEGG nomenclature	nm4masn	
+C00249	hdca	Hexadecanoate (n-C16:0)	C16H31O2	-1	BiGG compound	hdca	Hexadecanoic acid, Hexadecanoate, Hexadecylic acid, Palmitic acid, Palmitate, Cetylic acid
+C05653	nformanth	N-Formylanthranilate	C8H6NO3	-1	BiGG compound	nformanth	Formylanthranilate, 2-(Formylamino)-benzoic acid
+CC0142	phospholipid_BAC	phospholipid component of E. coli diet	X	0.0	charge does not matter		
+C04006	mi3p-D	1D-myo-Inositol 3-phosphate	C6H11O9P	-2	BiGG compound	mi3p-D	D-myo-Inositol 3-phosphate, myo-Inositol 3-phosphate, Inositol 3-phosphate, 1D-myo-Inositol 3-monophosphate, D-myo-Inositol 3-monophosphate, myo-Inositol 3-monophosphate, Inositol 3-monophosphate, 1L-myo-Inositol 1-phosphate, L-myo-Inositol 1-phosphate
+C01352	fadh2	Flavin adenine dinucleotide reduced	C27H33N9O15P2	-2	BiGG compound	fadh2	FADH2
+C04043	34dhpac	3,4-Dihydroxyphenylacetaldehyde	C8H8O3	0.0	BiGG compound		Protocatechuatealdehyde
+C05276	oc2coa	trans-Oct-2-enoyl-CoA	C29H44N7O17P3S	-4	BiGG compound	oc2coa	(2E)-Octenoyl-CoA
+C06001	3hmp	3-Hydroxy-2-methylpropanoate	C4H7O3	-1	BiGG compound	3hmp	(S)-3-Hydroxyisobutyrate
+CC0006	3npdhb	3-nonaprenyl-4,5-dihydroxybenzoate	C52H77O4	-1.0	charge based on 3dpdhb in BIGG		
+C00332	aacoa	Acetoacetyl-CoA	C25H36N7O18P3S	-4	BiGG compound	aacoa	Acetoacetyl coenzyme A, 3-Acetoacetyl-CoA
+C03460	2mp2coa	2-Methylprop-2-enoyl-CoA	C25H36N7O17P3S	-4	BiGG compound	2mp2coa	Methacrylyl-CoA, Methylacrylyl-CoA
+C05127	mhista	N-Methylhistamine	C6H12N3	1	BiGG compound	mhista	1-Methylhistamine, 1-Methyl-4-(2-aminoethyl)imidazole, Ntau-Methylhistamine
+C03284	3aib	L-3-Amino-isobutanoate	C4H9NO2	0	BiGG compound	3aib	(S)-3-Amino-isobutyrate, L-3-Amino-isobutyrate, (S)-3-Amino-isobutanoate, (S)-3-Amino-2-methylpropanoate
+C01997	Naclys	Histone N6-acetyl-L-lysine	XC8H14N2O2	0.0	formula and charge based on MetaCyc		Acetylhistone
+C02067	psduri	Pseudouridine	C9H12N2O6	0.0	charge based on DBET, which is accurate for psd5p, a similar compound taking place in the same reaction		
+C00129	ipdp	Isopentenyl diphosphate	C5H9O7P2	-3	BiGG compound	ipdp	delta3-Isopentenyl diphosphate, delta3-Methyl-3-butenyl diphosphate
+C00080	h	H+	H	1	BiGG compound	h	Hydron, Proton
+CC0209	m15hxdcal	15-methylhexadecanal	C17H34O	0.0	charge based on hexadecanal in BiGG		
+C00439	forglu	N-Formimidoyl-L-glutamate	C6H8N2O4	-2	BiGG compound	forglu	N-Formimino-L-glutamate
+C03722	quln	Quinolinate	C7H3NO4	-2	BiGG compound	quln	Pyridine-2,3-dicarboxylate, Quinolinic acid, 2,3-Pyridinedicarboxylic acid
+C01103	orot5p	Orotidine 5'-phosphate	C10H10N2O11P	-3	BiGG compound	orot5p	Orotidylic acid
+CC0111	fa17c9crn	cis-9,10-methylenehexadecanoyl carnitine	C24H45NO4	0.0	charge and formula based on other acyl carnitines		
+C04375	pepasp_acgamam	Peptide-N4-(N-acetyl-beta-glucosaminyl)asparagine	XC12O7N3H19	0.0	charge and formula based on MetaCyc; protein charge (that of X) is ignored		4-N-(N-Acetyl-D-glucosaminyl)-protein
+C00683	mmcoa-S	(S)-Methylmalonyl-CoA	C25H35N7O19P3S	-5	BiGG compound	mmcoa-S	(S)-Methylmalonyl-coenzyme A, (2S)-Methylmalonyl-CoA, D-Methylmalonyl-CoA
+C01213	mmcoa-R	(R)-Methylmalonyl-CoA	C25H35N7O19P3S	-5	BiGG compound	mmcoa-R	L-Methylmalonyl-CoA
+C01149	4tmeabut	4-Trimethylammoniobutanal	C7H16NO	1	BiGG compound	4tmeabut	
+C00318	crn	L-Carnitine	C7H15NO3	0	BiGG compound	crn	L-gamma-Trimethyl-beta-hydroxybutyrobetaine, Vitamin BT, 3-Carboxy-2-hydroxy-N,N,N-trimethyl-1-propanaminium hydroxide, inner salt, Levocarnitine, (R)-Carnitine
+C04441	caphis	Peptide 2-(3-carboxy-3-aminopropyl)-L-histidine	C11H15N5O4R2	0.0	formula based on KEGG, charge based on BIGG and MetaCyc		2-(3-Carboxy-3-aminopropyl)-L-histidine, EF-2 2-(3-carboxy-3-aminopropyl)-L-histidine, 2-[(3S)-3-Amino-3-carboxypropyl]-L-histidine-[translation elongation factor 2]
+C00665	f26bp	"D-Fructose 2,6-bisphosphate"	C6H10O12P2	-4	BiGG compound	f26bp	beta-D-Fructose 2,6-bisphosphate, D-Fructose 2,6-bisphosphate
+CC0076	Rtotal_BAC	R total from bacterial diet	RCO2	-1.0	charge is obvious based on general rules and similar compounds		
+CC0017	protSgerC	Protein C-terminal S-geranylgeranyl-L-cysteine 	C25H41N2O3SR(C2H2NOR)n	0.0	(C2H2NOR)n represents the repetitive peptide; the sign would depend on the protein but taken zero by convention		
+C00398	trypta	Tryptamine	C10H13N2	1	BiGG compound	trypta	3-(2-Aminoethyl)indole
+C00379	xylt	Xylitol	C5H12O5	0	BiGG compound	xylt	
+CC0156	biomass_minor	Minor components of biomass	X	0.0	charge does not matter		
+C00906	56dthm	"5,6-Dihydrothymine"	C5H8N2O2	0	BiGG compound	56dthm	5,6-Dihydrothymine, Dihydrothymine, 5,6-Dihydro-5-methyluracil
+C01259	3htmelys	3-Hydroxy-N6,N6,N6-trimethyl-L-lysine	C9H21N2O3	1.0	formula and charge based on MetaCyc	3htmelys	
+C00325	gdpfuc	GDP-L-fucose	C16H23N5O15P2	-2	BiGG compound	gdpfuc	GDP-beta-L-fucose
+C00811	T4hcinnm	trans-4-Hydroxycinnamate	C9H7O3	-1	BiGG compound	T4hcinnm	4-Coumarate, p-Coumaric acid, trans-p-Hydroxycinnamate, 4-Hydroxycinnamic acid, 4-Hydroxycinnamate
+C00696	prostgd2	Prostaglandin D2	C20H31O5	-1	BiGG compound	prostgd2	(5Z,13E)-(15S)-9alpha,15-Dihydroxy-11-oxoprosta-5,13-dienoate, (5Z,13E,15S)-9alpha,15-Dihydroxy-11-oxoprosta-5,13-dienoate, PGD2
+C05697	sel	Selenate	O4Se	-2	BiGG compound	sel	Selenic acid
+C17339	xoldiolone	"7alpha,12alpha-Dihydroxycholest-4-en-3-one"	C27H44O3	0	BiGG compound	xoldiolone	4-Cholesten-7alpha,12alpha-diol-3-one, 7alpha,12alpha-Dihydroxy-4-cholesten-3-one
+C05263	3oddcoa	3-Oxododecanoyl-CoA	C33H52N7O18P3S	-4	BiGG compound	3oddcoa	
+C00011	co2	CO2	CO2	0	BiGG compound	co2	Carbon dioxide
+CC0032	m4masn	(alpha-D-mannosyl)4-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine (protein)	C46H77N2O35X	0.0	designated as G00012 in KEGG nomenclature	m4masn	
+C00988	2pglyc	2-Phosphoglycolate	C2H2O6P	-3	BiGG compound	2pglyc	Phosphoglycolic acid
+CC0031	m8masn	(alpha-D-mannosyl)8-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine (protein)	C70H117N2O55X	0.0	designated as G00011 in KEGG nomenclature	m8masn	
+C05634	5hoxindact	5-Hydroxyindoleacetaldehyde	C10H9NO2	0	BiGG compound	5hoxindact	
+C00160	glyclt	Glycolate	C2H3O3	-1	BiGG compound	glyclt	Glycolic acid, Hydroxyacetic acid
+C00356	hmgcoa	Hydroxymethylglutaryl-CoA	C27H39N7O20P3S	-5	BiGG compound	hmgcoa	(S)-3-Hydroxy-3-methylglutaryl-CoA, Hydroxymethylglutaroyl coenzyme A, HMG-CoA, 3-Hydroxy-3-methylglutaryl-CoA
+C05711	gcynala	gamma-Glutamyl-beta-cyanoalanine	C9H12N3O5	-1.0	charge based on structure together with the charges of 3-cyano-L-alanine and glutamate given in MetaCyc		
+C00954	ind3ac	Indole-3-acetate	C10H8NO2	-1	BiGG compound	ind3ac	Indole-3-acetic acid, (Indol-3-yl)acetate, Indoleacetate, Indoleacetic acid, IAA
+CC0027	g3m8mpdol	(alpha-D-Glucosyl)3-(alpha-D-mannosyl)8-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol	C198H326N2O77P2	-2.0	assumed n=18 for the number of isoprene units; designated as G00008 in KEGG nomenclature	g3m8mpdol_L,g3m8mpdol_U	
+CC0071	fa17p0iso	Fatty acid (C17:iso)	C17H33O2	-1.0	same as fa11 in BIGG; renamed to be consistent with the name convention here for fatty acids without a specific name. | See CC0067 for custom fatty acid nomenclature; iso stands for isomer	fa9,fa6,fa5,fa4,fa3,fa20n,fa19a,fa12,fa11,fa10,fa1	
+C05270	hxcoa	Hexanoyl-CoA (n-C6:0CoA)	C27H42N7O17P3S	-4	BiGG compound	hxcoa	Hexanoyl-CoA
+C05274	dcacoa	Decanoyl-CoA (n-C10:0CoA)	C31H50N7O17P3S	-4	BiGG compound	dcacoa	Decanoyl-CoA
+C01220	mi14p	"1D-myo-Inositol 1,4-bisphosphate"	C6H10O12P2	-4	BiGG compound	mi14p	1D-myo-Inositol 1,4-bisphosphate, D-myo-Inositol 1,4-bisphosphate, myo-Inositol 1,4-bisphosphate, Inositol 1,4-bisphosphate
+C02702	protrna	L-Prolyl-tRNA(Pro)	C5H9NO2R	1.0	tRNA formula in BiGG was modified for mass balance	protrna	
+C00642	4hphac	4-Hydroxyphenylacetate	C8H7O3	-1	BiGG compound	4hphac	4-Hydroxyphenylacetic acid
+C02630	2hglut	(S)-2-Hydroxyglutarate	C5H6O5	-2.0	charge based on DBET and S2hglut in BIGG; indicates both S and R stereoisomers for simplicity	S2hglut	2-Hydroxyglutarate, alpha-Hydroxyglutarate
+C00458	dctp	dCTP	C9H12N3O13P3	-4	BiGG compound	dctp	Deoxycytidine 5'-triphosphate, Deoxycytidine triphosphate, 2'-Deoxycytidine 5'-triphosphate
+C00320	tsul	Thiosulfate	O3S2	-2	BiGG compound	tsul	Hyposulfite
+C00199	ru5p-D	D-Ribulose 5-phosphate	C5H9O8P	-2	BiGG compound	ru5p-D	
+C00043	uacgam	UDP-N-acetyl-D-glucosamine	C17H25N3O17P2	-2	BiGG compound	uacgam	UDP-N-acetyl-alpha-D-glucosamine, UDP-N-acetylglucosamine
+C00647	pyam5p	Pyridoxamine 5'-phosphate	C8H12N2O5P	-1	BiGG compound	pyam5p	Pyridoxamine phosphate, Pyridoxamine 5-phosphate
+C01222	gdpddman	GDP-4-dehydro-6-deoxy-D-mannose	C16H21N5O15P2	-2	BiGG compound	gdpddman	GDP-4-dehydro-6-deoxy-D-talose, GDP-4-oxo-6-deoxy-D-mannose, GDP-4-dehydro-D-rhamnose, GDP-4-keto-6-deoxy-D-mannose, GDP-4-dehydro-alpha-D-rhamnose, GDP-4-dehydro-6-deoxy-alpha-D-mannose
+C00315	spmd	Spermidine	C7H22N3	3	BiGG compound	spmd	N-(3-Aminopropyl)-1,4-butane-diamine
+C00818	glcr	D-Glucarate	C6H8O8	-2	BiGG compound	glcr	D-Glucaric acid, L-Gularic acid, D-Saccharic acid, D-Glucosaccharic acid, Glucaric acid, Glucarate
+C00257	glcn	D-Gluconate	C6H11O7	-1	BiGG compound	glcn	D-Gluconic acid, D-gluco-Hexonic acid
+C00631	2pg	D-Glycerate 2-phosphate	C3H4O7P	-3	BiGG compound	2pg	2-Phospho-D-glycerate, 2-Phospho-(R)-glycerate
+CC0008	2np6mep	2-nonaprenyl-6-methoxyphenol	C52H80O2	0.0	charge based on 2dp6mep in BIGG		
+C03287	glu5p	L-Glutamate 5-phosphate	C5H8NO7P	-2	BiGG compound	glu5p	L-Glutamyl 5-phosphate
+C04398	pcollg4hpro	Procollagen trans-4-hydroxy-L-proline	XOH	0.0	charge does not matter		
+C00583	12ppd-R	Propylene glycol	C3H8O2	0.0	changed KEGG ID to generic compound rather than the stereoisomer	12ppd-R	Propane-1,2-diol, 1,2-Propanediol
+C01005	pser-L	O-Phospho-L-serine	C3H6NO6P	-2	BiGG compound	pser-L	L-O-Phosphoserine, 3-Phosphoserine, Dexfosfoserine
+C00108	anth	Anthranilate	C7H6NO2	-1	BiGG compound	anth	Anthranilic acid, o-Aminobenzoic acid, Vitamin L1, 2-Aminobenzoate
+C00942	35cgmp	"3',5'-Cyclic GMP"	C10H11N5O7P	-1	BiGG compound	35cgmp	3',5'-Cyclic GMP, Guanosine 3',5'-cyclic monophosphate, Guanosine 3',5'-cyclic phosphate, Cyclic GMP, cGMP
+CC0120	RNA	RNA (biomass)	X	0.0	for biomass equation; charge does not matter		
+C05454	xoltriol	"3alpha,7alpha,12alpha-Trihydroxy-5beta-cholestane"	C27H48O3	0	BiGG compound	xoltriol	3alpha,7alpha,12alpha-Trihydroxy-5beta-cholestane, 5beta-Cholestane-3alpha,7alpha,12alpha-triol, 3alpha,7alpha,12alpha-Trihydroxycoprostane
+C00339	alkylR1oh	hydroxy alkyl chain	C2H5OFULLR	0	BiGG compound	alkylR1oh	Long-chain alcohol
+C00301	adprib	ADPribose	C15H21N5O14P2	-2	BiGG compound	adprib	ADP-ribose, ADP-D-ribose, Adenosine diphosphate ribose
+C00010	coa	Coenzyme A	C21H32N7O16P3S	-4	BiGG compound	coa	CoA, CoA-SH
+CC0106	arachdcrn	C20:4 carnitine	C27H45NO4	0.0	charge and formula based on other acyl carnitines	arachdcrn	
+C00087	s	Sulfur	S	0	BiGG compound	s	S, Elemental sulfur
+C02554	valtrna	L-Valyl-tRNA(Val)	C5H11NO2R	1.0	tRNA formula in BiGG was modified for mass balance	valtrna	
+C00627	pdx5p	Pyridoxine 5'-phosphate	C8H10NO6P	-2	BiGG compound	pdx5p	Pyridoxine phosphate, Pyridoxine 5-phosphate, Pyridoxol 5'-phosphate
+C00940	akgm	alpha-Ketoglutaramate	C5H6NO4	-1.0	charge based on MetaCyc and 3DMET		2-Oxoglutaramate, 2-Oxoglutaramic acid, 2-Ketoglutaramate
+C02188	peplys	Peptidyl-L-lysine	XC6H13N2O	1.0	formula and charge based on MetaCyc	peplys	Protein lysine
+C04805	5HETE	5-Hydroxyeicosatetraenoate	C20H31O3	-1.0	charge is obvious based on general rules and similar compounds		5(S)-HETE, 5-HETE, (6E,8Z,11Z,14Z)-(5S)-5-Hydroxyicosa-6,8,11,14-tetraenoic acid
+C01104	tmao	Trimethylamine N-oxide	C3H9NO	0	BiGG compound	tmao	(CH3)3NO
+C03454	alkenac2g	1-Alkenyl-2-acylglycerol	C4H6O4RRC2H2	0.0	charge is obvious based on general rules and similar compounds		
+C01697	galt	Galactitol	C6H14O6	0	BiGG compound	galt	Dulcitol, Dulcose
+C05271	hx2coa	trans-Hex-2-enoyl-CoA	C27H40N7O17P3S	-4	BiGG compound	hx2coa	(2E)-Hexenoyl-CoA
+C11135	andrstrnglc	androsterone glucuronide	C25H38O8	0	BiGG compound	andrstrnglc	Androsterone 3-glucuronide
+C00698	cl	Chloride	Cl	-1	BiGG compound	cl	Cl-, Chloride ion
+C05859	dedoldp	Dehydrodolichol diphosphate, n=18	C110H177O7P2	-3.0	assumed n=18 for the number of isoprene units; charge of this molecule comes from the PP group only	dedoldp_L,dedoldp_U	Dehydrodolichol diphosphate, Dehydrodolichyl diphosphate, ditrans,polycis-Polyprenyl diphosphate
+C00084	acald	Acetaldehyde	C2H4O	0	BiGG compound	acald	Ethanal
+C00033	ac	Acetate	C2H3O2	-1	BiGG compound	ac	Acetic acid, Ethanoic acid
+C00447	s17bp	"Sedoheptulose 1,7-bisphosphate"	C7H12O13P2	-4	BiGG compound	s17bp	Sedoheptulose 1,7-bisphosphate, D-Sedoheptulose 1,7-bisphosphate, D-altro-Heptulose 1,7-biphosphate
+C00041	ala-L	L-Alanine	C3H7NO2	0	BiGG compound	ala-L	L-2-Aminopropionic acid, L-alpha-Alanine
+CC0029	g2m8masn	(alpha-D-Glucosyl)2-(alpha-D-mannosyl)8-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine (protein)	C82H137N2O65X	0.0	designated as G00171 in KEGG nomenclature	g2m8masn	
+C05527	3snpyr	3-Sulfinopyruvate	C3H2O5S	-2	BiGG compound	3snpyr	3-Sulfinylpyruvate
+C00133	ala-D	D-Alanine	C3H7NO2	0	BiGG compound	ala-D	D-2-Aminopropionic acid, D-Ala
+C00364	dtmp	dTMP	C10H13N2O8P	-2	BiGG compound	dtmp	Thymidine 5'-phosphate, Deoxythymidine 5'-phosphate, Thymidylic acid, 5'-Thymidylic acid, Thymidine monophosphate, Deoxythymidylic acid, Thymidylate
+C00099	ala-B	beta-Alanine	C3H7NO2	0	BiGG compound	ala-B	3-Aminopropionic acid, 3-Aminopropanoate
+C00075	utp	UTP	C9H11N2O15P3	-4	BiGG compound	utp	Uridine 5'-triphosphate, Uridine triphosphate
+C01888	aact	Aminoacetone	C3H8NO	1	BiGG compound	aact	1-Amino-2-propanone
+C02737	ps	Phosphatidylserine	C6H11NO6PFULLRCO2FULLR2CO2	-1.0	charge is based on matching BiGG compounds	ps181,ps180,ps161,ps160,ps141,ps140,ps120,ps_SA,ps_hs,ps_EC,ps_HP,ps_SC	Phosphatidyl-L-serine, 1,2-Diacyl-sn-glycerol 3-phospho-L-serine, 3-O-sn-Phosphatidyl-L-serine, O3-Phosphatidyl-L-serine, L-1-Phosphatidylserine
+C00279	e4p	D-Erythrose 4-phosphate	C4H7O7P	-2	BiGG compound	e4p	
+CC0021	m5mpdol	(alpha-D-Mannosyl)5-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol	C162H266N2O47P2	-2.0	assumed n=18 for the number of isoprene units; designated as G10595 in KEGG nomenclature	m5mpdol_L,um5mpdol_U	
+C00341	grdp	Geranyl diphosphate	C10H17O7P2	-3	BiGG compound	grdp	
+C00360	damp	dAMP	C10H12N5O6P	-2	BiGG compound	damp	2'-Deoxyadenosine 5'-phosphate, 2'-Deoxyadenosine 5'-monophosphate, Deoxyadenylic acid, Deoxyadenosine monophosphate
+C05860	mpdol	beta-D-Mannosyldiacetylchitobiosyldiphosphodolichol	C132H216N2O22P2	-2.0	assumed n=18 for the number of isoprene units	macchitppdol,mpdol_L,mpdol_U	beta-1,4-D-Mannosylchitobiosyldiphosphodolichol, Man-beta1->4GlcNAc-beta1->4GlcNAc-PP-Dol
+C00019	amet	S-Adenosyl-L-methionine	C15H23N6O5S	1	BiGG compound	amet	S-Adenosylmethionine, AdoMet, SAM
+C00363	dtdp	dTDP	C10H13N2O11P2	-3	BiGG compound	dtdp	Deoxythymidine 5'-diphosphate
+C00111	dhap	Dihydroxyacetone phosphate	C3H5O6P	-2	BiGG compound	dhap	Glycerone phosphate, 3-Hydroxy-2-oxopropyl phosphate
+C00095	fru	D-Fructose	C6H12O6	0	BiGG compound	fru	Levulose, Fruit sugar, D-arabino-Hexulose
+C00350	pe	Phosphatidylethanolamine	C5H12NO4PFULLRCO2FULLR2CO2	0.0	charge is based on matching BiGG compounds	pe181,pe180,pe161,pe160,pe141,pe140,pe120,pe_SA,pe_hs,pe_EC,pe_HP,pe_SC	(3-Phosphatidyl)ethanolamine, (3-Phosphatidyl)-ethanolamine, Cephalin, O-(1-beta-Acyl-2-acyl-sn-glycero-3-phospho)ethanolamine, 1-Acyl-2-acyl-sn-glycero-3-phosphoethanolamine, L-1-Phosphatidylethanolamine
+C01643	trnahis	tRNA(His)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnahis	
+C01031	Sfglutth	S-Formylglutathione	C11H16N3O7S	-1	BiGG compound	Sfglutth	
+C00352	gam6p	D-Glucosamine 6-phosphate	C6H13NO8P	-1	BiGG compound	gam6p	D-Glucosamine phosphate
+C00009	pi	Phosphate	HO4P	-2	BiGG compound	pi	Orthophosphate, Phosphoric acid, Orthophosphoric acid
+C02571	acrn	O-Acetylcarnitine	C9H17NO4	0	BiGG compound	acrn	O-Acetyl-L-carnitine
+C16164	eicostetcoa	eicosatetranoyl coenzyme A	C41H62N7O17P3S	-4	BiGG compound	eicostetcoa	(8Z,11Z,14Z,17Z)-Icosatetraenoyl-CoA
+C18239	cpmp	Cyclic pyranopterin monophosphate	C10H11N5O7P	-1.0	charge based on MetaCyc. | The other name of compound is precursor Z		Precursor Z, Cyclic pyranopterin phosphate, cPMP
+CC0206	3dsphgn_ce	3-Dehydrosphinganine	C19H40NO2	1.0	charge based on matching BiGG compound	3dsphgn	
+C01301	thcholst	"3alpha,7alpha,12alpha-Trihydroxy-5beta-cholestan-26-al"	C27H46O4	0	BiGG compound	thcholst	3alpha,7alpha,12alpha-Trihydroxy-5beta-cholestan-26-al
+C14774	dhet	11,12-DHET	C20H33O4	-1.0	charge is obvious based on general rules and similar compounds		(5Z,8Z,14Z)-11,12-Dihydroxyeicosa-5,8,14-trienoic acid, (5Z,8Z,14Z)-11,12-Dihydroxyicosa-5,8,14-trienoic acid
+C03838	gar	N1-(5-Phospho-D-ribosyl)glycinamide	C7H14N2O8P	-1	BiGG compound	gar	5'-Phosphoribosylglycinamide, GAR, Glycinamide ribonucleotide
+C00018	pydx5p	Pyridoxal 5'-phosphate	C8H8NO6P	-2	BiGG compound	pydx5p	Pyridoxal phosphate, Pyridoxal 5-phosphate, PLP
+C00329	gam	D-Glucosamine	C6H14NO5	1	BiGG compound	gam	Chitosamine, 2-Amino-2-deoxy-D-glucose
+CC0207	sphgn_ce	Sphinganine	C19H42NO2	1.0	charge based on matching BiGG compound	sphgn	
+C05645	42A3HP24DB	"4-(2-Amino-3-hydroxyphenyl)-2,4-dioxobutanoate"	C10H8NO5	-1	BiGG compound	42A3HP24DB	4-(2-Amino-3-hydroxyphenyl)-2,4-dioxobutanoate
+C01717	kynate	4-Hydroxy-2-quinolinecarboxylic acid	C10H6NO3	-1	BiGG compound	kynate	Kynurenic acid, Kynurenate
+C03227	hLkynr	3-Hydroxy-L-kynurenine	C10H12N2O4	0	BiGG compound	hLkynr	
+C00294	ins	Inosine	C10H12N4O5	0	BiGG compound	ins	
+C00157	pchol	Phosphatidylcholine	C8H18NO4PFULLRCO2FULLR2CO2	0.0	charge is based on matching BiGG compounds	pchol_hs,pc_EC,pc_SC	Lecithin, Phosphatidyl-N-trimethylethanolamine, 1,2-Diacyl-sn-glycero-3-phosphocholine, Choline phosphatide, 3-sn-Phosphatidylcholine
+C00144	gmp	GMP	C10H12N5O8P	-2	BiGG compound	gmp	Guanosine 5'-phosphate, Guanosine monophosphate, Guanosine 5'-monophosphate, Guanylic acid
+C01180	2kmb	2-keto-4-methylthiobutyrate	C5H7O3S	-1	BiGG compound	2kmb	4-Methylthio-2-oxobutanoic acid, 4-Methylthio-2-oxobutanoate, 2-Keto-4-methylthiobutyric acid, 2-Oxo-4-methylthiobutanoate, 2-Oxo-4-methylthiobutanoic acid
+C05999	lald-D	D-Lactaldehyde	C3H6O2	0	BiGG compound	lald-D	Lactaldehyde, 2-Hydroxypropionaldehyde, 2-Hydroxypropanal
+C00153	ncam	Nicotinamide	C6H6N2O	0	BiGG compound	ncam	Nicotinic acid amide, Niacinamide, Vitamin PP
+C02553	sertrna	L-Seryl-tRNA(Ser)	C3H7NO3R	1.0	tRNA formula in BiGG was modified for mass balance	sertrna	
+CC0061	ttdcrn	tetradecanoyl carnitine	C21H41NO4	0.0	charge and formula based on other acyl carnitines	ttdcrn	
+C16636	trnasec	tRNA(Sec)	ROH	0.0	tRNA formula in BiGG was modified for mass balance		
+C05122	tchola	taurocholic acid	C26H45NO7S	0	BiGG compound	tchola	Taurocholate, Cholyltaurine
+C00243	lcts	Lactose	C12H22O11	0	BiGG compound	lcts	1-beta-D-Galactopyranosyl-4-D-glucopyranose, beta-D-Gal-(1->4)-D-Glc, Milk sugar
+C00127	gthox	Oxidized glutathione	C20H30N6O12S2	-2	BiGG compound	gthox	Glutathione disulfide, GSSG, Oxiglutatione
+C00122	fum	Fumarate	C4H2O4	-2	BiGG compound	fum	Fumaric acid, trans-Butenedioic acid
+C16165	tmndnccoa	timnodonyl coenzyme A	C41H60N7O17P3S	-4	BiGG compound	tmndnccoa	(5Z,8Z,11Z,14Z,17Z)-Icosapentaenoyl-CoA
+C00238	k	potassium	K	1	BiGG compound	k	Potassium cation, K+, Potassium(1+), Potassium ion
+C00381	dolichol	Dolichol	C110H180O	0.0	assumed n=18 for the number of isoprene units	dolichol	
+C04089	udp4k6dg	UDP-4-keto-6-deoxy-D-glucose	C15H20N2O16P2	-2.0	charge from dbget and similar compounds in BIGG		UDP-4-dehydro-6-deoxy-D-glucose, UDP-4-oxo-6-deoxy-D-glucose
+C05402	melib	Melibiose	C12H22O11	0	BiGG compound	melib	6-O-(alpha-D-Galactopyranosyl)-D-glucopyranose, D-Gal-alpha1->6D-Glucose
+C05422	dhdascb	Dehydroascorbate	C6H6O6	0	BiGG compound	dhdascb	Dehydroascorbic acid, L-Dehydroascorbate, L-Dehydroascorbic acid
+C02988	histrna	L-Histidyl-tRNA(His)	C6H9N3O2R	1.0	tRNA formula in BiGG was modified for mass balance	histrna	
+C01649	trnapro	tRNA(Pro)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnapro	
+C00064	gln-L	L-Glutamine	C5H10N2O3	0	BiGG compound	gln-L	L-2-Aminoglutaramic acid
+CC0152	pepX	Random peptide (special aminoacid carrier)	X	0.0	charge does not matter; random protein that holds special amino acids to be modified or transformed	pepd	
+C04635	alken2gpe	1-Alkenylglycerophosphoethanolamine	C5H13NO6PRC2H2	0.0	charge based on MetaCyc		1-(1-Alkenyl)-sn-glycero-3-phosphoethanolamine
+CC0146	pcollg_diS	Procollagen (with di-Sulfide bridges for registration)	X	0.0	charge does not matter		
+C03546	mi4p-D	1D-myo-Inositol 4-phosphate	C6H11O9P	-2	BiGG compound	mi4p-D	myo-Inositol 4-phosphate, D-myo-Inositol 4-phosphate, 1D-myo-Inositol 4-monophosphate, Inositol 4-phosphate
+C00054	pap	"Adenosine 3',5'-bisphosphate"	C10H11N5O10P2	-4	BiGG compound	pap	Adenosine 3',5'-bisphosphate, PAP, 3'-Phosphoadenylate, Phosphoadenosine phosphate
+C00104	idp	IDP	C10H11N4O11P2	-3	BiGG compound	idp	Inosine 5'-diphosphate, Inosine diphosphate
+CC0051	protein_BAC	Protein component of bacterial diet	X	0.0	charge does not matter		
+C00182	glycogen	glycogen	C6H10O5	0.0	"bglycogen" in BIGG nomenclature	glycogen	
+C00037	gly	Glycine	C2H5NO2	0	BiGG compound	gly	Aminoacetic acid, Gly
+C00415	dhf	"7,8-Dihydrofolate"	C19H19N7O6	-2	BiGG compound	dhf	Dihydrofolate, Dihydrofolic acid, 7,8-Dihydrofolate, 7,8-Dihydrofolic acid, 7,8-Dihydropteroylglutamate
+C00366	urate	Urate	C5H4N4O3	0	BiGG compound	urate	Uric acid
+C00012	pepd	Peptide	C2H4NO2R(C2H2NOR)n	0.0	the difference from BIGG consists of the parentheses and n	pepd	
+C00184	dha	Dihydroxyacetone	C3H6O3	0	BiGG compound	dha	Glycerone, 1,3-Dihydroxyacetone, 1,3-Dihydroxy-2-propanone, 1,3-Dihydroxypropan-2-one
+C02972	dhlpro	Dihydrolipolprotein	H2S2X	0	BiGG compound	dhlpro	Dihydrolipoylprotein, [H Protein]-dihydrolipoyllysine
+C00093	glyc3p	Glycerol 3-phosphate	C3H7O6P	-2	BiGG compound	glyc3p	sn-Glycerol 3-phosphate, Glycerophosphoric acid, D-Glycerol 1-phosphate
+C02505	pad	2-Phenylacetamide	C8H9NO	0	BiGG compound	pad	alpha-Phenylacetamide
+C04598	paf	Platelet-activating factor	C10H21NO7PRC2H4	0.0	charge based on human version in BiGG		2-Acetyl-1-alkyl-sn-glycero-3-phosphocholine, PAF
+C00062	arg-L	L-Arginine	C6H15N4O2	1	BiGG compound	arg-L	(S)-2-Amino-5-guanidinovaleric acid, L-Arg
+C03957	pepasp3oh	Peptide 3-hydroxy-L-aspartate	XC4H4NO4	-1.0	charge and formula based on MetaCyc; protein charge (that of X) is ignored		
+CC0047	dxtrn2	Limited dextrin 2	C6H10O5	0.0	one of the three intermediate forms of glycogen during glycogen degradation		
+CC0048	dxtrn3	Limited dextrin 3	C6H10O5	0.0	one of the three intermediate forms of glycogen during glycogen degradation		
+C01651	trnathr	tRNA(Thr)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnathr	
+CC0046	dxtrn1	Limited dextrin 1	C6H10O5	0.0	one of the three intermediate forms of glycogen during glycogen degradation		
+C01794	cholcoa	Choloyl-CoA	C45H70N7O20P3S	-4	BiGG compound	cholcoa	3alpha,7alpha,12alpha-Trihydroxy-5beta-cholanoyl-CoA, 3alpha,7alpha,12alpha-Trihydroxy-5beta-cholan-24-one-CoA
+C05861	m1mpdol	alpha-D-mannosyl-beta-D-mannosyl-diacylchitobiosyldiphosphodolichol	C138H226N2O27P2	-2.0	assumed n=18 for the number of isoprene units	m1macchitppdol,m1mpdol_L,m1mpdol_U	alpha-D-Mannosyl-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, alpha-1,3-D-Mannosyl-beta-1,4-D-mannosylchitobiosyldiphosphodolichol, Man-alpha1->3Man-beta1->4GlcNAc-beta1->4GlcNAc-PP-Dol
+CC0139	hak2lgchol	1-hydroxyalkyl-2-lyso-sn-glycero-3-phosphocholine	C8H19NO6PRC2H4O	0.0	charge follows from C04317		
+C01185	nicrnt	Nicotinate D-ribonucleotide	C11H12NO9P	-2	BiGG compound	nicrnt	beta-Nicotinate D-ribonucleotide, Nicotinate ribonucleotide, Nicotinic acid ribonucleotide
+C03232	3php	3-Phosphohydroxypyruvate	C3H2O7P	-3	BiGG compound	3php	3-Phosphonooxypyruvate, 3-Phosphonooxypyruvic acid, 3-Phosphohydroxypyruvic acid
+C00083	malcoa	Malonyl-CoA	C24H33N7O19P3S	-5	BiGG compound	malcoa	Malonyl coenzyme A
+C02220	amuco	2-Aminomuconate	C6H6NO4	-1	BiGG compound	amuco	2-Aminomuconic acid, o-Aminomuconate
+CC0034	nm2masn	(N-acetyl-D-glucosaminyl-(alpha-D-mannosyl)2-beta-D-mannosyl-diacetylchitobiosyl)-L-asparagine (protein)	C42H70N3O30X	0.0	designated as G00014 in KEGG nomenclature	nm2masn	
+CC0028	g3m8masn	(alpha-D-Glucosyl)3-(alpha-D-mannosyl)8-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine (protein)	C88H147N2O70X	0.0	designated as G00009 in KEGG nomenclature	g3m8masn	
+C01172	g6p-B	beta-D-glucose 6-phosphate	C6H11O9P	-2	BiGG compound	g6p-B	
+C00668	g6p-A	alpha-D-Glucose 6-phosphate	C6H11O9P	-2.0	charge based on g6p in BiGG	g6p	
+C00671	3mop	(S)-3-Methyl-2-oxopentanoate	C6H9O3	-1	BiGG compound	3mop	(S)-3-Methyl-2-oxopentanoic acid, (3S)-3-Methyl-2-oxopentanoic acid, (3S)-3-Methyl-2-oxopentanoate
+CC0149	tropcollgtyr	Tropocollagen L-tyrosine (to be cross-linked)	XH	0.0	charge does not matter		
+C00183	val-L	L-Valine	C5H11NO2	0	BiGG compound	val-L	2-Amino-3-methylbutyric acid
+C06112	glutrna_gln	L-Glutamyl-tRNA(Gln)	C5H8NO4R	0.0	tRNA formula in BiGG was modified for mass balance	glutrna(gln)	Glu-tRNA(Gln), Glutamyl-tRNA(Gln)
+CC0011	2npmhobq	2-Decaprenyl-3-methyl-5-hydroxy-6-methoxy-1,4-benzoquinone	C53H80O4	0.0	charge based on 2dpmhobq in BIGG	2dpmhobq	
+C05100	3uib	3-Ureidoisobutyrate	C5H9N2O3	-1	BiGG compound	3uib	
+C00361	dgdp	dGDP	C10H12N5O10P2	-3	BiGG compound	dgdp	2'-Deoxyguanosine 5'-diphosphate
+C04823	25aics	(S)-2-[5-Amino-1-(5-phospho-D-ribosyl)imidazole-4-carboxamido]succinate	C13H15N4O12P	-4	BiGG compound	25aics	1-(5'-Phosphoribosyl)-5-amino-4-(N-succinocarboxamide)-imidazole, 1-(5'-Phosphoribosyl)-4-(N-succinocarboxamide)-5-aminoimidazole, 5'-Phosphoribosyl-4-(N-succinocarboxamide)-5-aminoimidazole, SAICAR
+C00269	cdpdag	CDP diacylglycerol 	C12H17N3O11P2FULLRCO2FULLR2CO2	-2.0	charge based on human version in BiGG	cdpdag_hs	CDP-diacylglycerol, CDP-1,2-diacylglycerol, 1,2-Diacyl-sn-glycero-3-cytidine-5'-diphosphate
+C00708	i	Iodide	I	-1	BiGG compound	i	I-
+C04506	protSfarC	Protein C-terminal S-farnesyl-L-cysteine 	C20H33N2O3SR(C2H2NOR)n	0.0	(C2H2NOR)n represents the repetitive peptide; the sign would depend on the protein but taken zero by convention		Protein C-terminal S-farnesyl-L-cysteine
+C06232	mobd	Molybdate	MoO4	-2	BiGG compound	mobd	
+C00272	thbpt	Tetrahydrobiopterin	C9H15N5O3	0	BiGG compound	thbpt	5,6,7,8-Tetrahydrobiopterin, 2-Amino-6-(1,2-dihydroxypropyl)-5,6,7,8-tetrahydoro-4(1H)-pteridinone, L-erythro-Tetrahydrobiopterin
+CC0108	stcrn	Stearoylcarnitine	C25H49NO4	0.0	charge and formula based on other acyl carnitines	stcrn	
+C00378	thm	Thiamin	C12H17N4OS	1	BiGG compound	thm	Thiamine, Vitamin B1, Aneurin, Antiberiberi factor
+C00446	gal1p	alpha-D-Galactose 1-phosphate	C6H11O9P	-2	BiGG compound	gal1p	alpha-D-Galactopyranose 1-phosphate
+CC0063	clpn_BAC	Cardiolipin (bacteria)	C13H16O17P2R4	-2.0	charge is based on matching BiGG compounds	clpn181,clpn180,clpn161,clpn160190,clpn160,clpn141,clpn140,clpn120,clpn_SA,clpn_hs,clpn_HP,clpn_EC	
+C00259	arab-L	L-Arabinose	C5H10O5	0	BiGG compound	arab-L	L-Arabinopyranose
+C03793	tmlys	N6,N6,N6-Trimethyl-L-lysine	C9H21N2O2	1.0	formula and charge based on MetaCyc	tmlys	
+C01134	pan4p	Pantetheine 4'-phosphate	C11H21N2O7PS	-2	BiGG compound	pan4p	4'-Phosphopantetheine, Phosphopantetheine, D-Pantetheine 4'-phosphate
+C00206	dadp	dADP	C10H12N5O9P2	-3	BiGG compound	dadp	2'-Deoxyadenosine 5'-diphosphate
+C01801	drib	Deoxyribose	C5H10O4	0	BiGG compound	drib	2-Deoxy-D-erythro-pentose, Thyminose, 2-Deoxy-D-ribose
+C01636	trnaarg	tRNA(Arg)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnaarg	
+C00328	Lkynr	L-Kynurenine	C10H12N2O3	0	BiGG compound	Lkynr	3-Anthraniloyl-L-alanine
+C01647	trnamet	tRNA(Met)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnamet	
+C00123	leu-L	L-Leucine	C6H13NO2	0	BiGG compound	leu-L	2-Amino-4-methylvaleric acid, (2S)-alpha-2-Amino-4-methylvaleric acid, (2S)-alpha-Leucine
+C15522	thbpt4acam	Tetrahydrobiopterin-4a-carbinolamine	C9H15N5O4	0	BiGG compound	thbpt4acam	4a-Hydroxytetrahydrobiopterin, 4a-Hydroxy-5,6,4,8-tetrahydrobiopterin, (6R)-6-(L-erythro-1,2-Dihydroxypropyl)-5,6,7,8-tetrahydro-4a-hydroxypterin
+CC0074	hemeprotein	Hemeprotein	C34H30FeN4O4X	0.0	designed for hypothetical reaction RCC0076; arbitrarily matched with focytC		
+C05268	3hhcoa	(S)-3-Hydroxyhexanoyl-CoA	C27H42N7O18P3S	-4	BiGG compound	3hhcoa	(S)-Hydroxyhexanoyl-CoA
+C02248	apocytc	Apo cytochrome C	C8H12N4O4S2R4	0.0	charge is obvious based on general rules and similar compounds		Apocytochrome c
+CC0099	fa19c11coa	cis-11,12-methyleneoctadecanoyl coa	C40H66N7O17P3S	-4.0	charge is obvious based on general rules and similar compounds		
+C00135	his-L	L-Histidine	C6H9N3O2	0	BiGG compound	his-L	(S)-alpha-Amino-1H-imidazole-4-propionic acid
+CC0058	pe_BAC	Phosphatidylethanolamine (bacteria)	C7H12NO8PR2	0.0	charge is based on matching BiGG compounds	pe181,pe180,pe161,pe160,pe141,pe140,pe120,pe_SA,pe_hs,pe_EC,pe_HP,pe_SC	
+C05703	metsel	Methylselenol	CH3Se	-1.0	charge based on PID: 15037206		Methaneselenol
+CC0215	thcrm_ce	trihexosyl ceramide 	C37H68NO17FULLRCO	0.0	charge based on human version in BiGG	thcrm_hs	
+C01236	6pgl	"6-phospho-D-glucono-1,5-lactone"	C6H9O9P	-2	BiGG compound	6pgl	D-Glucono-1,5-lactone 6-phosphate, 6-Phospho-D-glucono-1,5-lactone
+CC0023	m7mpdol	(alpha-D-Mannosyl)7-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol	C174H286N2O57P2	-2.0	assumed n=18 for the number of isoprene units; designated as G10597 in KEGG nomenclature	m7mpdol_L,m7mpdol_U	
+C00118	g3p	Glyceraldehyde 3-phosphate	C3H5O6P	-2	BiGG compound	g3p	D-Glyceraldehyde 3-phosphate, (2R)-2-Hydroxy-3-(phosphonooxy)-propanal
+CC0004	5thf	pentaglutamyl folate (THF)	C39H45N11O18	-6.0	BiGG compound	5thf	
+C00223	4cmcoa	4-Coumaroyl-CoA	C30H38N7O18P3S	-4	BiGG compound	4cmcoa	p-Coumaroyl-CoA, 4-Hydroxycinnamoyl-CoA
+C00008	adp	ADP	C10H12N5O10P2	-3	BiGG compound	adp	Adenosine 5'-diphosphate
+C00148	pro-L	L-Proline	C5H9NO2	0	BiGG compound	pro-L	2-Pyrrolidinecarboxylic acid
+C06481	sertrna_sec	L-Seryl-tRNA(Sec)	C3H7NO3R	1.0	tRNA formula in BiGG was modified for mass balance	sertrna(sec)	
+C00147	ade	Adenine	C5H5N5	0	BiGG compound	ade	6-Aminopurine
+C11554	pail34p	phosphatidylinositol-3,4-bisphosphate 	C9H14O15P3FULLRCO2FULLR2CO2	-5.0	charge based on human version in BiGG	pail34p_hs	1-Phosphatidyl-1D-myo-inositol 3,4-bisphosphate, 1,2-Diacyl-sn-glycero-3-phospho-(1'-myo-inositol-3',4'-bisphosphate)
+C00460	dutp	dUTP	C9H11N2O14P3	-4	BiGG compound	dutp	2'-Deoxyuridine 5'-triphosphate
+C00212	adn	Adenosine	C10H13N5O4	0	BiGG compound	adn	
+C03344	2maacoa	2-Methyl-3-acetoacetyl-CoA	C26H38N7O18P3S	-4	BiGG compound	2maacoa	2-Methylacetoacetyl-CoA
+C04500	naglc2p	N-Acetyl-D-glucosaminyldiphosphodolichol	C118H193NO12P2	-2.0	assumed n=18 for the number of isoprene units	naglc2p_L,naglc2p_U	N-Acetyl-D-glucosaminyl-diphosphodolichol
+C03684	6pthp	"6-Pyruvoyl-5,6,7,8-tetrahydropterin"	C9H11N5O3	0	BiGG compound	6pthp	6-Pyruvoyltetrahydropterin, 6-(1,2-Dioxopropyl)-5,6,7,8-tetrahydropterin, 6-Pyruvoyl-5,6,7,8-tetrahydropterin
+CC0030	g1m8masn	(alpha-D-Glucosyl)-(alpha-D-mannosyl)8-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine (protein)	C76H127N2O60X	0.0	designated as G00010 in KEGG nomenclature	g1m8masn	
+C05635	5hoxindoa	5-Hydroxyindoleacetate	C10H8NO3	-1	BiGG compound	5hoxindoa	
+C00637	id3acald	Indole-3-acetaldehyde	C10H9NO	0	BiGG compound	id3acald	2-(Indol-3-yl)acetaldehyde, Indoleacetaldehyde
+C04748	protSfarCmet	Protein C-terminal S-farnesyl-L-cysteine methyl ester	C21H35N2O3SR(C2H2NOR)n	0.0	(C2H2NOR)n represents the repetitive peptide; the sign would depend on the protein but taken zero by convention		
+C03511	phetrna	L-Phenylalanyl-tRNA(Phe)	C9H11NO2R	1.0	tRNA formula in BiGG was modified for mass balance	phetrna	
+C00461	chitin	Chitin (monomer)	C8H13NO5	0	BiGG compound	chitin	Chitin, beta-1,4-Poly-N-acetyl-D-glucosamine, [1,4-(N-Acetyl-beta-D-glucosaminyl)]n, [1,4-(N-Acetyl-beta-D-glucosaminyl)]n+1
+C06000	3hibutcoa	(S)-3-Hydroxyisobutyryl-CoA	C25H38N7O18P3S	-4	BiGG compound	3hibutcoa	
+C01595	lnlc	linoleic acid (all cis C18:2) n-6	C18H31O2	-1	BiGG compound	lnlc	Linoleate, Linoleic acid, (9Z,12Z)-Octadecadienoic acid, 9-cis,12-cis-Octadecadienoate, 9-cis,12-cis-Octadecadienoic acid
+C00311	icit	Isocitrate	C6H5O7	-3	BiGG compound	icit	Isocitric acid, 1-Hydroxytricarballylic acid, 1-Hydroxypropane-1,2,3-tricarboxylic acid
+C00236	13dpg	3-Phospho-D-glyceroyl phosphate	C3H4O10P2	-4	BiGG compound	13dpg	1,3-Bisphospho-D-glycerate, (R)-2-Hydroxy-3-(phosphonooxy)-1-monoanhydride with phosphoric propanoic acid, D-Glycerate 1,3-diphosphate
+CC0201	sphmyln_ce	Sphingomyelin	C24H50N2O5PFULLRCO	0.0	charge is based on matching BiGG compounds	sphmyln_hs	
+C00020	amp	AMP	C10H12N5O7P	-2	BiGG compound	amp	Adenosine 5'-monophosphate, Adenylic acid, Adenylate, 5'-AMP, 5'-Adenylic acid, 5'-Adenosine monophosphate, Adenosine 5'-phosphate
+CC0143	pcollglys	Procollagen L-lysine (to be modified)	XH	1.0	charge does not matter	pcollglys	
+C00618	3dhguln	3-Dehydro-L-gulonate	C6H9O7	-1	BiGG compound	3dhguln	
+C00197	3pg	3-Phospho-D-glycerate	C3H4O7P	-3	BiGG compound	3pg	D-Glycerate 3-phosphate, 3-Phospho-(R)-glycerate, 3-Phosphoglycerate
+CC0100	vacccrn	Vaccenyl carnitine	C25H47NO4	0.0	charge and formula based on other acyl carnitines	vacccrn	
+C00166	phpyr	Phenylpyruvate	C9H7O3	-1	BiGG compound	phpyr	Phenylpyruvic acid, alpha-Ketohydrocinnamic acid, keto-Phenylpyruvate, 3-Phenyl-2-oxopropanoate, 2-Oxo-3-phenylpropanoate
+C01284	mi13456p	"1D-myo-Inositol 1,3,4,5,6-pentakisphosphate"	C6H7O21P5	-10	BiGG compound	mi13456p	1D-myo-Inositol 1,3,4,5,6-pentakisphosphate, D-myo-Inositol 1,3,4,5,6-pentakisphosphate, Inositol 1,3,4,5,6-pentakisphosphate
+C14770	eet	11,12-EET	C20H31O3	-1.0	ReconX compound		(5Z,8Z,14Z)-11,12-Epoxyeicosa-5,8,14-trienoic acid, (5Z,8Z,14Z)-11,12-Epoxyicosa-5,8,14-trienoic acid
+CC0040	m2masn	MM	C34H57N2O25X	0.0	named according to PMID: 12603202 		
+C00214	thymd	Thymidine	C10H14N2O5	0	BiGG compound	thymd	Deoxythymidine
+CC0019	m2mpdol	(alpha-D-mannosyl)2-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol	C144H236N2O32P2	-2.0	assumed n=18 for the number of isoprene units; designated as G00005 in KEGG nomenclature	m2macchitppdol,m2mpdol_L,m2mpdol_U	
+CC0141	mercplaccys	3-mercaptolactate-cysteine disulfide	C6H10O5S2N	-1.0	BiGG compound	mercplaccys	
+C00134	ptrc	Putrescine	C4H14N2	2	BiGG compound	ptrc	1,4-Butanediamine, 1,4-Diaminobutane, Tetramethylenediamine, Butane-1,4-diamine
+C03917	5adtststerone	5alpha-Dihydrotestosterone	C19H30O2	0	BiGG compound	5adtststerone	Dihydrotestosterone, 17beta-Hydroxyandrostan-3-one, Androstanolone, 17beta-Hydroxy-5alpha-androstan-3-one
+C00577	glyald	D-Glyceraldehyde	C3H6O3	0	BiGG compound	glyald	
+CC0016	protSger	S-geranylgeranyl protein	C25H41N2O3SR(C2H2NOR)n(C2H2NOR)n	0.0	formula adjusted to a system where peptide account is consistent with reaction balancing; (C2H2NOR)n represents the repetitive peptide, first group in the C terminal, second in the N terminal; the sign would depend on the protein but taken zero by convention		
+CC0069	fa13p0iso	Fatty acid (C13:iso)	C13H25O2	-1.0	See CC0067 for custom fatty acid nomenclature; iso stands for isomer	fa9,fa6,fa5,fa4,fa3,fa20n,fa19a,fa12,fa11,fa10,fa1	
+C00670	g3pc	sn-Glycero-3-phosphocholine	C8H20NO6P	0	BiGG compound	g3pc	Glycerophosphocholine
+C01288	acgpail	N-Acetyl-D-glucosaminylphosphatidylinositol	C17H29NO14PFULLRCO2FULLR2CO2	-1.0	charge based on human version in BiGG	acgpail_hs	6-(N-Acetyl-alpha-D-glucosaminyl)-1-phosphatidyl-1D-myo-inositol
+C00979	acser	O-Acetyl-L-serine	C5H9NO4	0	BiGG compound	acser	O3-Acetyl-L-serine
+C00164	acac	Acetoacetate	C4H5O3	-1	BiGG compound	acac	3-Oxobutanoic acid, beta-Ketobutyric acid, Acetoacetic acid
+C02763	enphpyr	enol-Phenylpyruvate	C9H7O3	-1.0	charge based on MetaCyc and 3DMET		2-Hydroxy-3-phenylpropenoate, enol-Phenylpyruvic acid, enol-alpha-Ketohydrocinnamic acid
+C01233	g3pe	sn-Glycero-3-phosphoethanolamine	C5H14NO6P	0	BiGG compound	g3pe	Glycerophosphoethanolamine
+C02470	xanate	Xanthurenic acid	C10H5NO4	-2.0	charge based on Metacyc		Xanthurenate
+C00025	glu-L	L-Glutamate	C5H8NO4	-1	BiGG compound	glu-L	L-Glutamic acid, L-Glutaminic acid, Glutamate
+CC0134	Biomass	Body Biomass	X	0.0	charge does not matter		
+C00073	met-L	L-Methionine	C5H11NO2S	0	BiGG compound	met-L	Methionine, L-2-Amino-4methylthiobutyric acid
+C05852	2hyoxplac	2-Hydroxyphenylacetate	C8H7O3	-1	BiGG compound	2hyoxplac	2-Hydroxyphenylacetic acid
+C00822	dopaqn	Dopaquinone	C9H9NO4	0	BiGG compound	dopaqn	
+CC0116	lgnccoa	lignocericyl coenzyme A	C45H78N7O17P3S	-4.0	BiGG compound	acoa	
+C00222	msa	Malonate semialdehyde	C3H3O3	-1	BiGG compound	msa	3-Oxopropanoate
+C00110	dolp	Dolichol phosphate	C110H179O4P	-2.0	assumed n=18 for the number of isoprene units	dolp	Dolichyl phosphate
+C00630	ibcoa	Isobutyryl-CoA	C25H38N7O17P3S	-4	BiGG compound	ibcoa	2-Methylpropanoyl-CoA, 2-Methylpropionyl-CoA
+CC0148	tropcollg_rest	Tropocollagen	X	0.0	charge does not matter		
+C00143	mlthf	"5,10-Methylenetetrahydrofolate"	C20H21N7O6	-2	BiGG compound	mlthf	5,10-Methylenetetrahydrofolate, (6R)-5,10-Methylenetetrahydrofolate, 5,10-Methylene-THF
+C00058	for	Formate	CH1O2	-1	BiGG compound	for	Methanoic acid, Formic acid
+C00255	ribflv	Riboflavin	C17H20N4O6	0	BiGG compound	ribflv	Lactoflavin, 7,8-Dimethyl-10-ribitylisoalloxazine, Vitamin B2
+C01330	na1	Sodium	Na	1	BiGG compound	na1	Sodium cation, Na+, Sodium(1+), Sodium ion
+C00074	pep	Phosphoenolpyruvate	C3H2O6P	-3	BiGG compound	pep	Phosphoenolpyruvic acid, PEP
+C02249	arachdcoa	C20:4-CoA	C41H62N7O17P3S	-4	BiGG compound	arachdcoa	Arachidonyl-CoA, Arachidonoyl-CoA, (5Z,8Z,11Z,14Z)-Icosatetraenoyl-CoA
+C04145	nonadp	all-trans-Nonaprenyl diphosphate	C45H73O7P2	-3.0	charge based on octdp and decadp in BIGG		Solanesyl pyrophosphate, Solanesyl diphosphate
+C00565	tma	trimethylamine	C3H10N	1	BiGG compound	tma	(CH3)3N, N,N-Dimethylmethanamine
+CC0072	soluble_BAC	Soluble pool in bacterial diet	X	0.0	charge does not matter		
+C02471	pchltn	Phytochelatin	C2H5NO2(C8H11N2O4S)n	-1.0	Poly(gamma-glutamylcysteine)glycine; polymer formula used. | charge and formula checked for mass balance of reaction for production and the molecular structures in MetaCyc and KEGG		[Glu(-Cys)]n-Gly, Poly(gamma-glutamylcysteine)glycine, (gamma-Glutamylcysteine)n-glycine
+C01061	4fumacac	4-Fumarylacetoacetate	C8H6O6	-2	BiGG compound	4fumacac	4-Fumarylacetoacetic acid, Fumarylacetoacetate
+C00504	fol	Folate	C19H18N7O6	-1	BiGG compound	fol	Pteroylglutamic acid, Folic acid
+C00268	dhbpt	"6,7-Dihydrobiopterin"	C9H13N5O3	0	BiGG compound	dhbpt	Dihydrobiopterin, 6,7-Dihydrobiopterin, Quinoid-dihydrobiopterin, (6R)-6-(L-erythro-1,2-Dihydroxypropyl)-7,8-dihydro-6H-pterin
+C00007	o2	O2	O2	0	BiGG compound	o2	Oxygen
+C00027	h2o2	Hydrogen peroxide	H2O2	0	BiGG compound	h2o2	H2O2, Oxydol
+CC0124	PhosphoL	Phospholipids	X	0.0	charge does not matter		
+C00314	pydxn	Pyridoxine	C8H11NO3	0	BiGG compound	pydxn	Pyridoxol
+C00402	asp-D	D-Aspartate	C4H6NO4	-1	BiGG compound	asp-D	D-Aspartic acid
+C02990	pmtcrn	L-Palmitoylcarnitine	C23H45NO4	0	BiGG compound	pmtcrn	
+C00588	cholp	Choline phosphate	C5H13NO4P	-1	BiGG compound	cholp	Phosphorylcholine, Phosphocholine, O-Phosphocholine
+C00049	asp-L	L-Aspartate	C4H6NO4	-1	BiGG compound	asp-L	L-Aspartic acid, 2-Aminosuccinic acid, L-Asp
+C05453	xoldioloneh	"7alpha,12alpha-Dihydroxy-5beta-cholestan-3-one"	C27H46O3	0	BiGG compound	xoldioloneh	7alpha,12alpha-Dihydroxy-5beta-cholestan-3-one, 5beta-Cholesten-7alpha,12alpha-diol-3-one
+C00669	glucys	gamma-L-Glutamyl-L-cysteine	C8H13N2O5S	-1	BiGG compound	glucys	L-gamma-Glutamylcysteine, 5-L-Glutamyl-L-cysteine, gamma-Glutamylcysteine
+C16216	3oodcoa	3-Oxooctadecanoyl-CoA	C39H64N7O18P3S	-4	BiGG compound	3oodcoa	3-Oxostearoyl-CoA, beta-Ketostearoyl-CoA, 3-Ketostearoyl-CoA
+C01755	tcynt	Thiocyanate	CNS	-1	BiGG compound	tcynt	Thiocyanic acid
+C00187	chsterol	Cholesterol	C27H46O	0	BiGG compound	chsterol	Cholest-5-en-3beta-ol
+CC0114	fa17p0isocrn	Fatty acyl (C17:iso) carnitine	C24H47NO4	0.0	charge and formula based on other acyl carnitines. | See CC0067 for custom fatty acid nomenclature; iso stands for isomer		
+C01832	ddcacoa	Dodecanoyl-CoA (n-C12:0CoA)	C33H54N7O17P3S	-4	BiGG compound	ddcacoa	Lauroyl-CoA, Lauroyl coenzyme A, Dodecanoyl-CoA
+C00544	hgentis	Homogentisate	C8H7O4	-1	BiGG compound	hgentis	Homogentisic acid, 2,5-Dihydroxyphenylacetic acid, 2,5-Dihydroxyphenylacetate
+C03862	dolmanp	Dolichyl phosphate D-mannose	C116H190O9P	-1.0	assumed n=18 for the number of isoprene units	dolmanp	Dolichyl D-mannosyl phosphate
+CC0214	galgluside_ce	galactosyl glucosyl ceramide	C31H58NO12FULLRCO	0.0	charge based on human version in BiGG	galgluside_hs	
+C03231	3mgcoa	3-Methylglutaconyl-CoA	C27H37N7O19P3S	-5	BiGG compound	3mgcoa	trans-3-Methylglutaconyl-CoA, (E)-3-Methylglutaconyl-1-CoA
+C00266	gcald	Glycolaldehyde	C2H4O2	0	BiGG compound	gcald	Hydroxyacetaldehyde
+C05946	4h2oglt	4-Hydroxy-2-oxoglutarate	C5H4O6	-2	BiGG compound	4h2oglt	(4R)-4-Hydroxy-2-oxoglutarate, (R)-2-Hydroxy-4-oxopentanedioate, D-4-Hydroxy-2-oxoglutarate
+CC0088	occrn	Octanoyl carnitine	C15H29NO4	0.0	charge and formula based on other acyl carnitines		
+C05261	3otdcoa	3-Oxotetradecanoyl-CoA	C35H56N7O18P3S	-4	BiGG compound	3otdcoa	
+CC0090	fa16p3n6coa	Intermediary fatty acid C16:3	C37H56N7O17P3S	-4.0	charge is obvious based on general rules and similar compounds. | See CC0067 for custom fatty acid nomenclature		
+CC0070	fa15p0iso	Fatty acid (C15:iso)	C15H29O2	-1.0	same as fa3 in BIGG; renamed to be consistent with the name convention here for fatty acids without a specific name. | See CC0067 for custom fatty acid nomenclature; iso stands for isomer	fa9,fa6,fa5,fa4,fa3,fa20n,fa19a,fa12,fa11,fa10,fa1	
+C00024	accoa	Acetyl-CoA	C23H34N7O17P3S	-4	BiGG compound	accoa	Acetyl coenzyme A
+C00132	meoh	Methanol	CH4O1	0	BiGG compound	meoh	Methyl alcohol, CH3OH
+C03680	4izp	4-Imidazolone-5-propanoate	C6H7N2O3	-1	BiGG compound	4izp	4-Imidazolone-5-propionic acid, 4,5-Dihydro-4-oxo-5-imidazolepropanoate
+C05936	n4abutn	N4-Acetylaminobutanal	C6H11NO2	0	BiGG compound	n4abutn	4-Acetamidobutanal
+CC0213	gluside_ce	glucocerebroside 	C25H48NO7FULLRCO	0.0	charge based on human version in BiGG	gluside_hs	
+C00163	ppa	Propionate (n-C3:0)	C3H5O2	-1	BiGG compound	ppa	Propanoate, Propionate, Propanoic acid, Propionic acid
+C03197	S3hb	(S)-3-Hydroxybutanoate	C4H7O3	-1.0	charge is obvious based on general rules and similar compounds	bhb	
+C00013	ppi	Diphosphate	HO7P2	-3	BiGG compound	ppi	Diphosphoric acid, Pyrophosphate, Pyrophosphoric acid, PPi
+C11499	sl-L	L-sulfolactate	C3H4O6S	-2	BiGG compound	sl-L	(S)-3-Sulfolactate, (2S)-3-Sulfolactate
+C00956	L2aadp	L-2-Aminoadipate	C6H10NO4	-1	BiGG compound	L2aadp	L-alpha-Aminoadipate, L-alpha-Aminoadipic acid, L-2-Aminoadipic acid, L-2-Aminohexanedioate
+C02593	tdcoa	Tetradecanoyl-CoA (n-C14:0CoA)	C35H58N7O17P3S	-4	BiGG compound	tdcoa	Tetradecanoyl-CoA, Myristoyl-CoA
+C00777	retn	Retinoate	C20H27O2	-1	BiGG compound	retn	Retinoic acid, Vitamin A acid, all-trans-Retinoate, Acide retinoique (French) (DSL), Tretinoine (French) (EINECS), 3,7-Dimethyl-9-(2,6,6-trimethyl-1-cyclohexene-1-yl)-2,4,6,8-nonatetraenoic acid (ECL), (all-E)-3,7-Dimethyl-9-(2,6,6-trimethyl-1-cyclohexen-1-yl)-2,4,6,8-nonatetraenoic acid, beta-Retinoic acid, AGN 100335, all-(E)-Retinoic acid, all-trans-beta-Retinoic acid, all-trans-Retinoic acid, all-trans-Tretinoin, all-trans-Vitamin A acid, Ro 1-5488, trans-Retinoic acid, Tretin M, all-trans-Vitamin A1 acid
+C03702	Nmelys	Histone N6-methyl-L-lysine	XC7H15N2O	1.0	formula and charge inferred from MetaCyc	Nmelys	
+C01944	occoa	Octanoyl-CoA (n-C8:0CoA)	C29H46N7O17P3S	-4	BiGG compound	occoa	Octanoyl-CoA
+C02291	cyst-L	L-Cystathionine	C7H14N2O4S	0	BiGG compound	cyst-L	
+C00117	r5p	alpha-D-Ribose 5-phosphate	C5H9O8P	-2	BiGG compound	r5p	D-Ribose 5-phosphate, Ribose 5-phosphate
+C02839	tyrtrna	L-Tyrosyl-tRNA(Tyr)	C9H11NO3R	1.0	tRNA formula in BiGG was modified for mass balance	tyrtrna	
+CC0015	dedol	Dehydrodolichol, n=18	C110H178O1	0.0	assumed n=18 for the number of isoprene units		
+CC0097	fa11c3coa	cis-3,4-methylenedecanoyl coa	C32H50N7O17P3S	-4.0	charge is obvious based on general rules and similar compounds		
+C01648	trnaphe	tRNA(Phe)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnaphe	
+C00794	sbt-D	D-Sorbitol	C6H14O6	0	BiGG compound	sbt-D	D-Glucitol, L-Gulitol, Sorbitol
+CC0140	pcrn	Propionyl-carnitine	C10H19NO4	0.0	charge and formula based on other acyl carnitines	pcrn	
+C00149	mal-L	L-Malate	C4H4O5	-2	BiGG compound	mal-L	(S)-Malate, L-Apple acid, L-Malic acid, L-2-Hydroxybutanedioic acid, Malate, Malic acid
+C05696	3padsel	3'-Phosphoadenylylselenate	C10H11N5O13P2Se	-4	BiGG compound	3padsel	3'-Phosphoadenosine-5'-phosphoselenate
+CC0082	dag_tag	diacylglycerol (TAG)	C3H6OFULLR4CO2FULLR5CO2	0.0	charge based on human version in BiGG	dag_hs	
+C00346	ethamp	Ethanolamine phosphate	C2H7NO4P	-1	BiGG compound	ethamp	O-Phosphorylethanolamine, Phosphoethanolamine, O-Phosphoethanolamine
+C16218	od2coa	trans-Octadec-2-enoyl-CoA	C39H64N7O17P3S	-4	BiGG compound	od2coa	(2E)-Octadecenoyl-CoA
+C00065	ser-L	L-Serine	C3H7NO3	0	BiGG compound	ser-L	L-2-Amino-3-hydroxypropionic acid, L-3-Hydroxy-alanine, Serine
+C00787	trnatyr	tRNA(Tyr)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnatyr	
+C00194	adocbl	Adenosylcobalamin	C72H100CoN18O17P	0	BiGG compound	adocbl	Cobamide coenzyme, Adenosylcob(III)alamin, Deoxyadenosylcobalamin, Cobamamide, Vitamin B12 coenzyme, 5,6-Dimethylbenzimidazolyl-5-deoxyadenosyl-cobamide, (5'-Deoxy-5'-adenosyl)cobamide coenzyme, (5,6-Dimethylbenzimidazolyl)cobamide coenzyme, alpha-(5,6-Dimethylbenzimidazolyl)cobamide coenzyme, 5'-Deoxy-5'-adenosylcobalamin, 5'-Deoxy-5'-adenosyl vitamin B12, 5'-Deoxy-5'-adenosyl-5,6-dimethylbenzimidazolylcobamide, 5,6-Dimethylbenzimidazolyl-Co-5'-deoxy-5'-adenosylcobamide, Calomide, Cobalamin coenzyme, Coenzyme B12, DMBC coenzyme, Dibencozide, Funacomide
+C05977	akac2gp	2-Acyl-1-alkyl-sn-glycero-3-phosphate	C4H5O7PRRC2H4	-2.0	charge based on human version in BiGG	ak2gp_hs	
+CC0093	fa8p1n3crn	Fatty acyl C8:1 carnitine	C15H27NO4	0.0	charge and formula based on other acyl carnitines. | See CC0067 for custom fatty acid nomenclature		
+CC0121	DNA	DNA (biomass)	X	0.0	for biomass equation; charge does not matter	DNA	
+C00385	xan	Xanthine	C5H4N4O2	0	BiGG compound	xan	
+C02946	4aabutn	4-Acetamidobutanoate	C6H10NO3	-1	BiGG compound	4aabutn	N4-Acetylaminobutanoate
+C11061	retnglc	retinoyl glucuronide	C26H35O8	-1	BiGG compound	retnglc	all-trans-Retinoyl-beta-glucuronide
+C02588	retpalm	Retinyl palminate	C36H60O2	0	BiGG compound	retpalm	Retinyl palmitate, Vitamin A palmitate, all-trans-Retinyl palmitate, Retinol palmitate
+C00343	trdox	Oxidized thioredoxin	X	0	BiGG compound	trdox	Thioredoxin disulfide, Thioredoxin sulfide
+C00189	etha	Ethanolamine	C2H8NO	1	BiGG compound	etha	Aminoethanol, 2-Hydroxyethylamine
+C05264	3hdcoa	(S)-3-Hydroxydecanoyl-CoA	C31H50N7O18P3S	-4	BiGG compound	3hdcoa	(S)-Hydroxydecanoyl-CoA
+C00094	so3	Sulfite	O3S	-2	BiGG compound	so3	Sulfurous acid
+C00162	Rtotal	R total	CO2FULLR	-1	BiGG compound	Rtotal	Fatty acid
+C00059	so4	Sulfate	O4S	-2	BiGG compound	so4	Sulfuric acid
+C01346	dudp	dUDP	C9H11N2O11P2	-3	BiGG compound	dudp	2'-Deoxyuridine 5'-diphosphate
+CC0010	2np6mobq_me	2-nonaprenyl-3-methyl-6-methoxy-1,4-benzoquinone	C53H80O3	0.0	charge based on 2dp6mobq_me in BIGG	2dp6mobq_me	
+C01144	3hbcoa	(S)-3-Hydroxybutanoyl-CoA	C25H38N7O18P3S	-4	BiGG compound	3hbcoa	(S)-3-Hydroxybutyryl-CoA
+C05546	peptmelys	Protein N6,N6,N6-trimethyl-L-lysine	XC9H19N2O	1.0	formula and charge based on MetaCyc	Ntmelys	
+C01013	3hpp	3-Hydroxypropanoate	C3H5O3	-1	BiGG compound	3hpp	3-Hydroxypropanoic acid, 3-Hydroxypropionate, 3-Hydroxypropionic acid, Hydracrylic acid
+C00365	dump	dUMP	C9H11N2O8P	-2	BiGG compound	dump	Deoxyuridylic acid, Deoxyuridine monophosphate, Deoxyuridine 5'-phosphate, 2'-Deoxyuridine 5'-phosphate
+C03594	xol7a	7 alpha-Hydroxycholesterol	C27H46O2	0	BiGG compound	xol7a	7alpha-Hydroxycholesterol, Cholest-5-ene-3beta,7alpha-diol
+CC0101	odecrn	Octadecenoyl carnitine	C25H47NO4	0.0	charge and formula based on other acyl carnitines	odecrn	
+C01019	fuc-L	L-Fucose	C6H12O5	0.0	BiGG compound		6-Deoxy-L-galactose
+CC0115	fa9p0isocrn	Fatty acyl (C9:iso) carnitine	C16H31NO4	0.0	charge and formula based on other acyl carnitines. | See CC0067 for custom fatty acid nomenclature		
+C00535	tststerone	Testosterone	C19H28O2	0	BiGG compound	tststerone	17beta-Hydroxy-4-androsten-3-one
+C03512	trptrna	L-Tryptophanyl-tRNA(Trp)	C11H12N2O2R	1.0	tRNA formula in BiGG was modified for mass balance	trptrna	
+C04549	pail3p	1-Phosphatidyl-1D-myo-inositol 3-phosphate 	C9H15O12P2FULLRCO2FULLR2CO2	-3.0	charge based on human version in BiGG	pail3p_hs	1-Phosphatidyl-1D-myo-inositol 3-phosphate, 1,2-Diacyl-sn-glycero-3-phospho-(1'-myo-inositol-3'-phosphate)
+C01157	4hpro-LT	trans-4-Hydroxy-L-proline	C5H9NO3	0	BiGG compound	4hpro-LT	Hydroxyproline, L-Hydroxyproline
+CC0098	fa17c9coa	cis-9,10-methylenehexadecanoyl coa	C38H62N7O17P3S	-4.0	charge is obvious based on general rules and similar compounds		
+C05640	cinnavalininate	Cinnavalininate	C14H6N2O6	-2.0	charge based on DMET		Cinnabarinic acid
+CC0208	sph1p_ce	Sphinganine 1-phosphate	C19H41NO5P	-1.0	charge based on matching BiGG compound	sph1p	
+C02430	mettrna	L-Methionyl-tRNA (Met)	C5H11NO2SR	1.0	tRNA formula in BiGG was modified for mass balance	mettrna	L-Methionyl-tRNA, L-Methionyl-tRNA(Met)
+C00354	fdp	"D-Fructose 1,6-bisphosphate"	C6H10O12P2	-4	BiGG compound	fdp	D-Fructose 1,6-bisphosphate
+C03150	rnam	N-Ribosylnicotinamide	C11H15N2O5	1	BiGG compound	rnam	Nicotinamide-beta-riboside, 1-(beta-D-Ribofuranosyl)nicotinamide
+C04677	aicar	5-Amino-1-(5-Phospho-D-ribosyl)imidazole-4-carboxamide	C9H13N4O8P	-2	BiGG compound	aicar	1-(5'-Phosphoribosyl)-5-amino-4-imidazolecarboxamide, 5'-Phosphoribosyl-5-amino-4-imidazolecarboxamide, 5'-Phospho-ribosyl-5-amino-4-imidazole carboxamide, AICAR, 5-Aminoimidazole-4-carboxamide ribotide, 5-Phosphoribosyl-4-carbamoyl-5-aminoimidazole
+C00158	cit	Citrate	C6H5O7	-3	BiGG compound	cit	Citric acid, 2-Hydroxy-1,2,3-propanetricarboxylic acid, 2-Hydroxytricarballylic acid
+C00137	inost	myo-Inositol	C6H12O6	0	BiGG compound	inost	D-myo-Inositol, 1D-myo-Inositol, L-myo-Inositol, 1L-myo-Inositol, meso-Inositol, Inositol, Dambose, Cyclohexitol, Meat sugar, Bios I
+C05714	aprop	alpha-Aminopropiononitrile	C3H7N2	1	BiGG compound	aprop	
+CC0109	fa16p1n7crn	Palmitoleyl carnitine	C23H43NO4	0.0	charge and formula based on other acyl carnitines. | See CC0067 for custom fatty acid nomenclature		
+CC0212	galside_ce	galactocerebroside 	C25H48NO7FULLRCO	0.0	charge based on human version in BiGG	galside_hs	
+C00526	duri	Deoxyuridine	C9H12N2O5	0	BiGG compound	duri	2-Deoxyuridine, 2'-Deoxyuridine
+C05844	glutaur	5-L-Glutamyl-taurine	C7H13N2O6S	-1.0	charge based on gluala and glucys, which take their sign from the glutamyl component; also taur itself has zero charge		5-Glutamyl-taurine, Glutaurine
+C05262	3hddcoa	(S)-3-Hydroxydodecanoyl-CoA	C33H54N7O18P3S	-4	BiGG compound	3hddcoa	
+CC0157	rq9	Rhodoquinone-9	C53H81NO3	0.0	charge and formula based on q9		
+C00169	cbp	Carbamoyl phosphate	CH2NO5P	-2	BiGG compound	cbp	
+CC0112	fa19c11crn	cis-11,12-methyleneoctadecanoyl carnitine	C26H49NO4	0.0	charge and formula based on other acyl carnitines		
+C04253	etfox	Electron transfer flavoprotein oxidized	R	0	BiGG compound	etfox	Electron-transferring flavoprotein, Electron-transfer flavoprotein
+CC0067	fa16p1n7coa	Palmitoleyl-coA	C37H60N7O17P3S	-4.0	charge is obvious based on general rules and similar compounds due to long neutral fatty acid chain and coa with well-determined charge. | nomenclature: fatty-acid, C number, p for pi, number of pi bonds, n as in omega nomenclature, C of first pi from the chain tip as in the omega nomenclature		
+C05266	3hocoa	(S)-3-Hydroxyoctanoyl-CoA	C29H46N7O18P3S	-4	BiGG compound	3hocoa	(S)-3-Hydroxycapryloyl-CoA, (S)-Hydroxyoctanoyl-CoA
+C00068	thmpp	Thiamine diphosphate	C12H16N4O7P2S	-2	BiGG compound	thmpp	Thiamin diphosphate, Thiamin pyrophosphate, TPP, ThPP
+C04637	pail45p	phosphatidylinositol 4,5-bisphosphate 	C9H14O15P3FULLRCO2FULLR2CO2	-5.0	charge based on human version in BiGG	pail45p_hs	1-Phosphatidyl-D-myo-inositol 4,5-bisphosphate, 1-Phosphatidyl-1D-myo-inositol 4,5-bisphosphate, Phosphatidyl-myo-inositol 4,5-bisphosphate, Phosphatidylinositol-4,5-bisphosphate, 1,2-Diacyl-sn-glycero-3-phospho-(1'-myo-inositol-4',5'-bisphosphate)
+CC0151	collg	Collagen	X	0.0	charge does not matter		
+C00253	nac	Nicotinate	C6H4NO2	-1	BiGG compound	nac	Nicotinic acid, Niacin, 3-Pyridinecarboxylic acid
+C00003	nad	Nicotinamide adenine dinucleotide	C21H26N7O14P2	-1	BiGG compound	nad	NAD+, NAD, DPN, Diphosphopyridine nucleotide, Nadide, beta-NAD+
+C00576	betald	Betaine aldehyde	C5H12NO	1	BiGG compound	betald	
+CC0110	fa11c3crn	cis-3,4-methylenedecanoyl coa	C18H33NO4	0.0	charge and formula based on other acyl carnitines		
+CC0216	gbside_ce	globoside 	C45H81N2O22FULLRCO	0.0	charge based on human version in BiGG	gbside_hs	
+CC0065	glycogen_BAC	glycogen	C6H10O5	0.0	glycogen from bacteria separated from CEL glycogen	glycogen	
+C02282	glntrna	L-Glutaminyl-tRNA(Gln)	C5H10N2O3R	1.0	tRNA formula in BiGG was modified for mass balance	glntrna	Glutaminyl-tRNA, Glutaminyl-tRNA(Gln), Gln-tRNA(Gln)
+CC0014	dedolp	Dehydrodolichol phosphate, n=18	C110H177O4P1	-2.0	assumed n=18 for the number of isoprene units; charge of this molecule comes from the P group only	dedolp_L,dedolp_U	
+C18237	moco	Adenylated molybdopterin	C10H10N5O8PS2Mo	-2.0	charge based on MetaCyc		Molybdoenzyme molybdenum cofactor, Molybdenum cofactor
+C00673	2dr5p	2-Deoxy-D-ribose 5-phosphate	C5H9O7P	-2	BiGG compound	2dr5p	
+CC0057	outerlps_BAC	Outer section of lipopolysaccharide (bacteria)	C61H101N2O49	-1.0	charge is obvious based on general rules and similar compounds		
+CC0092	fa16p4n3coa	Intermediary fatty acid C16:4	C37H54N7O17P3S	-4.0	charge is obvious based on general rules and similar compounds. | See CC0067 for custom fatty acid nomenclature		
+C01264	acakgp	2-Acetyl-1-alkyl-sn-glycero-3-phosphate	C5H8O7PRC2H4	-2.0	charge is obvious based on general rules and similar compounds		
+C02714	aprut	N-Acetylputrescine	C6H15N2O	1	BiGG compound	aprut	
+C03221	dd2coa	trans-Dodec-2-enoyl-CoA	C33H52N7O17P3S	-4	BiGG compound	dd2coa	2-trans-Dodecenoyl-CoA, (2E)-Dodec-2-enoyl-CoA, (2E)-Dodecenoyl-CoA
+C03740	gluala	5-L-Glutamyl-L-alanine	C8H13N2O5	-1	BiGG compound	gluala	(5-L-Glutamyl)-L-amino acid, L-gamma-Glutamyl-L-amino acid
+C00221	glc-D-B	beta-D-Glucose	C6H12O6	0.0	charge based on D-glucose	glc-D	
+C00267	glc-D-A	alpha-D-Glucose	C6H12O6	0.0	charge based on D-glucose	glc-D	
+C05265	3odcoa	3-Oxodecanoyl-CoA	C31H48N7O18P3S	-4	BiGG compound	3odcoa	
+C01328	oh1	hydroxide ion	HO	-1	BiGG compound	oh1	HO-, OH-
+C00053	paps	3'-Phosphoadenylyl sulfate	C10H11N5O13P2S	-4	BiGG compound	paps	3'-Phosphoadenosine 5'-phosphosulfate, 3'-Phospho-5'-adenylyl sulfate, PAPS
+C00105	ump	UMP	C9H11N2O9P	-2	BiGG compound	ump	Uridylic acid, Uridine monophosphate, Uridine 5'-monophosphate, 5'Uridylic acid
+C15645	alkenglyc	1-(1-Alkenyl)-sn-glycerol	C3H7O3RC2H2	0.0	charge is obvious based on general rules and similar compounds		
+C01646	trnalys	tRNA(Lys)	ROH	0.0	tRNA formula in BiGG was modified for mass balance	trnalys	
+C00510	odecoa	Octadecenoyl-CoA (n-C18:1CoA)	C39H64N7O17P3S	-4	BiGG compound	odecoa	Oleoyl-CoA, (9Z)-Octadecenoyl-CoA
+C00438	cbasp	N-Carbamoyl-L-aspartate	C5H6N2O5	-2	BiGG compound	cbasp	
+C00186	lac-L	L-Lactate	C3H5O3	-1	BiGG compound	lac-L	(S)-Lactate, L-Lactic acid
+C04281	1p3h5c	L-1-Pyrroline-3-hydroxy-5-carboxylate	C5H6NO3	-1	BiGG compound	1p3h5c	3-Hydroxy-L-1-pyrroline-5-carboxylate, (3R,5S)-1-Pyrroline-3-hydroxy-5-carboxylate
+C00005	nadph	Nicotinamide adenine dinucleotide phosphate - reduced	C21H26N7O17P3	-4	BiGG compound	nadph	NADPH, TPNH, Reduced nicotinamide adenine dinucleotide phosphate
+C00864	pnto-R	(R)-Pantothenate	C9H16NO5	-1	BiGG compound	pnto-R	Pantothenate, Pantothenic acid
+C00124	gal	D-Galactose	C6H12O6	0	BiGG compound	gal	D-Galactopyranose
+C17337	7a3o4chlstnt	7alpha-Hydroxy-3-oxo-4-cholestenoate	C27H41O4	-1.0	charge based on another bile acid with a very similar structure, cholate		
+CC0036	fn2m2masn	N4-{N-Acetyl-beta-D-glucosaminyl-(1,2)-alpha-D-mannosyl-(1,3)-[N-acetyl-beta-D-glucosaminyl-(1,2)-alpha-D-mannosyl-(1,6)]-beta-D-mannosyl-(1,4)-N-acetyl-beta-D-glucosaminyl-(1,4)-[alpha-L-fucosyl-(1,6)]-N-acetyl-beta-D-glucosaminyl}asparagine	C56H93N4O39X	0.0	designated as G00016 in KEGG nomenclature	fn2m2masn	
+C02987	glutrna	L-Glutamyl-tRNA(Glu)	C5H8NO4R	0.0	tRNA formula in BiGG was modified for mass balance	glutrna	
+C14748	20HETE	20-Hydroxyeicosatetraenoic acid	C20H31O3	-1.0	ReconX compound		20-HETE, (5Z,8Z,11Z,14Z)-20-Hydroxyicosa-5,8,11,14-tetraenoic acid, 20-Hydroxyicosatetraenoic acid, 20-Hydroxy arachidonic acid
+C00427	prostgh2	Prostaglandin H2	C20H31O5	-1	BiGG compound	prostgh2	(5Z,13E)-(15S)-9alpha,11alpha-Epidioxy-15-hydroxyprosta-5,13-dienoate, (5Z,13E,15S)-9alpha,11alpha-Epidioxy-15-hydroxyprosta-5,13-dienoate, PGH2, (5Z,9alpha,11alpha,13E,15S)-9,11-Epidioxy-15-hydroxy-prosta-5,13-dienoate
+C00168	hpyr	Hydroxypyruvate	C3H3O4	-1	BiGG compound	hpyr	Hydroxypyruvic acid, 3-Hydroxypyruvate, 3-Hydroxypyruvic acid
