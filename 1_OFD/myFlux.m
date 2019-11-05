@@ -1,3 +1,4 @@
+%% this is the main program to generate tissue OFDs
 %% load model
 addpath /opt/cobra/cobratoolbox/
 addpath ~/conjoinedModel/new_matlab_functions/

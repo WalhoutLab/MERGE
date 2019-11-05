@@ -1,4 +1,6 @@
 function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLNames,latentRxn,PFD,Nfit_latent,minTotal_OFD,MILP] = autoIntegration_latent(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCatag,doMinPFD,latentCAP)
+%% this is the main integration function
+%% annotation is not done yet!
 %% inputs
 % model ... the model; model needs to be constrained
 % storeProp,SideProp ... proportion of sides and storage molecules

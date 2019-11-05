@@ -1,3 +1,4 @@
+%% to process json file from python environment
 fname = './input/OFD_all.json';
 str = fileread(fname);
 for i = 1:length(str)

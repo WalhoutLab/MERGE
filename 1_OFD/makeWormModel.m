@@ -1,3 +1,4 @@
+%% to make the corbra model from an excel table
 addpath /Users/xuhangli/Desktop/Walhout_Lab/conjoined_model_project/new_matlab_functions
 %initCobraToolbox;
 % the <- in rxns table should be change to <==> manually

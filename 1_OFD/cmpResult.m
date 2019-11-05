@@ -1,4 +1,4 @@
-%%
+%% to compare safak's flux distribution with matlab result
 safak = readtable('input/pdf_XuhangsParameters.txt');
 %%
 names = fieldnames(fittingQuality.D_Rlow)
