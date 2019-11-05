@@ -513,14 +513,12 @@ switch solver
             MILPproblem.start = x0;
         end
         
-        params.NumericFocus = 0;
-        %params.AggFill = 0;
-        params.Presolve = -1;
-        params.IntFeasTol = 1e-7;
-        params.FeasibilityTol = 1e-6;
-        params.OptimalityTol = 1e-6;
-        params.Threads = 1;
-        params.MIPGap = 1e-4;
+        params.Presolve = 1;
+        params.IntFeasTol = 1e-8;
+        params.FeasibilityTol = 1e-9;
+        params.OptimalityTol = 1e-9;
+        params.Threads = 20;
+        params.MIPGap = 1e-12;
         resultgurobi = gurobi(MILPproblem,params);
 
         stat = resultgurobi.status;

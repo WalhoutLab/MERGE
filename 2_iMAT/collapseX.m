@@ -22,7 +22,7 @@ newModel = removeMetabolites(newModel,Xmets);
 % calculate the flux demand for each metabolite based on transport
 % reactions
 % find the X_E metabolites
-numericalTol = 1e-6; % tolerance should be larger or equal to solver tolerance
+numericalTol = 1e-7; % tolerance should be larger or equal to solver tolerance
 allExMets = model.mets(cellfun(@(x) ~isempty(regexp(x, '\[e\]$', 'once')),model.mets));
 allXmets = model.mets(any(model.S(:,ismember(model.rxns,Xrxns)),2)); % all metablites used in a X reaction
 targetMets = intersect(allExMets, allXmets);

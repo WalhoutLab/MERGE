@@ -206,7 +206,7 @@ for i = 1:length(names)
     ExpCatag = tissues.(names{i});
     doLatent = 0;
     storeProp = 0.01;
-    SideProp = 0.02;
+    SideProp = 0.04;
     ATPm = 10;
     doMinPFD = 1;
     latentCAP = 0.05;
@@ -254,7 +254,7 @@ tic()
 ExpCatag = tissues.Intestine;
 doLatent = 0;
 storeProp = 0.01;
-SideProp = 0.02;
+SideProp = 0.04;
 ATPm = 10;
 doMinPFD = 1;
 latentCAP = 0.05;
@@ -265,39 +265,3 @@ myCSM = struct(); %my context specific model
 %OFD fitting
 save('Intestine.mat','myCSM');
 toc()
-%% load the reference data
-fname = './input/fittingQuality.json';
-str = fileread(fname);
-for i = 1:length(str)
-    if str(i) == "'"
-        str(i) = '"';
-    end
-end
-str = regexprep(str,'u"','"');
-str = regexprep(str,'set(','');
-str = regexprep(str,')','');
-fittingQuality = jsondecode(str);
-%% load the json
-fname = './input/OFD.json';
-str = fileread(fname);
-for i = 1:length(str)
-    if str(i) == "'"
-        str(i) = '"';
-    end
-end
-str = regexprep(str,'u"','"');
-str = regexprep(str,'set(','');
-str = regexprep(str,')','');
-OFD_safak = jsondecode(str);
-%% load the json
-fname = './input/collapsedX_exampleConstraints.json';
-str = fileread(fname);
-for i = 1:length(str)
-    if str(i) == "'"
-        str(i) = '"';
-    end
-end
-str = regexprep(str,'u"','"');
-str = regexprep(str,'set(','');
-str = regexprep(str,')','');
-costraintsExp = jsondecode(str);

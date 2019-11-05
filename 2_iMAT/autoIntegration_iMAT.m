@@ -18,9 +18,9 @@ if (nargin < 11) %fullsensitivity means sensitivity that includes negative sensi
 end
 %set global constant 
 bacMW=966.28583751;
-changeCobraSolverParams('LP','optTol', 10e-6);
-changeCobraSolverParams('LP','feasTol', 10e-6);
-tol = 0.01;%1e-7; %it could be 1%
+changeCobraSolverParams('LP','optTol', 10e-9);
+changeCobraSolverParams('LP','feasTol', 10e-9);
+tol = 1e-5; %it could be 1%
 %%
 fprintf('Start flux fitting... \n');
 tic()

@@ -17,8 +17,8 @@ if (nargin < 10) %fullsensitivity means sensitivity that includes negative sensi
 end
 %set global constant 
 bacMW=966.28583751;
-changeCobraSolverParams('LP','optTol', 10e-6);
-changeCobraSolverParams('LP','feasTol', 10e-6);
+changeCobraSolverParams('LP','optTol', 10e-9);
+changeCobraSolverParams('LP','feasTol', 10e-9);
 %%
 fprintf('Start flux fitting... \n');
 tic()
@@ -86,7 +86,7 @@ minLow = solution.obj;
 
 % step3: minimize total flux as needed
 % set a minFlux tolerance 
-tol = 0.01;%1e-7; %it could be 1%
+tol = 1e-5; %it could be 1%
 solution.obj = solution.obj + tol;
 MILProblem = solution2constraint(MILProblem,solution);
 MILP = MILProblem; %write the MILP output, this MILP contains all data-based constraints (minTotal is not data based, but minLow is)
