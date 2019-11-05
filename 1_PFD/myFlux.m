@@ -1,4 +1,6 @@
 %% load model
+addpath /opt/cobra/cobratoolbox/
+addpath ~/conjoinedModel/new_matlab_functions/
 addpath ~/cobratoolbox/
 addpath /share/pkg/gurobi/810/linux64/matlab/
 addpath ~/new_matlab_functions/
@@ -12,6 +14,34 @@ load('Tissue.mat');
 % worm.S(end, strcmp('EXC0050',worm.rxns)) = 0.01*9.6641833;
 % % make the epsilon vector
 % [epsilon_f,epsilon_r] = makeEpsilonSeq(worm,worm.rxns,0.01,0.5);
+
+% reset some constraints to make the model ready for integration 
+% release the input constraints for integration 
+model = changeRxnBounds(model,'EXC0050_L',-1000,'l');
+model = changeRxnBounds(model,'EX00001_E',-1000,'l');
+model = changeRxnBounds(model,'EX00007_E',-1000,'l');
+model = changeRxnBounds(model,'EX00009_E',-1000,'l');
+model = changeRxnBounds(model,'EX00080_E',-1000,'l');
+
+model = changeRxnBounds(model,'RM00112_I',-1000,'l');
+model = changeRxnBounds(model,'RM00112_X',-1000,'l');
+model = changeRxnBounds(model,'RM00112_I',1000,'u');
+model = changeRxnBounds(model,'RM00112_X',1000,'u');
+
+model = changeRxnBounds(model,'DMN0033_I',0,'l');
+model = changeRxnBounds(model,'DMN0033_X',0,'l');
+model = changeRxnBounds(model,'DMN0033_I',1,'u');
+model = changeRxnBounds(model,'DMN0033_X',1,'u');
+
+
+model = changeRxnBounds(model,'RMC0005_I',0,'l');
+model = changeRxnBounds(model,'RMC0005_X',0,'l');
+model = changeRxnBounds(model,'RMC0005_I',0,'u');
+model = changeRxnBounds(model,'RMC0005_X',0,'u');
+% parseGPR takes hugh amount of time, so preparse and integrate with model
+% here 
+parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
+model.parsedGPR = parsedGPR;
 %% laod the gene expression data
 fname = './input/geneSets.json';
 str = fileread(fname);
@@ -43,7 +73,7 @@ ExpCatag.low = [GeneExpression.Hypodermis.low;GeneExpression.Intestine.low];
 ExpCatag.zero = [GeneExpression.Hypodermis.zero;GeneExpression.Intestine.zero];
 %all the other genes are dynamic (no constriants on) 
 ExpCatag.dynamic = setdiff(model.genes, unique([ExpCatag.high;ExpCatag.low;ExpCatag.zero]));
-ExpCatag_hypodermis = ExpCatag;
+ExpCatag_Hypodermis = ExpCatag;
 
 % Gonad
 %add compartment label and merge
@@ -125,14 +155,27 @@ ExpCatag.zero = [GeneExpression.Neurons.zero;GeneExpression.Intestine.zero];
 ExpCatag.dynamic = setdiff(model.genes, unique([ExpCatag.high;ExpCatag.low;ExpCatag.zero]));
 ExpCatag_Neurons = ExpCatag;
 
+% Intestine
+%merge
+ExpCatag = struct();
+ExpCatag.high = [GeneExpression.Intestine.high];
+%ExpCatag.dynamic = [GeneExpression.Hypodermis.lenient;GeneExpression.Intestine.lenient];
+ExpCatag.low = [GeneExpression.Intestine.low];
+ExpCatag.zero = [GeneExpression.Intestine.zero];
+%all the other genes are dynamic (no constriants on) 
+ExpCatag.dynamic = setdiff(model.genes, unique([ExpCatag.high;ExpCatag.low;ExpCatag.zero]));
+ExpCatag_Intestine = ExpCatag;
+
 %merge all 
 tissues = struct();
-tissues.hypodermis = ExpCatag_hypodermis;
+tissues.Hypodermis = ExpCatag_Hypodermis;
 tissues.Gonad = ExpCatag_Gonad;
 tissues.Glia = ExpCatag_Glia;
 tissues.Pharynx = ExpCatag_Pharynx;
 tissues.Body_wall_muscle = ExpCatag_Body_wall_muscle;
 tissues.Neurons = ExpCatag_Neurons;
+tissues.Intestine = ExpCatag_Intestine;
+
 %% load epsilon
 fname = './input/epsilon.json';
 str = fileread(fname);
@@ -156,20 +199,22 @@ for i = 1: length(fields)
 end
 %% make OFD
 names = fieldnames(tissues);
+names = names(1:end-1);
 for i = 1:length(names)
     fprintf('now starting to fit %s... \n',names{i});
+    t1 = tic();
     ExpCatag = tissues.(names{i});
     doLatent = 1;
     storeProp = 0.01;
     SideProp = 0.02;
-    capacity_f = [];
-    capacity_r = [];
     ATPm = 10;
     doMinPFD = 1;
-    doFullSensitivity = 0;
+    latentCAP = 0.05;
     myCSM = struct(); %my context specific model
-    [myCSM.OFD,myCSM.N_highFit,myCSM.N_zeroFit,myCSM.minLow,myCSM.minTotal,myCSM.OpenGene,myCSM.wasteDW,myCSM.HGenes,myCSM.RLNames,myCSM.latentRxn,myCSM.PFD,myCSM.Nfit_latent,myCSM.minTotal_OFD,myCSM.MILP] = autoIntegration_latent(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r,capacity_f,capacity_r, ATPm, ExpCatag,doMinPFD,doFullSensitivity);
+    [myCSM.OFD,myCSM.N_highFit,myCSM.N_zeroFit,myCSM.minLow,myCSM.minTotal,myCSM.OpenGene,myCSM.wasteDW,myCSM.HGenes,myCSM.RLNames,myCSM.latentRxn,myCSM.PFD,myCSM.Nfit_latent,myCSM.minTotal_OFD,myCSM.MILP] = autoIntegration_latent(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCatag,doMinPFD,latentCAP);
     save([names{i},'.mat'],'myCSM');
+    eval([names{i},' = myCSM;']);
+    toc(t1)
     %OFD = fix(FluxDistribution_daf2 .* 1e7) ./ 1e7;
     % what's the atpm for each tissue?
     % why not every reaction has epsilon?
@@ -182,6 +227,49 @@ for i = 1:length(names)
     % integration! it seems overide some real low expressed rxns (i.e, 0 and -1
     % gives -1, but should be minimized? undetected means zero?)
 end
+%% now do the intestine integration
+% first get the average flux distribution
+weights = [0.179980982;0.086522532;0.036874975;0.138793829;0.372097477000000;0.185730205];%needs to order by tissuesname
+fluxSum_OFD = zeros(length(model.rxns),1);
+fluxSum_PFD = zeros(length(model.rxns),1);
+for i = 1:length(names)
+    eval(['fluxSum_OFD = ',names{i},'.OFD .* weights(i) + fluxSum_OFD;']);
+end
+for i = 1:length(names)
+    eval(['fluxSum_PFD = ',names{i},'.PFD .* weights(i) + fluxSum_PFD;']);
+end
+IntestineModel_PFD = collapseX(model,'X',fluxSum_PFD);
+IntestineModel_OFD = collapseX(model,'X',fluxSum_OFD);
+%update GPR
+parsedGPR = GPRparser_xl(IntestineModel_PFD);% Extracting GPR data from model
+IntestineModel_OFD.parsedGPR = parsedGPR;
+IntestineModel_PFD.parsedGPR = parsedGPR;
+% update the epsilon list
+epsilon_new_f = 0.01 * ones(length(IntestineModel_PFD.rxns),1);
+epsilon_new_r = epsilon_new_f;
+for i = 1: length(IntestineModel_PFD.rxns)
+    if any(ismember(IntestineModel_PFD.rxns(i), model.rxns))
+        epsilon_new_f(i) = epsilon_f(ismember(model.rxns,IntestineModel_PFD.rxns(i)));
+        epsilon_new_r(i) = epsilon_r(ismember(model.rxns,IntestineModel_PFD.rxns(i)));
+    end
+end
+% integration 
+fprintf('now starting to fit %s... \n','Intestine');
+tic()
+ExpCatag = tissues.Intestine;
+doLatent = 1;
+storeProp = 0.01;
+SideProp = 0.02;
+ATPm = 10;
+doMinPFD = 1;
+latentCAP = 0.05;
+myCSM = struct(); %my context specific model
+%PFD fitting
+[~,myCSM.N_highFit,myCSM.N_zeroFit,myCSM.minLow,myCSM.minTotal,myCSM.OpenGene,~,myCSM.HGenes,myCSM.RLNames,~,myCSM.PFD,~,~,~] = autoIntegration_latent(IntestineModel_PFD,~doLatent,storeProp,SideProp,epsilon_new_f,epsilon_new_r, ATPm, ExpCatag,doMinPFD,latentCAP);
+%OFD fitting
+[myCSM.OFD,~,~,~,~,~,myCSM.wasteDW,~,~,myCSM.latentRxn,~,myCSM.Nfit_latent,myCSM.minTotal_OFD,myCSM.MILP] = autoIntegration_latent(IntestineModel_OFD,doLatent,storeProp,SideProp,epsilon_new_f,epsilon_new_r, ATPm, ExpCatag,doMinPFD,latentCAP);
+save('Intestine.mat','myCSM');
+toc()
 %% load the reference data
 fname = './input/fittingQuality.json';
 str = fileread(fname);
@@ -194,3 +282,27 @@ str = regexprep(str,'u"','"');
 str = regexprep(str,'set(','');
 str = regexprep(str,')','');
 fittingQuality = jsondecode(str);
+%% load the json
+fname = './input/safak_strigentParas/PFD.json';
+str = fileread(fname);
+for i = 1:length(str)
+    if str(i) == "'"
+        str(i) = '"';
+    end
+end
+str = regexprep(str,'u"','"');
+str = regexprep(str,'set(','');
+str = regexprep(str,')','');
+PFD_safak = jsondecode(str);
+%% load the json
+fname = './input/collapsedX_exampleConstraints.json';
+str = fileread(fname);
+for i = 1:length(str)
+    if str(i) == "'"
+        str(i) = '"';
+    end
+end
+str = regexprep(str,'u"','"');
+str = regexprep(str,'set(','');
+str = regexprep(str,')','');
+costraintsExp = jsondecode(str);

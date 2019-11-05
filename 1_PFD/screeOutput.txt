@@ -1,0 +1,235 @@
+Gonad
+1st Optimization: maximize highly expressed active genes and unexpressed inactive reactions
+Number of fitted reactions and genes:   741.0
+
+2nd Optimization: minimize sum of lowly expressed reaction flux
+        minimized flux sum in these reactions is 0.319165058324
+        low flux reactions are finally constrained to 0.329165058324
+3rd Optimization: minimize total flux and constrain
+minimum total flux is 425.86938905
+        total Flux is constrained to 447.162858503
+
+Starting the correction of mute (latent) reactions
+Iteration 1 #mute/total:        32/32
+[u'RC01710_X', u'RC04321_X', u'RM00935_X', u'RC07641_X', u'RC01230_X', u'RC00964_X', u'RC02090_X', u'RC02367_X', u'RC02739_X', u'RCC0066_X', u'RC01926_X', u'RC00736_X', u'RCC0022_X', u'TCM1277_X', u'RC02094_X', u'RC02236_X', u'RC01794_X', u'RC01082_X', u'RC02099_X', u'RC09085_X', u'RC06983_X', u'RC01318_X', u'RC00571_X', u'RCC0139_X', u'RC00939_X', u'RC00965_X', u'RC02235_X', u'RC00529_X', u'RM02566_X', u'RC03020_X', u'RCC0210_X', u'RM03991_X']
+minFlux became  427.355587338
+        total Flux is constrained to 448.723366705
+Iteration 2 #mute/total:        22/47
+[u'RC04321_X', u'RC00513_X', u'RM02565_X', u'RM00945_X', u'RC01786_X', u'RC00235_X', u'RC02251_X', u'RC00575_X', u'RC09086_X', u'TCM1277_X', u'RCC0139_X', u'RC00174_X', u'RC01567_X', u'RC01711_X', u'RC02493_X', u'RC01793_X', u'RCC0062_X', u'RC00529_X', u'RC03020_X', u'RC00936_X', u'RCC0210_X', u'RM03991_X']
+minFlux became  431.129756739
+        total Flux is constrained to 452.686244576
+Iteration 3 #mute/total:        14/53
+[u'RC04321_X', u'RC02740_X', u'RCC0066_X', u'RCC0139_X', u'RC01224_X', u'RC01909_X', u'TCM1277_X', u'RC00573_X', u'RC00529_X', u'RC03020_X', u'RC09511_X', u'RC07140_X', u'RCC0210_X', u'RM03991_X']
+minFlux became  431.887156528
+        total Flux is constrained to 453.481514355
+
+Optimization done, now checking and recording the fit quality
+
+Glia
+1st Optimization: maximize highly expressed active genes and unexpressed inactive reactions
+Number of fitted reactions and genes:   527.0
+
+2nd Optimization: minimize sum of lowly expressed reaction flux
+        minimized flux sum in these reactions is 0.8655595339
+        low flux reactions are finally constrained to 0.8755595339
+3rd Optimization: minimize total flux and constrain
+minimum total flux is 579.14863931
+        total Flux is constrained to 608.106071275
+
+Starting the correction of mute (latent) reactions
+Iteration 1 #mute/total:        38/38
+[u'RC02147_X', u'RM03381_X', u'RC07641_X', u'RC01036_X', u'RC02739_X', u'RC01769_X', u'RM00705_X', u'RC00575_X', u'RCC0068_X', u'RC00103_X', u'RC02719_X', u'RC03346_X', u'RCC0145_X', u'RC01093_X', u'RC00529_X', u'RC01768_X', u'RC01704_X', u'RC01230_X', u'RC01095_X', u'RC01132_X', u'RCC0066_X', u'RCC0175_X', u'RC01126_X', u'RC01227_X', u'RC00511_X', u'RC07212_X', u'RC02323_X', u'RC09511_X', u'RC02297_X', u'RC01082_X', u'RC01787_X', u'RC08198_X', u'RC02142_X', u'RC07140_X', u'RCC0020_X', u'RC02295_X', u'RC02294_X', u'RC00287_X']
+minFlux became  586.502736183
+        total Flux is constrained to 615.827872992
+Iteration 2 #mute/total:        7/43
+[u'RM00935_X', u'RCC0068_X', u'RM00248_X', u'RC07212_X', u'TCE5105_X', u'RCC0062_X', u'RC10951_X']
+minFlux became  586.669818431
+        total Flux is constrained to 616.003309353
+Iteration 3 #mute/total:        4/44
+[u'RCC0066_X', u'RCC0022_X', u'RCC0068_X', u'RC07212_X']
+minFlux became  586.167680826
+        total Flux is constrained to 615.476064867
+Iteration 4 #mute/total:        6/47
+[u'RC00235_X', u'RC03321_X', u'RCC0068_X', u'RC07212_X', u'RCC0062_X', u'RC02396_X']
+minFlux became  586.890615299
+        total Flux is constrained to 616.235146064
+Iteration 5 #mute/total:        4/48
+[u'RCC0066_X', u'RCC0068_X', u'RC07212_X', u'RCC0153_X']
+minFlux became  586.970880799
+        total Flux is constrained to 616.319424839
+
+Optimization done, now checking and recording the fit quality
+
+Body_wall_muscle
+1st Optimization: maximize highly expressed active genes and unexpressed inactive reactions
+Number of fitted reactions and genes:   527.0
+
+2nd Optimization: minimize sum of lowly expressed reaction flux
+        minimized flux sum in these reactions is 0.545785480887
+        low flux reactions are finally constrained to 0.555785480887
+3rd Optimization: minimize total flux and constrain
+minimum total flux is 389.03843239
+        total Flux is constrained to 408.49035401
+
+Starting the correction of mute (latent) reactions
+Iteration 1 #mute/total:        27/27
+[u'RC00369_X', u'RM00935_X', u'RC07641_X', u'RC02367_X', u'RCC0185_X', u'RC02739_X', u'RC00585_X', u'RM00248_X', u'RC00233_X', u'RC01318_X', u'RM00472_X', u'RM00706_X', u'RM00585_X', u'RC04183_X', u'RC10951_X', u'RM03991_X', u'RC09085_X', u'RC01230_X', u'RCC0022_X', u'RC01082_X', u'RCC0153_X', u'RC04073_X', u'RM02050_X', u'RC00485_X', u'RC01000_X', u'RC00703_X', u'RM04188_X']
+minFlux became  393.269741519
+        total Flux is constrained to 412.933228595
+Iteration 2 #mute/total:        14/40
+[u'RCC0185_X', u'RC03104_X', u'RM05373_X', u'RM00705_X', u'RC00235_X', u'RC02251_X', u'RC00575_X', u'RC09086_X', u'TCE5105_X', u'RC06983_X', u'RC05802_X', u'RC02396_X', u'RC00238_X', u'RC09511_X']
+minFlux became  393.889512028
+        total Flux is constrained to 413.583987629
+Iteration 3 #mute/total:        3/42
+[u'RCC0185_X', u'RC03321_X', u'RCC0062_X']
+minFlux became  412.070024273
+        total Flux is constrained to 432.673525486
+
+Optimization done, now checking and recording the fit quality
+
+Pharynx
+1st Optimization: maximize highly expressed active genes and unexpressed inactive reactions
+Number of fitted reactions and genes:   535.0
+
+2nd Optimization: minimize sum of lowly expressed reaction flux
+        minimized flux sum in these reactions is 0.500515349893
+        low flux reactions are finally constrained to 0.510515349893
+3rd Optimization: minimize total flux and constrain
+minimum total flux is 403.550225591
+        total Flux is constrained to 423.727736871
+
+Starting the correction of mute (latent) reactions
+Iteration 1 #mute/total:        36/36
+[u'RM00935_X', u'RC07641_X', u'RC01036_X', u'RC02739_X', u'RC06518_X', u'RCC0068_X', u'RC02719_X', u'RM00261_X', u'TCE5105_X', u'RC03346_X', u'RC01318_X', u'RM00472_X', u'RC03363_X', u'RC00342_X', u'RC01993_X', u'RCC0062_X', u'RC01093_X', u'RC10951_X', u'RC00529_X', u'RC01230_X', u'RC01095_X', u'RC01926_X', u'RC00261_X', u'RCC0175_X', u'RC01126_X', u'RC01227_X', u'RC03394_X', u'RC00511_X', u'RC09511_X', u'RC02743_X', u'RC04073_X', u'RCC0020_X', u'RC01787_X', u'RC00355_X', u'RM00489_X', u'RC04183_X']
+minFlux became  411.914775643
+        total Flux is constrained to 432.510514425
+Iteration 2 #mute/total:        12/46
+[u'RC00575_X', u'RC03346_X', u'RCC0145_X', u'RC00529_X', u'RCC0066_X', u'RCC0022_X', u'RC00489_X', u'RC01082_X', u'RCC0153_X', u'RC01070_X', u'RM03381_X', u'RC01231_X']
+minFlux became  414.264745549
+        total Flux is constrained to 434.977982826
+Iteration 3 #mute/total:        6/49
+[u'RC00235_X', u'RC03346_X', u'RCC0062_X', u'RC02396_X', u'RC00529_X', u'RC00963_X']
+minFlux became  414.477193303
+        total Flux is constrained to 435.201052968
+Iteration 4 #mute/total:        4/50
+[u'RC03346_X', u'RC00183_X', u'RCC0062_X', u'RC00529_X']
+minFlux became  414.479991449
+        total Flux is constrained to 435.203991022
+Iteration 5 #mute/total:        4/51
+[u'RCC0062_X', u'RM00248_X', u'RC00529_X', u'RC03346_X']
+minFlux became  414.479994091
+        total Flux is constrained to 435.203993796
+Iteration 6 #mute/total:        4/52
+[u'RC02740_X', u'RC03346_X', u'RCC0062_X', u'RC00529_X']
+minFlux became  414.485071138
+        total Flux is constrained to 435.209324695
+
+Optimization done, now checking and recording the fit quality
+
+Hypodermis
+1st Optimization: maximize highly expressed active genes and unexpressed inactive reactions
+Number of fitted reactions and genes:   578.0
+
+2nd Optimization: minimize sum of lowly expressed reaction flux
+        minimized flux sum in these reactions is 0.43697938961
+        low flux reactions are finally constrained to 0.44697938961
+3rd Optimization: minimize total flux and constrain
+minimum total flux is 408.924469748
+        total Flux is constrained to 429.370693236
+
+Starting the correction of mute (latent) reactions
+Iteration 1 #mute/total:        39/39
+[u'RM00935_X', u'RC07641_X', u'RC02090_X', u'RC01095_X', u'RC02739_X', u'RCC0175_X', u'RC01224_X', u'RC02098_X', u'RC00235_X', u'RC09086_X', u'RCC0068_X', u'RC01794_X', u'RC01082_X', u'RM01220_X', u'TCE5105_X', u'RC01787_X', u'RC03936_X', u'RC08198_X', u'RM00472_X', u'RC01795_X', u'RC04183_X', u'RC00342_X', u'RC01000_X', u'RC00703_X', u'RM00927_X', u'RM03103_X', u'RM00706_X', u'RCC0020_X', u'RC00987_X', u'RC00694_X', u'RC00965_X', u'RCC0145_X', u'RC01093_X', u'RC00529_X', u'RC02396_X', u'RC02743_X', u'RC10951_X', u'RM03991_X', u'RC01218_X']
+minFlux became  416.566909544
+        total Flux is constrained to 437.395255021
+Iteration 2 #mute/total:        10/49
+[u'RC03104_X', u'RC03321_X', u'RC00575_X', u'RM00248_X', u'RC09085_X', u'RC06983_X', u'RC01318_X', u'RM03381_X', u'RC00508_X', u'RCC0062_X']
+minFlux became  416.887394792
+        total Flux is constrained to 437.731764531
+Iteration 3 #mute/total:        3/52
+[u'RC01600_X', u'RCC0066_X', u'RC09511_X']
+minFlux became  417.201481285
+        total Flux is constrained to 438.061555349
+Iteration 4 #mute/total:        1/53
+[u'RC02094_X']
+minFlux became  417.241481285
+        total Flux is constrained to 438.103555349
+
+Optimization done, now checking and recording the fit quality
+
+Neurons
+1st Optimization: maximize highly expressed active genes and unexpressed inactive reactions
+Number of fitted reactions and genes:   524.0
+
+2nd Optimization: minimize sum of lowly expressed reaction flux
+        minimized flux sum in these reactions is 1.53058196788
+        low flux reactions are finally constrained to 1.54058196788
+3rd Optimization: minimize total flux and constrain
+minimum total flux is 375.880889861
+        total Flux is constrained to 394.674934354
+
+Starting the correction of mute (latent) reactions
+Iteration 1 #mute/total:        25/25
+[u'TCE5105_X', u'RC09085_X', u'RM03381_X', u'RC04073_X', u'RC08198_X', u'RC01814_X', u'RC00964_X', u'RC00489_X', u'RC02739_X', u'RC00342_X', u'RC00261_X', u'RC00703_X', u'RC00575_X', u'RC00529_X', u'RC03321_X', u'RM00706_X', u'RCC0068_X', u'RCC0082_X', u'RM00248_X', u'RCC0062_X', u'RC01794_X', u'RC07212_X', u'RC00965_X', u'RC09511_X', u'RM00261_X']
+minFlux became  376.962059593
+        total Flux is constrained to 395.810162573
+Iteration 2 #mute/total:        13/37
+[u'RC07168_X', u'RC01815_X', u'RC07641_X', u'RC02740_X', u'RCC0066_X', u'RC07213_X', u'RC01993_X', u'RM04188_X', u'RC09086_X', u'RCC0068_X', u'RM00489_X', u'RC02240_X', u'RM00705_X']
+minFlux became  377.598781577
+        total Flux is constrained to 396.478720655
+Iteration 3 #mute/total:        4/39
+[u'RM00935_X', u'RC01000_X', u'RCC0068_X', u'RCC0062_X']
+minFlux became  377.462139404
+        total Flux is constrained to 396.335246374
+Iteration 4 #mute/total:        3/40
+[u'RCC0022_X', u'RCC0068_X', u'RCC0062_X']
+minFlux became  377.778045033
+        total Flux is constrained to 396.666947284
+Iteration 5 #mute/total:        4/42
+[u'RC00235_X', u'RCC0068_X', u'RCC0062_X', u'RC02396_X']
+minFlux became  377.838960995
+        total Flux is constrained to 396.730909044
+Iteration 6 #mute/total:        3/43
+[u'RCC0068_X', u'RCC0062_X', u'RCC0153_X']
+minFlux became  377.88770197
+        total Flux is constrained to 396.782087068
+Iteration 7 #mute/total:        3/44
+[u'RCC0066_X', u'RCC0068_X', u'RC01082_X']
+minFlux became  377.887709138
+        total Flux is constrained to 396.782094595
+
+Optimization done, now checking and recording the fit quality
+
+Intestine
+1st Optimization: maximize highly expressed active genes and unexpressed inactive reactions
+Number of fitted reactions and genes:   653.0
+
+2nd Optimization: minimize sum of lowly expressed reaction flux
+        minimized flux sum in these reactions is 0.548279053452
+        low flux reactions are finally constrained to 0.558279053452
+3rd Optimization: minimize total flux and constrain
+minimum total flux is 521.815720466
+        total Flux is constrained to 547.906506489
+
+Starting the correction of mute (latent) reactions
+Iteration 1 #mute/total:        65/65
+[u'RCC0104_I', u'RC01310_I', u'RC04325_I', u'RC02739_I', u'RCC0125_I', u'RC01036_I', u'RC03332_I', u'RCC0093_I', u'RC01926_I', u'RM00533_I', u'RCC0095_I', u'RC02107_I', u'RC00267_I', u'RC02239_I', u'RC01224_I', u'RM00705_I', u'RCC0089_I', u'TCE5085_L', u'RC00575_I', u'RM04188_I', u'RCC0079_I', u'RCC0068_I', u'RC00585_I', u'RC07384_I', u'RC08177_I', u'RCC0098_I', u'RC06171_I', u'RC01431_I', u'RC00573_I', u'RCC0126_I', u'RC03718_I', u'RC01878_I', u'RM01220_I', u'RCC0096_I', u'RC01093_I', u'RC02557_I', u'RC01561_I', u'RM00199_I', u'RM00711_I', u'RC07385_I', u'RM00472_I', u'RM03989_I', u'RC03363_I', u'RM03381_I', u'RM04753_I', u'RCC0139_I', u'RM03776_I', u'RC01769_I', u'RC03596_I', u'RCC0107_I', u'RC00238_I', u'TCE5097_I', u'RC00965_I', u'RC01231_I', u'RCC0214_I', u'RM00243_I', u'RC02090_I', u'RC02396_I', u'RCC0165_I', u'RCC0103_I', u'RM03991_I', u'RC10951_I', u'RC01372_I', u'RM00585_I', u'RC01082_I']
+minFlux became  546.176937794
+        total Flux is constrained to 573.485784683
+Iteration 2 #mute/total:        22/81
+[u'RM02300_I', u'RC01310_I', u'RC07641_I', u'RC01230_I', u'RC03332_I', u'RM00945_I', u'RC07384_I', u'RC00571_I', u'RM00908_I', u'RM00943_I', u'RC00199_I', u'RC09511_I', u'RCC0091_I', u'RC07385_I', u'RC04326_I', u'RCC0139_I', u'RC06520_I', u'RC00355_I', u'RM03856_I', u'RM01278_I', u'RC02090_I', u'RC07296_I']
+minFlux became  564.743908232
+        total Flux is constrained to 592.981103643
+Iteration 3 #mute/total:        6/82
+[u'RM06985_I', u'RM02300_I', u'RC01310_I', u'RC03332_I', u'RCC0139_I', u'RC02090_I']
+minFlux became  566.604327276
+        total Flux is constrained to 594.93454364
+Iteration 4 #mute/total:        7/84
+[u'RM02300_I', u'RC01310_I', u'RC03332_I', u'RC02295_I', u'RCC0139_I', u'RCC0067_I', u'RC02090_I']
+minFlux became  561.642021465
+        total Flux is constrained to 589.724122538
+Iteration 5 #mute/total:        6/85
+[u'RM02300_I', u'RC01310_I', u'RC03332_I', u'RCC0066_I', u'RCC0139_I', u'RC02090_I']
+minFlux became  564.969533188
+        total Flux is constrained to 593.218009848
+

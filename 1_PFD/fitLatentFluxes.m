@@ -1,4 +1,4 @@
-function [FluxDistribution, latentRxn,Nfit_latent, minTotal] = fitLatentFluxes(MILProblem, model, PFD, Hgenes, epsilon_f,epsilon_r)
+function [FluxDistribution, latentRxn,Nfit_latent, minTotal] = fitLatentFluxes(MILProblem, model, PFD, Hgenes, epsilon_f,epsilon_r,latentCAP)
 % the input MILP should have Nfit constraint, MinLow and 101%TotalFQlux constraint already
 % (identical to the MILP before final flux minmization)
 % NOTE: the last line in MILP must be the minTotal constraint!
@@ -13,7 +13,7 @@ fprintf('the total flux is constrianed to %.2f \n',MILProblem.b(end));
 latentCandi = {};
 for i = 1:length(model.rxns)
     mygenes = model.genes(logical(model.rxnGeneMat(i,:)));
-    if ~any(~ismember(mygenes,Hgenes))
+    if all(ismember(mygenes,Hgenes)) && ~isempty(mygenes) %note empty is not desired!
         latentCandi = [latentCandi;model.rxns(i)];
     end
 end
@@ -22,23 +22,28 @@ fprintf('starting the latent fitting loop... \n');
 latentRxn = {};
 count = 0;
 while 1
+    tic()
     %% define latent reactions
     % get flux capable reaction list 
-    for i = 1:length(model.mets)
-        fluxProduct = (PFD(model.S(strcmp(model.mets,model.mets{i}),:)~=0) .* (model.S(strcmp(model.mets,model.mets{i}),model.S(strcmp(model.mets,model.mets{i}),:)~=0))');
-        MetFlux(i) = sum(fluxProduct(fluxProduct >0));
-    end
-    FluxCapMet = model.mets(MetFlux >= 1e-5); %the numerical tolerance is 1e-7
+    fluxProduct = model.S .* PFD';
+    MetFlux = sum(abs(fluxProduct),2) / 2;
+    %for i = 1:length(model.mets)
+    %    fluxProduct = (PFD(model.S(strcmp(model.mets,model.mets{i}),:)~=0) .* (model.S(strcmp(model.mets,model.mets{i}),model.S(strcmp(model.mets,model.mets{i}),:)~=0))');
+    %    MetFlux(i) = sum(fluxProduct(fluxProduct >0));
+    %end
+    FluxCapMet = model.mets(MetFlux >= 1e-5); %the numerical tolerance is 1e-5
     % get the new latent rxns set
     newLatent = {};
     for i = 1:length(latentCandi)
         metsF = model.mets(model.S(:,strcmp(model.rxns,latentCandi{i}))<0);
+        metsF(cellfun(@(x) ~isempty(regexp(x,'NonMetConst', 'once')),metsF)) = [];
         metsR = model.mets(model.S(:,strcmp(model.rxns,latentCandi{i}))>0);
-        if ((model.lb(strcmp(model.rxns,latentCandi{i}))<0 && model.ub(strcmp(model.rxns,latentCandi{i}))>0) && ((~any(~ismember(metsF,FluxCapMet))) || (~any(~ismember(metsR,FluxCapMet)))))...% reversible & one side mets all have flux
+        metsR(cellfun(@(x) ~isempty(regexp(x,'NonMetConst', 'once')),metsR)) = [];
+        if ((model.lb(strcmp(model.rxns,latentCandi{i}))<0 && model.ub(strcmp(model.rxns,latentCandi{i}))>0) && ((all(ismember(metsF,FluxCapMet))&& ~isempty(metsF)) || (all(ismember(metsR,FluxCapMet))&& ~isempty(metsR))))...% reversible & one side mets all have flux
            ||...
-            ((model.lb(strcmp(model.rxns,latentCandi{i}))>=0) && (~any(~ismember(metsF,FluxCapMet))))...% irreversible & reactant side mets all have flux    
+            ((model.lb(strcmp(model.rxns,latentCandi{i}))>=0) && (all(ismember(metsF,FluxCapMet))&& ~isempty(metsF)))...% irreversible & reactant side mets all have flux    
            ||...
-            ((model.ub(strcmp(model.rxns,latentCandi{i}))<=0) && (~any(~ismember(metsR,FluxCapMet)))) % irreversible & product side mets all have flux
+            ((model.ub(strcmp(model.rxns,latentCandi{i}))<=0) && (all(ismember(metsR,FluxCapMet))&& ~isempty(metsR))) % irreversible & product side mets all have flux
             newLatent = [newLatent;latentCandi(i)];
         end
     end
@@ -99,7 +104,7 @@ while 1
     MILPproblem_latent.vartype = vartype;
     MILPproblem_latent.osense = -1;
     MILPproblem_latent.x0 = [];
-    solution = solveCobraMILP_XL(MILPproblem_latent, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', 3);
+    solution = solveCobraMILP_XL(MILPproblem_latent, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', 0);
     if solution.stat ~= 1
         error('infeasible or violation occured!');
     end
@@ -117,7 +122,7 @@ while 1
     c = [c_minFlux;zeros(2*length(latentRxn),1)];
     MILPproblem_minFlux.c = c;
     MILPproblem_minFlux.osense = 1;
-    solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', 3);
+    solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', 0);
     if solution.stat ~= 1
         error('infeasible or violation occured!');
     end
@@ -126,8 +131,9 @@ while 1
     count = count +1;
     fprintf('latent fitting cycle completed .... #%d \n',count);
     %% update the minTotal constriant
-    MILProblem.b(minTotalInd) = minTotal*1.01;
+    MILProblem.b(minTotalInd) = minTotal*(1+latentCAP);
     fprintf('the total flux constriant is updated to %.2f \n',MILProblem.b(minTotalInd));
+    toc()
 end
 % return the PFD
 FluxDistribution = PFD;

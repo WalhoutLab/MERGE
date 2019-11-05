@@ -3363,3 +3363,3592 @@ Solution count 8: 411.409 411.435 411.525 ... 412.34
 
 Optimal solution found (tolerance 1.00e-04)
 Best objective 4.114085443424e+02, best bound 4.113693963232e+02, gap 0.0095%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 15:23:19 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 15:23:19 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-15, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2264 rows and 2649 columns
+Presolve time: 0.03s
+Presolved: 2019 rows, 2597 columns, 9492 nonzeros
+Variable types: 1414 continuous, 1183 integer (1183 binary)
+
+Root relaxation: objective 6.502449e+02, 2261 iterations, 0.14 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  650.24494    0   38          -  650.24494      -     -    0s
+H    0     0                     633.0000000  650.24494  2.72%     -    0s
+     0     0  645.99599    0   16  633.00000  645.99599  2.05%     -    0s
+     0     0  645.99598    0   17  633.00000  645.99598  2.05%     -    0s
+     0     0  643.90849    0   21  633.00000  643.90849  1.72%     -    0s
+     0     0  643.90849    0   21  633.00000  643.90849  1.72%     -    0s
+     0     0  643.90840    0   15  633.00000  643.90840  1.72%     -    0s
+*    0     0               0     643.0000000  643.00000  0.00%     -    0s
+
+Cutting planes:
+  Learned: 2
+  Gomory: 5
+  Cover: 3
+  Implied bound: 7
+  MIR: 5
+
+Explored 1 nodes (3581 simplex iterations) in 0.67 seconds
+Thread count was 4 (of 4 available processors)
+
+Solution count 2: 643 633 
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective 6.430000000000e+02, best bound 6.430000000000e+02, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 15:23:20 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 15:23:20 2019
+
+Optimize a model with 10260 rows, 8234 columns and 30565 nonzeros
+Variable types: 5976 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-15, 1e+03]
+  RHS range        [6e+02, 1e+03]
+Presolve removed 8072 rows and 5485 columns
+Presolve time: 0.12s
+Presolved: 2188 rows, 2749 columns, 10906 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1436 continuous, 1313 integer (1313 binary)
+
+Root relaxation: objective 5.596377e-01, 1438 iterations, 0.08 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.55964    0   16          -    0.55964      -     -    0s
+     0     0    0.78144    0   16          -    0.78144      -     -    0s
+     0     0    0.78144    0   16          -    0.78144      -     -    0s
+     0     0    4.18024    0   18          -    4.18024      -     -    0s
+     0     0    4.18024    0   16          -    4.18024      -     -    0s
+     0     0    4.18024    0   14          -    4.18024      -     -    0s
+     0     0    8.00558    0   19          -    8.00558      -     -    0s
+     0     0    8.00558    0   20          -    8.00558      -     -    0s
+     0     0    8.00558    0   11          -    8.00558      -     -    1s
+     0     0    9.93384    0   20          -    9.93384      -     -    1s
+     0     0    9.93384    0   19          -    9.93384      -     -    1s
+     0     0    9.93384    0   19          -    9.93384      -     -    1s
+     0     0    9.93384    0    7          -    9.93384      -     -    1s
+     0     0    9.93384    0   11          -    9.93384      -     -    1s
+     0     0    9.93384    0    7          -    9.93384      -     -    1s
+     0     0    9.93384    0    7          -    9.93384      -     -    1s
+     0     0    9.93384    0   11          -    9.93384      -     -    1s
+     0     0    9.93384    0    9          -    9.93384      -     -    1s
+H    0     0                     230.7665940    9.93384  95.7%     -    1s
+     0     2    9.93384    0    7  230.76659    9.93384  95.7%     -    1s
+H   29    32                     224.9846081  224.92711  0.03%  30.6    2s
+H   77    30                     224.9567788  224.94079  0.01%  12.1    2s
+
+Cutting planes:
+  Learned: 2
+  Gomory: 3
+  Cover: 4
+  Implied bound: 4
+  MIR: 4
+  Zero half: 1
+
+Explored 97 nodes (4127 simplex iterations) in 2.26 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 3: 224.957 224.985 230.767 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.249567787929e+02, best bound 2.249407942984e+02, gap 0.0071%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 15:23:22 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 15:23:22 2019
+
+Optimize a model with 10261 rows, 8234 columns and 30717 nonzeros
+Variable types: 5976 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-15, 1e+03]
+  RHS range        [2e+02, 1e+03]
+Presolve removed 7413 rows and 5119 columns
+Presolve time: 0.07s
+Presolved: 2848 rows, 3115 columns, 12767 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1799 continuous, 1316 integer (1316 binary)
+
+Root relaxation: objective 3.892042e+02, 2655 iterations, 0.14 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  389.20416    0   73          -  389.20416      -     -    0s
+     0     0  577.39177    0   50          -  577.39177      -     -    0s
+     0     0  577.39672    0   45          -  577.39672      -     -    0s
+     0     0 3810.37816    0   34          - 3810.37816      -     -    0s
+     0     0 9509.67911    0   37          - 9509.67911      -     -    1s
+     0     0 9509.67911    0   36          - 9509.67911      -     -    1s
+     0     0 9509.67911    0   30          - 9509.67911      -     -    1s
+     0     0 9509.67911    0   34          - 9509.67911      -     -    1s
+     0     0 9509.67911    0   26          - 9509.67911      -     -    1s
+     0     0 9509.67911    0   28          - 9509.67911      -     -    1s
+     0     0 9509.67911    0   29          - 9509.67911      -     -    1s
+     0     0 9509.67911    0   29          - 9509.67911      -     -    1s
+     0     0 9509.67911    0   32          - 9509.67911      -     -    1s
+     0     0 9509.67911    0   29          - 9509.67911      -     -    1s
+     0     0 9509.67911    0   29          - 9509.67911      -     -    1s
+     0     2 9509.67911    0   29          - 9509.67911      -     -    2s
+*  248   116              14    44605.429980 44600.2786  0.01%   9.1    2s
+*  262   115              13    44605.403575 44600.2786  0.01%   8.8    2s
+
+Cutting planes:
+  Learned: 2
+  Gomory: 8
+  Cover: 3
+  Implied bound: 9
+  Clique: 1
+  MIR: 11
+
+Explored 345 nodes (6204 simplex iterations) in 3.00 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 2: 44605.4 44605.4 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 4.460540357496e+04, best bound 4.460379695892e+04, gap 0.0036%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 17:14:34 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 17:14:34 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [3e-08, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 1579 rows and 1893 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.07 seconds
+Thread count was 1 (of 4 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 17:19:24 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 17:19:24 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [3e-08, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 1579 rows and 1893 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.08 seconds
+Thread count was 1 (of 4 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 17:23:27 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 17:23:27 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [3e-08, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 1579 rows and 1893 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.06 seconds
+Thread count was 1 (of 4 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 17:50:33 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 17:50:33 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [3e-08, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 1579 rows and 1893 columns
+Presolve time: 0.01s
+
+Explored 0 nodes (0 simplex iterations) in 0.20 seconds
+Thread count was 1 (of 4 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 17:52:41 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 17:52:41 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-07, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2168 rows and 2539 columns
+Presolve time: 0.01s
+
+Explored 0 nodes (0 simplex iterations) in 0.08 seconds
+Thread count was 1 (of 4 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 18:04:24 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 18:04:24 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-07, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2168 rows and 2539 columns
+Presolve time: 0.01s
+
+Explored 0 nodes (0 simplex iterations) in 0.08 seconds
+Thread count was 1 (of 4 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 18:07:24 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 18:07:24 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-07, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2168 rows and 2539 columns
+Presolve time: 0.02s
+
+Explored 0 nodes (0 simplex iterations) in 0.12 seconds
+Thread count was 1 (of 4 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 18:08:39 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 18:08:39 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-07, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+
+Root relaxation: infeasible, 2383 iterations, 0.20 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 infeasible    0               - infeasible      -     -    0s
+
+Explored 0 nodes (2383 simplex iterations) in 0.32 seconds
+Thread count was 4 (of 4 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 18:17:31 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 18:17:31 2019
+
+Optimize a model with 5423 rows, 6754 columns and 25383 nonzeros
+Variable types: 4496 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2717 rows and 2809 columns
+Presolve time: 0.04s
+Presolved: 2706 rows, 3945 columns, 15036 nonzeros
+Variable types: 2744 continuous, 1201 integer (1201 binary)
+
+Root relaxation: objective 6.514964e+02, 2363 iterations, 0.18 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  651.49645    0    9          -  651.49645      -     -    0s
+H    0     0                     645.0000000  651.49645  1.01%     -    0s
+     0     0  648.00000    0    5  645.00000  648.00000  0.47%     -    0s
+     0     0  646.50000    0    5  645.00000  646.50000  0.23%     -    0s
+*    0     0               0     646.0000000  646.00000  0.00%     -    0s
+     0     0          -    0       646.00000  646.00000  0.00%     -    0s
+
+Cutting planes:
+  Learned: 6
+  Gomory: 1
+  Cover: 2
+  MIR: 2
+
+Explored 1 nodes (5339 simplex iterations) in 0.99 seconds
+Thread count was 4 (of 4 available processors)
+
+Solution count 2: 646 645 
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective 6.460000000000e+02, best bound 6.460000000000e+02, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 18:17:33 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 18:17:33 2019
+
+Optimize a model with 14416 rows, 11250 columns and 44019 nonzeros
+Variable types: 8992 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [6e+02, 1e+03]
+Presolve removed 11569 rows and 7189 columns
+Presolve time: 0.14s
+Presolved: 2847 rows, 4061 columns, 16343 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 2760 continuous, 1301 integer (1301 binary)
+
+Root relaxation: objective 3.070618e-01, 2409 iterations, 0.38 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.30706    0   45          -    0.30706      -     -    1s
+
+Explored 1 nodes (4172 simplex iterations) in 1.28 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 0
+
+Solve interrupted
+Best objective -, best bound 3.070617503457e-01, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 18:22:43 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 18:22:43 2019
+
+Optimize a model with 4270 rows, 5246 columns and 17948 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [2e-05, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 60 rows and 618 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.08 seconds
+Thread count was 1 (of 4 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 18:24:03 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 18:24:03 2019
+
+Optimize a model with 4270 rows, 5246 columns and 17948 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2254 rows and 2663 columns
+Presolve time: 0.03s
+Presolved: 2016 rows, 2583 columns, 9459 nonzeros
+Variable types: 1397 continuous, 1186 integer (1186 binary)
+
+Root relaxation: objective 6.494987e+02, 1545 iterations, 0.06 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  649.49865    0   14          -  649.49865      -     -    0s
+H    0     0                     641.0000000  649.49865  1.33%     -    0s
+     0     0  645.80000    0   13  641.00000  645.80000  0.75%     -    0s
+     0     0  644.90000    0   12  641.00000  644.90000  0.61%     -    0s
+     0     0  644.90000    0   12  641.00000  644.90000  0.61%     -    0s
+     0     0  644.00000    0    5  641.00000  644.00000  0.47%     -    0s
+     0     0  644.00000    0    2  641.00000  644.00000  0.47%     -    0s
+     0     2  644.00000    0    2  641.00000  644.00000  0.47%     -    0s
+*    1     2               1     644.0000000  644.00000  0.00%  18.0    0s
+
+Cutting planes:
+  Learned: 7
+  Gomory: 4
+  Cover: 2
+  Implied bound: 4
+
+Explored 3 nodes (3043 simplex iterations) in 0.57 seconds
+Thread count was 4 (of 4 available processors)
+
+Solution count 2: 644 641 
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective 6.440000000000e+02, best bound 6.440000000000e+02, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 18:24:03 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 18:24:03 2019
+
+Optimize a model with 10247 rows, 8234 columns and 30552 nonzeros
+Variable types: 5976 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [6e+02, 1e+03]
+Presolve removed 8081 rows and 5520 columns
+Presolve time: 0.10s
+Presolved: 2166 rows, 2714 columns, 10793 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1417 continuous, 1297 integer (1297 binary)
+
+Root relaxation: objective 3.753233e-01, 1446 iterations, 0.07 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.37532    0   36          -    0.37532      -     -    0s
+     0     0    0.43977    0   33          -    0.43977      -     -    0s
+     0     0    0.44003    0   33          -    0.44003      -     -    0s
+     0     0    0.44112    0   31          -    0.44112      -     -    0s
+     0     0    0.44112    0   29          -    0.44112      -     -    0s
+     0     0    0.44112    0   34          -    0.44112      -     -    0s
+     0     0    0.44112    0   31          -    0.44112      -     -    0s
+H    0     0                       0.5354504    0.44112  17.6%     -    0s
+     0     0    0.44112    0   20    0.53545    0.44112  17.6%     -    0s
+     0     0    0.44112    0   20    0.53545    0.44112  17.6%     -    0s
+     0     0    0.44112    0   20    0.53545    0.44112  17.6%     -    0s
+     0     0    0.46699    0   13    0.53545    0.46699  12.8%     -    1s
+     0     0    0.51649    0   14    0.53545    0.51649  3.54%     -    1s
+     0     0    0.51649    0   19    0.53545    0.51649  3.54%     -    1s
+     0     0    0.51649    0    8    0.53545    0.51649  3.54%     -    1s
+H    0     0                       0.5266125    0.51649  1.92%     -    1s
+     0     0    0.51917    0    4    0.52661    0.51917  1.41%     -    1s
+     0     0    0.51917    0    4    0.52661    0.51917  1.41%     -    1s
+     0     2    0.51917    0    4    0.52661    0.51917  1.41%     -    1s
+*    3     0               2       0.5202789    0.52028  0.00%  71.3    1s
+
+Cutting planes:
+  Learned: 1
+  Gomory: 5
+  Cover: 2
+  Implied bound: 8
+  Clique: 4
+  MIR: 7
+
+Explored 5 nodes (4075 simplex iterations) in 1.97 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 4: 0.520279 0.526613 0.53545 0.53545 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 5.202788775695e-01, best bound 5.202788775657e-01, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 18:24:06 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 18:24:06 2019
+
+Optimize a model with 10248 rows, 8234 columns and 30704 nonzeros
+Variable types: 5976 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [5e-01, 1e+03]
+Presolve removed 7581 rows and 5281 columns
+Presolve time: 0.10s
+Presolved: 2667 rows, 2953 columns, 12305 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1655 continuous, 1298 integer (1298 binary)
+
+Root relaxation: objective 2.989330e+02, 4879 iterations, 0.42 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  298.93297    0   64          -  298.93297      -     -    0s
+     0     0  372.31311    0   42          -  372.31311      -     -    1s
+     0     0  372.31438    0   39          -  372.31438      -     -    1s
+
+Cutting planes:
+  Learned: 2
+  Gomory: 12
+  Cover: 2
+  Implied bound: 12
+  MIR: 8
+
+Explored 1 nodes (5135 simplex iterations) in 1.18 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 0
+
+Solve interrupted
+Best objective -, best bound 3.723143780846e+02, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 18:30:48 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 18:30:48 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-15, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2264 rows and 2649 columns
+Presolve time: 0.03s
+Presolved: 2019 rows, 2597 columns, 9473 nonzeros
+Variable types: 1414 continuous, 1183 integer (1183 binary)
+
+Root relaxation: objective 6.514957e+02, 1468 iterations, 0.06 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  651.49572    0    7          -  651.49572      -     -    0s
+H    0     0                     645.0000000  651.49572  1.01%     -    0s
+     0     0  646.99951    0    7  645.00000  646.99951  0.31%     -    0s
+     0     0     cutoff    0       645.00000  645.00000  0.00%     -    0s
+
+Cutting planes:
+  Learned: 7
+  Gomory: 1
+  Cover: 2
+
+Explored 1 nodes (2390 simplex iterations) in 0.46 seconds
+Thread count was 4 (of 4 available processors)
+
+Solution count 1: 645 
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective 6.450000000000e+02, best bound 6.450000000000e+02, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Fri Aug 16 18:30:49 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Fri Aug 16 18:30:49 2019
+
+Optimize a model with 10260 rows, 8234 columns and 30565 nonzeros
+Variable types: 5976 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-15, 1e+03]
+  RHS range        [6e+02, 1e+03]
+Presolve removed 8080 rows and 5493 columns
+Presolve time: 0.08s
+Presolved: 2180 rows, 2741 columns, 10846 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1435 continuous, 1306 integer (1306 binary)
+
+Root relaxation: objective 3.754495e-01, 1414 iterations, 0.09 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.37545    0   23          -    0.37545      -     -    0s
+     0     0    0.40004    0   23          -    0.40004      -     -    0s
+     0     0    0.40113    0   22          -    0.40113      -     -    0s
+     0     0    0.40113    0   24          -    0.40113      -     -    0s
+     0     0    0.40113    0   24          -    0.40113      -     -    0s
+     0     0    0.40131    0   24          -    0.40131      -     -    0s
+H    0     0                       0.4815457    0.40131  16.7%     -    0s
+     0     0    0.41178    0   22    0.48155    0.41178  14.5%     -    0s
+     0     0    0.42472    0   17    0.48155    0.42472  11.8%     -    0s
+     0     0    0.42472    0   15    0.48155    0.42472  11.8%     -    0s
+     0     0    0.42472    0   15    0.48155    0.42472  11.8%     -    1s
+     0     0    0.42626    0   14    0.48155    0.42626  11.5%     -    1s
+     0     0    0.42949    0   13    0.48155    0.42949  10.8%     -    1s
+     0     0    0.48136    0    2    0.48155    0.48136  0.04%     -    1s
+H    0     0                       0.4815445    0.48136  0.04%     -    1s
+     0     0    0.48136    0    2    0.48154    0.48136  0.04%     -    1s
+     0     0     cutoff    0         0.48154    0.48154  0.00%     -    1s
+
+Explored 1 nodes (5416 simplex iterations) in 1.68 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 4: 0.481545 0.481545 0.481546 0.481546 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 4.815445286194e-01, best bound 4.815445286124e-01, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 12:57:08 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 12:57:08 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [3e-08, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 1579 rows and 1893 columns
+Presolve time: 0.01s
+
+Explored 0 nodes (0 simplex iterations) in 0.13 seconds
+Thread count was 1 (of 4 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 12:59:21 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 12:59:21 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [5e-06, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2244 rows and 2629 columns
+Presolve time: 0.05s
+Presolved: 2039 rows, 2617 columns, 9521 nonzeros
+Variable types: 1428 continuous, 1189 integer (1189 binary)
+Warning: Markowitz tolerance tightened to 0.03125
+
+Root relaxation: objective 6.514957e+02, 1373 iterations, 0.07 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  651.49573    0    7          -  651.49573      -     -    0s
+H    0     0                     645.0000000  651.49573  1.01%     -    0s
+     0     0  646.99952    0    7  645.00000  646.99952  0.31%     -    0s
+     0     0     cutoff    0       645.00000  645.00000  0.00%     -    0s
+
+Cutting planes:
+  Learned: 6
+  Gomory: 1
+  Cover: 2
+  MIR: 1
+
+Explored 1 nodes (2327 simplex iterations) in 0.61 seconds
+Thread count was 4 (of 4 available processors)
+
+Solution count 1: 645 
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective 6.450000000000e+02, best bound 6.450000000000e+02, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 12:59:22 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 12:59:22 2019
+
+Optimize a model with 10260 rows, 8234 columns and 30565 nonzeros
+Variable types: 5976 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [5e-06, 1e+03]
+  RHS range        [6e+02, 1e+03]
+Presolve removed 8049 rows and 5465 columns
+Presolve time: 0.12s
+Presolved: 2211 rows, 2769 columns, 10925 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1455 continuous, 1314 integer (1314 binary)
+
+Root relaxation: objective 3.753202e-01, 1410 iterations, 0.08 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.37532    0   25          -    0.37532      -     -    0s
+     0     0    0.39991    0   27          -    0.39991      -     -    0s
+     0     0    0.40100    0   26          -    0.40100      -     -    0s
+     0     0    0.40100    0   24          -    0.40100      -     -    0s
+     0     0    0.40100    0   26          -    0.40100      -     -    0s
+     0     0    0.40122    0   26          -    0.40122      -     -    0s
+H    0     0                       0.4814561    0.40122  16.7%     -    0s
+     0     0    0.41165    0   24    0.48146    0.41165  14.5%     -    0s
+     0     0    0.42459    0   17    0.48146    0.42459  11.8%     -    0s
+     0     0    0.42459    0   15    0.48146    0.42459  11.8%     -    1s
+     0     0    0.42459    0   17    0.48146    0.42459  11.8%     -    1s
+     0     0    0.42612    0   15    0.48146    0.42612  11.5%     -    1s
+     0     0    0.42935    0   13    0.48146    0.42935  10.8%     -    1s
+     0     0    0.48123    0    2    0.48146    0.48123  0.05%     -    1s
+H    0     0                       0.4814549    0.48123  0.05%     -    1s
+     0     0    0.48123    0    2    0.48145    0.48123  0.05%     -    1s
+     0     0     cutoff    0         0.48145    0.48145  0.00%     -    1s
+
+Explored 1 nodes (5383 simplex iterations) in 1.73 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 4: 0.481455 0.481455 0.481456 0.481456 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 4.814549286184e-01, best bound 4.814549286117e-01, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 12:59:24 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 12:59:24 2019
+
+Optimize a model with 10261 rows, 8234 columns and 30717 nonzeros
+Variable types: 5976 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [5e-06, 1e+03]
+  RHS range        [5e-01, 1e+03]
+Presolve removed 6997 rows and 4732 columns
+Presolve time: 0.12s
+Presolved: 3264 rows, 3502 columns, 14005 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 2198 continuous, 1304 integer (1304 binary)
+
+Root relaxation: objective 3.954449e+02, 3273 iterations, 0.47 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  395.44488    0   75          -  395.44488      -     -    1s
+     0     0  470.55193    0   66          -  470.55193      -     -    1s
+     0     0  470.65243    0   64          -  470.65243      -     -    1s
+     0     0  471.03080    0   51          -  471.03080      -     -    1s
+     0     0          -    0               -  471.03080      -     -    1s
+
+Cutting planes:
+  Learned: 2
+  Gomory: 12
+  Cover: 2
+  Implied bound: 10
+  Clique: 1
+  MIR: 12
+
+Explored 1 nodes (3695 simplex iterations) in 1.43 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 0
+
+Solve interrupted
+Best objective -, best bound 4.710307955790e+02, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 13:01:33 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 13:01:33 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-06, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2244 rows and 2629 columns
+Presolve time: 0.03s
+Presolved: 2039 rows, 2617 columns, 9521 nonzeros
+Variable types: 1428 continuous, 1189 integer (1189 binary)
+Warning: Markowitz tolerance tightened to 0.0625
+
+Root relaxation: objective 6.514957e+02, 1373 iterations, 0.08 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  651.49572    0    7          -  651.49572      -     -    0s
+H    0     0                     645.0000000  651.49572  1.01%     -    0s
+     0     0  646.99952    0    7  645.00000  646.99952  0.31%     -    0s
+     0     0     cutoff    0       645.00000  645.00000  0.00%     -    0s
+
+Cutting planes:
+  Learned: 7
+  Gomory: 1
+  Cover: 2
+
+Explored 1 nodes (2306 simplex iterations) in 0.55 seconds
+Thread count was 4 (of 4 available processors)
+
+Solution count 1: 645 
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective 6.450000000000e+02, best bound 6.450000000000e+02, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 13:01:34 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 13:01:34 2019
+
+Optimize a model with 10260 rows, 8234 columns and 30565 nonzeros
+Variable types: 5976 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-06, 1e+03]
+  RHS range        [6e+02, 1e+03]
+Presolve removed 8049 rows and 5465 columns
+Presolve time: 0.13s
+Presolved: 2211 rows, 2769 columns, 10925 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1455 continuous, 1314 integer (1314 binary)
+
+Root relaxation: objective 3.754372e-01, 1610 iterations, 0.10 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.37544    0   25          -    0.37544      -     -    0s
+     0     0    0.40003    0   25          -    0.40003      -     -    0s
+     0     0    0.40112    0   24          -    0.40112      -     -    0s
+     0     0    0.40112    0   26          -    0.40112      -     -    0s
+     0     0    0.40112    0   26          -    0.40112      -     -    0s
+     0     0    0.40130    0   26          -    0.40130      -     -    0s
+H    0     0                       0.4815371    0.40130  16.7%     -    1s
+     0     0    0.41177    0   24    0.48154    0.41177  14.5%     -    1s
+     0     0    0.41177    0   24    0.48154    0.41177  14.5%     -    1s
+     0     0    0.41710    0   24    0.48154    0.41710  13.4%     -    1s
+     0     0    0.42471    0   19    0.48154    0.42471  11.8%     -    1s
+     0     0    0.42471    0   21    0.48154    0.42471  11.8%     -    1s
+     0     0    0.42607    0   22    0.48154    0.42607  11.5%     -    1s
+     0     0    0.42607    0   23    0.48154    0.42607  11.5%     -    1s
+     0     0    0.42607    0   21    0.48154    0.42607  11.5%     -    1s
+     0     0    0.48135    0    6    0.48154    0.48135  0.04%     -    1s
+     0     0    0.48135    0    4    0.48154    0.48135  0.04%     -    1s
+     0     0    0.48135    0    2    0.48154    0.48135  0.04%     -    1s
+     0     0    0.48154    0    3    0.48154    0.48154  0.00%     -    1s
+
+Explored 1 nodes (4001 simplex iterations) in 1.55 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 1: 0.481537 
+
+Optimal solution found (tolerance 1.00e-04)
+Warning: max constraint violation (1.0000e-06) exceeds tolerance
+Best objective 4.815371113962e-01, best bound 4.815369257903e-01, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 13:01:35 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 13:01:35 2019
+
+Optimize a model with 10261 rows, 8234 columns and 30717 nonzeros
+Variable types: 5976 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-06, 1e+03]
+  RHS range        [5e-01, 1e+03]
+Presolve removed 7008 rows and 4734 columns
+Presolve time: 0.16s
+Presolved: 3253 rows, 3500 columns, 13982 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 2196 continuous, 1304 integer (1304 binary)
+
+Root relaxation: objective 3.956017e+02, 3243 iterations, 0.23 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  395.60167    0   85          -  395.60167      -     -    0s
+     0     0  438.42322    0   62          -  438.42322      -     -    1s
+     0     0  439.21682    0   60          -  439.21682      -     -    1s
+     0     0  471.22795    0   56          -  471.22795      -     -    1s
+     0     0  471.22795    0   56          -  471.22795      -     -    1s
+     0     0  471.25317    0   50          -  471.25317      -     -    1s
+     0     0  484.38840    0   51          -  484.38840      -     -    1s
+     0     0  491.16514    0   53          -  491.16514      -     -    1s
+     0     0  491.16514    0   50          -  491.16514      -     -    1s
+     0     0  491.17340    0   52          -  491.17340      -     -    1s
+     0     0  491.17340    0   52          -  491.17340      -     -    1s
+     0     0  512.82832    0   40          -  512.82832      -     -    1s
+     0     0  512.82832    0   39          -  512.82832      -     -    1s
+     0     0  512.82832    0   33          -  512.82832      -     -    1s
+     0     0  512.82832    0   33          -  512.82832      -     -    1s
+H    0     0                     516.2490292  512.82832  0.66%     -    1s
+     0     0  512.82832    0   33  516.24903  512.82832  0.66%     -    1s
+
+Cutting planes:
+  Learned: 4
+  Gomory: 15
+  Cover: 5
+  Implied bound: 12
+  Clique: 1
+  MIR: 9
+
+Explored 1 nodes (3788 simplex iterations) in 1.73 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 1: 516.249 
+
+Optimal solution found (tolerance 1.00e-04)
+Warning: max constraint violation (3.9966e-06) exceeds tolerance
+Warning: max bound violation (1.9999e-06) exceeds tolerance
+Best objective 5.162490292367e+02, best bound 5.162490292346e+02, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 13:02:35 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 13:02:35 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-07, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2249 rows and 2633 columns
+Presolve time: 0.03s
+Presolved: 2034 rows, 2613 columns, 9511 nonzeros
+Variable types: 1427 continuous, 1186 integer (1186 binary)
+
+Root relaxation: objective 6.514957e+02, 1516 iterations, 0.07 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  651.49572    0    7          -  651.49572      -     -    0s
+H    0     0                     645.0000000  651.49572  1.01%     -    0s
+     0     0  646.99951    0   16  645.00000  646.99951  0.31%     -    0s
+     0     0     cutoff    0       645.00000  645.00000  0.00%     -    0s
+
+Cutting planes:
+  Learned: 10
+  Gomory: 1
+  Cover: 2
+
+Explored 1 nodes (2534 simplex iterations) in 0.60 seconds
+Thread count was 4 (of 4 available processors)
+
+Solution count 1: 645 
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective 6.450000000000e+02, best bound 6.450000000000e+02, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 13:02:36 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 13:02:36 2019
+
+Optimize a model with 10260 rows, 8234 columns and 30565 nonzeros
+Variable types: 5976 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-07, 1e+03]
+  RHS range        [6e+02, 1e+03]
+Presolve removed 8060 rows and 5473 columns
+Presolve time: 0.12s
+Presolved: 2200 rows, 2761 columns, 10896 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1452 continuous, 1309 integer (1309 binary)
+
+Root relaxation: objective 3.754492e-01, 1371 iterations, 0.07 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.37545    0   21          -    0.37545      -     -    0s
+     0     0    0.40004    0   23          -    0.40004      -     -    0s
+     0     0    0.40113    0   22          -    0.40113      -     -    0s
+     0     0    0.40113    0   24          -    0.40113      -     -    0s
+     0     0    0.40113    0   24          -    0.40113      -     -    0s
+     0     0    0.40131    0   24          -    0.40131      -     -    0s
+H    0     0                       0.4815452    0.40131  16.7%     -    1s
+     0     0    0.41178    0   22    0.48155    0.41178  14.5%     -    1s
+     0     0    0.42472    0   17    0.48155    0.42472  11.8%     -    1s
+     0     0    0.42472    0   15    0.48155    0.42472  11.8%     -    1s
+     0     0    0.42472    0   19    0.48155    0.42472  11.8%     -    1s
+     0     0    0.42626    0   15    0.48155    0.42626  11.5%     -    1s
+     0     0    0.42949    0   13    0.48155    0.42949  10.8%     -    1s
+     0     0    0.48136    0    4    0.48155    0.48136  0.04%     -    1s
+H    0     0                       0.4815440    0.48136  0.04%     -    1s
+     0     0    0.48136    0    2    0.48154    0.48136  0.04%     -    1s
+     0     0    0.48136    0    2    0.48154    0.48136  0.04%     -    1s
+     0     0     cutoff    0         0.48154    0.48154  0.00%     -    2s
+
+Explored 1 nodes (6449 simplex iterations) in 2.12 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 4: 0.481544 0.481544 0.481545 0.481545 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 4.815440286190e-01, best bound 4.815440286190e-01, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 13:02:38 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 13:02:38 2019
+
+Optimize a model with 10261 rows, 8234 columns and 30717 nonzeros
+Variable types: 5976 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-07, 1e+03]
+  RHS range        [5e-01, 1e+03]
+Presolve removed 7352 rows and 5033 columns
+Presolve time: 0.15s
+Presolved: 2909 rows, 3201 columns, 12883 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1902 continuous, 1299 integer (1299 binary)
+
+Root relaxation: objective 3.952325e+02, 2956 iterations, 0.22 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  395.23247    0   72          -  395.23247      -     -    0s
+
+Explored 1 nodes (3141 simplex iterations) in 1.00 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 0
+
+Solve interrupted
+Best objective -, best bound 3.952324684947e+02, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 13:03:43 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 13:03:43 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [6e-19, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2168 rows and 2539 columns
+Presolve time: 0.01s
+
+Explored 0 nodes (0 simplex iterations) in 0.17 seconds
+Thread count was 1 (of 4 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 13:04:38 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 13:04:38 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [6e-07, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2244 rows and 2629 columns
+Presolve time: 0.03s
+Presolved: 2039 rows, 2617 columns, 9521 nonzeros
+Variable types: 1428 continuous, 1189 integer (1189 binary)
+Warning: Markowitz tolerance tightened to 0.0625
+
+Root relaxation: objective 6.514957e+02, 1405 iterations, 0.08 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  651.49572    0    7          -  651.49572      -     -    0s
+H    0     0                     645.0000000  651.49572  1.01%     -    0s
+     0     0  646.99952    0    8  645.00000  646.99952  0.31%     -    0s
+     0     0     cutoff    0       645.00000  645.00000  0.00%     -    0s
+
+Cutting planes:
+  Learned: 7
+  Gomory: 1
+  Cover: 2
+  MIR: 1
+
+Explored 1 nodes (2899 simplex iterations) in 0.60 seconds
+Thread count was 4 (of 4 available processors)
+
+Solution count 1: 645 
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective 6.450000000000e+02, best bound 6.450000000000e+02, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 13:04:39 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 13:04:39 2019
+
+Optimize a model with 10260 rows, 8234 columns and 30565 nonzeros
+Variable types: 5976 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [6e-07, 1e+03]
+  RHS range        [6e+02, 1e+03]
+Presolve removed 8050 rows and 5465 columns
+Presolve time: 0.13s
+Presolved: 2210 rows, 2769 columns, 10923 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1455 continuous, 1314 integer (1314 binary)
+
+Root relaxation: objective 3.764196e-01, 1458 iterations, 0.07 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.37642    0   25          -    0.37642      -     -    0s
+     0     0    0.40101    0   25          -    0.40101      -     -    0s
+     0     0    0.40210    0   24          -    0.40210      -     -    0s
+     0     0    0.40210    0   26          -    0.40210      -     -    0s
+     0     0    0.40210    0   26          -    0.40210      -     -    0s
+     0     0    0.40229    0   26          -    0.40229      -     -    0s
+H    0     0                       0.4825195    0.40229  16.6%     -    0s
+     0     0    0.41275    0   24    0.48252    0.41275  14.5%     -    0s
+     0     0    0.41275    0   24    0.48252    0.41275  14.5%     -    0s
+     0     0    0.42569    0   20    0.48252    0.42569  11.8%     -    1s
+     0     0    0.42569    0   22    0.48252    0.42569  11.8%     -    1s
+     0     0    0.42569    0   17    0.48252    0.42569  11.8%     -    1s
+     0     0    0.42705    0   17    0.48252    0.42705  11.5%     -    1s
+     0     0    0.42705    0   19    0.48252    0.42705  11.5%     -    1s
+     0     0    0.42705    0   19    0.48252    0.42705  11.5%     -    1s
+     0     0    0.42705    0   21    0.48252    0.42705  11.5%     -    1s
+     0     0    0.42705    0   19    0.48252    0.42705  11.5%     -    1s
+     0     0    0.42705    0   17    0.48252    0.42705  11.5%     -    1s
+     0     0    0.42705    0   17    0.48252    0.42705  11.5%     -    1s
+     0     2    0.42705    0   17    0.48252    0.42705  11.5%     -    1s
+
+Cutting planes:
+  Learned: 1
+  Cover: 4
+  Implied bound: 2
+  MIR: 3
+
+Explored 21 nodes (2881 simplex iterations) in 1.68 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 1: 0.482519 
+
+Optimal solution found (tolerance 1.00e-04)
+Warning: max constraint violation (1.1000e-06) exceeds tolerance
+Best objective 4.825194755404e-01, best bound 4.825194755337e-01, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 13:04:40 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 13:04:40 2019
+
+Optimize a model with 10261 rows, 8234 columns and 30717 nonzeros
+Variable types: 5976 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [6e-07, 1e+03]
+  RHS range        [5e-01, 1e+03]
+Presolve removed 6987 rows and 4722 columns
+Presolve time: 0.20s
+Presolved: 3274 rows, 3512 columns, 14029 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 2208 continuous, 1304 integer (1304 binary)
+
+Root relaxation: interrupted, 1147 iterations, 0.03 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0          -    0               - -5849.9091      -     -    0s
+
+Explored 0 nodes (1147 simplex iterations) in 0.74 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 0
+
+Solve interrupted
+Best objective -, best bound -5.849909146750e+03, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 13:36:14 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 13:36:14 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [6e-07, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2244 rows and 2629 columns
+Presolve time: 0.03s
+Presolved: 2039 rows, 2617 columns, 9521 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1428 continuous, 1189 integer (1189 binary)
+Warning: Markowitz tolerance tightened to 0.0625
+
+Root relaxation: objective 6.514957e+02, 1400 iterations, 0.08 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  651.49572    0    7          -  651.49572      -     -    0s
+H    0     0                     645.0000000  651.49572  1.01%     -    0s
+     0     0  646.99952    0    4  645.00000  646.99952  0.31%     -    0s
+
+Cutting planes:
+  Learned: 7
+  Gomory: 1
+  Cover: 2
+
+Explored 1 nodes (2530 simplex iterations) in 0.64 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 1: 645 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 6.450000000000e+02, best bound 6.450000000000e+02, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 13:36:15 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 13:36:15 2019
+
+Optimize a model with 10260 rows, 8234 columns and 30565 nonzeros
+Variable types: 5976 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [6e-07, 1e+03]
+  RHS range        [6e+02, 1e+03]
+Presolve removed 8065 rows and 5481 columns
+Presolve time: 0.11s
+Presolved: 2195 rows, 2753 columns, 10876 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1454 continuous, 1299 integer (1299 binary)
+
+Root relaxation: objective 3.773722e-01, 1363 iterations, 0.07 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.37737    0   23          -    0.37737      -     -    0s
+     0     0    0.40242    0   23          -    0.40242      -     -    0s
+     0     0    0.40331    0   22          -    0.40331      -     -    0s
+     0     0    0.40331    0   24          -    0.40331      -     -    0s
+H    0     0                       0.4825195    0.40331  16.4%     -    0s
+     0     0    0.40331    0   24    0.48252    0.40331  16.4%     -    0s
+     0     0    0.40349    0   24    0.48252    0.40349  16.4%     -    0s
+     0     0    0.40349    0   21    0.48252    0.40349  16.4%     -    0s
+     0     0    0.40391    0   24    0.48252    0.40391  16.3%     -    1s
+     0     0    0.40395    0   24    0.48252    0.40395  16.3%     -    1s
+     0     0    0.40395    0   24    0.48252    0.40395  16.3%     -    1s
+     0     2    0.40395    0   24    0.48252    0.40395  16.3%     -    1s
+
+Cutting planes:
+  Learned: 1
+  Cover: 7
+  Implied bound: 6
+  MIR: 3
+  Inf proof: 1
+
+Explored 85 nodes (2797 simplex iterations) in 1.44 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 1: 0.482519 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 4.825194755391e-01, best bound 4.825194755391e-01, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 13:36:17 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 13:36:17 2019
+
+Optimize a model with 10261 rows, 8234 columns and 30717 nonzeros
+Variable types: 5976 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [6e-07, 1e+03]
+  RHS range        [5e-01, 1e+03]
+Presolve removed 6994 rows and 4730 columns
+Presolve time: 0.16s
+Presolved: 3267 rows, 3504 columns, 14004 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 2203 continuous, 1301 integer (1301 binary)
+
+Root relaxation: objective 3.930344e+02, 3606 iterations, 0.32 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  393.03440    0   81          -  393.03440      -     -    1s
+     0     0  435.79659    0   67          -  435.79659      -     -    1s
+     0     0  468.13890    0   65          -  468.13890      -     -    1s
+     0     0  468.13890    0   65          -  468.13890      -     -    1s
+
+Cutting planes:
+  Learned: 2
+  Gomory: 9
+  Cover: 3
+  Implied bound: 12
+  Clique: 1
+  MIR: 10
+
+Explored 1 nodes (4014 simplex iterations) in 1.47 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 0
+
+Solve interrupted
+Best objective -, best bound 4.681389004029e+02, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 13:37:20 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 13:37:20 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [3e-08, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2221 rows and 2607 columns
+Presolve time: 0.01s
+
+Explored 0 nodes (0 simplex iterations) in 0.12 seconds
+Thread count was 1 (of 4 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 13:38:13 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 13:38:13 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [3e-08, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2221 rows and 2607 columns
+Presolve time: 0.01s
+
+Explored 0 nodes (0 simplex iterations) in 0.13 seconds
+Thread count was 1 (of 4 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 13:39:42 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 13:39:42 2019
+
+Optimize a model with 4283 rows, 5246 columns and 17961 nonzeros
+Variable types: 2988 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [6e-07, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2244 rows and 2629 columns
+Presolve time: 0.03s
+Presolved: 2039 rows, 2617 columns, 9521 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1428 continuous, 1189 integer (1189 binary)
+Warning: Markowitz tolerance tightened to 0.0625
+
+Root relaxation: objective 6.514957e+02, 1400 iterations, 0.08 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  651.49572    0    7          -  651.49572      -     -    0s
+H    0     0                     645.0000000  651.49572  1.01%     -    0s
+     0     0  646.99952    0    4  645.00000  646.99952  0.31%     -    0s
+
+Cutting planes:
+  Learned: 7
+  Gomory: 1
+  Cover: 2
+
+Explored 1 nodes (2530 simplex iterations) in 0.71 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 1: 645 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 6.450000000000e+02, best bound 6.450000000000e+02, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sat Aug 17 13:39:43 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sat Aug 17 13:39:43 2019
+
+Optimize a model with 10260 rows, 8234 columns and 30565 nonzeros
+Variable types: 5976 continuous, 2258 integer (2258 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [6e-07, 1e+03]
+  RHS range        [6e+02, 1e+03]
+Presolve removed 8065 rows and 5481 columns
+Presolve time: 0.19s
+Presolved: 2195 rows, 2753 columns, 10876 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1454 continuous, 1299 integer (1299 binary)
+
+Root relaxation: objective 3.773722e-01, 1363 iterations, 0.08 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.37737    0   23          -    0.37737      -     -    0s
+     0     0    0.40242    0   23          -    0.40242      -     -    0s
+     0     0    0.40331    0   22          -    0.40331      -     -    0s
+     0     0    0.40331    0   24          -    0.40331      -     -    0s
+H    0     0                       0.4825195    0.40331  16.4%     -    1s
+     0     0    0.40331    0   24    0.48252    0.40331  16.4%     -    1s
+     0     0    0.40349    0   24    0.48252    0.40349  16.4%     -    1s
+     0     0    0.40349    0   21    0.48252    0.40349  16.4%     -    1s
+     0     0    0.40391    0   24    0.48252    0.40391  16.3%     -    1s
+     0     0    0.40395    0   24    0.48252    0.40395  16.3%     -    1s
+
+Cutting planes:
+  Learned: 1
+  Cover: 4
+  Implied bound: 3
+  MIR: 3
+
+Explored 1 nodes (2161 simplex iterations) in 1.20 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 1: 0.482519 
+
+Solve interrupted
+Best objective 4.825194755391e-01, best bound 4.039544758709e-01, gap 16.2822%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sun Aug 18 15:43:26 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sun Aug 18 15:43:26 2019
+
+Optimize a model with 4305 rows, 5268 columns and 18017 nonzeros
+Variable types: 2988 continuous, 2280 integer (2280 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-19, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2312 rows and 2701 columns
+Presolve time: 0.13s
+Presolved: 1993 rows, 2567 columns, 9431 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1406 continuous, 1161 integer (1161 binary)
+
+Root relaxation: objective 6.516816e+02, 1631 iterations, 0.12 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  651.68160    0   71          -  651.68160      -     -    0s
+     0     0  644.27704    0   45          -  644.27704      -     -    0s
+     0     0  644.23249    0   42          -  644.23249      -     -    0s
+     0     0  644.15903    0   45          -  644.15903      -     -    0s
+     0     0  644.11165    0   46          -  644.11165      -     -    0s
+     0     0  644.10049    0   46          -  644.10049      -     -    0s
+     0     0  642.81706    0   41          -  642.81706      -     -    0s
+     0     0  642.80899    0   44          -  642.80899      -     -    1s
+     0     0  642.76250    0   44          -  642.76250      -     -    1s
+     0     0  642.74944    0   44          -  642.74944      -     -    1s
+     0     0  642.42038    0   42          -  642.42038      -     -    1s
+     0     0  642.38063    0   42          -  642.38063      -     -    1s
+     0     0  642.36894    0   42          -  642.36894      -     -    1s
+     0     0  642.35856    0   42          -  642.35856      -     -    1s
+H    0     0                     638.0000000  642.35856  0.68%     -    1s
+     0     0  642.14678    0   39  638.00000  642.14678  0.65%     -    1s
+H    0     0                     639.0000000  642.14678  0.49%     -    1s
+     0     0  642.01294    0   37  639.00000  642.01294  0.47%     -    1s
+     0     0  642.01061    0   38  639.00000  642.01061  0.47%     -    1s
+     0     0  641.96757    0   38  639.00000  641.96757  0.46%     -    1s
+     0     0  641.96573    0   39  639.00000  641.96573  0.46%     -    1s
+     0     0  641.95165    0   39  639.00000  641.95165  0.46%     -    1s
+     0     0  641.85417    0   38  639.00000  641.85417  0.45%     -    1s
+     0     0  641.82867    0   37  639.00000  641.82867  0.44%     -    1s
+     0     0  641.80706    0   38  639.00000  641.80706  0.44%     -    1s
+     0     0  641.78451    0   40  639.00000  641.78451  0.44%     -    1s
+     0     0  641.76720    0   41  639.00000  641.76720  0.43%     -    1s
+     0     0  641.75932    0   38  639.00000  641.75932  0.43%     -    1s
+     0     0  641.57847    0   36  639.00000  641.57847  0.40%     -    1s
+     0     0  641.54326    0   36  639.00000  641.54326  0.40%     -    1s
+     0     0  641.53818    0   37  639.00000  641.53818  0.40%     -    1s
+     0     0  641.52777    0   37  639.00000  641.52777  0.40%     -    1s
+     0     0  641.52257    0   42  639.00000  641.52257  0.39%     -    1s
+     0     0  641.51846    0   41  639.00000  641.51846  0.39%     -    1s
+     0     0  641.51846    0   41  639.00000  641.51846  0.39%     -    1s
+     0     0  641.51507    0   41  639.00000  641.51507  0.39%     -    1s
+     0     0  641.51113    0   41  639.00000  641.51113  0.39%     -    1s
+     0     0  640.99234    0   36  639.00000  640.99234  0.31%     -    1s
+     0     0  640.99234    0   36  639.00000  640.99234  0.31%     -    1s
+     0     0  640.99234    0   35  639.00000  640.99234  0.31%     -    2s
+     0     0  640.99234    0   33  639.00000  640.99234  0.31%     -    2s
+     0     0  640.99234    0   26  639.00000  640.99234  0.31%     -    2s
+     0     0  640.99234    0   27  639.00000  640.99234  0.31%     -    2s
+     0     0  640.99077    0   30  639.00000  640.99077  0.31%     -    2s
+     0     0  640.83553    0   30  639.00000  640.83553  0.29%     -    2s
+     0     0  640.76375    0   31  639.00000  640.76375  0.28%     -    2s
+     0     0  640.75809    0   30  639.00000  640.75809  0.28%     -    2s
+H    0     0                     640.0000000  640.75809  0.12%     -    2s
+
+Cutting planes:
+  Learned: 1
+  Gomory: 13
+  Cover: 3
+  Implied bound: 12
+  Clique: 1
+  MIR: 11
+
+Explored 1 nodes (3731 simplex iterations) in 2.51 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 4: 640 639 639 638 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 6.400000000000e+02, best bound 6.400000000000e+02, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sun Aug 18 15:43:29 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sun Aug 18 15:43:29 2019
+
+Optimize a model with 10282 rows, 8256 columns and 30629 nonzeros
+Variable types: 5976 continuous, 2280 integer (2280 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-19, 1e+03]
+  RHS range        [6e+02, 1e+03]
+Presolve removed 8114 rows and 5530 columns
+Presolve time: 0.10s
+Presolved: 2168 rows, 2726 columns, 10851 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1427 continuous, 1299 integer (1299 binary)
+
+Root relaxation: objective 4.436414e-01, 1743 iterations, 0.09 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.44364    0   98          -    0.44364      -     -    0s
+     0     0    0.56515    0   71          -    0.56515      -     -    0s
+     0     0    0.58823    0   76          -    0.58823      -     -    0s
+     0     0    0.80071    0   62          -    0.80071      -     -    0s
+     0     0    0.83237    0   65          -    0.83237      -     -    0s
+     0     0    0.89264    0   66          -    0.89264      -     -    0s
+     0     0    0.89292    0   66          -    0.89292      -     -    0s
+     0     0    0.89484    0   65          -    0.89484      -     -    0s
+     0     0    1.05557    0   60          -    1.05557      -     -    0s
+     0     0    1.13690    0   56          -    1.13690      -     -    0s
+     0     0    1.14061    0   56          -    1.14061      -     -    0s
+     0     0    1.15065    0   56          -    1.15065      -     -    0s
+     0     0    1.15251    0   56          -    1.15251      -     -    1s
+     0     0    1.15598    0   57          -    1.15598      -     -    1s
+     0     0    1.15701    0   57          -    1.15701      -     -    1s
+     0     0    1.17582    0   55          -    1.17582      -     -    1s
+     0     0    1.18141    0   54          -    1.18141      -     -    1s
+     0     0    1.18657    0   56          -    1.18657      -     -    1s
+     0     0    1.22090    0   56          -    1.22090      -     -    1s
+     0     0    1.24735    0   56          -    1.24735      -     -    1s
+     0     0    1.24736    0   56          -    1.24736      -     -    1s
+     0     0    1.26516    0   53          -    1.26516      -     -    1s
+     0     0    1.26752    0   53          -    1.26752      -     -    1s
+     0     0    1.26866    0   54          -    1.26866      -     -    1s
+     0     0    1.28437    0   51          -    1.28437      -     -    1s
+     0     0    1.30153    0   50          -    1.30153      -     -    1s
+     0     0    1.31055    0   50          -    1.31055      -     -    1s
+     0     0    1.32780    0   51          -    1.32780      -     -    1s
+     0     0    1.42033    0   50          -    1.42033      -     -    1s
+     0     0    1.44003    0   49          -    1.44003      -     -    1s
+     0     0    1.52833    0   49          -    1.52833      -     -    1s
+     0     0    1.61393    0   50          -    1.61393      -     -    1s
+     0     0    1.61792    0   52          -    1.61792      -     -    1s
+     0     0    1.64141    0   52          -    1.64141      -     -    1s
+     0     0    1.64398    0   52          -    1.64398      -     -    1s
+     0     0    1.66647    0   48          -    1.66647      -     -    1s
+     0     0    1.68071    0   52          -    1.68071      -     -    1s
+     0     0    1.71666    0   52          -    1.71666      -     -    1s
+     0     0    1.71986    0   51          -    1.71986      -     -    1s
+     0     0    1.71992    0   52          -    1.71992      -     -    1s
+     0     0    1.72204    0   52          -    1.72204      -     -    1s
+     0     0    1.72613    0   51          -    1.72613      -     -    1s
+     0     0    1.72781    0   52          -    1.72781      -     -    1s
+     0     0    1.73156    0   52          -    1.73156      -     -    1s
+     0     0    1.74214    0   51          -    1.74214      -     -    1s
+     0     0    1.74544    0   51          -    1.74544      -     -    1s
+     0     0    1.76031    0   50          -    1.76031      -     -    1s
+     0     0    1.76216    0   50          -    1.76216      -     -    1s
+     0     0    1.76216    0   46          -    1.76216      -     -    1s
+     0     2    1.76216    0   46          -    1.76216      -     -    2s
+
+Cutting planes:
+  Learned: 1
+  Gomory: 11
+  Cover: 5
+  Implied bound: 13
+  Clique: 1
+  MIR: 19
+
+Explored 68 nodes (9608 simplex iterations) in 4.30 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 0
+
+Solve interrupted
+Best objective -, best bound 9.964567990902e+00, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sun Aug 18 15:44:20 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sun Aug 18 15:44:20 2019
+
+Optimize a model with 4305 rows, 5268 columns and 18017 nonzeros
+Variable types: 2988 continuous, 2280 integer (2280 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-19, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2312 rows and 2701 columns
+Presolve time: 0.03s
+Presolved: 1993 rows, 2567 columns, 9431 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1406 continuous, 1161 integer (1161 binary)
+
+Root relaxation: objective 6.516816e+02, 1631 iterations, 0.09 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  651.68160    0   71          -  651.68160      -     -    0s
+     0     0  644.27704    0   45          -  644.27704      -     -    0s
+     0     0  644.23249    0   42          -  644.23249      -     -    0s
+     0     0  644.15903    0   45          -  644.15903      -     -    0s
+     0     0  644.11165    0   46          -  644.11165      -     -    0s
+     0     0  644.10049    0   46          -  644.10049      -     -    0s
+     0     0  642.81706    0   41          -  642.81706      -     -    0s
+     0     0  642.80899    0   44          -  642.80899      -     -    0s
+     0     0  642.76250    0   44          -  642.76250      -     -    0s
+     0     0  642.74944    0   44          -  642.74944      -     -    0s
+     0     0  642.42038    0   42          -  642.42038      -     -    0s
+     0     0  642.38063    0   42          -  642.38063      -     -    0s
+     0     0  642.36894    0   42          -  642.36894      -     -    0s
+     0     0  642.35856    0   42          -  642.35856      -     -    0s
+H    0     0                     638.0000000  642.35856  0.68%     -    0s
+     0     0  642.14678    0   39  638.00000  642.14678  0.65%     -    0s
+H    0     0                     639.0000000  642.14678  0.49%     -    0s
+     0     0  642.01294    0   37  639.00000  642.01294  0.47%     -    0s
+     0     0  642.01061    0   38  639.00000  642.01061  0.47%     -    0s
+     0     0  641.96757    0   38  639.00000  641.96757  0.46%     -    0s
+     0     0  641.96573    0   39  639.00000  641.96573  0.46%     -    0s
+     0     0  641.95165    0   39  639.00000  641.95165  0.46%     -    0s
+     0     0  641.85417    0   38  639.00000  641.85417  0.45%     -    0s
+     0     0  641.82867    0   37  639.00000  641.82867  0.44%     -    0s
+     0     0  641.80706    0   38  639.00000  641.80706  0.44%     -    0s
+     0     0  641.78451    0   40  639.00000  641.78451  0.44%     -    0s
+     0     0  641.76720    0   41  639.00000  641.76720  0.43%     -    0s
+     0     0  641.75932    0   38  639.00000  641.75932  0.43%     -    0s
+     0     0  641.57847    0   36  639.00000  641.57847  0.40%     -    0s
+     0     0  641.54326    0   36  639.00000  641.54326  0.40%     -    0s
+     0     0  641.53818    0   37  639.00000  641.53818  0.40%     -    0s
+     0     0  641.52777    0   37  639.00000  641.52777  0.40%     -    0s
+     0     0  641.52257    0   42  639.00000  641.52257  0.39%     -    0s
+     0     0  641.51846    0   41  639.00000  641.51846  0.39%     -    0s
+     0     0  641.51846    0   41  639.00000  641.51846  0.39%     -    1s
+     0     0  641.51507    0   41  639.00000  641.51507  0.39%     -    1s
+     0     0  641.51113    0   41  639.00000  641.51113  0.39%     -    1s
+     0     0  640.99234    0   36  639.00000  640.99234  0.31%     -    1s
+     0     0  640.99234    0   36  639.00000  640.99234  0.31%     -    1s
+     0     0  640.99234    0   35  639.00000  640.99234  0.31%     -    1s
+     0     0  640.99234    0   33  639.00000  640.99234  0.31%     -    1s
+     0     0  640.99234    0   26  639.00000  640.99234  0.31%     -    1s
+     0     0  640.99234    0   27  639.00000  640.99234  0.31%     -    1s
+     0     0  640.99077    0   30  639.00000  640.99077  0.31%     -    1s
+     0     0  640.83553    0   30  639.00000  640.83553  0.29%     -    1s
+     0     0  640.76375    0   31  639.00000  640.76375  0.28%     -    1s
+     0     0  640.75809    0   30  639.00000  640.75809  0.28%     -    1s
+H    0     0                     640.0000000  640.75809  0.12%     -    1s
+
+Cutting planes:
+  Learned: 1
+  Gomory: 13
+  Cover: 3
+  Implied bound: 12
+  Clique: 1
+  MIR: 11
+
+Explored 1 nodes (3731 simplex iterations) in 2.01 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 4: 640 639 639 638 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 6.400000000000e+02, best bound 6.400000000000e+02, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sun Aug 18 15:44:22 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sun Aug 18 15:44:22 2019
+
+Optimize a model with 10282 rows, 8256 columns and 30629 nonzeros
+Variable types: 5976 continuous, 2280 integer (2280 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-19, 1e+03]
+  RHS range        [6e+02, 1e+03]
+Presolve removed 8114 rows and 5530 columns
+Presolve time: 0.10s
+Presolved: 2168 rows, 2726 columns, 10851 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1427 continuous, 1299 integer (1299 binary)
+
+Root relaxation: objective 4.436414e-01, 1743 iterations, 0.09 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.44364    0   98          -    0.44364      -     -    0s
+     0     0    0.56515    0   71          -    0.56515      -     -    0s
+     0     0    0.58823    0   76          -    0.58823      -     -    0s
+     0     0    0.80071    0   62          -    0.80071      -     -    0s
+     0     0    0.83237    0   65          -    0.83237      -     -    0s
+     0     0    0.89264    0   66          -    0.89264      -     -    0s
+     0     0    0.89292    0   66          -    0.89292      -     -    0s
+     0     0    0.89484    0   65          -    0.89484      -     -    0s
+     0     0    1.05557    0   60          -    1.05557      -     -    0s
+     0     0    1.13690    0   56          -    1.13690      -     -    0s
+     0     0    1.14061    0   56          -    1.14061      -     -    0s
+     0     0    1.15065    0   56          -    1.15065      -     -    0s
+     0     0    1.15251    0   56          -    1.15251      -     -    0s
+     0     0    1.15598    0   57          -    1.15598      -     -    0s
+     0     0    1.15701    0   57          -    1.15701      -     -    0s
+     0     0    1.17582    0   55          -    1.17582      -     -    1s
+     0     0    1.18141    0   54          -    1.18141      -     -    1s
+     0     0    1.18657    0   56          -    1.18657      -     -    1s
+     0     0    1.22090    0   56          -    1.22090      -     -    1s
+     0     0    1.24735    0   56          -    1.24735      -     -    1s
+     0     0    1.24736    0   56          -    1.24736      -     -    1s
+     0     0    1.26516    0   53          -    1.26516      -     -    1s
+     0     0    1.26752    0   53          -    1.26752      -     -    1s
+     0     0    1.26866    0   54          -    1.26866      -     -    1s
+     0     0    1.28437    0   51          -    1.28437      -     -    1s
+     0     0    1.30153    0   50          -    1.30153      -     -    1s
+     0     0    1.31055    0   50          -    1.31055      -     -    1s
+     0     0    1.32780    0   51          -    1.32780      -     -    1s
+     0     0    1.42033    0   50          -    1.42033      -     -    1s
+     0     0    1.44003    0   49          -    1.44003      -     -    1s
+     0     0    1.52833    0   49          -    1.52833      -     -    1s
+     0     0    1.61393    0   50          -    1.61393      -     -    1s
+     0     0    1.61792    0   52          -    1.61792      -     -    1s
+     0     0    1.64141    0   52          -    1.64141      -     -    1s
+     0     0    1.64398    0   52          -    1.64398      -     -    1s
+     0     0    1.66647    0   48          -    1.66647      -     -    1s
+     0     0    1.68071    0   52          -    1.68071      -     -    1s
+     0     0    1.71666    0   52          -    1.71666      -     -    1s
+     0     0    1.71986    0   51          -    1.71986      -     -    1s
+     0     0    1.71992    0   52          -    1.71992      -     -    1s
+     0     0    1.72204    0   52          -    1.72204      -     -    1s
+     0     0    1.72613    0   51          -    1.72613      -     -    1s
+     0     0    1.72781    0   52          -    1.72781      -     -    1s
+     0     0    1.73156    0   52          -    1.73156      -     -    1s
+     0     0    1.74214    0   51          -    1.74214      -     -    1s
+     0     0    1.74544    0   51          -    1.74544      -     -    1s
+     0     0    1.76031    0   50          -    1.76031      -     -    1s
+     0     0    1.76216    0   50          -    1.76216      -     -    1s
+     0     0    1.76216    0   46          -    1.76216      -     -    1s
+     0     2    1.76216    0   46          -    1.76216      -     -    2s
+H  300    89                      10.3567655   10.21418  1.38%  56.0    4s
+*  403    18              31      10.3546027   10.33585  0.18%  42.3    4s
+
+Cutting planes:
+  Learned: 1
+  Gomory: 11
+  Cover: 5
+  Implied bound: 13
+  Clique: 1
+  MIR: 19
+
+Explored 444 nodes (19355 simplex iterations) in 4.31 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 2: 10.3546 10.3568 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.035460265196e+01, best bound 1.035460265195e+01, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sun Aug 18 15:44:27 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sun Aug 18 15:44:27 2019
+
+Optimize a model with 10283 rows, 8256 columns and 30795 nonzeros
+Variable types: 5976 continuous, 2280 integer (2280 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-19, 1e+03]
+  RHS range        [1e+01, 1e+03]
+Presolve removed 7456 rows and 5175 columns
+Presolve time: 0.13s
+Presolved: 2827 rows, 3081 columns, 12700 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1779 continuous, 1302 integer (1302 binary)
+
+Root relaxation: objective 2.349058e+02, 2810 iterations, 0.20 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  234.90580    0   97          -  234.90580      -     -    0s
+     0     0  242.85576    0   70          -  242.85576      -     -    0s
+     0     0  245.92260    0   79          -  245.92260      -     -    1s
+     0     0  246.27317    0   76          -  246.27317      -     -    1s
+     0     0  246.68539    0   74          -  246.68539      -     -    1s
+     0     0  246.87654    0   71          -  246.87654      -     -    1s
+     0     0  247.99200    0   70          -  247.99200      -     -    1s
+     0     0  248.91344    0   68          -  248.91344      -     -    1s
+     0     0  248.96852    0   68          -  248.96852      -     -    1s
+     0     0  248.99786    0   66          -  248.99786      -     -    1s
+     0     0  249.00539    0   66          -  249.00539      -     -    1s
+     0     0  250.20367    0   63          -  250.20367      -     -    1s
+     0     0  251.38017    0   66          -  251.38017      -     -    1s
+     0     0  252.41696    0   67          -  252.41696      -     -    1s
+     0     0  252.49838    0   69          -  252.49838      -     -    1s
+     0     0  252.54964    0   67          -  252.54964      -     -    1s
+     0     0  252.59782    0   67          -  252.59782      -     -    1s
+     0     0  252.62903    0   68          -  252.62903      -     -    1s
+     0     0  253.86186    0   64          -  253.86186      -     -    1s
+     0     0  256.09112    0   63          -  256.09112      -     -    1s
+     0     0  256.21885    0   63          -  256.21885      -     -    1s
+     0     0  256.31808    0   63          -  256.31808      -     -    1s
+     0     0  256.38707    0   64          -  256.38707      -     -    1s
+     0     0  256.39550    0   64          -  256.39550      -     -    1s
+     0     0  256.46940    0   64          -  256.46940      -     -    1s
+     0     0  257.32368    0   59          -  257.32368      -     -    1s
+     0     0  257.56868    0   58          -  257.56868      -     -    1s
+     0     0  257.64908    0   58          -  257.64908      -     -    1s
+     0     0  258.10114    0   60          -  258.10114      -     -    1s
+     0     0  258.24928    0   57          -  258.24928      -     -    1s
+     0     0  258.36017    0   57          -  258.36017      -     -    1s
+     0     0  258.83410    0   52          -  258.83410      -     -    1s
+     0     0  258.84935    0   56          -  258.84935      -     -    1s
+     0     0  258.90656    0   56          -  258.90656      -     -    1s
+     0     0  258.90810    0   56          -  258.90810      -     -    1s
+     0     0  258.94566    0   53          -  258.94566      -     -    1s
+     0     0  259.47394    0   56          -  259.47394      -     -    1s
+     0     0  259.48573    0   56          -  259.48573      -     -    1s
+     0     0  259.49600    0   61          -  259.49600      -     -    1s
+     0     0  259.50524    0   61          -  259.50524      -     -    1s
+     0     0  259.57239    0   58          -  259.57239      -     -    1s
+     0     0  259.57622    0   59          -  259.57622      -     -    1s
+     0     0  259.58326    0   56          -  259.58326      -     -    1s
+     0     0  259.64568    0   56          -  259.64568      -     -    1s
+     0     0  259.67663    0   59          -  259.67663      -     -    1s
+     0     0  259.70970    0   60          -  259.70970      -     -    1s
+     0     0  259.73612    0   56          -  259.73612      -     -    1s
+     0     0  259.74111    0   57          -  259.74111      -     -    1s
+     0     0  259.96151    0   56          -  259.96151      -     -    1s
+     0     0  259.96248    0   56          -  259.96248      -     -    1s
+     0     0  259.96901    0   56          -  259.96901      -     -    1s
+     0     0  260.00221    0   55          -  260.00221      -     -    1s
+     0     0  260.01127    0   56          -  260.01127      -     -    1s
+     0     0  260.07677    0   61          -  260.07677      -     -    2s
+     0     0  260.08224    0   60          -  260.08224      -     -    2s
+     0     0  260.08525    0   61          -  260.08525      -     -    2s
+     0     0  260.10280    0   60          -  260.10280      -     -    2s
+     0     0  260.16410    0   56          -  260.16410      -     -    2s
+     0     0  260.16556    0   56          -  260.16556      -     -    2s
+     0     0  260.16556    0   56          -  260.16556      -     -    2s
+     0     2  260.16556    0   56          -  260.16556      -     -    3s
+*  408   112              36     314.1007882  313.46081  0.20%  14.5    4s
+H  477    32                     314.0004594  313.46081  0.17%  12.6    4s
+*  479    30              36     313.9860660  313.46081  0.17%  12.6    4s
+*  525     5              37     313.9754825  313.47339  0.16%  11.6    4s
+*  538     5              36     313.9726405  313.47339  0.16%  11.4    4s
+
+Cutting planes:
+  Learned: 1
+  Gomory: 13
+  Cover: 5
+  Implied bound: 12
+  Clique: 1
+  MIR: 25
+
+Explored 567 nodes (9797 simplex iterations) in 4.55 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 5: 313.973 313.975 313.986 ... 314.101
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 3.139726405405e+02, best bound 3.139726405365e+02, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sun Aug 18 15:44:45 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sun Aug 18 15:44:45 2019
+
+Optimize a model with 10642 rows, 8614 columns and 34499 nonzeros
+Variable types: 5976 continuous, 2638 integer (2638 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-19, 1e+03]
+  RHS range        [1e-19, 1e+03]
+Presolve removed 6099 rows and 3699 columns
+Presolve time: 0.12s
+Presolved: 4543 rows, 4915 columns, 18079 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 3523 continuous, 1392 integer (1390 binary)
+
+Root relaxation: objective 8.599447e+01, 4921 iterations, 0.55 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   85.99447    0   67          -   85.99447      -     -    1s
+     0     0   73.00000    0   79          -   73.00000      -     -    2s
+     0     0   73.00000    0   74          -   73.00000      -     -    2s
+     0     0   73.00000    0   79          -   73.00000      -     -    2s
+     0     0   73.00000    0   67          -   73.00000      -     -    2s
+     0     0   72.94796    0   81          -   72.94796      -     -    2s
+     0     0   72.89425    0   79          -   72.89425      -     -    2s
+     0     0   72.88642    0   80          -   72.88642      -     -    2s
+     0     0   72.88092    0   78          -   72.88092      -     -    2s
+     0     0   72.87170    0   80          -   72.87170      -     -    2s
+     0     0   72.86632    0   78          -   72.86632      -     -    2s
+     0     0   72.85658    0   78          -   72.85658      -     -    2s
+     0     0   72.66717    0   63          -   72.66717      -     -    2s
+     0     0   72.66276    0   66          -   72.66276      -     -    2s
+     0     0   72.65676    0   66          -   72.65676      -     -    2s
+     0     0   72.65347    0   66          -   72.65347      -     -    2s
+     0     0   72.63064    0   66          -   72.63064      -     -    2s
+     0     0   72.62778    0   64          -   72.62778      -     -    2s
+     0     0   72.61917    0   66          -   72.61917      -     -    2s
+     0     0   72.51080    0   68          -   72.51080      -     -    3s
+     0     0   72.48209    0   66          -   72.48209      -     -    3s
+     0     0   72.47995    0   66          -   72.47995      -     -    3s
+     0     0   72.46503    0   66          -   72.46503      -     -    3s
+     0     0   72.43359    0   68          -   72.43359      -     -    3s
+     0     0   72.41881    0   71          -   72.41881      -     -    3s
+     0     0   72.40987    0   72          -   72.40987      -     -    3s
+     0     0   72.40944    0   69          -   72.40944      -     -    3s
+     0     0   72.39567    0   71          -   72.39567      -     -    3s
+     0     0   72.34659    0   64          -   72.34659      -     -    3s
+     0     0   72.32936    0   70          -   72.32936      -     -    3s
+     0     0   72.32855    0   66          -   72.32855      -     -    3s
+     0     0   72.27731    0   69          -   72.27731      -     -    3s
+     0     0   72.27484    0   73          -   72.27484      -     -    3s
+     0     0   72.27424    0   73          -   72.27424      -     -    3s
+     0     0   72.25376    0   71          -   72.25376      -     -    3s
+     0     0   72.24460    0   70          -   72.24460      -     -    3s
+     0     0   72.24427    0   70          -   72.24427      -     -    3s
+     0     0   72.23488    0   65          -   72.23488      -     -    3s
+     0     0   72.23488    0   63          -   72.23488      -     -    3s
+     0     0   72.23488    0   63          -   72.23488      -     -    3s
+     0     0   72.23488    0   63          -   72.23488      -     -    5s
+     0     2   72.23488    0   63          -   72.23488      -     -    6s
+  1850  1245   60.00000   35   28          -   64.20419      -  12.8   10s
+  2330  1565  -44.12673   31   38          -   64.00047      -  12.2   15s
+H 2398  1484                      16.0000000   17.92103  12.0%   3.3   16s
+H 2407  1399                      17.0000000   17.92103  5.42%   3.3   16s
+
+Cutting planes:
+  Learned: 19
+  Gomory: 11
+  Cover: 2
+  Implied bound: 12
+  MIR: 16
+  Flow cover: 18
+
+Explored 2423 nodes (45326 simplex iterations) in 16.82 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 2: 17 16 
+No other solutions better than 17
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.700000000035e+01, best bound 1.700000000035e+01, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Sun Aug 18 15:45:02 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Sun Aug 18 15:45:02 2019
+
+Optimize a model with 10643 rows, 8614 columns and 34857 nonzeros
+Variable types: 5976 continuous, 2638 integer (2638 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-19, 1e+03]
+  RHS range        [1e-19, 1e+03]
+Presolve removed 7705 rows and 5332 columns
+Presolve time: 0.19s
+Presolved: 2938 rows, 3282 columns, 14515 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1893 continuous, 1389 integer (1388 binary)
+
+Root relaxation: objective 2.345939e+02, 3061 iterations, 0.21 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  234.59387    0  108          -  234.59387      -     -    0s
+     0     0  245.75965    0   63          -  245.75965      -     -    1s
+     0     0  246.04946    0   67          -  246.04946      -     -    1s
+     0     0  246.21856    0   69          -  246.21856      -     -    1s
+     0     0  246.46284    0   68          -  246.46284      -     -    1s
+     0     0  246.47249    0   69          -  246.47249      -     -    1s
+     0     0  247.65254    0   73          -  247.65254      -     -    1s
+     0     0  251.23078    0   67          -  251.23078      -     -    1s
+     0     0  251.79642    0   63          -  251.79642      -     -    1s
+     0     0  252.06144    0   65          -  252.06144      -     -    1s
+     0     0  252.16652    0   66          -  252.16652      -     -    1s
+     0     0  253.35307    0   63          -  253.35307      -     -    1s
+     0     0  253.37949    0   63          -  253.37949      -     -    1s
+     0     0  253.47900    0   61          -  253.47900      -     -    1s
+     0     0  253.73797    0   61          -  253.73797      -     -    1s
+     0     0  253.88451    0   61          -  253.88451      -     -    1s
+     0     0  254.17346    0   62          -  254.17346      -     -    1s
+     0     0  254.20210    0   62          -  254.20210      -     -    1s
+     0     0  254.24543    0   62          -  254.24543      -     -    1s
+     0     0  254.45032    0   61          -  254.45032      -     -    1s
+     0     0  254.84979    0   60          -  254.84979      -     -    1s
+     0     0  255.56881    0   62          -  255.56881      -     -    1s
+     0     0  255.59422    0   62          -  255.59422      -     -    1s
+     0     0  255.60218    0   62          -  255.60218      -     -    1s
+     0     0  255.71752    0   62          -  255.71752      -     -    1s
+     0     0  255.75514    0   62          -  255.75514      -     -    1s
+     0     0  255.81559    0   62          -  255.81559      -     -    1s
+     0     0  256.72049    0   66          -  256.72049      -     -    1s
+     0     0  256.75712    0   70          -  256.75712      -     -    1s
+
+Cutting planes:
+  Learned: 1
+  Gomory: 14
+  Cover: 2
+  Implied bound: 17
+  Clique: 2
+  MIR: 25
+
+Explored 1 nodes (3636 simplex iterations) in 2.00 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 0
+
+Solve interrupted
+Best objective -, best bound 2.567571211073e+02, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:13:29 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:13:29 2019
+
+Optimize a model with 4305 rows, 5268 columns and 18017 nonzeros
+Variable types: 2988 continuous, 2280 integer (2280 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-19, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 2312 rows and 2701 columns
+Presolve time: 0.04s
+Presolved: 1993 rows, 2567 columns, 9431 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1406 continuous, 1161 integer (1161 binary)
+
+Root relaxation: objective 6.516816e+02, 1631 iterations, 0.09 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  651.68160    0   71          -  651.68160      -     -    0s
+     0     0  644.27704    0   45          -  644.27704      -     -    0s
+     0     0  644.23249    0   42          -  644.23249      -     -    0s
+     0     0  644.15903    0   45          -  644.15903      -     -    0s
+     0     0  644.11165    0   46          -  644.11165      -     -    0s
+     0     0  644.10049    0   46          -  644.10049      -     -    0s
+     0     0  642.81706    0   41          -  642.81706      -     -    0s
+     0     0  642.80899    0   44          -  642.80899      -     -    0s
+     0     0  642.76250    0   44          -  642.76250      -     -    0s
+     0     0  642.74944    0   44          -  642.74944      -     -    0s
+     0     0  642.42038    0   42          -  642.42038      -     -    0s
+     0     0  642.38063    0   42          -  642.38063      -     -    0s
+     0     0  642.36894    0   42          -  642.36894      -     -    0s
+     0     0  642.35856    0   42          -  642.35856      -     -    0s
+H    0     0                     638.0000000  642.35856  0.68%     -    0s
+     0     0  642.14678    0   39  638.00000  642.14678  0.65%     -    0s
+H    0     0                     639.0000000  642.14678  0.49%     -    0s
+     0     0  642.01294    0   37  639.00000  642.01294  0.47%     -    0s
+     0     0  642.01061    0   38  639.00000  642.01061  0.47%     -    0s
+     0     0  641.96757    0   38  639.00000  641.96757  0.46%     -    0s
+     0     0  641.96573    0   39  639.00000  641.96573  0.46%     -    0s
+     0     0  641.95165    0   39  639.00000  641.95165  0.46%     -    0s
+     0     0  641.85417    0   38  639.00000  641.85417  0.45%     -    0s
+     0     0  641.82867    0   37  639.00000  641.82867  0.44%     -    0s
+     0     0  641.80706    0   38  639.00000  641.80706  0.44%     -    0s
+     0     0  641.78451    0   40  639.00000  641.78451  0.44%     -    0s
+     0     0  641.76720    0   41  639.00000  641.76720  0.43%     -    0s
+     0     0  641.75932    0   38  639.00000  641.75932  0.43%     -    0s
+     0     0  641.57847    0   36  639.00000  641.57847  0.40%     -    0s
+     0     0  641.54326    0   36  639.00000  641.54326  0.40%     -    0s
+     0     0  641.53818    0   37  639.00000  641.53818  0.40%     -    0s
+     0     0  641.52777    0   37  639.00000  641.52777  0.40%     -    0s
+     0     0  641.52257    0   42  639.00000  641.52257  0.39%     -    0s
+     0     0  641.51846    0   41  639.00000  641.51846  0.39%     -    0s
+     0     0  641.51846    0   41  639.00000  641.51846  0.39%     -    0s
+     0     0  641.51507    0   41  639.00000  641.51507  0.39%     -    0s
+     0     0  641.51113    0   41  639.00000  641.51113  0.39%     -    0s
+     0     0  640.99234    0   36  639.00000  640.99234  0.31%     -    1s
+     0     0  640.99234    0   36  639.00000  640.99234  0.31%     -    1s
+     0     0  640.99234    0   35  639.00000  640.99234  0.31%     -    1s
+     0     0  640.99234    0   33  639.00000  640.99234  0.31%     -    1s
+     0     0  640.99234    0   26  639.00000  640.99234  0.31%     -    1s
+     0     0  640.99234    0   27  639.00000  640.99234  0.31%     -    1s
+     0     0  640.99077    0   30  639.00000  640.99077  0.31%     -    1s
+     0     0  640.83553    0   30  639.00000  640.83553  0.29%     -    1s
+     0     0  640.76375    0   31  639.00000  640.76375  0.28%     -    1s
+     0     0  640.75809    0   30  639.00000  640.75809  0.28%     -    1s
+H    0     0                     640.0000000  640.75809  0.12%     -    1s
+
+Cutting planes:
+  Learned: 1
+  Gomory: 13
+  Cover: 3
+  Implied bound: 12
+  Clique: 1
+  MIR: 11
+
+Explored 1 nodes (3731 simplex iterations) in 1.76 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 4: 640 639 639 638 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 6.400000000000e+02, best bound 6.400000000000e+02, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:13:31 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:13:31 2019
+
+Optimize a model with 10282 rows, 8256 columns and 30629 nonzeros
+Variable types: 5976 continuous, 2280 integer (2280 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-19, 1e+03]
+  RHS range        [6e+02, 1e+03]
+Presolve removed 8114 rows and 5530 columns
+Presolve time: 0.06s
+Presolved: 2168 rows, 2726 columns, 10851 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1427 continuous, 1299 integer (1299 binary)
+
+Root relaxation: objective 4.436414e-01, 1743 iterations, 0.08 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.44364    0   98          -    0.44364      -     -    0s
+     0     0    0.56515    0   71          -    0.56515      -     -    0s
+     0     0    0.58823    0   76          -    0.58823      -     -    0s
+     0     0    0.80071    0   62          -    0.80071      -     -    0s
+     0     0    0.83237    0   65          -    0.83237      -     -    0s
+     0     0    0.89264    0   66          -    0.89264      -     -    0s
+     0     0    0.89292    0   66          -    0.89292      -     -    0s
+     0     0    0.89484    0   65          -    0.89484      -     -    0s
+     0     0    1.05557    0   60          -    1.05557      -     -    0s
+     0     0    1.13690    0   56          -    1.13690      -     -    0s
+     0     0    1.14061    0   56          -    1.14061      -     -    0s
+     0     0    1.15065    0   56          -    1.15065      -     -    0s
+     0     0    1.15251    0   56          -    1.15251      -     -    0s
+     0     0    1.15598    0   57          -    1.15598      -     -    0s
+     0     0    1.15701    0   57          -    1.15701      -     -    0s
+     0     0    1.17582    0   55          -    1.17582      -     -    0s
+     0     0    1.18141    0   54          -    1.18141      -     -    0s
+     0     0    1.18657    0   56          -    1.18657      -     -    0s
+     0     0    1.22090    0   56          -    1.22090      -     -    0s
+     0     0    1.24735    0   56          -    1.24735      -     -    0s
+     0     0    1.24736    0   56          -    1.24736      -     -    0s
+     0     0    1.26516    0   53          -    1.26516      -     -    0s
+     0     0    1.26752    0   53          -    1.26752      -     -    0s
+     0     0    1.26866    0   54          -    1.26866      -     -    0s
+     0     0    1.28437    0   51          -    1.28437      -     -    0s
+     0     0    1.30153    0   50          -    1.30153      -     -    0s
+     0     0    1.31055    0   50          -    1.31055      -     -    0s
+     0     0    1.32780    0   51          -    1.32780      -     -    0s
+     0     0    1.42033    0   50          -    1.42033      -     -    0s
+     0     0    1.44003    0   49          -    1.44003      -     -    0s
+     0     0    1.52833    0   49          -    1.52833      -     -    1s
+     0     0    1.61393    0   50          -    1.61393      -     -    1s
+     0     0    1.61792    0   52          -    1.61792      -     -    1s
+     0     0    1.64141    0   52          -    1.64141      -     -    1s
+     0     0    1.64398    0   52          -    1.64398      -     -    1s
+     0     0    1.66647    0   48          -    1.66647      -     -    1s
+     0     0    1.68071    0   52          -    1.68071      -     -    1s
+     0     0    1.71666    0   52          -    1.71666      -     -    1s
+     0     0    1.71986    0   51          -    1.71986      -     -    1s
+     0     0    1.71992    0   52          -    1.71992      -     -    1s
+     0     0    1.72204    0   52          -    1.72204      -     -    1s
+     0     0    1.72613    0   51          -    1.72613      -     -    1s
+     0     0    1.72781    0   52          -    1.72781      -     -    1s
+     0     0    1.73156    0   52          -    1.73156      -     -    1s
+     0     0    1.74214    0   51          -    1.74214      -     -    1s
+     0     0    1.74544    0   51          -    1.74544      -     -    1s
+     0     0    1.76031    0   50          -    1.76031      -     -    1s
+     0     0    1.76216    0   50          -    1.76216      -     -    1s
+     0     0    1.76216    0   46          -    1.76216      -     -    1s
+     0     2    1.76216    0   46          -    1.76216      -     -    2s
+H  300    89                      10.3567655   10.21418  1.38%  56.0    3s
+*  403    18              31      10.3546027   10.33585  0.18%  42.3    4s
+
+Cutting planes:
+  Learned: 1
+  Gomory: 11
+  Cover: 5
+  Implied bound: 13
+  Clique: 1
+  MIR: 19
+
+Explored 444 nodes (19355 simplex iterations) in 4.10 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 2: 10.3546 10.3568 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.035460265196e+01, best bound 1.035460265195e+01, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:13:35 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:13:35 2019
+
+Optimize a model with 10283 rows, 8256 columns and 30795 nonzeros
+Variable types: 5976 continuous, 2280 integer (2280 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-19, 1e+03]
+  RHS range        [1e+01, 1e+03]
+Presolve removed 7456 rows and 5175 columns
+Presolve time: 0.07s
+Presolved: 2827 rows, 3081 columns, 12700 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1779 continuous, 1302 integer (1302 binary)
+
+Root relaxation: objective 2.349058e+02, 2810 iterations, 0.18 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  234.90580    0   97          -  234.90580      -     -    0s
+     0     0  242.85576    0   70          -  242.85576      -     -    0s
+     0     0  245.92260    0   79          -  245.92260      -     -    0s
+     0     0  246.27317    0   76          -  246.27317      -     -    0s
+     0     0  246.68539    0   74          -  246.68539      -     -    0s
+     0     0  246.87654    0   71          -  246.87654      -     -    0s
+     0     0  247.99200    0   70          -  247.99200      -     -    0s
+     0     0  248.91344    0   68          -  248.91344      -     -    0s
+     0     0  248.96852    0   68          -  248.96852      -     -    0s
+     0     0  248.99786    0   66          -  248.99786      -     -    0s
+     0     0  249.00539    0   66          -  249.00539      -     -    0s
+     0     0  250.20367    0   63          -  250.20367      -     -    0s
+     0     0  251.38017    0   66          -  251.38017      -     -    0s
+     0     0  252.41696    0   67          -  252.41696      -     -    0s
+     0     0  252.49838    0   69          -  252.49838      -     -    0s
+     0     0  252.54964    0   67          -  252.54964      -     -    0s
+     0     0  252.59782    0   67          -  252.59782      -     -    1s
+     0     0  252.62903    0   68          -  252.62903      -     -    1s
+     0     0  253.86186    0   64          -  253.86186      -     -    1s
+     0     0  256.09112    0   63          -  256.09112      -     -    1s
+     0     0  256.21885    0   63          -  256.21885      -     -    1s
+     0     0  256.31808    0   63          -  256.31808      -     -    1s
+     0     0  256.38707    0   64          -  256.38707      -     -    1s
+     0     0  256.39550    0   64          -  256.39550      -     -    1s
+     0     0  256.46940    0   64          -  256.46940      -     -    1s
+     0     0  257.32368    0   59          -  257.32368      -     -    1s
+     0     0  257.56868    0   58          -  257.56868      -     -    1s
+     0     0  257.64908    0   58          -  257.64908      -     -    1s
+     0     0  258.10114    0   60          -  258.10114      -     -    1s
+     0     0  258.24928    0   57          -  258.24928      -     -    1s
+     0     0  258.36017    0   57          -  258.36017      -     -    1s
+     0     0  258.83410    0   52          -  258.83410      -     -    1s
+     0     0  258.84935    0   56          -  258.84935      -     -    1s
+     0     0  258.90656    0   56          -  258.90656      -     -    1s
+     0     0  258.90810    0   56          -  258.90810      -     -    1s
+     0     0  258.94566    0   53          -  258.94566      -     -    1s
+     0     0  259.47394    0   56          -  259.47394      -     -    1s
+     0     0  259.48573    0   56          -  259.48573      -     -    1s
+     0     0  259.49600    0   61          -  259.49600      -     -    1s
+     0     0  259.50524    0   61          -  259.50524      -     -    1s
+     0     0  259.57239    0   58          -  259.57239      -     -    1s
+     0     0  259.57622    0   59          -  259.57622      -     -    1s
+     0     0  259.58326    0   56          -  259.58326      -     -    1s
+     0     0  259.64568    0   56          -  259.64568      -     -    1s
+     0     0  259.67663    0   59          -  259.67663      -     -    1s
+     0     0  259.70970    0   60          -  259.70970      -     -    1s
+     0     0  259.73612    0   56          -  259.73612      -     -    1s
+     0     0  259.74111    0   57          -  259.74111      -     -    1s
+     0     0  259.96151    0   56          -  259.96151      -     -    1s
+     0     0  259.96248    0   56          -  259.96248      -     -    1s
+     0     0  259.96901    0   56          -  259.96901      -     -    1s
+     0     0  260.00221    0   55          -  260.00221      -     -    1s
+     0     0  260.01127    0   56          -  260.01127      -     -    1s
+     0     0  260.07677    0   61          -  260.07677      -     -    1s
+     0     0  260.08224    0   60          -  260.08224      -     -    1s
+     0     0  260.08525    0   61          -  260.08525      -     -    1s
+     0     0  260.10280    0   60          -  260.10280      -     -    1s
+     0     0  260.16410    0   56          -  260.16410      -     -    1s
+     0     0  260.16556    0   56          -  260.16556      -     -    1s
+     0     0  260.16556    0   56          -  260.16556      -     -    2s
+     0     2  260.16556    0   56          -  260.16556      -     -    2s
+*  408   112              36     314.1007882  313.46081  0.20%  14.5    3s
+H  477    32                     314.0004594  313.46081  0.17%  12.6    4s
+*  479    30              36     313.9860660  313.46081  0.17%  12.6    4s
+*  525     5              37     313.9754825  313.47339  0.16%  11.6    4s
+*  538     5              36     313.9726405  313.47339  0.16%  11.4    4s
+
+Cutting planes:
+  Learned: 1
+  Gomory: 13
+  Cover: 5
+  Implied bound: 12
+  Clique: 1
+  MIR: 25
+
+Explored 567 nodes (9797 simplex iterations) in 4.26 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 5: 313.973 313.975 313.986 ... 314.101
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 3.139726405405e+02, best bound 3.139726405365e+02, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:13:41 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:13:41 2019
+
+Optimize a model with 10642 rows, 8614 columns and 34499 nonzeros
+Variable types: 5976 continuous, 2638 integer (2638 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-19, 1e+03]
+  RHS range        [1e-19, 1e+03]
+Presolve removed 6099 rows and 3699 columns
+Presolve time: 0.13s
+Presolved: 4543 rows, 4915 columns, 18079 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 3523 continuous, 1392 integer (1390 binary)
+
+Root relaxation: objective 8.599447e+01, 4921 iterations, 0.43 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   85.99447    0   67          -   85.99447      -     -    1s
+     0     0   73.00000    0   79          -   73.00000      -     -    1s
+     0     0   73.00000    0   74          -   73.00000      -     -    1s
+     0     0   73.00000    0   79          -   73.00000      -     -    1s
+     0     0   73.00000    0   67          -   73.00000      -     -    1s
+     0     0   72.94796    0   81          -   72.94796      -     -    2s
+     0     0   72.89425    0   79          -   72.89425      -     -    2s
+     0     0   72.88642    0   80          -   72.88642      -     -    2s
+     0     0   72.88092    0   78          -   72.88092      -     -    2s
+     0     0   72.87170    0   80          -   72.87170      -     -    2s
+     0     0   72.86632    0   78          -   72.86632      -     -    2s
+     0     0   72.85658    0   78          -   72.85658      -     -    2s
+     0     0   72.66717    0   63          -   72.66717      -     -    2s
+     0     0   72.66276    0   66          -   72.66276      -     -    2s
+     0     0   72.65676    0   66          -   72.65676      -     -    2s
+     0     0   72.65347    0   66          -   72.65347      -     -    2s
+     0     0   72.63064    0   66          -   72.63064      -     -    2s
+     0     0   72.62778    0   64          -   72.62778      -     -    2s
+     0     0   72.61917    0   66          -   72.61917      -     -    2s
+     0     0   72.51080    0   68          -   72.51080      -     -    2s
+     0     0   72.48209    0   66          -   72.48209      -     -    2s
+     0     0   72.47995    0   66          -   72.47995      -     -    2s
+     0     0   72.46503    0   66          -   72.46503      -     -    2s
+     0     0   72.43359    0   68          -   72.43359      -     -    2s
+     0     0   72.41881    0   71          -   72.41881      -     -    2s
+     0     0   72.40987    0   72          -   72.40987      -     -    2s
+     0     0   72.40944    0   69          -   72.40944      -     -    2s
+     0     0   72.39567    0   71          -   72.39567      -     -    2s
+     0     0   72.34659    0   64          -   72.34659      -     -    2s
+     0     0   72.32936    0   70          -   72.32936      -     -    2s
+     0     0   72.32855    0   66          -   72.32855      -     -    2s
+     0     0   72.27731    0   69          -   72.27731      -     -    2s
+     0     0   72.27484    0   73          -   72.27484      -     -    2s
+     0     0   72.27424    0   73          -   72.27424      -     -    2s
+     0     0   72.25376    0   71          -   72.25376      -     -    3s
+     0     0   72.24460    0   70          -   72.24460      -     -    3s
+     0     0   72.24427    0   70          -   72.24427      -     -    3s
+     0     0   72.23488    0   65          -   72.23488      -     -    3s
+     0     0   72.23488    0   63          -   72.23488      -     -    3s
+     0     0   72.23488    0   63          -   72.23488      -     -    3s
+     0     0   72.23488    0   63          -   72.23488      -     -    4s
+     0     2   72.23488    0   63          -   72.23488      -     -    5s
+  2319  1557   60.55858   24   46          -   64.00047      -  12.3   10s
+  2331  1565   64.00047   12   47          -   64.00047      -   3.0   15s
+H 2398  1484                      16.0000000   17.92103  12.0%   3.3   15s
+H 2407  1399                      17.0000000   17.92103  5.42%   3.3   15s
+
+Cutting planes:
+  Learned: 19
+  Gomory: 11
+  Cover: 2
+  Implied bound: 12
+  MIR: 16
+  Flow cover: 18
+
+Explored 2423 nodes (45326 simplex iterations) in 15.98 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 2: 17 16 
+No other solutions better than 17
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.700000000035e+01, best bound 1.700000000035e+01, gap 0.0000%
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:13:57 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:13:57 2019
+
+Optimize a model with 10643 rows, 8614 columns and 34857 nonzeros
+Variable types: 5976 continuous, 2638 integer (2638 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e-19, 1e+03]
+  RHS range        [1e-19, 1e+03]
+Presolve removed 7705 rows and 5332 columns
+Presolve time: 0.12s
+Presolved: 2938 rows, 3282 columns, 14515 nonzeros
+
+Warning: Thread count (20) is larger than core count (4)
+         Reduce the value of the Threads parameter to improve performance
+
+Variable types: 1893 continuous, 1389 integer (1388 binary)
+
+Root relaxation: objective 2.345939e+02, 3061 iterations, 0.18 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  234.59387    0  108          -  234.59387      -     -    0s
+     0     0  245.75965    0   63          -  245.75965      -     -    0s
+     0     0  246.04946    0   67          -  246.04946      -     -    0s
+     0     0  246.21856    0   69          -  246.21856      -     -    0s
+     0     0  246.46284    0   68          -  246.46284      -     -    0s
+     0     0  246.47249    0   69          -  246.47249      -     -    0s
+     0     0  247.65254    0   73          -  247.65254      -     -    1s
+     0     0  251.23078    0   67          -  251.23078      -     -    1s
+     0     0  251.79642    0   63          -  251.79642      -     -    1s
+     0     0  252.06144    0   65          -  252.06144      -     -    1s
+     0     0  252.16652    0   66          -  252.16652      -     -    1s
+     0     0  253.35307    0   63          -  253.35307      -     -    1s
+     0     0  253.37949    0   63          -  253.37949      -     -    1s
+     0     0  253.47900    0   61          -  253.47900      -     -    1s
+     0     0  253.73797    0   61          -  253.73797      -     -    1s
+     0     0  253.88451    0   61          -  253.88451      -     -    1s
+     0     0  254.17346    0   62          -  254.17346      -     -    1s
+     0     0  254.20210    0   62          -  254.20210      -     -    1s
+     0     0  254.24543    0   62          -  254.24543      -     -    1s
+     0     0  254.45032    0   61          -  254.45032      -     -    1s
+     0     0  254.84979    0   60          -  254.84979      -     -    1s
+     0     0  255.56881    0   62          -  255.56881      -     -    1s
+     0     0  255.59422    0   62          -  255.59422      -     -    1s
+     0     0  255.60218    0   62          -  255.60218      -     -    1s
+     0     0  255.71752    0   62          -  255.71752      -     -    1s
+     0     0  255.75514    0   62          -  255.75514      -     -    1s
+     0     0  255.81559    0   62          -  255.81559      -     -    1s
+     0     0  256.72049    0   66          -  256.72049      -     -    1s
+     0     0  256.75712    0   70          -  256.75712      -     -    1s
+     0     0  257.04294    0   67          -  257.04294      -     -    1s
+     0     0  258.09741    0   64          -  258.09741      -     -    1s
+     0     0  258.28900    0   61          -  258.28900      -     -    1s
+     0     0  258.58841    0   58          -  258.58841      -     -    1s
+     0     0  258.62681    0   59          -  258.62681      -     -    1s
+     0     0  258.63342    0   63          -  258.63342      -     -    1s
+     0     0  258.72957    0   67          -  258.72957      -     -    1s
+     0     0  258.91138    0   65          -  258.91138      -     -    1s
+     0     0  258.93205    0   63          -  258.93205      -     -    1s
+     0     0  258.93541    0   62          -  258.93541      -     -    1s
+     0     0  259.05346    0   61          -  259.05346      -     -    1s
+     0     0  259.10587    0   55          -  259.10587      -     -    1s
+     0     0  259.15533    0   67          -  259.15533      -     -    1s
+     0     0  259.42143    0   65          -  259.42143      -     -    1s
+     0     0  259.44166    0   63          -  259.44166      -     -    1s
+     0     0  259.53872    0   66          -  259.53872      -     -    1s
+     0     0  259.55441    0   64          -  259.55441      -     -    1s
+     0     0  259.59453    0   63          -  259.59453      -     -    2s
+     0     0  259.65508    0   61          -  259.65508      -     -    2s
+     0     0  259.65508    0   56          -  259.65508      -     -    2s
+     0     2  259.65508    0   56          -  259.65508      -     -    3s
+  1359  1130 infeasible   48               -  311.40637      -   4.0    5s
+
+Cutting planes:
+  Learned: 1
+  Gomory: 11
+  Cover: 2
+  Implied bound: 14
+  Clique: 1
+  MIR: 13
+
+Explored 3500 nodes (19457 simplex iterations) in 9.73 seconds
+Thread count was 20 (of 4 available processors)
+
+Solution count 0
+
+Solve interrupted
+Best objective -, best bound 3.123388591001e+02, gap -
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:19:03 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:19:03 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:19:05 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:19:05 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:19:08 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:19:08 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:19:13 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:19:13 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:20:37 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:20:37 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:20:38 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:20:38 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:20:43 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:20:43 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:20:48 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:20:48 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:21:04 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:21:04 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:35:23 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:35:23 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:35:24 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:35:24 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:35:24 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:35:24 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:35:28 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:35:28 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:35:36 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:35:36 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:35:41 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:35:41 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:35:51 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:35:51 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:35:56 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:35:56 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:35:59 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:35:59 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:36:01 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:36:01 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:36:04 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:36:04 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:37:01 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:37:01 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:37:03 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:37:03 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:37:05 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:37:05 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:37:12 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:37:12 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:39:23 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:39:23 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:39:29 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:39:29 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:39:41 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:39:41 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:39:51 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:39:51 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:42:17 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:42:17 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:42:23 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:42:23 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:42:48 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:42:48 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:42:54 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:42:54 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:43:36 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:43:36 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:43:52 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:43:52 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:44:14 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:44:14 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:45:18 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:45:18 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:45:19 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:45:19 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:45:21 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:45:21 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:45:28 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:45:28 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:45:44 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:45:44 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:45:53 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:45:53 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:46:17 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:46:17 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:46:27 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:46:27 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:46:56 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:46:56 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:47:02 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:47:02 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:47:18 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:47:18 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:47:28 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:47:28 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:47:50 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:47:50 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:48:55 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:48:55 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:48:57 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:48:57 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:48:58 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:48:58 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:49:05 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:49:05 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:49:21 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:49:21 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:49:28 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:49:28 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:49:38 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:49:38 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:49:47 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:49:47 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:49:55 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:49:55 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:50:57 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:50:57 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:50:58 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:50:58 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:50:58 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:50:58 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:51:01 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:51:01 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:51:14 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:51:14 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:51:17 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:51:17 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:51:24 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:51:24 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:52:27 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:52:27 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:52:28 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:52:28 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:52:29 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:52:29 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:52:38 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:52:38 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:52:59 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:52:59 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:53:06 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:53:06 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:53:31 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:53:31 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:53:38 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:53:38 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:53:54 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:53:54 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:54:01 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:54:01 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:54:23 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:54:23 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:54:30 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:54:30 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:55:03 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:55:03 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:55:10 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:55:10 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:55:29 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:55:29 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:59:14 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:59:14 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:59:15 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:59:15 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:59:16 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:59:16 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:59:19 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:59:19 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:59:27 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:59:27 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:59:32 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:59:32 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:59:43 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:59:43 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:59:47 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:59:47 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:59:50 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:59:50 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:59:52 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:59:52 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 14:59:55 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 14:59:55 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:02:14 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:02:14 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:02:15 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:02:15 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:02:16 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:02:16 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:02:19 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:02:19 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:02:27 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:02:27 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:02:33 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:02:33 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:02:43 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:02:43 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:02:47 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:02:47 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:02:49 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:02:49 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:02:52 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:02:52 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:02:54 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:02:54 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:08:59 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:08:59 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:09:00 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:09:00 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:10:11 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:10:11 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:11:22 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:11:22 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:11:23 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:11:23 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:11:24 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:11:24 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:14:05 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:14:05 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:14:06 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:14:06 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:18:56 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:18:56 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:20:36 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:20:36 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:20:37 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:20:37 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:29:06 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:29:06 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:29:08 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:29:08 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:29:08 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:29:08 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:29:50 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:29:50 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:29:51 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:29:51 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:30:36 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:30:36 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:30:37 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:30:37 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:34:22 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:34:22 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:34:23 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:34:23 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:34:23 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:34:23 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:34:27 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:34:27 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:34:33 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:34:33 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:34:39 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:34:39 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:35:34 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:35:34 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:35:35 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:35:35 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:36:24 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:36:24 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:36:26 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:36:26 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:39:52 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:39:52 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:39:53 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:39:53 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:39:54 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:39:54 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:39:58 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:39:58 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:40:08 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:40:08 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:40:13 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:40:13 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:40:23 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:40:23 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:40:28 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:40:28 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:40:31 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:40:31 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:40:34 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:40:34 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 15:40:36 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 15:40:36 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 16:59:49 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 16:59:49 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 16:59:51 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 16:59:51 2019
+
+
+Gurobi 7.5.2 (mac64, Matlab) logging started Mon Aug 19 16:59:54 2019
+
+
+Gurobi 7.5.2 (mac64) logging started Mon Aug 19 16:59:54 2019
+
