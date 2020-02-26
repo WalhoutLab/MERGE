@@ -513,7 +513,7 @@ switch solver
             MILPproblem.start = x0;
         end
         
-        params.Presolve = 1;
+        params.Presolve = -1;
         params.IntFeasTol = 1e-8;
         params.FeasibilityTol = 1e-9;
         params.OptimalityTol = 1e-9;

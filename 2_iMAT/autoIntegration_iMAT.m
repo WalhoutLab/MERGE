@@ -1,4 +1,4 @@
-function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenedLReaction,wasteDW,Hreactions,Lreactions,latentRxn,PFD,Nfit_latent,minTotal_OFD,MILP] = autoIntegration_iMAT(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCatag,doMinPFD,latentCAP,type)
+function [PFD,N_highFit,N_zeroFit,minLow,minTotal,OpenedLReaction,wasteDW,Hreactions,Lreactions,MILP] = autoIntegration_iMAT(model,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCatag,doMinPFD,type)
 %% inputs
 % model ... the model; model needs to be constrained
 % storeProp,SideProp ... proportion of sides and storage molecules
@@ -7,19 +7,16 @@ function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenedLReaction,wasteDW,Hreact
 % name should in iCEL format
 
 %apply default
-if (nargin < 9)
+if (nargin < 8)
     doMinPFD = true;
 end
-if (nargin < 10) %fullsensitivity means sensitivity that includes negative sensitivity score (confident no flux), and due to technical reason, in full sensitivity, -1/+1 score means violation of minTotal flux
-    latentCAP = 0.01;
-end
-if (nargin < 11) %fullsensitivity means sensitivity that includes negative sensitivity score (confident no flux), and due to technical reason, in full sensitivity, -1/+1 score means violation of minTotal flux
+if (nargin < 9) %fullsensitivity means sensitivity that includes negative sensitivity score (confident no flux), and due to technical reason, in full sensitivity, -1/+1 score means violation of minTotal flux
     type = 'canonical';
 end
 %set global constant 
 bacMW=966.28583751;
-changeCobraSolverParams('LP','optTol', 10e-9);
-changeCobraSolverParams('LP','feasTol', 10e-9);
+%changeCobraSolverParams('LP','optTol', 10e-9);
+%changeCobraSolverParams('LP','feasTol', 10e-9);
 tol = 1e-5; %it could be 1%
 %%
 fprintf('Start flux fitting... \n');
@@ -42,7 +39,7 @@ worm = changeRxnBounds(worm,'RCC0005_X',ATPm,'l');
 % change the side proportion
 worm.S(end-1, strcmp('EXC0050_L',worm.rxns)) = storeProp*bacMW*0.01;
 worm.S(end, strcmp('EXC0050_L',worm.rxns)) = SideProp*bacMW*0.01;
-if strcmp(type,'canonical')
+if strcmp(type,'canonical') %low category is merged with zero (rare) so that there is NO minimization of low flux
     [solution, MILProblem,Hreactions,Lreactions] = iMAT_xl(worm, expressionRxns, epsilon_f, epsilon_r,1.1,2.9);
 elseif strcmp(type,'iMATplus')
     [solution, MILProblem,Hreactions,Lreactions] = iMAT_xl(worm, expressionRxns, epsilon_f, epsilon_r,0.1,2.9);
@@ -100,14 +97,11 @@ if doMinPFD
     MILProblem.osense = 1;
     fprintf('Minimizing total flux... \n');
     tic()
-    solution = solveCobraMILP_XL(MILProblem, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', 0);
+    solution = solveCobraMILP_XL(MILProblem, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', 1);
     minTotal = solution.obj;
     if solution.stat ~= 1
         error('infeasible or violation occured!');
     end
-    solution.obj = solution.obj*(1+latentCAP); % 1% minFlux constraint!
-    MILProblem2 = solution2constraint(MILProblem,solution);
-    MILP2 = MILProblem2; 
 else
     minTotal = 0;
 end
@@ -116,31 +110,11 @@ toc()
 % make output of primary flux distribution
 FluxDistribution = solution.full(1:length(worm.rxns));
 PFD = solution.full(1:length(worm.rxns));
-%yH = boolean(solution.int(1:length(RHNames)) + solution.int((length(RHNames)+length(RLNames)+1):(2*length(RHNames)+length(RLNames))));
-%nameH = worm.rxns(ismember(worm.rxns,RHNames));
-%OpenedHReaction = nameH(yH);
 yL = boolean(solution.int((length(Hreactions)+1):(length(Hreactions)+length(Lreactions))));
 ClosedLReaction = Lreactions(yL);
 OpenedLReaction = Hreactions(boolean(solution.int(1:length(Hreactions))+solution.int(length(Hreactions)+length(Lreactions)+1:2*length(Hreactions)+length(Lreactions))));
 N_highFit = length(OpenedLReaction);
 N_zeroFit = length(ClosedLReaction);
-%% this part is underconstruction! 
-% ################################################
-if doLatent
-    %% perform the sensitivity analysis => discarded for doing safak algorithm!
-    %sensitivity = AutoSensitivityAanalysis(worm,ExpCatag,storeProp,SideProp,ATPm,epsilon_f,epsilon_r,capacity_f,capacity_r,true,doFullSensitivity);
-    %% make the latent rxns fitting
-    [FluxDistribution,latentRxn,Nfit_latent,minTotal_OFD] = fitLatentFluxes(MILP2, worm,PFD, HGenes,epsilon_f,epsilon_r,latentCAP);
-    %% filter flux
-    OFD = FluxDistribution;
-    %OFD = fix(FluxDistribution .* 1e7) ./ 1e7;
-else
-    OFD = [];
-    latentRxn = [];
-    Nfit_latent = [];
-    minTotal_OFD = [];
-end
-% #################################################
 %% examine the flux distribution
 fprintf('the bacterial uptake is: %f\n',FluxDistribution(strcmp(worm.rxns,'EXC0050_L'))); %bac
 %fprintf('the ATPm is: %f\n',FluxDistribution(strcmp(worm.rxns,'RCC0005'))); %bac

@@ -69,11 +69,6 @@ if ~isempty(core)
         if ~isempty(rloc) && isempty(intersect(RHindex,rloc))
             RHindex(end+1) = rloc;
         end
-        %to overwrite unrealistic RLindex caused by artificial gene exp
-        %settings!!!!! specific to ROS project!!!!!!
-        if ~isempty(rloc) && ~isempty(intersect(RLindex,rloc))
-            RLindex(RLindex == intersect(RLindex,rloc)) = [];
-        end
         if isempty(rloc)
             disp(['Manual added core reaction: ', core{i}, ' not found'])
         end
