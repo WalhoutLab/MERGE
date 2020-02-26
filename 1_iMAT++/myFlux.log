@@ -1,0 +1,812 @@
+MATLAB is selecting SOFTWARE OPENGL rendering.
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2019 The MathWorks, Inc.
+              R2019a Update 4 (9.6.0.1150989) 64-bit (glnxa64)
+                               June 26, 2019
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+>> >> >> >> >> >> >> 
+
+      _____   _____   _____   _____     _____     |
+     /  ___| /  _  \ |  _  \ |  _  \   / ___ \    |   COnstraint-Based Reconstruction and Analysis
+     | |     | | | | | |_| | | |_| |  | |___| |   |   The COBRA Toolbox - 2020
+     | |     | | | | |  _  { |  _  /  |  ___  |   |
+     | |___  | |_| | | |_| | | | \ \  | |   | |   |   Documentation:
+     \_____| \_____/ |_____/ |_|  \_\ |_|   |_|   |   http://opencobra.github.io/cobratoolbox
+                                                  | 
+
+ > Checking if git is installed ...  Done (version: 2.9.5).
+ > Checking if the repository is tracked using git ...  Done.
+ > Checking if curl is installed ...  Done.
+ > Checking if remote can be reached ...  Done.
+ > Initializing and updating submodules (this may take a while)... Done.
+ > Adding all the files of The COBRA Toolbox ...  Done.
+ > Define CB map output... set to svg.
+ > TranslateSBML is installed and working properly.
+ > Configuring solver environment variables ...
+   - [----] ILOG_CPLEX_PATH: --> set this path manually after installing the solver ( see https://opencobra.github.io/cobratoolbox/docs/solvers.html )
+   - [--*-] GUROBI_PATH: /share/pkg/gurobi/810/linux64/matlab
+   - [----] TOMLAB_PATH: --> set this path manually after installing the solver ( see https://opencobra.github.io/cobratoolbox/docs/solvers.html )
+   - [----] MOSEK_PATH: --> set this path manually after installing the solver ( see https://opencobra.github.io/cobratoolbox/docs/solvers.html )
+   Done.
+ > Checking available solvers and solver interfaces ... Done.
+ > Setting default solvers ... Done.
+ > Saving the MATLAB path ... Done.
+   - The MATLAB path was saved as ~/pathdef.m.
+
+ > Summary of available solvers and solver interfaces
+
+			Support 	   LP 	 MILP 	   QP 	 MIQP 	  NLP
+	----------------------------------------------------------------------
+	gurobi       	active        	    1 	    1 	    1 	    1 	    -
+	ibm_cplex    	active        	    0 	    0 	    0 	    0 	    -
+	tomlab_cplex 	active        	    0 	    0 	    0 	    0 	    -
+	glpk         	active        	    1 	    1 	    - 	    - 	    -
+	mosek        	active        	    0 	    - 	    0 	    - 	    -
+	matlab       	active        	    1 	    - 	    - 	    - 	    1
+	cplex_direct 	active        	    0 	    0 	    0 	    - 	    -
+	dqqMinos     	active        	    1 	    - 	    - 	    - 	    -
+	pdco         	active        	    1 	    - 	    1 	    - 	    -
+	quadMinos    	active        	    1 	    - 	    - 	    - 	    -
+	qpng         	passive       	    - 	    - 	    1 	    - 	    -
+	tomlab_snopt 	passive       	    - 	    - 	    - 	    - 	    0
+	lp_solve     	legacy        	    1 	    - 	    - 	    - 	    -
+	----------------------------------------------------------------------
+	Total        	-             	    7 	    2 	    3 	    1 	    1
+
+ + Legend: - = not applicable, 0 = solver not compatible or not installed, 1 = solver installed.
+
+
+ > You can solve LP problems using: 'gurobi' - 'glpk' - 'matlab' - 'pdco' 
+ > You can solve MILP problems using: 'gurobi' - 'glpk' 
+ > You can solve QP problems using: 'gurobi' - 'pdco' - 'qpng' 
+ > You can solve MIQP problems using: 'gurobi' 
+ > You can solve NLP problems using: 'matlab' 
+
+> Checking for available updates ... skipped
+>> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> now starting to fit Hypodermis... 
+Start flux fitting... 
+Processing expression data... 
+Elapsed time is 55.196447 seconds.
+fitting high genes with MILP... 
+...total high gene fitted: 521 
+Elapsed time is 2.371602 seconds.
+Minimizing low flux... 
+Elapsed time is 1.015414 seconds.
+Minimizing low flux completed! 
+Minimizing total flux... 
+Primary Flux Fitting completed! 
+Elapsed time is 2.398697 seconds.
+the total flux is constrianed to 413.80 
+starting the latent fitting loop... 
+...found 37 new latent rxns 
+...total latent fitted: 36 
+latent fitting cycle completed .... #1 
+the total flux constriant is updated to 423.07 
+Elapsed time is 5.238933 seconds.
+...found 17 new latent rxns 
+...total latent fitted: 53 
+latent fitting cycle completed .... #2 
+the total flux constriant is updated to 425.01 
+Elapsed time is 8.017535 seconds.
+...found 4 new latent rxns 
+...total latent fitted: 57 
+latent fitting cycle completed .... #3 
+the total flux constriant is updated to 425.78 
+Elapsed time is 7.535434 seconds.
+...found 1 new latent rxns 
+...total latent fitted: 58 
+latent fitting cycle completed .... #4 
+the total flux constriant is updated to 425.78 
+Elapsed time is 8.320611 seconds.
+...done! 
+the bacterial uptake is: -0.861491
+>> >> >> >> >> >> >> >> EX00583_X	12ppd-R_E[e] 	->	
+EX02918_X	1mncam_E[e] 	->	
+EX05984_X	2hb_E[e] 	->	
+EX02630_X	2hglut_E[e] 	->	
+EX05852_X	2hyoxplac_E[e] 	->	
+EX00109_X	2obut_E[e] 	->	
+EX00322_X	2oxoadp_E[e] 	->	
+EX00631_X	2pg_E[e] 	->	
+EX01161_X	34dhpha_E[e] 	->	
+EX00355_X	34dhphe_E[e] 	->	
+EX01179_X	34hpp_E[e] 	->	
+EX00942_X	35cgmp_E[e] 	->	
+EX01060_X	35diotyr_E[e] 	->	
+EX01205_X	3aib-D_E[e] 	->	
+EX03284_X	3aib_E[e] 	->	
+EX00632_X	3hanthrn_E[e] 	->	
+EX05828_X	3mlda_E[e] 	->	
+EX00141_X	3mob_E[e] 	->	
+EX00671_X	3mop_E[e] 	->	
+EX00197_X	3pg_E[e] 	->	
+EX05100_X	3uib_E[e] 	->	
+EX02946_X	4aabutn_E[e] 	->	
+EX00334_X	4abut_E[e] 	->	
+EX00156_X	4hbz_E[e] 	->	
+EX00642_X	4hphac_E[e] 	->	
+EX00233_X	4mop_E[e] 	->	
+EX01181_X	4tmeabutn_E[e] 	->	
+EX00906_X	56dthm_E[e] 	->	
+EX00429_X	56dura_E[e] 	->	
+EX05356_X	5HPET_E[e] 	->	
+EX03917_X	5adtststerone_E[e] 	->	
+EX05635_X	5hoxindoa_E[e] 	->	
+EX00643_X	5htrp_E[e] 	->	
+EX00170_X	5mta_E[e] 	->	
+EX00440_X	5mthf_E[e] 	->	
+EX01879_X	5oxpro_E[e] 	->	
+EX17337_X	7a3o4chlstnt_E[e] 	->	
+EX00506_X	Lcyst_E[e] 	->	
+EX00328_X	Lkynr_E[e] 	->	
+EX02415_X	Nlys_E[e] 	->	
+EXC0001_X	Rtotal2_E[e] 	->	
+EX00162_X	Rtotal_E[e] 	->	
+EX03197_X	S3hb_E[e] 	->	
+EX00811_X	T4hcinnm_E[e] 	->	
+EX01888_X	aact_E[e] 	->	
+EX00532_X	abt_E[e] 	->	
+EX00033_X	ac_E[e] 	->	
+EX00164_X	acac_E[e] 	->	
+EX00084_X	acald_E[e] 	->	
+EX18125_X	acg3ps_E[e] 	->	
+EX01132_X	acgal_E[e] 	->	
+EX00140_X	acgam_E[e] 	->	
+EX01996_X	ach_E[e] 	->	
+EX00437_X	acorn_E[e] 	->	
+EX00979_X	acser_E[e] 	->	
+EX00147_X	ade_E[e] 	->	
+EX00212_X	adn_E[e] 	->	
+EX00194_X	adocbl_E[e] 	->	
+EX00301_X	adprib_E[e] 	->	
+EX00021_X	ahcys_E[e] 	->	
+EX04677_X	aicar_E[e] 	->	
+EX04317_X	ak2lgchol_E[e] 	->	
+EX00026_X	akg_E[e] 	->	
+EX00940_X	akgm_E[e] 	->	
+EX00099_X	ala-B_E[e] 	->	
+EX00133_X	ala-D_E[e] 	->	
+EX00041_X	ala-L_E[e] 	->	
+EX00019_X	amet_E[e] 	->	
+EX01137_X	ametam_E[e] 	->	
+EX00020_X	amp_E[e] 	->	
+EX00523_X	andrstrn_E[e] 	->	
+EX11135_X	andrstrnglc_E[e] 	->	
+EX00108_X	anth_E[e] 	->	
+EX00259_X	arab-L_E[e] 	->	
+EX00219_X	arachd_E[e] 	->	
+EX00062_X	arg-L_E[e] 	->	
+EX00072_X	ascb-L_E[e] 	->	
+EXC0180_X	ascrTotal_E[e] 	->	
+EX00152_X	asn-L_E[e] 	->	
+EX00402_X	asp-D_E[e] 	->	
+EX00049_X	asp-L_E[e] 	->	
+EX05519_X	athr-L_E[e] 	->	
+EX00002_X	atp_E[e] 	->	
+EX05787_X	bildglcur_E[e] 	->	
+EX00486_X	bilirub_E[e] 	->	
+EX02642_X	cala_E[e] 	->	
+EX00575_X	camp_E[e] 	->	
+EX02094_X	caro_E[e] 	->	
+EX00438_X	cbasp_E[e] 	->	
+EX00853_X	cbl1_E[e] 	->	
+EX01419_X	cgly_E[e] 	->	
+EX00114_X	chol_E[e] 	->	
+EX00695_X	cholate_E[e] 	->	
+EX00588_X	cholp_E[e] 	->	
+EX00187_X	chsterol_E[e] 	->	
+EX00158_X	cit_E[e] 	->	
+EX00698_X	cl_E[e] 	->	
+EX00185_X	clb_E[e] 	->	
+EX00011_X	co2_E[e] 	->	
+EXC0202_X	crmp_ce_E[e] 	->	
+EX00318_X	crn_E[e] 	->	
+EX01326_X	cyan_E[e] 	->	
+EX02512_X	cyanala_E[e] 	->	
+EX00097_X	cys-L_E[e] 	->	
+EX00475_X	cytd_E[e] 	->	
+EX00559_X	dad-2_E[e] 	->	
+EX00239_X	dcmp_E[e] 	->	
+EX00881_X	dcyt_E[e] 	->	
+EX02679_X	ddca_E[e] 	->	
+EX00330_X	dgsn_E[e] 	->	
+EX00111_X	dhap_E[e] 	->	
+EX00268_X	dhbpt_E[e] 	->	
+EX05422_X	dhdascb_E[e] 	->	
+EX05512_X	din_E[e] 	->	
+EX03758_X	dopa_E[e] 	->	
+EX01801_X	drib_E[e] 	->	
+EX00459_X	dttp_E[e] 	->	
+EX00526_X	duri_E[e] 	->	
+EX02763_X	enphpyr_E[e] 	->	
+EX00189_X	etha_E[e] 	->	
+EX00346_X	ethamp_E[e] 	->	
+EX00469_X	etoh_E[e] 	->	
+EX00016_X	fad_E[e] 	->	
+EX00067_X	fald_E[e] 	->	
+EX00354_X	fdp_E[e] 	->	
+EX14818_X	fe2_E[e] 	->	
+EX14819_X	fe3_E[e] 	->	
+EX00061_X	fmn_E[e] 	->	
+EX00504_X	fol_E[e] 	->	
+EX00058_X	for_E[e] 	->	
+EX00439_X	forglu_E[e] 	->	
+EX00095_X	fru_E[e] 	->	
+EX00122_X	fum_E[e] 	->	
+EX00670_X	g3pc_E[e] 	->	
+EX00124_X	gal_E[e] 	->	
+EXC0214_X	galgluside_ce_E[e] 	->	
+EX01697_X	galt_E[e] 	->	
+EX00352_X	gam6p_E[e] 	->	
+EX00329_X	gam_E[e] 	->	
+EXC0216_X	gbside_ce_E[e] 	->	
+EX00266_X	gcald_E[e] 	->	
+EX01921_X	gchola_E[e] 	->	
+EX00031_X	glc-D_E[e] 	->	
+EX00257_X	glcn_E[e] 	->	
+EX00818_X	glcr_E[e] 	->	
+EX00191_X	glcur_E[e] 	->	
+EX00064_X	gln-L_E[e] 	->	
+EX00025_X	glu-L_E[e] 	->	
+EX00669_X	glucys_E[e] 	->	
+EXC0213_X	gluside_ce_E[e] 	->	
+EX00048_X	glx_E[e] 	->	
+EX00037_X	gly_E[e] 	->	
+EX00577_X	glyald_E[e] 	->	
+EX00719_X	glyb_E[e] 	->	
+EX00093_X	glyc3p_E[e] 	->	
+EX00116_X	glyc_E[e] 	->	
+EX00160_X	glyclt_E[e] 	->	
+EX00387_X	gsn_E[e] 	->	
+EX00127_X	gthox_E[e] 	->	
+EX00051_X	gthrd_E[e] 	->	
+EX00242_X	gua_E[e] 	->	
+EX00027_X	h2o2_E[e] 	->	
+EX00001_X	h2o_E[e] 	->	
+EX00080_X	h_E[e] 	->	
+EX00288_X	hco3_E[e] 	->	
+EX00249_X	hdca_E[e] 	->	
+EX00544_X	hgentis_E[e] 	->	
+EX00135_X	his-L_E[e] 	->	
+EX00388_X	hista_E[e] 	->	
+EX00262_X	hxan_E[e] 	->	
+EX00708_X	i_E[e] 	->	
+EX00311_X	icit_E[e] 	->	
+EX00407_X	ile-L_E[e] 	->	
+EX00130_X	imp_E[e] 	->	
+EX00954_X	ind3ac_E[e] 	->	
+EX00137_X	inost_E[e] 	->	
+EX00294_X	ins_E[e] 	->	
+EX00081_X	itp_E[e] 	->	
+EX00238_X	k_E[e] 	->	
+EX01717_X	kynate_E[e] 	->	
+EX00256_X	lac-D_E[e] 	->	
+EX00186_X	lac-L_E[e] 	->	
+EX00243_X	lcts_E[e] 	->	
+EX00123_X	leu-L_E[e] 	->	
+EX00909_X	leuktrA4_E[e] 	->	
+EX02165_X	leuktrB4_E[e] 	->	
+EX04853_X	leuktrB4woh_E[e] 	->	
+EX01595_X	lnlc_E[e] 	->	
+EX04230_X	lpchol_E[e] 	->	
+EX18126_X	lpglyc_E[e] 	->	
+EX00047_X	lys-L_E[e] 	->	
+EX01885_X	mag_E[e] 	->	
+EX00149_X	mal-L_E[e] 	->	
+EX00208_X	malt_E[e] 	->	
+EX00159_X	man_E[e] 	->	
+EX05402_X	melib_E[e] 	->	
+EX00132_X	meoh_E[e] 	->	
+EXC0141_X	mercplaccys_E[e] 	->	
+EX00073_X	met-L_E[e] 	->	
+EX05127_X	mhista_E[e] 	->	
+EX00143_X	mlthf_E[e] 	->	
+EX06232_X	mobd_E[e] 	->	
+EX00546_X	mthgxl_E[e] 	->	
+EX01330_X	na1_E[e] 	->	
+EX00253_X	nac_E[e] 	->	
+EX00153_X	ncam_E[e] 	->	
+EX00014_X	nh4_E[e] 	->	
+EX01185_X	nicrnt_E[e] 	->	
+EX00455_X	nmn_E[e] 	->	
+EX00007_X	o2_E[e] 	->	
+EX00704_X	o2s_E[e] 	->	
+EX01530_X	ocdca_E[e] 	->	
+EX04227_X	octpmn_E[e] 	->	
+EX01328_X	oh1_E[e] 	->	
+EX00077_X	orn_E[e] 	->	
+EX01103_X	orot5p_E[e] 	->	
+EX00295_X	orot_E[e] 	->	
+EX02505_X	pad_E[e] 	->	
+EX04598_X	paf_E[e] 	->	
+EX01194_X	pail_E[e] 	->	
+EX00054_X	pap_E[e] 	->	
+EX00157_X	pchol_E[e] 	->	
+EX01211_X	pcollg5hlys_E[e] 	->	
+EX00350_X	pe_E[e] 	->	
+EX05332_X	peamn_E[e] 	->	
+EXC0152_X	pepX_E[e] 	->	
+EX00074_X	pep_E[e] 	->	
+EX00012_X	pepd_E[e] 	->	
+EX02188_X	peplys_E[e] 	->	
+EX00344_X	pglyc_E[e] 	->	
+EX00079_X	phe-L_E[e] 	->	
+EX00032_X	pheme_E[e] 	->	
+EX00166_X	phpyr_E[e] 	->	
+EX00009_X	pi_E[e] 	->	
+EX00864_X	pnto-R_E[e] 	->	
+EX00163_X	ppa_E[e] 	->	
+EX00148_X	pro-L_E[e] 	->	
+EX00696_X	prostgd2_E[e] 	->	
+EX00584_X	prostge2_E[e] 	->	
+EX00427_X	prostgh2_E[e] 	->	
+EX02737_X	ps_E[e] 	->	
+EX00134_X	ptrc_E[e] 	->	
+EX00534_X	pydam_E[e] 	->	
+EX00018_X	pydx5p_E[e] 	->	
+EX00250_X	pydx_E[e] 	->	
+EX00314_X	pydxn_E[e] 	->	
+EX00022_X	pyr_E[e] 	->	
+EXC0013_X	q8_E[e] 	->	
+EX03722_X	quln_E[e] 	->	
+EX00376_X	retinal_E[e] 	->	
+EX00473_X	retinol_E[e] 	->	
+EX00777_X	retn_E[e] 	->	
+EX11061_X	retnglc_E[e] 	->	
+EX00121_X	rib-D_E[e] 	->	
+EX00255_X	ribflv_E[e] 	->	
+EX00794_X	sbt-D_E[e] 	->	
+EX02076_X	sedh_E[e] 	->	
+EX05697_X	sel_E[e] 	->	
+EX05688_X	selcys_E[e] 	->	
+EX05335_X	selmeth_E[e] 	->	
+EX05684_X	selnt_E[e] 	->	
+EX00065_X	ser-L_E[e] 	->	
+EXC9998_X	sideMet[e] 	->	
+EX11499_X	sl-L_E[e] 	->	
+EX00094_X	so3_E[e] 	->	
+EX00059_X	so4_E[e] 	->	
+EXC0203_X	spc_ce_E[e] 	->	
+EXC0208_X	sph1p_ce_E[e] 	->	
+EXC0207_X	sphgn_ce_E[e] 	->	
+EXC0211_X	sphings_ce_E[e] 	->	
+EXC0201_X	sphmyln_ce_E[e] 	->	
+EXC0210_X	sphs1p_ce_E[e] 	->	
+EX00315_X	spmd_E[e] 	->	
+EX00750_X	sprm_E[e] 	->	
+EX00780_X	srtn_E[e] 	->	
+EX01613_X	stachyose_E[e] 	->	
+EXC9999_X	storageMet[e] 	->	
+EX00042_X	succ_E[e] 	->	
+EX00089_X	sucr_E[e] 	->	
+EX00422_X	tag_E[e] 	->	
+EX00245_X	taur_E[e] 	->	
+EX05122_X	tchola_E[e] 	->	
+EX01755_X	tcynt_E[e] 	->	
+EX00272_X	thbpt_E[e] 	->	
+EX04722_X	thcholstoic_E[e] 	->	
+EX00101_X	thf_E[e] 	->	
+EX00378_X	thm_E[e] 	->	
+EX00188_X	thr-L_E[e] 	->	
+EX00178_X	thym_E[e] 	->	
+EX00214_X	thymd_E[e] 	->	
+EX00565_X	tma_E[e] 	->	
+EX03793_X	tmlys_E[e] 	->	
+EX01083_X	tre_E[e] 	->	
+EX00078_X	trp-L_E[e] 	->	
+EX00398_X	trypta_E[e] 	->	
+EX00535_X	tststerone_E[e] 	->	
+EX00320_X	tsul_E[e] 	->	
+EX06424_X	ttdca_E[e] 	->	
+EX00483_X	tym_E[e] 	->	
+EX00082_X	tyr-L_E[e] 	->	
+EX00167_X	udpglcur_E[e] 	->	
+EX00106_X	ura_E[e] 	->	
+EX00366_X	urate_E[e] 	->	
+EX00785_X	urcan_E[e] 	->	
+EX00086_X	urea_E[e] 	->	
+EX00299_X	uri_E[e] 	->	
+EX00075_X	utp_E[e] 	->	
+EXC0135_X	vacc_E[e] 	->	
+EX00183_X	val-L_E[e] 	->	
+EX00385_X	xan_E[e] 	->	
+EX02470_X	xanate_E[e] 	->	
+EX00655_X	xmp_E[e] 	->	
+EX15519_X	xol25oh_E[e] 	->	
+EX15610_X	xol27oh_E[e] 	->	
+EX05455_X	xol7aone_E[e] 	->	
+EX17339_X	xoldiolone_E[e] 	->	
+EX15520_X	xoltri25_E[e] 	->	
+EX06341_X	xoltri27_E[e] 	->	
+EX01762_X	xtsn_E[e] 	->	
+EX00181_X	xyl-D_E[e] 	->	
+EX00379_X	xylt_E[e] 	->	
+>> EX00583_X	12ppd-R_E[e] 	->	
+EX02918_X	1mncam_E[e] 	->	
+EX05984_X	2hb_E[e] 	->	
+EX02630_X	2hglut_E[e] 	->	
+EX05852_X	2hyoxplac_E[e] 	->	
+EX00109_X	2obut_E[e] 	->	
+EX00322_X	2oxoadp_E[e] 	->	
+EX00631_X	2pg_E[e] 	->	
+EX01161_X	34dhpha_E[e] 	->	
+EX00355_X	34dhphe_E[e] 	->	
+EX01179_X	34hpp_E[e] 	->	
+EX00942_X	35cgmp_E[e] 	->	
+EX01060_X	35diotyr_E[e] 	->	
+EX01205_X	3aib-D_E[e] 	->	
+EX03284_X	3aib_E[e] 	->	
+EX00632_X	3hanthrn_E[e] 	->	
+EX05828_X	3mlda_E[e] 	->	
+EX00141_X	3mob_E[e] 	->	
+EX00671_X	3mop_E[e] 	->	
+EX00197_X	3pg_E[e] 	->	
+EX05100_X	3uib_E[e] 	->	
+EX02946_X	4aabutn_E[e] 	->	
+EX00334_X	4abut_E[e] 	->	
+EX00156_X	4hbz_E[e] 	->	
+EX00642_X	4hphac_E[e] 	->	
+EX00233_X	4mop_E[e] 	->	
+EX01181_X	4tmeabutn_E[e] 	->	
+EX00906_X	56dthm_E[e] 	->	
+EX00429_X	56dura_E[e] 	->	
+EX05356_X	5HPET_E[e] 	->	
+EX03917_X	5adtststerone_E[e] 	->	
+EX05635_X	5hoxindoa_E[e] 	->	
+EX00643_X	5htrp_E[e] 	->	
+EX00170_X	5mta_E[e] 	->	
+EX00440_X	5mthf_E[e] 	->	
+EX01879_X	5oxpro_E[e] 	->	
+EX17337_X	7a3o4chlstnt_E[e] 	->	
+EX00506_X	Lcyst_E[e] 	->	
+EX00328_X	Lkynr_E[e] 	->	
+EX02415_X	Nlys_E[e] 	->	
+EXC0001_X	Rtotal2_E[e] 	->	
+EX00162_X	Rtotal_E[e] 	->	
+EX03197_X	S3hb_E[e] 	->	
+EX00811_X	T4hcinnm_E[e] 	->	
+EX01888_X	aact_E[e] 	->	
+EX00532_X	abt_E[e] 	->	
+EX00033_X	ac_E[e] 	->	
+EX00164_X	acac_E[e] 	->	
+EX00084_X	acald_E[e] 	->	
+EX18125_X	acg3ps_E[e] 	->	
+EX01132_X	acgal_E[e] 	->	
+EX00140_X	acgam_E[e] 	->	
+EX01996_X	ach_E[e] 	->	
+EX00437_X	acorn_E[e] 	->	
+EX00979_X	acser_E[e] 	->	
+EX00147_X	ade_E[e] 	->	
+EX00212_X	adn_E[e] 	->	
+EX00194_X	adocbl_E[e] 	->	
+EX00301_X	adprib_E[e] 	->	
+EX00021_X	ahcys_E[e] 	->	
+EX04677_X	aicar_E[e] 	->	
+EX04317_X	ak2lgchol_E[e] 	->	
+EX00026_X	akg_E[e] 	->	
+EX00940_X	akgm_E[e] 	->	
+EX00099_X	ala-B_E[e] 	->	
+EX00133_X	ala-D_E[e] 	->	
+EX00041_X	ala-L_E[e] 	->	
+EX00019_X	amet_E[e] 	->	
+EX01137_X	ametam_E[e] 	->	
+EX00020_X	amp_E[e] 	->	
+EX00523_X	andrstrn_E[e] 	->	
+EX11135_X	andrstrnglc_E[e] 	->	
+EX00108_X	anth_E[e] 	->	
+EX00259_X	arab-L_E[e] 	->	
+EX00219_X	arachd_E[e] 	->	
+EX00062_X	arg-L_E[e] 	->	
+EX00072_X	ascb-L_E[e] 	->	
+EXC0180_X	ascrTotal_E[e] 	->	
+EX00152_X	asn-L_E[e] 	->	
+EX00402_X	asp-D_E[e] 	->	
+EX00049_X	asp-L_E[e] 	->	
+EX05519_X	athr-L_E[e] 	->	
+EX00002_X	atp_E[e] 	->	
+EX05787_X	bildglcur_E[e] 	->	
+EX00486_X	bilirub_E[e] 	->	
+EX02642_X	cala_E[e] 	->	
+EX00575_X	camp_E[e] 	->	
+EX02094_X	caro_E[e] 	->	
+EX00438_X	cbasp_E[e] 	->	
+EX00853_X	cbl1_E[e] 	->	
+EX01419_X	cgly_E[e] 	->	
+EX00114_X	chol_E[e] 	->	
+EX00695_X	cholate_E[e] 	->	
+EX00588_X	cholp_E[e] 	->	
+EX00187_X	chsterol_E[e] 	->	
+EX00158_X	cit_E[e] 	->	
+EX00698_X	cl_E[e] 	->	
+EX00185_X	clb_E[e] 	->	
+EX00011_X	co2_E[e] 	->	
+EXC0202_X	crmp_ce_E[e] 	->	
+EX00318_X	crn_E[e] 	->	
+EX01326_X	cyan_E[e] 	->	
+EX02512_X	cyanala_E[e] 	->	
+EX00097_X	cys-L_E[e] 	->	
+EX00475_X	cytd_E[e] 	->	
+EX00559_X	dad-2_E[e] 	->	
+EX00239_X	dcmp_E[e] 	->	
+EX00881_X	dcyt_E[e] 	->	
+EX02679_X	ddca_E[e] 	->	
+EX00330_X	dgsn_E[e] 	->	
+EX00111_X	dhap_E[e] 	->	
+EX00268_X	dhbpt_E[e] 	->	
+EX05422_X	dhdascb_E[e] 	->	
+EX05512_X	din_E[e] 	->	
+EX03758_X	dopa_E[e] 	->	
+EX01801_X	drib_E[e] 	->	
+EX00459_X	dttp_E[e] 	->	
+EX00526_X	duri_E[e] 	->	
+EX02763_X	enphpyr_E[e] 	->	
+EX00189_X	etha_E[e] 	->	
+EX00346_X	ethamp_E[e] 	->	
+EX00469_X	etoh_E[e] 	->	
+EX00016_X	fad_E[e] 	->	
+EX00067_X	fald_E[e] 	->	
+EX00354_X	fdp_E[e] 	->	
+EX14818_X	fe2_E[e] 	->	
+EX14819_X	fe3_E[e] 	->	
+EX00061_X	fmn_E[e] 	->	
+EX00504_X	fol_E[e] 	->	
+EX00058_X	for_E[e] 	->	
+EX00439_X	forglu_E[e] 	->	
+EX00095_X	fru_E[e] 	->	
+EX00122_X	fum_E[e] 	->	
+EX00670_X	g3pc_E[e] 	->	
+EX00124_X	gal_E[e] 	->	
+EXC0214_X	galgluside_ce_E[e] 	->	
+EX01697_X	galt_E[e] 	->	
+EX00352_X	gam6p_E[e] 	->	
+EX00329_X	gam_E[e] 	->	
+EXC0216_X	gbside_ce_E[e] 	->	
+EX00266_X	gcald_E[e] 	->	
+EX01921_X	gchola_E[e] 	->	
+EX00031_X	glc-D_E[e] 	->	
+EX00257_X	glcn_E[e] 	->	
+EX00818_X	glcr_E[e] 	->	
+EX00191_X	glcur_E[e] 	->	
+EX00064_X	gln-L_E[e] 	->	
+EX00025_X	glu-L_E[e] 	->	
+EX00669_X	glucys_E[e] 	->	
+EXC0213_X	gluside_ce_E[e] 	->	
+EX00048_X	glx_E[e] 	->	
+EX00037_X	gly_E[e] 	->	
+EX00577_X	glyald_E[e] 	->	
+EX00719_X	glyb_E[e] 	->	
+EX00093_X	glyc3p_E[e] 	->	
+EX00116_X	glyc_E[e] 	->	
+EX00160_X	glyclt_E[e] 	->	
+EX00387_X	gsn_E[e] 	->	
+EX00127_X	gthox_E[e] 	->	
+EX00051_X	gthrd_E[e] 	->	
+EX00242_X	gua_E[e] 	->	
+EX00027_X	h2o2_E[e] 	->	
+EX00001_X	h2o_E[e] 	->	
+EX00080_X	h_E[e] 	->	
+EX00288_X	hco3_E[e] 	->	
+EX00249_X	hdca_E[e] 	->	
+EX00544_X	hgentis_E[e] 	->	
+EX00135_X	his-L_E[e] 	->	
+EX00388_X	hista_E[e] 	->	
+EX00262_X	hxan_E[e] 	->	
+EX00708_X	i_E[e] 	->	
+EX00311_X	icit_E[e] 	->	
+EX00407_X	ile-L_E[e] 	->	
+EX00130_X	imp_E[e] 	->	
+EX00954_X	ind3ac_E[e] 	->	
+EX00137_X	inost_E[e] 	->	
+EX00294_X	ins_E[e] 	->	
+EX00081_X	itp_E[e] 	->	
+EX00238_X	k_E[e] 	->	
+EX01717_X	kynate_E[e] 	->	
+EX00256_X	lac-D_E[e] 	->	
+EX00186_X	lac-L_E[e] 	->	
+EX00243_X	lcts_E[e] 	->	
+EX00123_X	leu-L_E[e] 	->	
+EX00909_X	leuktrA4_E[e] 	->	
+EX02165_X	leuktrB4_E[e] 	->	
+EX04853_X	leuktrB4woh_E[e] 	->	
+EX01595_X	lnlc_E[e] 	->	
+EX04230_X	lpchol_E[e] 	->	
+EX18126_X	lpglyc_E[e] 	->	
+EX00047_X	lys-L_E[e] 	->	
+EX01885_X	mag_E[e] 	->	
+EX00149_X	mal-L_E[e] 	->	
+EX00208_X	malt_E[e] 	->	
+EX00159_X	man_E[e] 	->	
+EX05402_X	melib_E[e] 	->	
+EX00132_X	meoh_E[e] 	->	
+EXC0141_X	mercplaccys_E[e] 	->	
+EX00073_X	met-L_E[e] 	->	
+EX05127_X	mhista_E[e] 	->	
+EX00143_X	mlthf_E[e] 	->	
+EX06232_X	mobd_E[e] 	->	
+EX00546_X	mthgxl_E[e] 	->	
+EX01330_X	na1_E[e] 	->	
+EX00253_X	nac_E[e] 	->	
+EX00153_X	ncam_E[e] 	->	
+EX00014_X	nh4_E[e] 	->	
+EX01185_X	nicrnt_E[e] 	->	
+EX00455_X	nmn_E[e] 	->	
+EX00007_X	o2_E[e] 	->	
+EX00704_X	o2s_E[e] 	->	
+EX01530_X	ocdca_E[e] 	->	
+EX04227_X	octpmn_E[e] 	->	
+EX01328_X	oh1_E[e] 	->	
+EX00077_X	orn_E[e] 	->	
+EX01103_X	orot5p_E[e] 	->	
+EX00295_X	orot_E[e] 	->	
+EX02505_X	pad_E[e] 	->	
+EX04598_X	paf_E[e] 	->	
+EX01194_X	pail_E[e] 	->	
+EX00054_X	pap_E[e] 	->	
+EX00157_X	pchol_E[e] 	->	
+EX01211_X	pcollg5hlys_E[e] 	->	
+EX00350_X	pe_E[e] 	->	
+EX05332_X	peamn_E[e] 	->	
+EXC0152_X	pepX_E[e] 	->	
+EX00074_X	pep_E[e] 	->	
+EX00012_X	pepd_E[e] 	->	
+EX02188_X	peplys_E[e] 	->	
+EX00344_X	pglyc_E[e] 	->	
+EX00079_X	phe-L_E[e] 	->	
+EX00032_X	pheme_E[e] 	->	
+EX00166_X	phpyr_E[e] 	->	
+EX00009_X	pi_E[e] 	->	
+EX00864_X	pnto-R_E[e] 	->	
+EX00163_X	ppa_E[e] 	->	
+EX00148_X	pro-L_E[e] 	->	
+EX00696_X	prostgd2_E[e] 	->	
+EX00584_X	prostge2_E[e] 	->	
+EX00427_X	prostgh2_E[e] 	->	
+EX02737_X	ps_E[e] 	->	
+EX00134_X	ptrc_E[e] 	->	
+EX00534_X	pydam_E[e] 	->	
+EX00018_X	pydx5p_E[e] 	->	
+EX00250_X	pydx_E[e] 	->	
+EX00314_X	pydxn_E[e] 	->	
+EX00022_X	pyr_E[e] 	->	
+EXC0013_X	q8_E[e] 	->	
+EX03722_X	quln_E[e] 	->	
+EX00376_X	retinal_E[e] 	->	
+EX00473_X	retinol_E[e] 	->	
+EX00777_X	retn_E[e] 	->	
+EX11061_X	retnglc_E[e] 	->	
+EX00121_X	rib-D_E[e] 	->	
+EX00255_X	ribflv_E[e] 	->	
+EX00794_X	sbt-D_E[e] 	->	
+EX02076_X	sedh_E[e] 	->	
+EX05697_X	sel_E[e] 	->	
+EX05688_X	selcys_E[e] 	->	
+EX05335_X	selmeth_E[e] 	->	
+EX05684_X	selnt_E[e] 	->	
+EX00065_X	ser-L_E[e] 	->	
+EXC9998_X	sideMet[e] 	->	
+EX11499_X	sl-L_E[e] 	->	
+EX00094_X	so3_E[e] 	->	
+EX00059_X	so4_E[e] 	->	
+EXC0203_X	spc_ce_E[e] 	->	
+EXC0208_X	sph1p_ce_E[e] 	->	
+EXC0207_X	sphgn_ce_E[e] 	->	
+EXC0211_X	sphings_ce_E[e] 	->	
+EXC0201_X	sphmyln_ce_E[e] 	->	
+EXC0210_X	sphs1p_ce_E[e] 	->	
+EX00315_X	spmd_E[e] 	->	
+EX00750_X	sprm_E[e] 	->	
+EX00780_X	srtn_E[e] 	->	
+EX01613_X	stachyose_E[e] 	->	
+EXC9999_X	storageMet[e] 	->	
+EX00042_X	succ_E[e] 	->	
+EX00089_X	sucr_E[e] 	->	
+EX00422_X	tag_E[e] 	->	
+EX00245_X	taur_E[e] 	->	
+EX05122_X	tchola_E[e] 	->	
+EX01755_X	tcynt_E[e] 	->	
+EX00272_X	thbpt_E[e] 	->	
+EX04722_X	thcholstoic_E[e] 	->	
+EX00101_X	thf_E[e] 	->	
+EX00378_X	thm_E[e] 	->	
+EX00188_X	thr-L_E[e] 	->	
+EX00178_X	thym_E[e] 	->	
+EX00214_X	thymd_E[e] 	->	
+EX00565_X	tma_E[e] 	->	
+EX03793_X	tmlys_E[e] 	->	
+EX01083_X	tre_E[e] 	->	
+EX00078_X	trp-L_E[e] 	->	
+EX00398_X	trypta_E[e] 	->	
+EX00535_X	tststerone_E[e] 	->	
+EX00320_X	tsul_E[e] 	->	
+EX06424_X	ttdca_E[e] 	->	
+EX00483_X	tym_E[e] 	->	
+EX00082_X	tyr-L_E[e] 	->	
+EX00167_X	udpglcur_E[e] 	->	
+EX00106_X	ura_E[e] 	->	
+EX00366_X	urate_E[e] 	->	
+EX00785_X	urcan_E[e] 	->	
+EX00086_X	urea_E[e] 	->	
+EX00299_X	uri_E[e] 	->	
+EX00075_X	utp_E[e] 	->	
+EXC0135_X	vacc_E[e] 	->	
+EX00183_X	val-L_E[e] 	->	
+EX00385_X	xan_E[e] 	->	
+EX02470_X	xanate_E[e] 	->	
+EX00655_X	xmp_E[e] 	->	
+EX15519_X	xol25oh_E[e] 	->	
+EX15610_X	xol27oh_E[e] 	->	
+EX05455_X	xol7aone_E[e] 	->	
+EX17339_X	xoldiolone_E[e] 	->	
+EX15520_X	xoltri25_E[e] 	->	
+EX06341_X	xoltri27_E[e] 	->	
+EX01762_X	xtsn_E[e] 	->	
+EX00181_X	xyl-D_E[e] 	->	
+EX00379_X	xylt_E[e] 	->	
+>> >> >> >> >> >> >> >> >> >> now starting to fit Intestine... 
+>> >> >> >> >> >> >> >> >> >> >> Start flux fitting... 
+Processing expression data... 
+Elapsed time is 27.200939 seconds.
+fitting high genes with MILP... 
+[Warning: Reaction RCC0005_X not in model] 
+[> In changeRxnBounds (line 55)
+  In autoIntegration_latent (line 50)] 
+...total high gene fitted: 621 
+Elapsed time is 2.095339 seconds.
+Minimizing low flux... 
+Elapsed time is 1.182398 seconds.
+Minimizing low flux completed! 
+Minimizing total flux... 
+Primary Flux Fitting completed! 
+Elapsed time is 1.259916 seconds.
+the bacterial uptake is: -1.559769
+>> >> Start flux fitting... 
+Processing expression data... 
+Elapsed time is 27.657651 seconds.
+fitting high genes with MILP... 
+[Warning: Reaction RCC0005_X not in model] 
+[> In changeRxnBounds (line 55)
+  In autoIntegration_latent (line 50)] 
+...total high gene fitted: 621 
+Elapsed time is 2.197241 seconds.
+Minimizing low flux... 
+Elapsed time is 1.192401 seconds.
+Minimizing low flux completed! 
+Minimizing total flux... 
+Primary Flux Fitting completed! 
+Elapsed time is 1.248948 seconds.
+the total flux is constrianed to 443.81 
+starting the latent fitting loop... 
+...found 76 new latent rxns 
+...total latent fitted: 69 
+latent fitting cycle completed .... #1 
+the total flux constriant is updated to 462.62 
+Elapsed time is 9.214236 seconds.
+...found 18 new latent rxns 
+...total latent fitted: 88 
+latent fitting cycle completed .... #2 
+the total flux constriant is updated to 479.09 
+Elapsed time is 11.252746 seconds.
+...found 1 new latent rxns 
+...total latent fitted: 89 
+latent fitting cycle completed .... #3 
+the total flux constriant is updated to 492.05 
+Elapsed time is 4.518950 seconds.
+...found 1 new latent rxns 
+...total latent fitted: 90 
+latent fitting cycle completed .... #4 
+the total flux constriant is updated to 487.84 
+Elapsed time is 4.262705 seconds.
+...found 1 new latent rxns 
+...total latent fitted: 91 
+latent fitting cycle completed .... #5 
+the total flux constriant is updated to 485.89 
+Elapsed time is 5.013898 seconds.
+...done! 
+the bacterial uptake is: -1.806571
+>> >> Elapsed time is 1.109295 seconds.
+>> 

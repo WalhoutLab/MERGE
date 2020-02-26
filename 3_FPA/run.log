@@ -1,0 +1,7888 @@
+MATLAB is selecting SOFTWARE OPENGL rendering.
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2019 The MathWorks, Inc.
+              R2019a Update 4 (9.6.0.1150989) 64-bit (glnxa64)
+                               June 26, 2019
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+>> >> >> >> >> >> >> 
+
+      _____   _____   _____   _____     _____     |
+     /  ___| /  _  \ |  _  \ |  _  \   / ___ \    |   COnstraint-Based Reconstruction and Analysis
+     | |     | | | | | |_| | | |_| |  | |___| |   |   The COBRA Toolbox - 2020
+     | |     | | | | |  _  { |  _  /  |  ___  |   |
+     | |___  | |_| | | |_| | | | \ \  | |   | |   |   Documentation:
+     \_____| \_____/ |_____/ |_|  \_\ |_|   |_|   |   http://opencobra.github.io/cobratoolbox
+                                                  | 
+
+ > Checking if git is installed ...  Done (version: 2.9.5).
+ > Checking if the repository is tracked using git ...  Done.
+ > Checking if curl is installed ...  Done.
+ > Checking if remote can be reached ...  Done.
+ > Initializing and updating submodules (this may take a while)... Done.
+ > Adding all the files of The COBRA Toolbox ...  Done.
+ > Define CB map output... set to svg.
+ > TranslateSBML is installed and working properly.
+ > Configuring solver environment variables ...
+   - [----] ILOG_CPLEX_PATH: --> set this path manually after installing the solver ( see https://opencobra.github.io/cobratoolbox/docs/solvers.html )
+   - [--*-] GUROBI_PATH: /share/pkg/gurobi/900/linux64/matlab
+   - [----] TOMLAB_PATH: --> set this path manually after installing the solver ( see https://opencobra.github.io/cobratoolbox/docs/solvers.html )
+   - [----] MOSEK_PATH: --> set this path manually after installing the solver ( see https://opencobra.github.io/cobratoolbox/docs/solvers.html )
+   Done.
+ > Checking available solvers and solver interfaces ... Done.
+ > Setting default solvers ... Done.
+ > Saving the MATLAB path ... Done.
+   - The MATLAB path was saved as ~/pathdef.m.
+
+ > Summary of available solvers and solver interfaces
+
+			Support 	   LP 	 MILP 	   QP 	 MIQP 	  NLP
+	----------------------------------------------------------------------
+	gurobi       	active        	    1 	    1 	    1 	    1 	    -
+	ibm_cplex    	active        	    0 	    0 	    0 	    0 	    -
+	tomlab_cplex 	active        	    0 	    0 	    0 	    0 	    -
+	glpk         	active        	    1 	    1 	    - 	    - 	    -
+	mosek        	active        	    0 	    - 	    0 	    - 	    -
+	matlab       	active        	    1 	    - 	    - 	    - 	    1
+	cplex_direct 	active        	    0 	    0 	    0 	    - 	    -
+	dqqMinos     	active        	    1 	    - 	    - 	    - 	    -
+	pdco         	active        	    1 	    - 	    1 	    - 	    -
+	quadMinos    	active        	    1 	    - 	    - 	    - 	    -
+	qpng         	passive       	    - 	    - 	    1 	    - 	    -
+	tomlab_snopt 	passive       	    - 	    - 	    - 	    - 	    0
+	lp_solve     	legacy        	    1 	    - 	    - 	    - 	    -
+	----------------------------------------------------------------------
+	Total        	-             	    7 	    2 	    3 	    1 	    1
+
+ + Legend: - = not applicable, 0 = solver not compatible or not installed, 1 = solver installed.
+
+
+ > You can solve LP problems using: 'glpk' - 'matlab' - 'pdco' 
+ > You can solve MILP problems using: 'glpk' 
+ > You can solve QP problems using: 'pdco' - 'qpng' 
+ > You can solve MIQP problems using: 
+ > You can solve NLP problems using: 'matlab' 
+
+> Checking for available updates ... skipped
+>> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> Starting parallel pool (parpool) using the 'local' profile ...
+[Warning: The system time zone setting, 'US/Eastern', does not specify a single
+time zone unambiguously. It will be treated as 'America/New_York'. See the <a
+href="matlab:doc('datetime.TimeZone')">datetime.TimeZone property</a> for
+details about specifying time zones.] 
+[> In verifyTimeZone (line 34)
+  In datetime (line 543)
+  In parallel.internal.cluster.FileSerializer>iLoadDate (line 342)
+  In parallel.internal.cluster.FileSerializer/getFields (line 100)
+  In parallel.internal.cluster.CJSSupport/getProperties (line 260)
+  In parallel.internal.cluster.CJSSupport/getJobProperties (line 491)
+  In parallel.internal.cluster.CJSJobMixin/hGetProperty (line 108)
+  In parallel.internal.cluster.CJSJobMethods.setJobTerminalStateFromCluster (line 179)
+  In parallel.internal.cluster.CJSJobMixin/hSetTerminalStateFromCluster (line 160)
+  In parallel.cluster.CJSCluster/hGetJobState (line 411)
+  In parallel.internal.cluster.CJSJobMixin/hGetStateEnum (line 144)
+  In parallel.Job/get.StateEnum (line 238)
+  In parallel.Job/get.State (line 230)
+  In parallel.internal.customattr.CustomGetSet>iVectorisedGetHelper (line 128)
+  In parallel.internal.customattr.CustomGetSet>@(a,b,c)iVectorisedGetHelper(obj,a,b,c) (line 102)
+  In parallel.internal.customattr.CustomGetSet/doVectorisedGet (line 103)
+  In parallel.internal.customattr.CustomGetSet/hVectorisedGet (line 76)
+  In parallel.internal.customattr.GetSetImpl>iAccessProperties (line 322)
+  In parallel.internal.customattr.GetSetImpl>iGetAllPropertiesVec (line 264)
+  In parallel.internal.customattr.GetSetImpl.getImpl (line 133)
+  In parallel.internal.customattr.CustomGetSet>iHetFunGetFunction (line 154)
+  In parallel.internal.customattr.CustomGetSet>@(o)iHetFunGetFunction(o,props) (line 139)
+  In parallel.internal.cluster.hetfun (line 46)
+  In parallel.internal.customattr.CustomGetSet>iHetFunGetProperty (line 139)
+  In parallel.internal.customattr.CustomGetSet/get (line 38)
+  In parallel.internal.pool.InteractiveClient/pRemoveOldJobs (line 476)
+  In parallel.internal.pool.InteractiveClient/start (line 317)
+  In parallel.Pool>iStartClient (line 796)
+  In parallel.Pool.hBuildPool (line 585)
+  In parallel.internal.pool.doParpool (line 18)
+  In parpool (line 98)] 
+Connected to the parallel pool (number of workers: 39).
+>> >> >> Calculating the FPA for non-intestinal tissues...
+>> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> Mapping the expression levels to penalties...
+Preparing the distance matrix...
+FPA calculation started:
+
+...................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+>> >> Calculating the FPA for intestine...
+>> >> >> >> >> >> >> >> >> >> >> Mapping the expression levels to penalties...
+Preparing the distance matrix...
+FPA calculation started:
+
+...................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+>> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+Preparing the distance matrix...
+Preparing the distance matrix...
+Preparing the distance matrix...
+Preparing the distance matrix...
+Preparing the distance matrix...
+Preparing the distance matrix...
+Preparing the distance matrix...
+Preparing the distance matrix...
+Preparing the distance matrix...
+Preparing the distance matrix...
+Preparing the distance matrix...
+Preparing the distance matrix...
+done!
+done!
+FPA calculation started:
+Preparing the distance matrix...
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+FPA calculation started:
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+FPA calculation started:
+FPA calculation started:
+done!
+FPA calculation started:
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+FPA calculation started:
+FPA calculation started:
+done!
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+FPA calculation started:
+done!
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+done!
+done!
+done!
+done!
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+done!
+done!
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+FPA calculation started:
+Preparing the distance matrix...
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+FPA calculation started:
+done!
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+FPA calculation started:
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+Preparing the distance matrix...
+done!
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+done!
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+done!
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+done!
+FPA calculation started:
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+done!
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+Preparing the distance matrix...
+done!
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+FPA calculation started:
+done!
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+done!
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+Preparing the distance matrix...
+done!
+Preparing the distance matrix...
+FPA calculation started:
+FPA calculation started:
+done!
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+done!
+FPA calculation started:
+done!
+done!
+Preparing the distance matrix...
+FPA calculation started:
+Preparing the distance matrix...
+FPA calculation started:
+done!
+done!
+>> >> >> >> >> >> >> >> >> >> [Warning: Variable 'fluxEfficiency_plus_I' was not saved. For variables larger
+than 2GB use MAT-file version 7.3 or later.] 
+[Warning: Variable 'fluxEfficiency_plus_I_met' was not saved. For variables
+larger than 2GB use MAT-file version 7.3 or later.] 
+[Warning: Variable 'fluxEfficiency_plus_X' was not saved. For variables larger
+than 2GB use MAT-file version 7.3 or later.] 
+[Warning: Variable 'fluxEfficiency_plus_X_met' was not saved. For variables
+larger than 2GB use MAT-file version 7.3 or later.] 
+[Warning: Objects of class 'parallel.cluster.Local' cannot be saved to MAT
+files.] 
+>> 

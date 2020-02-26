@@ -1,0 +1,99 @@
+%% load model
+addpath /Users/xuhangli/Desktop/Walhout_Lab/conjoined_model_project/new_matlab_functions
+load('Tissue.mat');
+% worm = addDefaultConstraint(model,'default');
+% worm = changeRxnBounds(worm,'RCC0005',10,'l');
+% % change the side proportion
+% worm.S(end-1, strcmp('EXC0050',worm.rxns)) = 0.01*9.6641833;
+% worm.S(end, strcmp('EXC0050',worm.rxns)) = 0.01*9.6641833;
+% % make the epsilon vector
+% [epsilon_f,epsilon_r] = makeEpsilonSeq(worm,worm.rxns,0.01,0.5);
+%% load the constrains for check  
+fname = './input/constraints.json';
+str = fileread(fname);
+for i = 1:length(str)
+    if str(i) == "'"
+        str(i) = '"';
+    end
+end
+constraints = jsondecode(str);
+%% laod the gene expression data
+fname = './input/geneSets.json';
+str = fileread(fname);
+for i = 1:length(str)
+    if str(i) == "'"
+        str(i) = '"';
+    end
+end
+str = regexprep(str,'set(','');
+str = regexprep(str,')','');
+GeneExpression = jsondecode(str);
+%add compartment label and merge
+GeneExpression.Hypodermis.high = strcat(GeneExpression.Hypodermis.high,'_X');
+GeneExpression.Hypodermis.lenient = strcat(GeneExpression.Hypodermis.lenient,'_X');
+GeneExpression.Hypodermis.low = strcat(GeneExpression.Hypodermis.low,'_X');
+GeneExpression.Hypodermis.zero = strcat(GeneExpression.Hypodermis.zero,'_X');
+
+GeneExpression.Intestine.high = strcat(GeneExpression.Intestine.high,'_I');
+GeneExpression.Intestine.lenient = strcat(GeneExpression.Intestine.lenient,'_I');
+GeneExpression.Intestine.low = strcat(GeneExpression.Intestine.low,'_I');
+GeneExpression.Intestine.zero = strcat(GeneExpression.Intestine.zero,'_I');
+
+%merge
+ExpCatag = struct();
+ExpCatag.high = [GeneExpression.Hypodermis.high];
+%ExpCatag.dynamic = [GeneExpression.Hypodermis.lenient;GeneExpression.Intestine.lenient];
+ExpCatag.low = [GeneExpression.Hypodermis.low;GeneExpression.Intestine.low];
+ExpCatag.zero = [GeneExpression.Hypodermis.zero;GeneExpression.Intestine.zero];
+%all the other genes are dynamic (no constriants on) 
+ExpCatag.dynamic = setdiff(model.genes, unique([ExpCatag.high;ExpCatag.low;ExpCatag.zero]));
+%% load epsilon
+fname = './input/epsilon.json';
+str = fileread(fname);
+for i = 1:length(str)
+    if str(i) == "'"
+        str(i) = '"';
+    end
+end
+str = regexprep(str,'u"','"');
+epsilon = jsondecode(str);
+fields = fieldnames(epsilon);
+epsilon_f = 0.01*ones(length(model.rxns),1);
+epsilon_r = 0.01*ones(length(model.rxns),1);
+for i = 1: length(fields)
+    epsilon_f(strcmp(model.rxns,fields{i})) = epsilon.(fields{i})(2);
+    epsilon_r(strcmp(model.rxns,fields{i})) = epsilon.(fields{i})(1);
+end
+%% make PFD
+doLatent = 0;
+storeProp = 0.01;
+SideProp = 0.02;
+capacity_f = [];
+capacity_r = [];
+ATPm = 10;
+doMinPFD = 1;
+doFullSensitivity = 0;
+[OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLNames,latentRxn,sensitivity,PFD,Nfit_latent,minTotal_OFD,MILP] = autoIntegration_latent(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r,capacity_f,capacity_r, ATPm, ExpCatag,doMinPFD,doFullSensitivity);
+%OFD = fix(FluxDistribution_daf2 .* 1e7) ./ 1e7;
+% what's the atpm for each tissue?
+% why not every reaction has epsilon?
+% release some constraints?
+% what is lenient? overlap with low? 
+% need a dynamic category, otherwise these moderate expressed gene will be
+% overide by default value "-1"
+% how is undetectable genes processed? in iMAT, it has -1 score so that all
+% the reactions associated with "and" gate will be exluded from MILP
+% integration! it seems overide some real low expressed rxns (i.e, 0 and -1
+% gives -1, but should be minimized? undetected means zero?)
+%% load the reference data
+%% laod the gene expression data
+fname = './input/fittingQuality.json';
+str = fileread(fname);
+for i = 1:length(str)
+    if str(i) == "'"
+        str(i) = '"';
+    end
+end
+str = regexprep(str,'set(','');
+str = regexprep(str,')','');
+GeneExpression = jsondecode(str);
