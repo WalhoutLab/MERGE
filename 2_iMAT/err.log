@@ -1,0 +1,10 @@
+gurobi/900(23):ERROR:150: Module 'gurobi/900' conflicts with the currently loaded module(s) 'gurobi/810'
+gurobi/900(23):ERROR:102: Tcl command execution failed: conflict gurobi
+
+matlab R2017a is located under /share/pkg/matlab/R2017a
+git 2.9.5 is located under /share/pkg/git/2.9.5
+Terminated
+gurobi 900 is located under /share/pkg/gurobi/900/linux64
+Run gurobi.sh to start interactive shell
+matlab R2017a is located under /share/pkg/matlab/R2017a
+git 2.9.5 is located under /share/pkg/git/2.9.5

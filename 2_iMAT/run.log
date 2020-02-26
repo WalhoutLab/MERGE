@@ -1,0 +1,1100 @@
+MATLAB is selecting SOFTWARE OPENGL rendering.
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017a (9.2.0.556344) 64-bit (glnxa64)
+                               March 27, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+>> >> >> >> >> >> 
+
+      _____   _____   _____   _____     _____     |
+     /  ___| /  _  \ |  _  \ |  _  \   / ___ \    |   COnstraint-Based Reconstruction and Analysis
+     | |     | | | | | |_| | | |_| |  | |___| |   |   The COBRA Toolbox - 2020
+     | |     | | | | |  _  { |  _  /  |  ___  |   |
+     | |___  | |_| | | |_| | | | \ \  | |   | |   |   Documentation:
+     \_____| \_____/ |_____/ |_|  \_\ |_|   |_|   |   http://opencobra.github.io/cobratoolbox
+                                                  | 
+
+ > Checking if git is installed ...  Done (version: 2.9.5).
+ > Checking if the repository is tracked using git ...  Done.
+ > Checking if curl is installed ...  Done.
+ > Checking if remote can be reached ...  Done.
+ > Initializing and updating submodules (this may take a while)... Done.
+ > Adding all the files of The COBRA Toolbox ...  Done.
+ > Define CB map output... set to svg.
+ > TranslateSBML is installed and working properly.
+ > Configuring solver environment variables ...
+   - [----] ILOG_CPLEX_PATH: --> set this path manually after installing the solver ( see https://opencobra.github.io/cobratoolbox/docs/solvers.html )
+   - [--*-] GUROBI_PATH: /share/pkg/gurobi/900/linux64/matlab
+   - [----] TOMLAB_PATH: --> set this path manually after installing the solver ( see https://opencobra.github.io/cobratoolbox/docs/solvers.html )
+   - [----] MOSEK_PATH: --> set this path manually after installing the solver ( see https://opencobra.github.io/cobratoolbox/docs/solvers.html )
+   Done.
+ > Checking available solvers and solver interfaces ... Done.
+ > Setting default solvers ... Done.
+ > Saving the MATLAB path ... Done.
+   - The MATLAB path was saved as ~/pathdef.m.
+
+ > Summary of available solvers and solver interfaces
+
+			Support 	   LP 	 MILP 	   QP 	 MIQP 	  NLP
+	----------------------------------------------------------------------
+	gurobi       	active        	    1 	    1 	    1 	    1 	    -
+	ibm_cplex    	active        	    0 	    0 	    0 	    0 	    -
+	tomlab_cplex 	active        	    0 	    0 	    0 	    0 	    -
+	glpk         	active        	    1 	    1 	    - 	    - 	    -
+	mosek        	active        	    0 	    - 	    0 	    - 	    -
+	matlab       	active        	    1 	    - 	    - 	    - 	    1
+	cplex_direct 	active        	    0 	    0 	    0 	    - 	    -
+	dqqMinos     	active        	    1 	    - 	    - 	    - 	    -
+	pdco         	active        	    1 	    - 	    1 	    - 	    -
+	quadMinos    	active        	    1 	    - 	    - 	    - 	    -
+	qpng         	passive       	    - 	    - 	    1 	    - 	    -
+	tomlab_snopt 	passive       	    - 	    - 	    - 	    - 	    0
+	lp_solve     	legacy        	    1 	    - 	    - 	    - 	    -
+	----------------------------------------------------------------------
+	Total        	-             	    7 	    2 	    3 	    1 	    1
+
+ + Legend: - = not applicable, 0 = solver not compatible or not installed, 1 = solver installed.
+
+
+ > You can solve LP problems using: 'gurobi' - 'glpk' - 'matlab' - 'pdco' 
+ > You can solve MILP problems using: 'gurobi' - 'glpk' 
+ > You can solve QP problems using: 'gurobi' - 'pdco' - 'qpng' 
+ > You can solve MIQP problems using: 'gurobi' 
+ > You can solve NLP problems using: 'matlab' 
+
+ > Checking for available updates ...
+ > There are 7357 new commit(s) on <master> and 0 new commit(s) on <develop> [c67a68 @ master]
+ > You can update The COBRA Toolbox by running updateCobraToolbox() (from within MATLAB).
+>> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> now starting to fit Hypodermis... 
+Start flux fitting... 
+Processing expression data... 
+Elapsed time is 44.058850 seconds.
+fitting iMAT... 
+Elapsed time is 7.941535 seconds.
+Minimizing total flux... 
+Gurobi Optimizer version 9.0.0 build v9.0.0rc2 (linux64)
+Optimize a model with 14128 rows, 10675 columns and 42617 nonzeros
+Model fingerprint: 0x2971e1b2
+Variable types: 9012 continuous, 1663 integer (1663 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [9e+02, 1e+03]
+Presolve removed 9779 rows and 6017 columns
+Presolve time: 0.08s
+Presolved: 4349 rows, 4658 columns, 19074 nonzeros
+Variable types: 3552 continuous, 1106 integer (1106 binary)
+
+Root relaxation: objective 1.849445e+02, 7741 iterations, 1.10 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  184.94452    0  300          -  184.94452      -     -    1s
+     0     0  283.90081    0  177          -  283.90081      -     -    1s
+     0     0  315.49563    0  156          -  315.49563      -     -    1s
+     0     0  355.89951    0  121          -  355.89951      -     -    2s
+     0     0  364.68344    0  122          -  364.68344      -     -    2s
+     0     0  364.76425    0  122          -  364.76425      -     -    2s
+     0     0  364.93122    0  122          -  364.93122      -     -    2s
+     0     0  365.31650    0  120          -  365.31650      -     -    2s
+     0     0  365.41573    0  120          -  365.41573      -     -    2s
+     0     0  365.42829    0  120          -  365.42829      -     -    2s
+     0     0  365.42829    0  118          -  365.42829      -     -    2s
+     0     2  372.20501    0  118          -  372.20501      -     -    4s
+     7    14  383.44547    3  127          -  378.07864      -   143    5s
+   488   523  484.21433   28   60          -  393.17223      -  90.2   13s
+   697   699  397.33128    9  111          -  394.03354      -   120   17s
+   765   796  397.43676   10  109          -  394.03354      -   133   24s
+   876   882  397.95853   13  105          -  394.03354      -   165   27s
+  1116  1040 infeasible   24               -  394.03354      -   153   32s
+  1234  1079  420.19839   25   68          -  394.03354      -   158   35s
+  1487  1151 infeasible   14               -  394.40154      -   182   40s
+  1910  1327  412.38729   25   59          -  394.72163      -   176   46s
+  2374  1588  397.37293   15   98          -  395.08298      -   169   55s
+  2872  1769 infeasible   28               -  396.00443      -   164   63s
+  3031  1939 infeasible   24               -  396.09038      -   167   68s
+  3296  1941  475.30418   17  301          -  397.05016      -   164   70s
+  3315  1954  508.76938   50   51          -  432.71331      -   163   75s
+  3317  1956 infeasible   16               -  438.63562      -   4.0   80s
+* 3371  1897              24     790.2952248  789.49255  0.10%   7.4   84s
+* 3381  1801              24     789.8109527  789.49459  0.04%   7.5   84s
+H 3387  1700                     789.7704504  789.49459  0.03%   7.5   84s
+H 3392  1614                     789.5579604  789.49459  0.01%   7.5   84s
+* 3398  1532              25     789.5194058  789.49784  0.00%   7.5   84s
+
+Cutting planes:
+  Learned: 160
+  Gomory: 29
+  Cover: 50
+  Implied bound: 9
+  Clique: 185
+  MIR: 12
+  Flow cover: 294
+  Relax-and-lift: 7
+
+Explored 3425 nodes (577018 simplex iterations) in 85.26 seconds
+Thread count was 20 (of 20 available processors)
+
+Solution count 5: 789.519 789.558 789.77 ... 790.295
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective 7.895194060591e+02, best bound 7.895194058052e+02, gap 0.0000%
+Primary Flux Fitting completed! 
+Elapsed time is 86.653015 seconds.
+the bacterial uptake is: -3.240531
+the total waste of bulk bacteria is: 0.368790
+Elapsed time is 141.294002 seconds.
+now starting to fit Gonad... 
+Start flux fitting... 
+Processing expression data... 
+Elapsed time is 43.400464 seconds.
+fitting iMAT... 
+Elapsed time is 16.576900 seconds.
+Minimizing total flux... 
+Gurobi Optimizer version 9.0.0 build v9.0.0rc2 (linux64)
+Optimize a model with 14520 rows, 10864 columns and 43648 nonzeros
+Model fingerprint: 0x37c45918
+Variable types: 9012 continuous, 1852 integer (1852 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 9932 rows and 6020 columns
+Presolve time: 0.09s
+Presolved: 4588 rows, 4844 columns, 19736 nonzeros
+Variable types: 3551 continuous, 1293 integer (1293 binary)
+
+Root relaxation: objective 1.834329e+02, 11206 iterations, 1.83 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  183.43289    0  320          -  183.43289      -     -    2s
+     0     0  300.82685    0  213          -  300.82685      -     -    2s
+     0     0  341.14060    0  184          -  341.14060      -     -    2s
+     0     0  343.12709    0  187          -  343.12709      -     -    3s
+     0     0  376.88331    0  172          -  376.88331      -     -    3s
+     0     0  376.88765    0  174          -  376.88765      -     -    3s
+     0     0  376.91596    0  174          -  376.91596      -     -    3s
+     0     0  382.51134    0  171          -  382.51134      -     -    3s
+     0     0  382.51134    0  172          -  382.51134      -     -    3s
+     0     0  382.51134    0  168          -  382.51134      -     -    3s
+     0     0  382.51134    0  168          -  382.51134      -     -    4s
+     0     2  388.58703    0  168          -  388.58703      -     -    6s
+    83    64  459.17493    8  135          -  456.67614      -   374   10s
+   411   356 infeasible   19               -  459.25690      -   179   15s
+   554   483 infeasible   18               -  459.25690      -   181   22s
+   855   726 infeasible   22               -  459.25690      -   154   27s
+  1095   841 infeasible   21               -  459.25690      -   149   37s
+  1244   911  708.92576   60   96          -  459.25690      -   166   41s
+  1689  1182 infeasible   69               -  459.25690      -   156   45s
+  2075  1405  720.76988   74   77          -  459.25690      -   151   52s
+  2238  1554  729.52846   74   79          -  459.25690      -   151   56s
+  2450  1558  478.69863   44  167          -  459.25690      -   147   60s
+  2463  1567 infeasible   15               -  459.25690      -   8.9   67s
+  2490  1596  813.15130   21   12          -  812.69851      -  13.4   70s
+H 2574  1575                     813.3970916  812.74918  0.08%  13.5   71s
+H 2577  1499                     813.1600593  812.74918  0.05%  13.4   71s
+H 2606  1387                     813.1158904  812.74918  0.05%  13.5   71s
+H 2611  1318                     813.1149605  812.74918  0.04%  13.5   71s
+H 2617  1252                     813.0950020  812.74918  0.04%  13.4   71s
+H 2657  1139                     813.0938458  812.74918  0.04%  13.2   71s
+
+Cutting planes:
+  Learned: 168
+  Gomory: 33
+  Cover: 135
+  Implied bound: 6
+  Clique: 276
+  MIR: 8
+  Flow cover: 316
+  Inf proof: 1
+  Relax-and-lift: 9
+
+Explored 2737 nodes (408795 simplex iterations) in 71.23 seconds
+Thread count was 20 (of 20 available processors)
+
+Solution count 6: 813.094 813.095 813.115 ... 813.397
+
+Optimal solution found (tolerance 1.00e-12)
+Warning: max constraint violation (3.3159e-09) exceeds tolerance
+Warning: max bound violation (3.3159e-09) exceeds tolerance
+Best objective 8.130938458039e+02, best bound 8.130938458039e+02, gap 0.0000%
+Primary Flux Fitting completed! 
+Elapsed time is 71.288039 seconds.
+the bacterial uptake is: -5.014840
+the total waste of bulk bacteria is: 0.601924
+Elapsed time is 131.858448 seconds.
+now starting to fit Glia... 
+Start flux fitting... 
+Processing expression data... 
+Elapsed time is 44.629272 seconds.
+fitting iMAT... 
+Elapsed time is 16.314677 seconds.
+Minimizing total flux... 
+Gurobi Optimizer version 9.0.0 build v9.0.0rc2 (linux64)
+Optimize a model with 14156 rows, 10571 columns and 42362 nonzeros
+Model fingerprint: 0x44327cff
+Variable types: 9012 continuous, 1559 integer (1559 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [9e+02, 1e+03]
+Presolve removed 9790 rows and 5913 columns
+Presolve time: 0.08s
+Presolved: 4366 rows, 4658 columns, 19085 nonzeros
+Variable types: 3552 continuous, 1106 integer (1106 binary)
+
+Root relaxation: objective 1.738842e+02, 8248 iterations, 1.12 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  173.88420    0  321          -  173.88420      -     -    1s
+     0     0  225.99982    0  224          -  225.99982      -     -    1s
+     0     0  238.42094    0  176          -  238.42094      -     -    1s
+     0     0  238.42094    0  179          -  238.42094      -     -    1s
+     0     0  289.06672    0  153          -  289.06672      -     -    2s
+     0     0  303.93014    0  147          -  303.93014      -     -    2s
+     0     0  304.35309    0  145          -  304.35309      -     -    2s
+     0     0  306.95504    0  143          -  306.95504      -     -    2s
+     0     0  307.01498    0  143          -  307.01498      -     -    2s
+     0     0  308.33992    0  141          -  308.33992      -     -    2s
+     0     0  308.66349    0  141          -  308.66349      -     -    2s
+     0     0  309.47065    0  139          -  309.47065      -     -    2s
+     0     0  309.54311    0  138          -  309.54311      -     -    2s
+     0     0  316.42250    0  142          -  316.42250      -     -    2s
+     0     0  316.82525    0  140          -  316.82525      -     -    2s
+     0     0  316.83251    0  143          -  316.83251      -     -    2s
+     0     0  317.31152    0  141          -  317.31152      -     -    2s
+     0     0  317.36129    0  141          -  317.36129      -     -    2s
+     0     0  317.36600    0  141          -  317.36600      -     -    2s
+     0     0  317.36600    0  141          -  317.36600      -     -    2s
+     0     0  317.36600    0  139          -  317.36600      -     -    3s
+     0     2  317.37034    0  135          -  317.37034      -     -    6s
+   137   158  364.43110    9  120          -  354.30801      -   291   13s
+   167   169 infeasible    9               -  354.30801      -   433   20s
+   194   177  379.53844   10  133          -  354.30801      -   545   25s
+   261   215  386.99537   11  128          -  354.30801      -   691   36s
+   308   231  391.36151   12  126          -  354.30801      -   723   44s
+   358   225  451.57281   13  128          -  354.30801      -   763   53s
+   390   215  454.46336   14  130          -  354.30801      -   882   61s
+   426   235 infeasible   15               -  354.41794      -   926   65s
+   538   288 infeasible   14               -  354.41794      -   848   72s
+   595   310  493.65687   15  114          -  354.41794      -   830   76s
+   655   314  498.78316   18  108          -  354.41794      -   813   82s
+   699   308  498.97393   19  104          -  354.41794      -   854   86s
+   739   327 infeasible   20               -  354.41794      -   911   91s
+   818   356 infeasible   19               -  357.63010      -   883  100s
+   899   376  456.04749    9  104          -  357.63010      -   899  108s
+   967   382  postponed   12               -  357.63010      -   901  113s
+  1029   392 infeasible   13               -  357.63010      -   908  118s
+  1099   408 infeasible   14               -  357.63010      -   901  123s
+  1179   405  493.03181   14  112          -  357.63010      -   877  127s
+  1241   427  506.70252   16  104          -  357.63010      -   870  137s
+  1327   454 infeasible   16               -  365.29628      -   852  141s
+  1428   492  postponed   19               -  365.29628      -   836  147s
+  1540   550 infeasible   20               -  365.31688      -   826  153s
+  1678   558  postponed   15               -  372.90138      -   811  158s
+  1773   590  402.75405   13  126          -  372.90138      -   825  164s
+  1877   602 infeasible   17               -  372.90138      -   831  170s
+  1967   653 infeasible   17               -  372.90138      -   854  177s
+  2090   657  708.45344   16  121          -  372.90138      -   853  183s
+  2182   692  879.07610   19  113          -  372.90138      -   859  188s
+  2327   756 infeasible   22               -  375.38823      -   841  195s
+  2524   791  455.28193   16  122          -  375.40208      -   808  202s
+  2694   834  383.91913   19  127          -  376.63644      -   787  211s
+  2871   941 infeasible   28               -  376.63644      -   776  216s
+  3108  1074  389.15068   33  101          -  376.63697      -   757  226s
+  3394  1150  415.99781   11  108          -  377.30158      -   733  234s
+  3625  1193 infeasible   18               -  377.30158      -   729  243s
+  3858  1267  767.18481   15  134          -  377.30158      -   725  250s
+  4116  1298 1223.72610   20  127          -  377.30158      -   715  263s
+  4416  1309 1232.15996   22  125          -  377.30158      -   695  270s
+  4573  1364 1241.55407   30  116          -  377.30158      -   709  278s
+  4851  1426 infeasible   46               -  382.08835      -   709  287s
+  5214  1557  476.82013   11  116          -  382.59919      -   693  296s
+  5565  1657  482.46970   27   90          -  385.23355      -   682  307s
+  5948  1715 infeasible   16               -  385.23362      -   672  317s
+  6330  1766  405.49686   15  118          -  387.15967      -   670  325s
+  6661  1886  477.83486   12  109          -  388.78218      -   668  340s
+  7117  1895  474.75570   34  101          -  389.42019      -   655  345s
+  7122  1901  389.42019   14   94          -  389.42019      -   1.7  352s
+  7128  1905  458.05325   16  112          -  396.11514      -   2.1  356s
+  7144  1914 infeasible   18               -  415.35612      -   4.5  362s
+  7160  1913  503.78481   19   93          -  417.96722      -   5.4  366s
+  7200  1898  514.52722   21   86          -  467.84327      -  14.3  373s
+  7220  1896 infeasible   22               -  467.84327      -  21.5  377s
+  7240  1892  postponed   23               -  503.30163      -  28.7  381s
+  7269  1885 infeasible   24               -  503.30163      -  32.5  385s
+  7296  1877 infeasible   25               -  503.30163      -  39.8  392s
+  7328  1881 infeasible   25               -  503.30163      -  47.2  396s
+  7368  1864  postponed   26               -  503.30163      -  53.0  408s
+  7401  1857  postponed   27               -  503.30163      -  68.3  412s
+  7439  1851 infeasible   27               -  503.30163      -  77.4  419s
+  7476  1832 infeasible   28               -  503.30163      -  91.6  422s
+  7520  1817 infeasible   29               -  503.33715      -   101  425s
+  7624  1778 infeasible   23               -  511.87759      -   113  434s
+  7686  1730 infeasible   23               -  511.91691      -   127  436s
+  7733  1705 infeasible   29               -  752.37677      -   135  442s
+  7758  1694 infeasible   30               -  752.37677      -   144  446s
+  7789  1711  787.52239   32   38          -  759.47032      -   152  452s
+* 7926  1712              48     779.7444778  759.47032  2.60%   154  453s
+  7972  1649     cutoff   42       779.74448  759.47032  2.60%   153  455s
+H 7991  1553                     779.6971292  759.47032  2.59%   155  455s
+* 7993  1466              47     779.6606895  759.47032  2.59%   155  455s
+* 7994  1385              47     779.6565650  759.47032  2.59%   155  455s
+* 8197  1131              46     779.6565648  778.97771  0.09%   152  455s
+
+Cutting planes:
+  Learned: 179
+  Gomory: 27
+  Cover: 100
+  Implied bound: 4
+  Clique: 232
+  MIR: 7
+  Flow cover: 289
+  Inf proof: 28
+  Relax-and-lift: 11
+
+Explored 8316 nodes (5919029 simplex iterations) in 455.93 seconds
+Thread count was 20 (of 20 available processors)
+
+Solution count 5: 779.657 779.657 779.661 ... 779.744
+
+Optimal solution found (tolerance 1.00e-12)
+Warning: max constraint violation (6.5876e-09) exceeds tolerance
+Warning: max bound violation (3.1690e-09) exceeds tolerance
+Best objective 7.796565647629e+02, best bound 7.796565647598e+02, gap 0.0000%
+Primary Flux Fitting completed! 
+Elapsed time is 455.984105 seconds.
+the bacterial uptake is: -3.054526
+the total waste of bulk bacteria is: 0.284990
+Elapsed time is 517.483121 seconds.
+now starting to fit Pharynx... 
+Start flux fitting... 
+Processing expression data... 
+Elapsed time is 43.249135 seconds.
+fitting iMAT... 
+Elapsed time is 32.519209 seconds.
+Minimizing total flux... 
+Gurobi Optimizer version 9.0.0 build v9.0.0rc2 (linux64)
+Optimize a model with 14154 rows, 10566 columns and 42348 nonzeros
+Model fingerprint: 0x48c78750
+Variable types: 9012 continuous, 1554 integer (1554 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [9e+02, 1e+03]
+Presolve removed 9798 rows and 5927 columns
+Presolve time: 0.08s
+Presolved: 4356 rows, 4639 columns, 19025 nonzeros
+Variable types: 3546 continuous, 1093 integer (1093 binary)
+
+Root relaxation: objective 1.750975e+02, 8281 iterations, 1.07 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  175.09749    0  300          -  175.09749      -     -    1s
+     0     0  240.52336    0  223          -  240.52336      -     -    1s
+     0     0  264.31235    0  174          -  264.31235      -     -    1s
+     0     0  265.51441    0  173          -  265.51441      -     -    1s
+     0     0  312.69855    0  132          -  312.69855      -     -    2s
+     0     0  322.60794    0  123          -  322.60794      -     -    2s
+     0     0  323.56342    0  127          -  323.56342      -     -    2s
+     0     0  327.50891    0  130          -  327.50891      -     -    2s
+     0     0  328.00590    0  130          -  328.00590      -     -    2s
+     0     0  328.57108    0  130          -  328.57108      -     -    2s
+     0     0  328.84263    0  127          -  328.84263      -     -    2s
+     0     0  329.27071    0  127          -  329.27071      -     -    2s
+     0     0  330.32530    0  132          -  330.32530      -     -    2s
+     0     0  330.41119    0  132          -  330.41119      -     -    2s
+     0     0  330.69532    0  133          -  330.69532      -     -    2s
+     0     0  330.81109    0  135          -  330.81109      -     -    2s
+     0     0  330.81973    0  135          -  330.81973      -     -    2s
+     0     0  330.82541    0  135          -  330.82541      -     -    2s
+     0     0  330.84084    0  135          -  330.84084      -     -    2s
+     0     0  330.84221    0  135          -  330.84221      -     -    2s
+     0     0  330.84221    0  133          -  330.84221      -     -    3s
+     0     2  330.84551    0  129          -  330.84551      -     -    5s
+   176   190  396.85692   10  108          -  351.64217      -   181   10s
+   249   239 infeasible   10               -  351.64217      -   347   15s
+   461   392  432.81589    8  122          -  354.74857      -   249   21s
+   702   479  452.29252   10  117          -  354.74857      -   216   25s
+   829   527 infeasible   12               -  354.74857      -   260   32s
+   892   571  486.85916   16   99          -  354.74857      -   259   35s
+  1174   712  509.27458   24  102          -  361.61799      -   251   43s
+  1290   749  449.25245    7  117          -  361.61799      -   246   47s
+  1395   795  446.57611    9  104          -  361.61799      -   243   50s
+  1659   886  516.23382   30   92          -  361.61799      -   236   57s
+  1762   949 infeasible   36               -  361.62225      -   239   61s
+  1895  1019  398.76741   12  124          -  362.27072      -   240   65s
+  2238  1142  380.55793   21   95          -  362.27072      -   231   72s
+  2378  1188 infeasible   24               -  362.27072      -   242   75s
+  2701  1280  403.16828   12  120          -  363.89680      -   257   82s
+  2904  1319 infeasible   16               -  363.89680      -   259   86s
+  3085  1388 infeasible   24               -  364.25211      -   256   90s
+  3352  1484  409.50596   14  107          -  364.45243      -   254   97s
+  3562  1514 infeasible   17               -  365.15263      -   252  101s
+  3786  1561 infeasible   12               -  365.88013      -   251  105s
+  4023  1568  424.71457   18  107          -  365.88013      -   248  116s
+  4242  1680 infeasible   20               -  365.88013      -   247  120s
+  4587  1751 infeasible   22               -  365.88013      -   242  125s
+  4885  1832  423.99179   10  104          -  365.88013      -   239  130s
+  5272  1892 infeasible   13               -  365.88013      -   234  135s
+  5604  1982  409.43624   14  118          -  365.94428      -   232  141s
+  5942  2065  373.50884   14  108          -  368.94708      -   232  146s
+  6240  2176 infeasible   15               -  370.25546      -   234  153s
+  6581  2278  407.89417   16  115          -  370.39398      -   231  161s
+  6940  2285  420.28272   26  118          -  375.10326      -   229  165s
+  6948  2293  383.28665   12  108          -  382.40032      -   1.6  171s
+  6954  2299 infeasible   14               -  390.87905      -   1.8  175s
+  6994  2314 infeasible   17               -  454.17604      -   5.6  180s
+  7034  2325  715.96826   19   25          -  456.88334      -   8.9  186s
+  7054  2340  718.39961   20   23          -  459.86027      -  11.5  190s
+  7116  2331  718.67971   23   20          -  463.11923      -  16.1  198s
+  7146  2319 infeasible   24               -  463.11923      -  21.3  202s
+  7182  2316 infeasible   22               -  463.89274      -  25.3  207s
+  7270  2338  520.22888   24  105          -  463.89274      -  30.6  213s
+  7318  2341  792.99476   24   31          -  463.89274      -  34.2  216s
+  7430  2334  525.23307   27   58          -  463.89274      -  42.4  226s
+  7493  2317  527.68468   29   48          -  463.89274      -  47.8  230s
+  7556  2320  783.22305   28   34          -  463.89274      -  52.9  238s
+  7614  2318  755.95676   30   69          -  463.89274      -  55.7  241s
+  7699  2321  530.66477   30   53          -  463.89274      -  57.7  245s
+* 7758  2186              52     819.8723067  463.89274  43.4%  59.3  245s
+* 7874  2049              52     819.8367888  463.89274  43.4%  62.1  249s
+H 7915  1931                     819.8348885  463.89274  43.4%  62.7  249s
+* 7918  1832              50     819.8248885  463.89274  43.4%  62.7  249s
+* 7921  1737              50     819.7893706  463.89274  43.4%  62.6  249s
+  7935  1567 infeasible   36       819.78937  469.47602  42.7%  62.9  254s
+  8128  1424     cutoff   22       819.78937  474.48868  42.1%  65.6  256s
+* 8259  1260              50     819.7844103  493.23086  39.8%  67.8  256s
+H 8261  1175                     819.7588924  493.23086  39.8%  67.8  256s
+  8304  1160 infeasible   24       819.75889  559.06603  31.8%  68.2  261s
+H 8336  1070                     819.5776750  559.06603  31.8%  69.3  261s
+* 8339   993              50     819.5765005  559.06603  31.8%  69.3  261s
+* 8341   920              50     819.4935789  559.06603  31.8%  69.3  261s
+
+Cutting planes:
+  Learned: 151
+  Gomory: 32
+  Cover: 41
+  Implied bound: 11
+  Clique: 227
+  MIR: 11
+  Flow cover: 342
+  Inf proof: 146
+  Relax-and-lift: 8
+
+Explored 8420 nodes (2194145 simplex iterations) in 262.71 seconds
+Thread count was 20 (of 20 available processors)
+
+Solution count 10: 819.494 819.577 819.578 ... 819.872
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective 8.194935788949e+02, best bound 8.194935788949e+02, gap 0.0000%
+Primary Flux Fitting completed! 
+Elapsed time is 262.757729 seconds.
+the bacterial uptake is: -4.113524
+the total waste of bulk bacteria is: 0.506745
+Elapsed time is 339.083761 seconds.
+now starting to fit Body_wall_muscle... 
+Start flux fitting... 
+Processing expression data... 
+Elapsed time is 43.309670 seconds.
+fitting iMAT... 
+Elapsed time is 25.667075 seconds.
+Minimizing total flux... 
+Gurobi Optimizer version 9.0.0 build v9.0.0rc2 (linux64)
+Optimize a model with 14238 rows, 10632 columns and 42633 nonzeros
+Model fingerprint: 0xb3181d08
+Variable types: 9012 continuous, 1620 integer (1620 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [1e+03, 1e+03]
+Presolve removed 9833 rows and 5941 columns
+Presolve time: 0.08s
+Presolved: 4405 rows, 4691 columns, 19199 nonzeros
+Variable types: 3554 continuous, 1137 integer (1137 binary)
+
+Root relaxation: objective 1.780149e+02, 8955 iterations, 1.29 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  178.01488    0  315          -  178.01488      -     -    1s
+     0     0  260.73198    0  237          -  260.73198      -     -    1s
+     0     0  288.22265    0  207          -  288.22265      -     -    2s
+     0     0  288.30196    0  211          -  288.30196      -     -    2s
+     0     0  342.90841    0  172          -  342.90841      -     -    2s
+     0     0  345.29618    0  173          -  345.29618      -     -    2s
+     0     0  345.75034    0  173          -  345.75034      -     -    2s
+     0     0  345.94860    0  171          -  345.94860      -     -    2s
+     0     0  346.33974    0  171          -  346.33974      -     -    2s
+     0     0  346.33974    0  171          -  346.33974      -     -    3s
+     0     2  352.98634    0  171          -  352.98634      -     -    4s
+     1     4  352.98634    1  171          -  352.98634      -  72.0    5s
+   420   446  490.23364   28  122          -  373.52663      -   153   10s
+   954  1007  497.71148   58   80          -  373.52663      -   113   15s
+  1236  1177  504.80899   74   43          -  373.52663      -   127   20s
+  1517  1338 infeasible   76               -  373.52663      -   148   25s
+  1718  1458 infeasible   76               -  374.48617      -   156   34s
+  1820  1497  397.05375   10   83          -  374.48617      -   161   39s
+  1897  1602  518.23307   15   66          -  374.52998      -   167   47s
+  2056  1689  378.98283   11  153          -  375.37807      -   165   52s
+  2181  1781  381.28342   15  161          -  375.37807      -   169   55s
+  2324  1790  424.16438   13  100          -  424.16438      -   173   63s
+  2330  1794  494.13561   35   94          -  424.79313      -   173   67s
+  2333  1797 infeasible   11               -  492.26216      -  10.6   75s
+  2341  1796  662.40988   13   57          -  528.78228      -  25.8   82s
+  2355  1792  788.14722   16   26          -  774.59309      -  38.8   85s
+* 2607  1904              29     780.6809006  780.40426  0.04%  37.9   88s
+H 2660  1728                     780.6376050  780.40426  0.03%  37.4   88s
+H 2751  1540                     780.6319771  780.42215  0.03%  36.2   88s
+* 2935  1274              32     780.6311972  780.55589  0.01%  34.1   88s
+* 3005  1166              32     780.6246739  780.55675  0.01%  33.3   88s
+* 3031  1088              32     780.6238290  780.56422  0.01%  33.0   88s
+H 3032  1018                     780.6227752  780.56422  0.01%  33.0   88s
+
+Cutting planes:
+  Learned: 167
+  Gomory: 21
+  Cover: 60
+  Implied bound: 7
+  Clique: 184
+  MIR: 13
+  Flow cover: 363
+  Inf proof: 3
+  Relax-and-lift: 9
+
+Explored 3041 nodes (513205 simplex iterations) in 88.81 seconds
+Thread count was 20 (of 20 available processors)
+
+Solution count 7: 780.623 780.624 780.625 ... 780.681
+
+Optimal solution found (tolerance 1.00e-12)
+Warning: max constraint violation (3.2512e-09) exceeds tolerance
+Warning: max bound violation (2.3299e-09) exceeds tolerance
+Best objective 7.806227752235e+02, best bound 7.806227752165e+02, gap 0.0000%
+Primary Flux Fitting completed! 
+Elapsed time is 88.866703 seconds.
+the bacterial uptake is: -4.268748
+the total waste of bulk bacteria is: 0.571533
+Elapsed time is 158.425709 seconds.
+now starting to fit Neurons... 
+Start flux fitting... 
+Processing expression data... 
+Elapsed time is 43.302319 seconds.
+fitting iMAT... 
+Elapsed time is 12.150637 seconds.
+Minimizing total flux... 
+Gurobi Optimizer version 9.0.0 build v9.0.0rc2 (linux64)
+Optimize a model with 14082 rows, 10502 columns and 42089 nonzeros
+Model fingerprint: 0xfccd043e
+Variable types: 9012 continuous, 1490 integer (1490 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [9e+02, 1e+03]
+Presolve removed 9771 rows and 5907 columns
+Presolve time: 0.08s
+Presolved: 4311 rows, 4595 columns, 18872 nonzeros
+Variable types: 3546 continuous, 1049 integer (1049 binary)
+
+Root relaxation: objective 1.752005e+02, 7846 iterations, 1.03 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  175.20051    0  271          -  175.20051      -     -    1s
+     0     0  243.89873    0  186          -  243.89873      -     -    1s
+     0     0  267.05889    0  166          -  267.05889      -     -    1s
+     0     0  267.71098    0  167          -  267.71098      -     -    1s
+     0     0  344.95976    0  130          -  344.95976      -     -    1s
+     0     0  345.66454    0  133          -  345.66454      -     -    2s
+     0     0  345.66454    0  134          -  345.66454      -     -    2s
+     0     0  345.66454    0  134          -  345.66454      -     -    2s
+     0     2  354.39785    0  133          -  354.39785      -     -    4s
+    15    30  492.95217    4   61          -  371.03353      -   359    5s
+    51    56  485.75131    6  123          -  371.65097      -   637   11s
+   256   293  495.02034   16  115          -  372.46031      -   300   15s
+   379   433  495.58004   23  102          -  372.46031      -   244   22s
+   651   720  497.58094   38   93          -  372.46031      -   162   25s
+   910   909  522.69861   43   58          -  372.46031      -   162   32s
+   964   993 infeasible   44               -  372.46031      -   175   35s
+  1156  1120  499.50325   43  100          -  372.46031      -   183   43s
+  1236  1151  526.21894   48   71          -  372.46031      -   200   48s
+  1291  1162 infeasible   47               -  372.46031      -   234   51s
+  1342  1188  582.16747   56   51          -  372.46031      -   252   55s
+  1401  1250  530.27126   58   77          -  372.46031      -   273   60s
+  1588  1335 infeasible   67               -  372.46031      -   286   67s
+  1701  1410 infeasible   68               -  372.46031      -   286   71s
+  1804  1496 infeasible   69               -  372.46031      -   293   77s
+  1940  1699  506.45844   19  109          -  372.46031      -   293   80s
+  2326  1782  512.33015   40  270          -  372.46031      -   268   85s
+  2342  1793  534.07975   57   95          -  387.07825      -   266   90s
+  2347  1799  452.27619   17   95          -  449.35993      -   6.3   95s
+  2351  1800  452.48902   18   93          -  452.48902      -   7.3  100s
+  2359  1803  485.09972   19   50          -  452.50105      -  14.5  105s
+  2369  1794 infeasible   20               -  458.30899      -  25.9  111s
+  2411  1785 infeasible   23               -  488.46779      -  68.7  117s
+  2446  1777  531.39520   25   29          -  489.72011      -  84.6  123s
+  2467  1765 infeasible   26               -  521.24483      -  90.1  128s
+  2490  1761  535.94001   28   79          -  530.09069      -  92.1  131s
+  2538  1754 infeasible   30               -  536.78982      -  99.0  138s
+  2570  1737  537.68419   34   53          -  537.68419      -   103  140s
+  2632  1705 infeasible   36               -  556.22301      -   124  146s
+  2675  1689 infeasible   41               -  746.31624      -   132  151s
+  2701  1678  765.16665   48   24          -  752.55848      -   137  157s
+  2710  1675 infeasible   49               -  753.00727      -   138  160s
+  2746  1663 infeasible   56               -  757.45573      -   140  165s
+  2785  1659  762.48323   75   36          -  761.43776      -   141  170s
+* 2862  1616              83     765.8709018  763.48077  0.31%   141  173s
+* 2881  1523              83     765.8705035  763.55830  0.30%   141  173s
+
+Cutting planes:
+  Learned: 157
+  Gomory: 19
+  Cover: 72
+  Implied bound: 6
+  Clique: 223
+  MIR: 2
+  Flow cover: 254
+  Inf proof: 2
+  Relax-and-lift: 5
+
+Explored 2976 nodes (1046314 simplex iterations) in 175.36 seconds
+Thread count was 20 (of 20 available processors)
+
+Solution count 2: 765.871 765.871 
+No other solutions better than 765.871
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective 7.657952069602e+02, best bound 7.657952069602e+02, gap 0.0000%
+Primary Flux Fitting completed! 
+Elapsed time is 175.400607 seconds.
+the bacterial uptake is: -3.421950
+the total waste of bulk bacteria is: 0.403630
+Elapsed time is 231.415606 seconds.
+>> >> >> >> >> >> EX00583_X	12ppd-R_E[e] 	<=>	
+EX02918_X	1mncam_E[e] 	<=>	
+EX05984_X	2hb_E[e] 	<=>	
+EX02630_X	2hglut_E[e] 	<=>	
+EX05852_X	2hyoxplac_E[e] 	<=>	
+EX00109_X	2obut_E[e] 	<=>	
+EX00322_X	2oxoadp_E[e] 	->	
+EX00631_X	2pg_E[e] 	<=>	
+EX01161_X	34dhpha_E[e] 	<=>	
+EX00355_X	34dhphe_E[e] 	<=>	
+EX01179_X	34hpp_E[e] 	<=>	
+EX00942_X	35cgmp_E[e] 	->	
+EX01060_X	35diotyr_E[e] 	->	
+EX01205_X	3aib-D_E[e] 	->	
+EX03284_X	3aib_E[e] 	<=>	
+EX00632_X	3hanthrn_E[e] 	<=>	
+EX05828_X	3mlda_E[e] 	->	
+EX00141_X	3mob_E[e] 	->	
+EX00671_X	3mop_E[e] 	->	
+EX00197_X	3pg_E[e] 	->	
+EX05100_X	3uib_E[e] 	<=>	
+EX02946_X	4aabutn_E[e] 	<=>	
+EX00334_X	4abut_E[e] 	->	
+EX00156_X	4hbz_E[e] 	->	
+EX00642_X	4hphac_E[e] 	->	
+EX00233_X	4mop_E[e] 	->	
+EX01181_X	4tmeabutn_E[e] 	<=>	
+EX00906_X	56dthm_E[e] 	->	
+EX00429_X	56dura_E[e] 	->	
+EX05356_X	5HPET_E[e] 	->	
+EX03917_X	5adtststerone_E[e] 	->	
+EX05635_X	5hoxindoa_E[e] 	<=>	
+EX00643_X	5htrp_E[e] 	->	
+EX00170_X	5mta_E[e] 	->	
+EX00440_X	5mthf_E[e] 	->	
+EX01879_X	5oxpro_E[e] 	<=>	
+EX17337_X	7a3o4chlstnt_E[e] 	->	
+EX00506_X	Lcyst_E[e] 	->	
+EX00328_X	Lkynr_E[e] 	->	
+EX02415_X	Nlys_E[e] 	->	
+EXC0001_X	Rtotal2_E[e] 	->	
+EX00162_X	Rtotal_E[e] 	<=>	
+EX03197_X	S3hb_E[e] 	<=>	
+EX00811_X	T4hcinnm_E[e] 	->	
+EX01888_X	aact_E[e] 	->	
+EX00532_X	abt_E[e] 	->	
+EX00033_X	ac_E[e] 	<=>	
+EX00164_X	acac_E[e] 	<=>	
+EX00084_X	acald_E[e] 	<=>	
+EX18125_X	acg3ps_E[e] 	->	
+EX01132_X	acgal_E[e] 	->	
+EX00140_X	acgam_E[e] 	->	
+EX01996_X	ach_E[e] 	->	
+EX00437_X	acorn_E[e] 	->	
+EX00979_X	acser_E[e] 	->	
+EX00147_X	ade_E[e] 	->	
+EX00212_X	adn_E[e] 	->	
+EX00194_X	adocbl_E[e] 	<=>	
+EX00301_X	adprib_E[e] 	->	
+EX00021_X	ahcys_E[e] 	<=>	
+EX04677_X	aicar_E[e] 	->	
+EX04317_X	ak2lgchol_E[e] 	<=>	
+EX00026_X	akg_E[e] 	<=>	
+EX00940_X	akgm_E[e] 	->	
+EX00099_X	ala-B_E[e] 	->	
+EX00133_X	ala-D_E[e] 	->	
+EX00041_X	ala-L_E[e] 	->	
+EX00019_X	amet_E[e] 	<=>	
+EX01137_X	ametam_E[e] 	->	
+EX00020_X	amp_E[e] 	<=>	
+EX00523_X	andrstrn_E[e] 	->	
+EX11135_X	andrstrnglc_E[e] 	->	
+EX00108_X	anth_E[e] 	->	
+EX00259_X	arab-L_E[e] 	->	
+EX00219_X	arachd_E[e] 	<=>	
+EX00062_X	arg-L_E[e] 	->	
+EX00072_X	ascb-L_E[e] 	->	
+EXC0162_X	ascr10_E[e] 	->	
+EXC0181_X	ascr18_E[e] 	->	
+EXC0163_X	ascr1_E[e] 	->	
+EXC0159_X	ascr2_E[e] 	->	
+EXC0160_X	ascr3_E[e] 	->	
+EXC0161_X	ascr5_E[e] 	<=>	
+EXC0174_X	ascr7_E[e] 	->	
+EX00152_X	asn-L_E[e] 	->	
+EX00402_X	asp-D_E[e] 	->	
+EX00049_X	asp-L_E[e] 	->	
+EX05519_X	athr-L_E[e] 	->	
+EX00002_X	atp_E[e] 	->	
+EX05787_X	bildglcur_E[e] 	<=>	
+EX00486_X	bilirub_E[e] 	->	
+EX02642_X	cala_E[e] 	<=>	
+EX00575_X	camp_E[e] 	->	
+EX02094_X	caro_E[e] 	->	
+EX00438_X	cbasp_E[e] 	<=>	
+EX00853_X	cbl1_E[e] 	->	
+EX01419_X	cgly_E[e] 	->	
+EX00114_X	chol_E[e] 	->	
+EX00695_X	cholate_E[e] 	->	
+EX00588_X	cholp_E[e] 	<=>	
+EX00187_X	chsterol_E[e] 	->	
+EX00158_X	cit_E[e] 	->	
+EX00698_X	cl_E[e] 	->	
+EX00185_X	clb_E[e] 	->	
+EX00011_X	co2_E[e] 	<=>	
+EXC0202_X	crmp_ce_E[e] 	->	
+EX00318_X	crn_E[e] 	->	
+EX01326_X	cyan_E[e] 	<=>	
+EX02512_X	cyanala_E[e] 	->	
+EX00097_X	cys-L_E[e] 	->	
+EX00475_X	cytd_E[e] 	->	
+EX00559_X	dad-2_E[e] 	<=>	
+EX00239_X	dcmp_E[e] 	->	
+EX00881_X	dcyt_E[e] 	<=>	
+EX02679_X	ddca_E[e] 	->	
+EX00330_X	dgsn_E[e] 	<=>	
+EX00111_X	dhap_E[e] 	->	
+EX00268_X	dhbpt_E[e] 	->	
+EX05422_X	dhdascb_E[e] 	->	
+EX05512_X	din_E[e] 	<=>	
+EX03758_X	dopa_E[e] 	<=>	
+EX01801_X	drib_E[e] 	->	
+EX00459_X	dttp_E[e] 	->	
+EX00526_X	duri_E[e] 	<=>	
+EX02763_X	enphpyr_E[e] 	->	
+EX00189_X	etha_E[e] 	<=>	
+EX00346_X	ethamp_E[e] 	->	
+EX00469_X	etoh_E[e] 	->	
+EX00016_X	fad_E[e] 	->	
+EX00067_X	fald_E[e] 	->	
+EX00354_X	fdp_E[e] 	<=>	
+EX14818_X	fe2_E[e] 	->	
+EX14819_X	fe3_E[e] 	->	
+EX00061_X	fmn_E[e] 	->	
+EX00504_X	fol_E[e] 	<=>	
+EX00058_X	for_E[e] 	<=>	
+EX00439_X	forglu_E[e] 	->	
+EX00095_X	fru_E[e] 	->	
+EX00122_X	fum_E[e] 	->	
+EX00670_X	g3pc_E[e] 	<=>	
+EX00124_X	gal_E[e] 	<=>	
+EXC0214_X	galgluside_ce_E[e] 	->	
+EX01697_X	galt_E[e] 	->	
+EX00352_X	gam6p_E[e] 	->	
+EX00329_X	gam_E[e] 	->	
+EXC0216_X	gbside_ce_E[e] 	<=>	
+EX00266_X	gcald_E[e] 	<=>	
+EX01921_X	gchola_E[e] 	->	
+EX00031_X	glc-D_E[e] 	->	
+EX00257_X	glcn_E[e] 	->	
+EX00818_X	glcr_E[e] 	<=>	
+EX00191_X	glcur_E[e] 	->	
+EX00064_X	gln-L_E[e] 	->	
+EX00025_X	glu-L_E[e] 	->	
+EX00669_X	glucys_E[e] 	->	
+EXC0213_X	gluside_ce_E[e] 	->	
+EX00048_X	glx_E[e] 	->	
+EX00037_X	gly_E[e] 	->	
+EX00577_X	glyald_E[e] 	<=>	
+EX00719_X	glyb_E[e] 	<=>	
+EX00093_X	glyc3p_E[e] 	<=>	
+EX00116_X	glyc_E[e] 	<=>	
+EX00160_X	glyclt_E[e] 	<=>	
+EX00387_X	gsn_E[e] 	<=>	
+EX00127_X	gthox_E[e] 	->	
+EX00051_X	gthrd_E[e] 	->	
+EX00242_X	gua_E[e] 	<=>	
+EX00027_X	h2o2_E[e] 	<=>	
+EX00001_X	h2o_E[e] 	<=>	
+EX00080_X	h_E[e] 	<=>	
+EX00288_X	hco3_E[e] 	->	
+EX00249_X	hdca_E[e] 	<=>	
+EX00544_X	hgentis_E[e] 	->	
+EX00135_X	his-L_E[e] 	->	
+EX00388_X	hista_E[e] 	<=>	
+EX00262_X	hxan_E[e] 	<=>	
+EX00708_X	i_E[e] 	->	
+EX00311_X	icit_E[e] 	->	
+EX00407_X	ile-L_E[e] 	->	
+EX00130_X	imp_E[e] 	->	
+EX00954_X	ind3ac_E[e] 	<=>	
+EX00137_X	inost_E[e] 	->	
+EX00294_X	ins_E[e] 	<=>	
+EX00081_X	itp_E[e] 	->	
+EX00238_X	k_E[e] 	->	
+EX01717_X	kynate_E[e] 	->	
+EX00256_X	lac-D_E[e] 	->	
+EX00186_X	lac-L_E[e] 	<=>	
+EX00243_X	lcts_E[e] 	->	
+EX00123_X	leu-L_E[e] 	->	
+EX00909_X	leuktrA4_E[e] 	->	
+EX02165_X	leuktrB4_E[e] 	<=>	
+EX04853_X	leuktrB4woh_E[e] 	->	
+EX01595_X	lnlc_E[e] 	<=>	
+EX04230_X	lpchol_E[e] 	->	
+EX18126_X	lpglyc_E[e] 	->	
+EX00047_X	lys-L_E[e] 	->	
+EX01885_X	mag_E[e] 	<=>	
+EX00149_X	mal-L_E[e] 	->	
+EX00208_X	malt_E[e] 	->	
+EX00159_X	man_E[e] 	->	
+EX05402_X	melib_E[e] 	->	
+EX00132_X	meoh_E[e] 	->	
+EXC0141_X	mercplaccys_E[e] 	<=>	
+EX00073_X	met-L_E[e] 	->	
+EX05127_X	mhista_E[e] 	->	
+EX00143_X	mlthf_E[e] 	->	
+EX06232_X	mobd_E[e] 	->	
+EX00546_X	mthgxl_E[e] 	->	
+EX01330_X	na1_E[e] 	->	
+EX00253_X	nac_E[e] 	->	
+EX00153_X	ncam_E[e] 	->	
+EX00014_X	nh4_E[e] 	<=>	
+EX01185_X	nicrnt_E[e] 	<=>	
+EX00455_X	nmn_E[e] 	->	
+EX00007_X	o2_E[e] 	->	
+EX00704_X	o2s_E[e] 	->	
+EX01530_X	ocdca_E[e] 	<=>	
+EX04227_X	octpmn_E[e] 	<=>	
+EX01328_X	oh1_E[e] 	->	
+EX00077_X	orn_E[e] 	->	
+EX01103_X	orot5p_E[e] 	<=>	
+EX00295_X	orot_E[e] 	->	
+EX02505_X	pad_E[e] 	<=>	
+EX04598_X	paf_E[e] 	->	
+EX01194_X	pail_E[e] 	->	
+EX00054_X	pap_E[e] 	->	
+EX00157_X	pchol_E[e] 	->	
+EX01211_X	pcollg5hlys_E[e] 	->	
+EX00350_X	pe_E[e] 	->	
+EX05332_X	peamn_E[e] 	<=>	
+EXC0152_X	pepX_E[e] 	->	
+EX00074_X	pep_E[e] 	<=>	
+EX00012_X	pepd_E[e] 	->	
+EX02188_X	peplys_E[e] 	->	
+EX00344_X	pglyc_E[e] 	<=>	
+EX00079_X	phe-L_E[e] 	->	
+EX00032_X	pheme_E[e] 	->	
+EX00166_X	phpyr_E[e] 	<=>	
+EX00009_X	pi_E[e] 	->	
+EX00864_X	pnto-R_E[e] 	->	
+EX00163_X	ppa_E[e] 	<=>	
+EX00148_X	pro-L_E[e] 	->	
+EX00696_X	prostgd2_E[e] 	->	
+EX00584_X	prostge2_E[e] 	->	
+EX00427_X	prostgh2_E[e] 	<=>	
+EX02737_X	ps_E[e] 	->	
+EX00134_X	ptrc_E[e] 	<=>	
+EX00534_X	pydam_E[e] 	->	
+EX00018_X	pydx5p_E[e] 	->	
+EX00250_X	pydx_E[e] 	->	
+EX00314_X	pydxn_E[e] 	->	
+EX00022_X	pyr_E[e] 	<=>	
+EXC0013_X	q8_E[e] 	->	
+EX03722_X	quln_E[e] 	->	
+EX00376_X	retinal_E[e] 	->	
+EX00473_X	retinol_E[e] 	->	
+EX00777_X	retn_E[e] 	->	
+EX11061_X	retnglc_E[e] 	<=>	
+EX00121_X	rib-D_E[e] 	->	
+EX00255_X	ribflv_E[e] 	<=>	
+EX00794_X	sbt-D_E[e] 	->	
+EX02076_X	sedh_E[e] 	->	
+EX05697_X	sel_E[e] 	->	
+EX05688_X	selcys_E[e] 	->	
+EX05335_X	selmeth_E[e] 	->	
+EX05684_X	selnt_E[e] 	->	
+EX00065_X	ser-L_E[e] 	<=>	
+EXC9998_X	sideMet[e] 	<=>	
+EX11499_X	sl-L_E[e] 	<=>	
+EX00094_X	so3_E[e] 	<=>	
+EX00059_X	so4_E[e] 	<=>	
+EXC0203_X	spc_ce_E[e] 	<=>	
+EXC0208_X	sph1p_ce_E[e] 	<=>	
+EXC0207_X	sphgn_ce_E[e] 	<=>	
+EXC0211_X	sphings_ce_E[e] 	<=>	
+EXC0201_X	sphmyln_ce_E[e] 	->	
+EXC0210_X	sphs1p_ce_E[e] 	->	
+EX00315_X	spmd_E[e] 	->	
+EX00750_X	sprm_E[e] 	->	
+EX00780_X	srtn_E[e] 	<=>	
+EX01613_X	stachyose_E[e] 	->	
+EXC9999_X	storageMet[e] 	<=>	
+EX00042_X	succ_E[e] 	->	
+EX00089_X	sucr_E[e] 	->	
+EX00422_X	tag_E[e] 	->	
+EX00245_X	taur_E[e] 	->	
+EX05122_X	tchola_E[e] 	->	
+EX01755_X	tcynt_E[e] 	<=>	
+EX00272_X	thbpt_E[e] 	->	
+EX04722_X	thcholstoic_E[e] 	<=>	
+EX00101_X	thf_E[e] 	->	
+EX00378_X	thm_E[e] 	->	
+EX00188_X	thr-L_E[e] 	->	
+EX00178_X	thym_E[e] 	<=>	
+EX00214_X	thymd_E[e] 	->	
+EX00565_X	tma_E[e] 	->	
+EX03793_X	tmlys_E[e] 	<=>	
+EX01083_X	tre_E[e] 	->	
+EX00078_X	trp-L_E[e] 	->	
+EX00398_X	trypta_E[e] 	->	
+EX00535_X	tststerone_E[e] 	->	
+EX00320_X	tsul_E[e] 	->	
+EX06424_X	ttdca_E[e] 	->	
+EX00483_X	tym_E[e] 	<=>	
+EX00082_X	tyr-L_E[e] 	->	
+EX00167_X	udpglcur_E[e] 	->	
+EX00106_X	ura_E[e] 	<=>	
+EX00366_X	urate_E[e] 	<=>	
+EX00785_X	urcan_E[e] 	->	
+EX00086_X	urea_E[e] 	->	
+EX00299_X	uri_E[e] 	->	
+EX00075_X	utp_E[e] 	->	
+EXC0135_X	vacc_E[e] 	->	
+EX00183_X	val-L_E[e] 	->	
+EX00385_X	xan_E[e] 	<=>	
+EX02470_X	xanate_E[e] 	->	
+EX00655_X	xmp_E[e] 	->	
+EX15519_X	xol25oh_E[e] 	->	
+EX15610_X	xol27oh_E[e] 	<=>	
+EX05455_X	xol7aone_E[e] 	->	
+EX17339_X	xoldiolone_E[e] 	->	
+EX15520_X	xoltri25_E[e] 	->	
+EX06341_X	xoltri27_E[e] 	->	
+EX01762_X	xtsn_E[e] 	<=>	
+EX00181_X	xyl-D_E[e] 	<=>	
+EX00379_X	xylt_E[e] 	->	
+>> >> >> >> >> >> >> >> >> now starting to fit Intestine... 
+>> >> >> >> >> >> >> >> >> >> Start flux fitting... 
+Processing expression data... 
+Elapsed time is 21.775186 seconds.
+fitting iMAT... 
+[Warning: Reaction RCC0005_X not in model] 
+[> In changeRxnBounds (line 55)
+  In autoIntegration_iMAT (line 38)] 
+Elapsed time is 0.776370 seconds.
+Minimizing total flux... 
+Gurobi Optimizer version 9.0.0 build v9.0.0rc2 (linux64)
+Optimize a model with 9938 rows, 7780 columns and 29434 nonzeros
+Model fingerprint: 0xf2368885
+Variable types: 6002 continuous, 1778 integer (1778 binary)
+Coefficient statistics:
+  Matrix range     [1e-05, 1e+03]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [2e-15, 1e+03]
+  RHS range        [9e+02, 1e+03]
+Presolve removed 7307 rows and 4900 columns
+Presolve time: 0.05s
+Presolved: 2631 rows, 2880 columns, 11208 nonzeros
+Variable types: 1766 continuous, 1114 integer (1114 binary)
+
+Root relaxation: objective 4.427817e+02, 3678 iterations, 0.21 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  442.78170    0  326          -  442.78170      -     -    0s
+     0     0  547.39987    0  153          -  547.39987      -     -    0s
+     0     0  557.77807    0  147          -  557.77807      -     -    0s
+     0     0  606.25225    0  105          -  606.25225      -     -    0s
+     0     0  609.30975    0  105          -  609.30975      -     -    0s
+     0     0  610.37708    0  106          -  610.37708      -     -    0s
+     0     0  610.51000    0  107          -  610.51000      -     -    0s
+     0     0  621.87641    0  108          -  621.87641      -     -    0s
+     0     0  628.32784    0  107          -  628.32784      -     -    0s
+     0     0  628.40315    0  108          -  628.40315      -     -    0s
+     0     0  635.53296    0   99          -  635.53296      -     -    0s
+     0     0  635.60750    0   99          -  635.60750      -     -    0s
+     0     0  635.60750    0   96          -  635.60750      -     -    1s
+     0     2  635.61270    0   96          -  635.61270      -     -    1s
+   489   175  668.84374    8   69          -  663.88648      -   137    5s
+  1179   215  983.56534   17   56          -  672.02445      -   132   10s
+  3428   443 1105.92654   20   50          -  768.44995      -  93.6   15s
+H 5035   751                    4183.2685586  784.05277  81.3%  83.2   16s
+* 5387   957              62    4182.2334308  789.04752  81.1%  79.4   17s
+* 5390   957              62    4181.9143539  789.04752  81.1%  79.3   17s
+* 5531   957              61    4181.6341054  789.04752  81.1%  77.8   17s
+H 5805   848                    3911.0381121  789.04752  79.8%  74.9   17s
+  5821   859 3904.50277   33   17 3911.03811 3904.50277  0.17%  74.7   20s
+H 5821   815                    3908.8541809 3904.50277  0.11%  74.7   20s
+* 5853   794              28    3908.8319224 3906.43164  0.06%  75.9   22s
+
+Cutting planes:
+  Learned: 184
+  Gomory: 15
+  Cover: 17
+  Implied bound: 21
+  Clique: 4
+  MIR: 5
+  Flow cover: 193
+  Inf proof: 4
+  RLT: 2
+  Relax-and-lift: 31
+
+Explored 6319 nodes (452603 simplex iterations) in 22.35 seconds
+Thread count was 20 (of 20 available processors)
+
+Solution count 7: 3908.83 3908.85 3911.04 ... 4183.27
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective 3.908831922381e+03, best bound 3.908831922381e+03, gap 0.0000%
+Primary Flux Fitting completed! 
+Elapsed time is 22.390385 seconds.
+the bacterial uptake is: -12.934248
+the total waste of bulk bacteria is: 0.000000
+>> >> >> Elapsed time is 45.490951 seconds.
+>> 
