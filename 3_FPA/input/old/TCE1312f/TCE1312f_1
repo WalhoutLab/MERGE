@@ -1,0 +1,87 @@
+Changed value of parameter MIPGap to 1e-12
+   Prev: 0.0001  Min: 0.0  Max: 1e+100  Default: 0.0001
+Parameter Presolve unchanged
+   Value: -1  Min: -1  Max: 2  Default: -1
+Changed value of parameter FeasibilityTol to 1e-09
+   Prev: 1e-06  Min: 1e-09  Max: 0.01  Default: 1e-06
+Changed value of parameter Threads to 1
+   Prev: 0  Min: 0  Max: 1024  Default: 0
+Changed value of parameter OptimalityTol to 1e-09
+   Prev: 1e-06  Min: 1e-09  Max: 0.01  Default: 1e-06
+TCE1312_Lf
+Intestine
+{}
+Flux potential for the objective reaction in condition Intestine is 0.36961033951
+supercond
+{}
+Flux potential for the objective reaction in condition supercond is 0.501510086545
+Changed value of parameter MIPGap to 1e-12
+   Prev: 0.0001  Min: 0.0  Max: 1e+100  Default: 0.0001
+Parameter Presolve unchanged
+   Value: -1  Min: -1  Max: 2  Default: -1
+Changed value of parameter FeasibilityTol to 1e-09
+   Prev: 1e-06  Min: 1e-09  Max: 0.01  Default: 1e-06
+Changed value of parameter Threads to 1
+   Prev: 0  Min: 0  Max: 1024  Default: 0
+Changed value of parameter OptimalityTol to 1e-09
+   Prev: 1e-06  Min: 1e-09  Max: 0.01  Default: 1e-06
+TCE1312_Xf
+Gonad
+{}
+Flux potential for the objective reaction in condition Gonad is 0.820855730617
+Glia
+{}
+Flux potential for the objective reaction in condition Glia is 0.765615983807
+Body_wall_muscle
+{}
+Flux potential for the objective reaction in condition Body_wall_muscle is 0.839883940186
+Pharynx
+{}
+Flux potential for the objective reaction in condition Pharynx is 0.851752172848
+Hypodermis
+{}
+Flux potential for the objective reaction in condition Hypodermis is 0.914351727164
+Neurons
+{}
+Flux potential for the objective reaction in condition Neurons is 0.851754877081
+supercond
+{}
+Flux potential for the objective reaction in condition supercond is 0.914351727164
+68.2444219589
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@c33b05>
+Subject: Job 2364014: <python pEfficiency.py TCE1312f 1.5 1 /project/umw_marian_walhout/data/yilmazl/Tissue/Efficiency/ log/> in cluster <umghpcc> Done
+
+Job <python pEfficiency.py TCE1312f 1.5 1 /project/umw_marian_walhout/data/yilmazl/Tissue/Efficiency/ log/> was submitted from host <c38b08> by user <ly81w> in cluster <umghpcc> at Mon Feb 10 23:11:08 2020.
+Job was executed on host(s) <c33b05>, in queue <short>, as user <ly81w> in cluster <umghpcc> at Mon Feb 10 23:14:28 2020.
+</home/ly81w> was used as the home directory.
+</home/ly81w/FBA/Tissue_new> was used as the working directory.
+Started at Mon Feb 10 23:14:28 2020.
+Terminated at Mon Feb 10 23:15:40 2020.
+Results reported at Mon Feb 10 23:15:40 2020.
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+python pEfficiency.py TCE1312f 1.5 1 /project/umw_marian_walhout/data/yilmazl/Tissue/Efficiency/ log/
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   57.94 sec.
+    Max Memory :                                 795 MB
+    Average Memory :                             575.60 MB
+    Total Requested Memory :                     2000.00 MB
+    Delta Memory :                               1205.00 MB
+    Max Swap :                                   -
+    Max Processes :                              3
+    Max Threads :                                68
+    Run time :                                   72 sec.
+    Turnaround time :                            272 sec.
+
+The output (if any) is above this job summary.
+

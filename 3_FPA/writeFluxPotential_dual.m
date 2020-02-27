@@ -40,16 +40,6 @@ model = changeRxnBounds(model,'RMC0005_X',0,'u');
 parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
 model.parsedGPR = parsedGPR;
 
-% %biomass demand - make sure it is 36 mets
-% biomassList = readtable('biomassPrecursors.csv','ReadVariableNames',false,'Delimiter','\t');
-% biomassList = biomassList.Var1;
-
-% load the distance matrix
-% distance = readtable('distance_rxn2rxn.tsv','FileType','text','ReadRowNames',true);
-% distMat = table2array(distance);
-% labels = distance.Properties.VariableNames;
-% labels = cellfun(@(x) [x(1:end-1),'_',x(end)],labels,'UniformOutput',false);
-
 % this loads the raw directional distance matrix, first need to take the
 % minimum for future use
 distance_raw = readtable('distance_fromRxnToRxn.tsv','FileType','text','ReadRowNames',true);
@@ -93,41 +83,18 @@ for i = 1:length(tissueLabel)
 end
 %% run flux efficiency
 % prepare the model :: the input model should be constrianed model
-%apply some constaints hacked from safak's file
 model = changeRxnBounds(model,'RM00112_X',1000,'u');
 model = changeRxnBounds(model,'RM00112_I',1000,'u');
 model = changeRxnBounds(model,'RM00112_X',-1000,'l');
 model = changeRxnBounds(model,'RM00112_I',-1000,'l');
-%model = changeRxnBounds(model,'TCE5092_X',-1000,'l');
-%model = changeRxnBounds(model,'TCE5092_I',-1000,'l');
-%model = changeRxnBounds(model,'TCE5075_X',-1000,'l');
-%model = changeRxnBounds(model,'TCE5075_I',-1000,'l');
-%model = changeRxnBounds(model,'EXC0152_E',0,'l');
-%model = changeRxnBounds(model,'EXC0152_E',0,'l');
-%model = changeRxnBounds(model,'RMC0005_I',0,'l');
-%model = changeRxnBounds(model,'RMC0005_X',0,'l');
-%model = changeRxnBounds(model,'RMC0005_I',1000,'u');
-%model = changeRxnBounds(model,'RMC0005_X',1000,'u');
 
 bacMW=966.28583751;
-model.S(end, strcmp('EXC0050_L',model.rxns)) = 0.04*bacMW*0.01; %the side cap
+model.S(end, strcmp('EXC0050_L',model.rxns)) = 0.02*bacMW*0.01; %the side cap
 model.S(ismember(model.mets,{'atp_I[c]','h2o_I[c]','adp_I[c]','h_I[c]','pi_I[c]'}), strcmp('DGR0007_L',model.rxns)) = 0; 
 
 %remove the NGAM 
 model = changeRxnBounds(model,'RCC0005_X',0,'l');
 model = changeRxnBounds(model,'RCC0005_I',0,'l');
-
-%remove the GAM
-%model = addReaction(model,'BIO0010_I','reactionFormula','Biomass_I[c] ->','geneRule', 'NA','printLevel',0);
-%model = addReaction(model,'BIO0010_X','reactionFormula','Biomass_X[c] ->','geneRule', 'NA','printLevel',0);
-
-% %decouple the specific biomass component by drianing them
-% for i = 1:length(biomassList)
-%     mymet = biomassList{i};
-%     model = addDemandReaction(model,[mymet(1:end-3),'_I',mymet(end-2:end)],0);
-%     model = addDemandReaction(model,[mymet(1:end-3),'_X',mymet(end-2:end)],0);
-% end
-
 %% block the -2/-3 reactions
 model_irrev = convertToIrreversible(model);
 %unify naminclature
@@ -151,7 +118,6 @@ maxDist = 31;
 changeCobraSolverParams('LP','optTol', 10e-9);
 changeCobraSolverParams('LP','feasTol', 10e-9);
 
-%loadCluster(20,'1024','short','1:30');
 myCluster = parcluster('local');
 myCluster.NumWorkers = 128;
 saveProfile(myCluster);
