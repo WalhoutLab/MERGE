@@ -672,3 +672,81 @@ Run gurobi.sh to start interactive shell
 matlab R2019a is located under /share/pkg/matlab/R2019a
 curl 7.60.0 is located under /share/pkg/curl/7.60.0
 git 2.9.5 is located under /share/pkg/git/2.9.5
+gurobi 900 is located under /share/pkg/gurobi/900/linux64
+Run gurobi.sh to start interactive shell
+matlab R2019a is located under /share/pkg/matlab/R2019a
+curl 7.60.0 is located under /share/pkg/curl/7.60.0
+git 2.9.5 is located under /share/pkg/git/2.9.5
+User defined signal 2
+
+--------------------------------------------------------------------------------
+       Segmentation violation detected at Thu Feb 27 18:25:45 2020 -0500
+--------------------------------------------------------------------------------
+
+Configuration:
+  Crash Decoding           : Disabled - No sandbox or build area path
+  Crash Mode               : continue (default)
+  Default Encoding         : UTF-8
+  Deployed                 : false
+  GNU C Library            : 2.12 stable
+  Graphics Driver          : Unknown software 
+  Graphics card 1          : 0x102b ( 0x102b ) 0x532 Version 0.0.0.0 (0-0-0)
+  Java Version             : Java 1.8.0_181-b13 with Oracle Corporation Java HotSpot(TM) 64-Bit Server VM mixed mode
+  MATLAB Architecture      : glnxa64
+  MATLAB Entitlement ID    : 5196944
+  MATLAB Root              : /share/pkg/matlab/R2019a
+  MATLAB Version           : 9.6.0.1150989 (R2019a) Update 4
+  OpenGL                   : software
+  Operating System         : "Red Hat Enterprise Linux Server release 6.10 (Santiago)"
+  Process ID               : 11737
+  Processor ID             : x86 Family 111 Model 1 Stepping 2, AuthenticAMD
+  Session Key              : 3aad8339-9267-4932-bb60-b0a530994f4e
+  Static TLS mitigation    : Disabled: Unable to open display
+  Window System            : No active display
+
+Fault Count: 2
+
+
+Abnormal termination:
+Segmentation violation
+
+Register State (from fault):
+  RAX = 0000000000000000  RBX = 00000000008c2de0
+  RCX = ffffffffffffffff  RDX = 00002b26fecab640
+  RSP = 00007fffa688a380  RBP = 00007fffa688a430
+  RSI = 00007fffa688a570  RDI = 0000000000000007
+
+   R8 = 00000000008c2e00   R9 = 0000000000000000
+  R10 = 0000000000000000  R11 = 0000000000000246
+  R12 = 00007fffa688a440  R13 = 00007fffa688a570
+  R14 = 00002b26fecab228  R15 = 0000000000000000
+
+  RIP = 00002b2722871eae  EFL = 0000000000010246
+
+   CS = 0033   FS = 0000   GS = 0000
+
+Stack Trace (from fault):
+[  0] 0x00002b2722871eae /share/pkg/matlab/R2019a/sys/java/jre/glnxa64/jre/lib/amd64/server/libjvm.so+09617070
+[  1] 0x00002b26f4aed7e0                             /lib64/libpthread.so.0+00063456
+[  2] 0x00002b26f4ae968a                             /lib64/libpthread.so.0+00046730 pthread_cond_wait+00000202
+[  3] 0x00002b270768fcd3   /share/pkg/matlab/R2019a/bin/glnxa64/libmwmcr.so+00859347
+[  4] 0x00002b2707691290   /share/pkg/matlab/R2019a/bin/glnxa64/libmwmcr.so+00864912
+[  5] 0x00002b2707691594   /share/pkg/matlab/R2019a/bin/glnxa64/libmwmcr.so+00865684 _Z12mcr_run_mainRKN7mwboost9function0IiEEbb+00000196
+[  6] 0x00002b270743d2eb /share/pkg/matlab/R2019a/bin/glnxa64/libmwMVMLocal.so+00520939
+[  7] 0x00002b26f41337c7   /share/pkg/matlab/R2019a/bin/glnxa64/libmwmvm.so+03561415 _ZN3mvm6detail11SessionImpl7runMainERKN7mwboost9function1IiRKSt6vectorINSt7__cxx1112basic_stringIDsSt11char_traitsIDsESaIDsEEESaISA_EEEESE_+00000087
+[  8] 0x00002b26f41327c7   /share/pkg/matlab/R2019a/bin/glnxa64/libmwmvm.so+03557319 _ZN3mvm6detail11SessionImpl16runMatlabDesktopEv+00000439
+[  9] 0x0000000000406f9e        /share/pkg/matlab/R2019a/bin/glnxa64/MATLAB+00028574
+[ 10] 0x00002b26f52ccd20                                   /lib64/libc.so.6+00126240 __libc_start_main+00000256
+[ 11] 0x000000000040731a        /share/pkg/matlab/R2019a/bin/glnxa64/MATLAB+00029466
+[ 12] 0x0000000000000000                                   <unknown-module>+00000000
+
+** This crash report has been saved to disk as /home/xl95w/matlab_crash_dump.11737-1 **
+
+
+
+MATLAB is exiting because of fatal error
+gurobi 900 is located under /share/pkg/gurobi/900/linux64
+Run gurobi.sh to start interactive shell
+matlab R2019a is located under /share/pkg/matlab/R2019a
+curl 7.60.0 is located under /share/pkg/curl/7.60.0
+git 2.9.5 is located under /share/pkg/git/2.9.5

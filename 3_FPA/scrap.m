@@ -15,8 +15,8 @@ for j = 1:length(tissueLabel)
     end
     compare.hang(isnan(compare.hang)) = 0;
     compare.safak(isnan(compare.safak)) = 0;
-    fprintf('for tissue %s find %d/%d identical values;\n',tissue,sum(abs(compare.hang - compare.safak)<=0.0001),size(FPAtbl,1));
-    wrongrxn{j} = FPAtbl.Properties.RowNames(~(abs(compare.hang - compare.safak)<=0.0001));
+    fprintf('for tissue %s find %d/%d identical values;\n',tissue,sum(abs(compare.hang - compare.safak)<=0.01),size(FPAtbl,1));
+    wrongrxn{j} = FPAtbl.Properties.RowNames(~(abs(compare.hang - compare.safak)<=0.01));
 end
 %%
 check = intersect(intersect(intersect(intersect(intersect(intersect(wrongrxn{1},wrongrxn{2}),wrongrxn{3}),wrongrxn{4}),wrongrxn{5}),wrongrxn{6}),wrongrxn{7})
