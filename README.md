@@ -1,6 +1,6 @@
 # Systematic Integration of Gene Expression Data to Understand Tissue-Level Compartmentalization of Metabolic Network Function in C. elegans
-
-We developped the package to systematically integrate single cell (also applicable to bulk) RNA-seq data to the metabolic network reconstruction of C. elegans. The package includes three parts: matlab implantation of [iMAT++ algorithm](1_iMAT++)
+#this tag indicates the README file and repo are under development#
+We developped the package to systematically integrate single cell (also applicable to bulk) RNA-seq data to the metabolic network reconstruction of C. elegans. The package includes three parts: (1) matlab implantation of [iMAT++ algorithm](1_iMAT++), (2) matlab implatation of [original iMAT algorithm](2_iMAT) (for reproducing purpose), and (3) matlab implantation of [Flux Potential Analysis (FPA)](3_FPA). Additionally, we provide a python-based metabolic distance calculator to calculate the metabolic distance in any given metabolic network reconstruction. The [metabolic distance calculator](MetabolicDistance) will generate the required input for applying FPA to any metabolic network. 
 
 ## Getting Started
 
