@@ -1,6 +1,6 @@
 # Systematic Integration of Gene Expression Data to Understand Tissue-Level Compartmentalization of Metabolic Network Function in C. elegans
 
-We developped the package to systematically integrate single cell (also applicable to bulk) RNA-seq data to the metabolic network reconstruction of C. elegans. The package includes three parts: matlab implantation of iMAT++ algorithm [iMAT++](1_iMAT++)
+We developped the package to systematically integrate single cell (also applicable to bulk) RNA-seq data to the metabolic network reconstruction of C. elegans. The package includes three parts: matlab implantation of [iMAT++ algorithm](1_iMAT++)
 
 ## Getting Started
 
