@@ -21,11 +21,17 @@ This package doesn't require any installation or compiling. Please see the follo
 The repo includes four independent modules, [iMAT++ algorithm](1_iMAT++), [original iMAT algorithm](2_iMAT), [Flux Potential Analysis (FPA)](3_FPA), and [metabolic distance calculator](MetabolicDistance). Please see the instruction within each module for running a test.
 
 The followings are descriptions on each folder listed.
+
 [1_iMAT++](1_iMAT++): The iMAT++ module. This folder contains all the input, scripts and example codes for running the iMAT++ for C. elegans Tissue Expression integration. 
+
 [2_iMAT](2_iMAT): The original iMAT module. This folder contains all the input, scripts and example codes for running the original iMAT for C. elegans Tissue Expression integration. 
+
 [3_FPA](3_FPA): The Flux Potential Analysis (FPA) module. This folder contains all the input, scripts and example codes for running the FPA for C. elegans Tissue Expression integration. 
+
 [MetabolicDistance](MetabolicDistance): The metabolic distance calculator module. This folder contains all the input, scripts and example codes for calculating the metabolic distance for any metabolic network reconstruction. The output distance matrix is required to run FPA on a non-C. elegans model.
+
 [bins](bins): The shared functions for running the above mentioned analysis. These functions include modified version of a COBRA Toolbox function and common new functions such as molecular weight calculator.
+
 [input](input): The shared input for running the above mentioned analysis. These inputs include C. elegans metabolic model and other input informations.
 
 
