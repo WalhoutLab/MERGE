@@ -157,7 +157,7 @@ penalty = calculatePenalty(model,master_expression2,manualPenalty2);
 I_ind = contains(model.rxns,'_I');
 constantPenalty2 = [model.rxns(I_ind),mat2cell(penalty(I_ind,strcmp(tissueLabel,'Intestine')),ones(sum(I_ind),1))];
 
-[fluxEfficiency_X,fluxEfficiency_plus_X] = FluxPotential(model,targetRxns_X,master_expression,distMat,labels,n, manualPenalty2,manualDist,maxDist,blockList,constantPenalty2);
+[fluxEfficiency_X,fluxEfficiency_plus_X] = FPA(model,targetRxns_X,master_expression,distMat,labels,n, manualPenalty2,manualDist,maxDist,blockList,constantPenalty2);
 %% OPTIMIZE INTESTINAL side
 fprintf('Calculating the FPA for intestine...\n');
 % for intestinal rxns, no special treatment is done. but to apply penalty
@@ -170,7 +170,7 @@ penalty = calculatePenalty(model,master_expression2,manualPenalty);
 I_ind = contains(model.rxns,'_I');
 constantPenalty = [model.rxns(I_ind),mat2cell(penalty(I_ind,strcmp(tissueLabel,'Intestine')),ones(sum(I_ind),1))];
 
-[fluxEfficiency_I,fluxEfficiency_plus_I] = FluxPotential(model,targetRxns_I,master_expression,distMat,labels,n, manualPenalty,manualDist,maxDist,blockList_I,constantPenalty);
+[fluxEfficiency_I,fluxEfficiency_plus_I] = FPA(model,targetRxns_I,master_expression,distMat,labels,n, manualPenalty,manualDist,maxDist,blockList_I,constantPenalty);
 %% first lets do the metabolite centric FPA
 % the difference is specific rxn(s) need to be blocked to prevent loop and
 % false FPA value. these specific rxns are related to the objective in the
@@ -208,12 +208,12 @@ parfor i = 1:length(targetExRxns)
         myRxns_X = myRxns(cellfun(@(x) ~isempty(regexp(x,'(_X)$','once')),myRxns));
         model_tmp.ub(ismember(model_tmp.rxns,myRxns_X)) = 0;
         model_tmp.lb(ismember(model_tmp.rxns,myRxns_X)) = 0;
-        [fluxEfficiency_X_met(i,:),fluxEfficiency_plus_X_met(i,:)] = FluxPotential(model_tmp,{[targetExRxns{i},'_X']},master_expression,distMat,labels,n, manualPenalty2,manualDist,maxDist,blockList,constantPenalty2,false,penalty_defined_X);
+        [fluxEfficiency_X_met(i,:),fluxEfficiency_plus_X_met(i,:)] = FPA(model_tmp,{[targetExRxns{i},'_X']},master_expression,distMat,labels,n, manualPenalty2,manualDist,maxDist,blockList,constantPenalty2,false,penalty_defined_X);
         model_tmp = model;
         myRxns_I = myRxns(cellfun(@(x) ~isempty(regexp(x,'(_L|_I)$','once')),myRxns));
         model_tmp.ub(ismember(model_tmp.rxns,myRxns_I)) = 0;
         model_tmp.lb(ismember(model_tmp.rxns,myRxns_I)) = 0;
-        [fluxEfficiency_I_met(i,:),fluxEfficiency_plus_I_met(i,:)] = FluxPotential(model_tmp,{[targetExRxns{i},'_I']},master_expression,distMat,labels,n, manualPenalty,manualDist,maxDist,blockList_I,constantPenalty,false,penalty_defined_I);
+        [fluxEfficiency_I_met(i,:),fluxEfficiency_plus_I_met(i,:)] = FPA(model_tmp,{[targetExRxns{i},'_I']},master_expression,distMat,labels,n, manualPenalty,manualDist,maxDist,blockList_I,constantPenalty,false,penalty_defined_I);
     %% sink or uptake reaction
     elseif contains(targetExRxns{i},'UPK') %sink or uptake reaction
         % note we set the distance for all uptake rxn to be zero. we need
@@ -245,12 +245,12 @@ parfor i = 1:length(targetExRxns)
         myRxns_X = myRxns(cellfun(@(x) ~isempty(regexp(x,'(_X)$','once')),myRxns));
         model_tmp.ub(ismember(model_tmp.rxns,myRxns_X)) = 0;
         model_tmp.lb(ismember(model_tmp.rxns,myRxns_X)) = 0;
-        [fluxEfficiency_X_met(i,:),fluxEfficiency_plus_X_met(i,:)] = FluxPotential(model_tmp,{[targetExRxns{i},'_X']},master_expression,distMat,labels,n, manualPenalty2,manualDist_tmp_X,maxDist,blockList,constantPenalty2,false,penalty_defined_X);
+        [fluxEfficiency_X_met(i,:),fluxEfficiency_plus_X_met(i,:)] = FPA(model_tmp,{[targetExRxns{i},'_X']},master_expression,distMat,labels,n, manualPenalty2,manualDist_tmp_X,maxDist,blockList,constantPenalty2,false,penalty_defined_X);
         model_tmp = model;
         myRxns_I = myRxns(cellfun(@(x) ~isempty(regexp(x,'(_L|_I)$','once')),myRxns));
         model_tmp.ub(ismember(model_tmp.rxns,myRxns_I)) = 0;
         model_tmp.lb(ismember(model_tmp.rxns,myRxns_I)) = 0;
-        [fluxEfficiency_I_met(i,:),fluxEfficiency_plus_I_met(i,:)] = FluxPotential(model_tmp,{[targetExRxns{i},'_I']},master_expression,distMat,labels,n, manualPenalty,manualDist_tmp_I,maxDist,blockList_I,constantPenalty,false,penalty_defined_I);
+        [fluxEfficiency_I_met(i,:),fluxEfficiency_plus_I_met(i,:)] = FPA(model_tmp,{[targetExRxns{i},'_I']},master_expression,distMat,labels,n, manualPenalty,manualDist_tmp_I,maxDist,blockList_I,constantPenalty,false,penalty_defined_I);
     %% transporter reactions
     elseif contains(targetExRxns{i},'TCE') %transporter reactions
         % transporters are complicated as they have two directions and two
@@ -296,7 +296,7 @@ parfor i = 1:length(targetExRxns)
                 %model_tmp.ub(ismember(model_tmp.rxns,sinkPatch)) = 0;
             end
         end
-        [fluxEfficiency_X_met_f,fluxEfficiency_plus_X_met_f] = FluxPotential(model_tmp,{targetrxn_fullName},master_expression,distMat,labels,n, manualPenalty2,manualDist,maxDist,blockList,constantPenalty2,false,penalty_defined_X);
+        [fluxEfficiency_X_met_f,fluxEfficiency_plus_X_met_f] = FPA(model_tmp,{targetrxn_fullName},master_expression,distMat,labels,n, manualPenalty2,manualDist,maxDist,blockList,constantPenalty2,false,penalty_defined_X);
 
         % then obtain the I tissue potential  
         % first to determine which reaction to target, lumen side or
@@ -357,7 +357,7 @@ parfor i = 1:length(targetExRxns)
                 % model_tmp.ub(ismember(model_tmp.rxns,sinkPatch)) = 0;
             end
         end
-        [fluxEfficiency_I_met_f,fluxEfficiency_plus_I_met_f] = FluxPotential(model_tmp,{targetrxn_fullName},master_expression,distMat,labels,n, manualPenalty,manualDist,maxDist,blockList_I,constantPenalty,false,penalty_defined_I);
+        [fluxEfficiency_I_met_f,fluxEfficiency_plus_I_met_f] = FPA(model_tmp,{targetrxn_fullName},master_expression,distMat,labels,n, manualPenalty,manualDist,maxDist,blockList_I,constantPenalty,false,penalty_defined_I);
         %% reverse direction potential
         model_tmp = model;
         targetrxn_fullName = [targetExRxns{i},'_X'];
@@ -390,7 +390,7 @@ parfor i = 1:length(targetExRxns)
                 % model_tmp.ub(ismember(model_tmp.rxns,sinkPatch)) = 0;
             end
         end
-        [fluxEfficiency_X_met_r,fluxEfficiency_plus_X_met_r] = FluxPotential(model_tmp,{targetrxn_fullName},master_expression,distMat,labels,n, manualPenalty2,manualDist,maxDist,blockList,constantPenalty2,false,penalty_defined_X);
+        [fluxEfficiency_X_met_r,fluxEfficiency_plus_X_met_r] = FPA(model_tmp,{targetrxn_fullName},master_expression,distMat,labels,n, manualPenalty2,manualDist,maxDist,blockList,constantPenalty2,false,penalty_defined_X);
 
         % then obtain the I tissue potential  
         % first to determine which reaction to target, lumen side or
@@ -449,7 +449,7 @@ parfor i = 1:length(targetExRxns)
                 % model_tmp.ub(ismember(model_tmp.rxns,sinkPatch)) = 0;
             end
         end
-        [fluxEfficiency_I_met_r,fluxEfficiency_plus_I_met_r] = FluxPotential(model_tmp,{targetrxn_fullName},master_expression,distMat,labels,n, manualPenalty,manualDist,maxDist,blockList_I,constantPenalty,false,penalty_defined_I);
+        [fluxEfficiency_I_met_r,fluxEfficiency_plus_I_met_r] = FPA(model_tmp,{targetrxn_fullName},master_expression,distMat,labels,n, manualPenalty,manualDist,maxDist,blockList_I,constantPenalty,false,penalty_defined_I);
         %% merge the potentials
         fluxEfficiency_X_tmp = cell(1,size(penalty,2));
         fluxEfficiency_plus_X_tmp = cell(1,size(penalty,2));
@@ -496,7 +496,7 @@ parfor i = 1:length(targetExRxns)
         myRxns_X = myRxns(cellfun(@(x) ~isempty(regexp(x,'(_X)$','once')),myRxns));
         model_tmp.ub(ismember(model_tmp.rxns,myRxns_X)) = 0;
         model_tmp.lb(ismember(model_tmp.rxns,myRxns_X)) = 0;
-        [fluxEfficiency_X_met(i,:),fluxEfficiency_plus_X_met(i,:)] = FluxPotential(model_tmp,{targetrxn_fullName},master_expression,distMat_X_2,labels_X_2,n, manualPenalty2,manualDist,maxDist,blockList,constantPenalty2,false,penalty_defined_X_2);
+        [fluxEfficiency_X_met(i,:),fluxEfficiency_plus_X_met(i,:)] = FPA(model_tmp,{targetrxn_fullName},master_expression,distMat_X_2,labels_X_2,n, manualPenalty2,manualDist,maxDist,blockList,constantPenalty2,false,penalty_defined_X_2);
         
         model_tmp = model;
         model_tmp = addReaction(model_tmp,['DMN',myMet,'_I'],'reactionFormula',[myMet(1:end-3),'_I',myMet(end-2:end),' ->'],'geneRule', 'NA','printLevel',0);
@@ -518,7 +518,7 @@ parfor i = 1:length(targetExRxns)
         myRxns_I = myRxns(cellfun(@(x) ~isempty(regexp(x,'(_L|_I)$','once')),myRxns));
         model_tmp.ub(ismember(model_tmp.rxns,myRxns_I)) = 0;
         model_tmp.lb(ismember(model_tmp.rxns,myRxns_I)) = 0;
-        [fluxEfficiency_I_met(i,:),fluxEfficiency_plus_I_met(i,:)] = FluxPotential(model_tmp,{targetrxn_fullName},master_expression,distMat_I_2,labels_I_2,n, manualPenalty,manualDist,maxDist,blockList_I,constantPenalty,false,penalty_defined_I_2);
+        [fluxEfficiency_I_met(i,:),fluxEfficiency_plus_I_met(i,:)] = FPA(model_tmp,{targetrxn_fullName},master_expression,distMat_I_2,labels_I_2,n, manualPenalty,manualDist,maxDist,blockList_I,constantPenalty,false,penalty_defined_I_2);
     else
         error('Not a supported RXN type!');
     end

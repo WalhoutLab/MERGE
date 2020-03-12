@@ -112,5 +112,5 @@ targetRxns = {'RM04432'};
 changeCobraSolverParams('LP','optTol', 10e-9);
 changeCobraSolverParams('LP','feasTol', 10e-9);
 
-[fluxEfficiency,fluxEfficiency_plus] = FluxEfficiency(model,targetRxns,master_expression,distMat,labels,n, manualPenalty,manualDist,maxDist);
+[fluxEfficiency,fluxEfficiency_plus] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty,manualDist,maxDist);
 

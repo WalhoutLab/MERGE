@@ -192,7 +192,7 @@ for i = 1:length(names)
     doMinPFD = 1;
     latentCAP = 0.05;
     myCSM = struct(); %my context specific model
-    [myCSM.OFD,myCSM.N_highFit,myCSM.N_zeroFit,myCSM.minLow,myCSM.minTotal,myCSM.OpenGene,myCSM.wasteDW,myCSM.HGenes,myCSM.RLNames,myCSM.latentRxn,myCSM.PFD,myCSM.Nfit_latent,myCSM.minTotal_OFD,myCSM.MILP] = autoIntegration_latent(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCatag,doMinPFD,latentCAP);
+    [myCSM.OFD,myCSM.N_highFit,myCSM.N_zeroFit,myCSM.minLow,myCSM.minTotal,myCSM.OpenGene,myCSM.wasteDW,myCSM.HGenes,myCSM.RLNames,myCSM.latentRxn,myCSM.PFD,myCSM.Nfit_latent,myCSM.minTotal_OFD,myCSM.MILP] = IMATplusplus(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCatag,doMinPFD,latentCAP);
     save(['output/',names{i},'.mat'],'myCSM');
     eval([names{i},' = myCSM;']);
     toc(fitTime);
@@ -237,9 +237,9 @@ doMinPFD = 1;
 latentCAP = 0.05;
 myCSM = struct(); %my context specific model
 % PFD fitting
-[~,myCSM.N_highFit,myCSM.N_zeroFit,myCSM.minLow,myCSM.minTotal,myCSM.OpenGene,~,myCSM.HGenes,myCSM.RLNames,~,myCSM.PFD,~,~,~] = autoIntegration_latent(IntestineModel_PFD,~doLatent,storeProp,SideProp,epsilon_new_f,epsilon_new_r, ATPm, ExpCatag,doMinPFD,latentCAP);
+[~,myCSM.N_highFit,myCSM.N_zeroFit,myCSM.minLow,myCSM.minTotal,myCSM.OpenGene,~,myCSM.HGenes,myCSM.RLNames,~,myCSM.PFD,~,~,~] = IMATplusplus(IntestineModel_PFD,~doLatent,storeProp,SideProp,epsilon_new_f,epsilon_new_r, ATPm, ExpCatag,doMinPFD,latentCAP);
 % OFD fitting
-[myCSM.OFD,~,~,~,~,~,myCSM.wasteDW,~,~,myCSM.latentRxn,~,myCSM.Nfit_latent,myCSM.minTotal_OFD,myCSM.MILP] = autoIntegration_latent(IntestineModel_OFD,doLatent,storeProp,SideProp,epsilon_new_f,epsilon_new_r, ATPm, ExpCatag,doMinPFD,latentCAP);
+[myCSM.OFD,~,~,~,~,~,myCSM.wasteDW,~,~,myCSM.latentRxn,~,myCSM.Nfit_latent,myCSM.minTotal_OFD,myCSM.MILP] = IMATplusplus(IntestineModel_OFD,doLatent,storeProp,SideProp,epsilon_new_f,epsilon_new_r, ATPm, ExpCatag,doMinPFD,latentCAP);
 save('output/Intestine.mat','myCSM');
 toc(fitTime);
 fprintf('C. elegans Tissue Model Fitting Completed! \n');

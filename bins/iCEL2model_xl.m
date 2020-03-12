@@ -316,6 +316,14 @@ if ~isempty(strmatch('Other names',metHeaders,'exact'))
     model.Other_names = columnVector(MetStrings(B(A),strmatch('Other names',metHeaders,'exact')));
 end
 
+if ~isempty(strmatch('MW',metHeaders,'exact'))
+    model.MolWeight = columnVector(MetStrings(B(A),strmatch('MW',metHeaders,'exact')));
+end
+
+if ~isempty(strmatch('Localization',metHeaders,'exact'))
+    model.Localization = columnVector(MetStrings(B(A),strmatch('Localization',metHeaders,'exact')));
+end
+
 if ~isempty(strmatch('PubChem ID',metHeaders,'exact'))
     %This is a litte trickier, as PubChemIDs are numbers. So we have to
     %load them differently
