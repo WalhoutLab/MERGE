@@ -15,7 +15,9 @@ Please refer to the [integration function](scripts/autoIntegration_latent.m) for
 
 ### Run iMAT++ analysis on generic C. elegans model with a given expression dataset
 
-For more instructions of running the pipeline in a custom dataset, please refer to the header of each functions included in the walkthrough script.
+We provided a step-by-step walkthrough script for running iMAT++ on the generic iCEL1314 with any given expression dataset. Users can start with this script to perform iMAT++ analysis on their own expression data. 
+
+We recommand to go over this script interactively in MATLAB graphic interface. Please launch a MATLAB instance and set your current directory in this folder (1_iMAT++). Then, open and go through [the walkthrough script](walkthrough_generic.m) according to the instructions in it.
 
 ### Run iMAT++ analysis on other metabolic model with a given expression dataset
 
