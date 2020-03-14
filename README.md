@@ -43,7 +43,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 ## Authors
 
 * **Safak Yilmaz** - *Development of iMAT++ and FPA and Metabolic Distance Calculator* - [lsafak](https://github.com/lsafak)
-* **Xuhang Li** - *Matlab Implantation of iMAT++/iMAT/FPA* - [XuhangLi](https://github.com/XuhangLi)
+* **Xuhang Li** - *Matlab implementation of iMAT++/iMAT/FPA* - [XuhangLi](https://github.com/XuhangLi)
 
 ## License
 
