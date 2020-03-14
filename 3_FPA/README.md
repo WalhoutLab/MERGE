@@ -12,9 +12,9 @@ Output(Flux distribution and other metrics) will be written in FPA_rxns.mat
 
 ### Run FPA on generic C. elegans model with a given expression dataset
 
-We provided a step-by-step [walkthrough script](writeFluxPotential_generic.m) for running FPA on the generic iCEL1314 with any given expression dataset. Users can start with this script to perform FPA analysis on their own expression data. 
+We provided a step-by-step [walkthrough script](FPA_walkthrough_generic.m) for running FPA on the generic iCEL1314 with any given expression dataset. Users can start with this script to perform FPA analysis on their own expression data. 
 
-This walkthrough script will guide users to generate FPA predictions from plain expression matrix (i.e, TPM matrix) to the final predicted FPA values for given target rxn(s). We recommand to go over this script interactively in MATLAB graphic interface. Please launch a MATLAB instance and set your current directory in this folder (3_FPA). Then, open and go through [walkthrough script](writeFluxPotential_generic.m) according to the instructions in it.
+This walkthrough script will guide users to generate FPA predictions from plain expression matrix (i.e, TPM matrix) to the final predicted FPA values for given target rxn(s). We recommand to go over this script interactively in MATLAB graphic interface. Please launch a MATLAB instance and set your current directory in this folder (3_FPA). Then, open and go through [walkthrough script](FPA_walkthrough_generic.m) according to the instructions in it.
 
 Users may choose to generate the distance matrix for generic iCEL1314 via [metabolic distance calculator](./../MetabolicDistance). In this walkthrough script, we will directly use the completed output (see details in the script)for the sake of time. (calculating full distance matrix may take hours)
 
