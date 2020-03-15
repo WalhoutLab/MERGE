@@ -84,7 +84,7 @@ For other potential analyses, use help in other functions:
 e.g.
 >help(Net.findFrowardLoops)
 
-To obtain a global distance matrix that shows the distance from every reaction (rows) to every other reaction (columns) the network must be traversed from every reaction using the above code. Doing this with a for loop can take many hours. How this can be efficiently done using a computer cluster is demonstrated using example codes (see files with names formatted as "exampleCluster_xxx.py"). The example calculation was carried out in Massachusetts Green High Performance Computing Center (https://www.mghpcc.org/).
+To obtain a global distance matrix that shows the distance from every reaction (rows) to every other reaction (columns) the network must be traversed from every reaction using the above code. Doing this with a for loop can take many hours. How this can be efficiently done using a computer cluster is demonstrated using example codes (see files with names formatted as "exampleCluster_xxx.py"). The example calculation was carried out in Massachusetts Green High Performance Computing Center (https://www.mghpcc.org/). This cluster uses LSF as job scheduler. The same code should be applicable in any high performance computing center using LSF, with minor modifications in job description if necessary. 
 
 
 
