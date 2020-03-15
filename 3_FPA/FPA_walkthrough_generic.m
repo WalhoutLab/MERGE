@@ -92,3 +92,24 @@ blockList = getBlockList(model,FVAtbl);
 % run the FPA again
 [fluxEfficiency2,fluxEfficiency_plus2] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty,{},max(distMat(~isinf(distMat))),blockList);
 %% run FPA for human model RECON 2.2
+
+
+%% 2. generate the distance matrix
+% this section will guide users to generate the input for metabolic
+% distance calculator from the matlab model.
+writematrix(model.S,'distance_inputs/Smatrix_regular.txt');
+writecell(model.rxns,'distance_inputs/reactions_regular.txt');
+writecell(model.mets,'distance_inputs/metabolites_regular.txt');
+writematrix(model.lb,'distance_inputs/LB_regular.txt');
+writematrix(model.ub,'distance_inputs/UB_regular.txt');
+byProducts = {'co2';'amp';'nadp';'nadph';'ppi';'o2';'nadh';'nad';'pi';'adp';'coa';'atp';'h2o';'h';'gtp';'gdp';'etfrd';'etfox';'crn';'fad';'fadh2'};
+% add compartment label to byproducts
+byProducts = model.mets(ismember(cellfun(@(x) regexprep(x,'\[.\]$',''),model.mets, 'UniformOutput',false),byProducts));
+writecell(byProducts,'distance_inputs/byproducts_regular.txt');
+% then you can use the output files in "the distance_inputs" folder for
+% calculating distances. Please follow the Distance calculator section in
+% Github
+
+
+
+
