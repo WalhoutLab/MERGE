@@ -16,7 +16,7 @@ We provided a step-by-step [walkthrough script](FPA_walkthrough_generic.m) for r
 
 This walkthrough script will guide users to generate FPA predictions from plain expression matrix (i.e, TPM matrix) to the final predicted FPA values for given target rxn(s). We recommand to go over this script interactively in MATLAB graphic interface. Please launch a MATLAB instance and set your current directory in this folder (3_FPA). Then, open and go through [walkthrough script](FPA_walkthrough_generic.m) according to the instructions in it.
 
-Users may choose to generate the distance matrix for generic iCEL1314 via [metabolic distance calculator](./../MetabolicDistance). In this walkthrough script, we will directly use the completed output (see details in the script)for the sake of time. (calculating full distance matrix may take hours)
+Users may choose to generate the distance matrix for generic iCEL1314 via [metabolic distance calculator](./../MetabolicDistance). In this walkthrough script, we will directly use the completed output (see details in the script)for the sake of time. (calculating full distance matrix may take hours) For making the required input from a COBRA format model loaded in matlab, please see "2. generate the distance matrix" section in the walkthrough script. This section will guide user to make the required inputs for running the distance calculator.
 
 ### Run FPA on other metabolic model with a given expression dataset
 
