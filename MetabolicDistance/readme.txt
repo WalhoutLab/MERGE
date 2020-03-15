@@ -2,7 +2,7 @@ METABOLIC DISTANCE
 
 Installation of MetabolicDistance module only requires placing MetabolicDistance.py in the path.
 
-Usage for finding distances from a particular reaction in the network to all other (reachable) reactions is in the following section, which can be run as a python program:
+Usage for finding distances from a particular reaction in the network to all other (reachable) reactions is in the following section, which can be run as a python program (see further below for other analyses and options to use a high performance computing facility):
 
 ____________________________________________________________________________________
 from MetabolicDistance import *
