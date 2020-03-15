@@ -42,7 +42,9 @@ model.parsedGPR = parsedGPR;
 
 % this loads the raw directional distance matrix, first need to take the
 % minimum for future use
-distance_raw = readtable('distance_fromRxnToRxn.tsv','FileType','text','ReadRowNames',true);
+% to load from output of distance calculator, uncomment the following line
+% distance_raw = readtable('distance_fromRxnToRxn.tsv','FileType','text','ReadRowNames',true);
+load('./input/distance_raw.mat')
 labels = distance_raw.Properties.VariableNames;
 labels = cellfun(@(x) [x(1:end-1),'_',x(end)],labels,'UniformOutput',false);
 distMat_raw = table2array(distance_raw);

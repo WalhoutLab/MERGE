@@ -1,5 +1,5 @@
 function expression_logic = freezeANDlogic(expression)
-NONETYPE = 'NaN';% by default, the undetected genes are ?
+NONETYPE = '0';% by default, the undetected genes are NaN (will be ignored)
 NUMBER = '[0-9\.\-e]+';
 MAYBE_NUMBER = [NUMBER '|' NONETYPE];
 %freeze the AND logic genes

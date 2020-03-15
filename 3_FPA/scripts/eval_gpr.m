@@ -7,7 +7,7 @@ NO_MEASUREMENTS = -2;
 MAX_EVALS_EXCEEDED = -3;
 
 MAX_EVALS = 1000;
-NONETYPE = 'NaN';% by default, the undetected genes are ?
+NONETYPE = '0';% by default, the undetected genes are 0;
 
 NUMBER = '[0-9\.\-e]+';
 MAYBE_NUMBER = [NUMBER '|' NONETYPE];

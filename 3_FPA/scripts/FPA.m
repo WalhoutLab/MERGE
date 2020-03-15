@@ -46,8 +46,10 @@ end
 
 % apply constant penalty to all conditions except for the super condition
 % (at the end of the vector) 
-[A B] = ismember(model.rxns,constantPenalty(:,1));
-penalty(A,1:end-1) = repmat(cell2mat(constantPenalty(B(A),2)),1,size(penalty,2)-1);
+if ~isempty(constantPenalty)
+    [A B] = ismember(model.rxns,constantPenalty(:,1));
+    penalty(A,1:end-1) = repmat(cell2mat(constantPenalty(B(A),2)),1,size(penalty,2)-1);
+end
 %% part2 prepare the distance
 % prepare the distance matrix
 fprintf('Preparing the distance matrix...\n');
@@ -98,10 +100,12 @@ if parforFlag
         for j = 1:size(penalty,2)
             % block the reactions in the block list
             model_irrev_tmp0 = model_irrev;
-            if j < size(penalty,2)
-                model_irrev_tmp0.ub(ismember(model_irrev_tmp0.rxns,blockList{j})) = 0;
-            else %still block when optimizing supertissue // used to not block, now requires a supercond block list (could be empty)
-                model_irrev_tmp0.ub(ismember(model_irrev_tmp0.rxns,blockList{j})) = 0;
+            if ~isempty(blockList)
+                if j < size(penalty,2)
+                    model_irrev_tmp0.ub(ismember(model_irrev_tmp0.rxns,blockList{j})) = 0;
+                else %still block when optimizing supertissue // used to not block, now requires a supercond block list (could be empty)
+                    model_irrev_tmp0.ub(ismember(model_irrev_tmp0.rxns,blockList{j})) = 0;
+                end
             end
             if doForward 
                 model_irrev_tmp = model_irrev_tmp0;
