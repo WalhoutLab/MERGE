@@ -1,11 +1,3 @@
-METABOLIC DISTANCE
-
-Installation of MetabolicDistance module only requires placing MetabolicDistance.py in the path.
-
-Usage for finding distances from a particular reaction in the network to all other (reachable) reactions is in the following section, which can be run as a python program:
-
-____________________________________________________________________________________
-
 from MetabolicDistance import *
 
 ##1-Loading model variables.
@@ -15,14 +7,18 @@ from MetabolicDistance import *
 #such as atp and proton). Metabolites in the byproducts list will be ignored during distance
 #analysis. 
 #You can use loadVarsFromFilenames() function to load all variables in a particular order,
-#provided that S is in npy format, and all others are as text with each list element occupying
-#a line. See help for this function for details. 
+#provided that S is in npy format or delimited text format, and all others are as text with 
+#each list element occupying a line. See help for this function for details. 
 
 #EXAMPLE
-S,rxns,metabolites,lb,ub,byproducts=loadVarsFromFilenames('Input/Smatrix_regular.npy',\
+#If S matrix is in comma-delimited text format:
+S,rxns,metabolites,lb,ub,byproducts=loadVarsFromFilenames('Input/Smatrix_regular.txt',\
 'Input/reactions_regular.txt','Input/metabolites_regular.txt','Input/LB_regular.txt',\
-'Input/UB_regular.txt','Input/byproducts_regular.txt');
-
+'Input/UB_regular.txt','Input/byproducts_regular.txt',delimiterInSmatrix=',');
+#If S matrix is in an npy file, use the following instead:
+#S,rxns,metabolites,lb,ub,byproducts=loadVarsFromFilenames('Input/Smatrix_regular.npy',\
+#'Input/reactions_regular.txt','Input/metabolites_regular.txt','Input/LB_regular.txt',\
+#'Input/UB_regular.txt','Input/byproducts_regular.txt',delimiterInSmatrix=None);
 
 ##2-Forming a reaction network with unidirectional reactions
 
@@ -79,5 +75,3 @@ Ddistance2=convertPaths2Distances(Dpath);
 #For other potential analyses, use help in other functions:
 #e.g.
 #>help(Net.findFrowardLoops)
-
-____________________________________________________________________________________
