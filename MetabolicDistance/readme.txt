@@ -1,3 +1,10 @@
+METABOLIC DISTANCE
+
+Installation of MetabolicDistance module only requires placing MetabolicDistance.py in the path.
+
+Usage for finding distances from a particular reaction in the network to all other (reachable) reactions is in the following section, which can be run as a python program:
+
+____________________________________________________________________________________
 from MetabolicDistance import *
 
 ##1-Loading model variables.
@@ -71,7 +78,13 @@ print Dpath['RM01608f'];
 
 #Dpath dictionary can be converted to a distance dictionary using convertPaths2Distances()
 Ddistance2=convertPaths2Distances(Dpath);
+____________________________________________________________________________________
 
-#For other potential analyses, use help in other functions:
-#e.g.
-#>help(Net.findFrowardLoops)
+For other potential analyses, use help in other functions:
+e.g.
+>help(Net.findFrowardLoops)
+
+To obtain a global distance matrix that shows the distance from every reaction (rows) to every other reaction (columns) the network must be traversed from every reaction using the above code. Doing this with a for loop can take many hours. How this can be efficiently done using a computer cluster is demonstrated using example codes (see files with names formatted as "exampleCluster_xxx.py"). The example calculation was carried out in Massachusetts Green High Performance Computing Center (https://www.mghpcc.org/).
+
+
+
