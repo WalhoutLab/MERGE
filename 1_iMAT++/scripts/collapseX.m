@@ -1,31 +1,54 @@
 function [newModel] = collapseX(model, compID, fluxDistribution)
-% this function is to collapse one compartment in a conjoined model to get
-% a collapsed model; the collapsed compartment will be represented as set
-% of psudo-exchange reations that are in place of the original transport
-% reaction; these exchange reaction phenocopy the original demand of each
-% metabolite in the collapsed compartment 
+% This function is specific to the integration for dual tissue model in C.
+% elegans, but has the potential to be adapted for similar purpose in other
+% models and applications. This function collapse a specific compartment in
+% the input model according to a flux distribution. The collapsed compartment will be represented as a set of new exchange reactions. The net exchange flux
+% between the collapsed compartment and others will be converted to constriants of these exchange reactions, so that the flux burden of this compartment in the input flux distribution will be kept in the 
+% resulting new model, yet greatly reducing the model size.
+%
+% USAGE:
+%
+%    newModel = collapseX(model, compID, fluxDistribution)
+%
+% INPUTS:
+%    model:             input model (COBRA model structure)
+%    compID:            The id of the compartment to collapse (i.e., for
+%                       cellular compartment, "[c]", the id is "c".)
+%    fluxDistribution:  the input flux distribution giving the flux burden
+%                       of the collapsed compartment
+%
+% OUTPUT:
+%   newModel:           the collapsed model with flux burden set as
+%                       exchange reaction boundaries
+%
+% `Yilmaz et al. (2020). Final Tittle and journal.
+% .. Author: - Xuhang Li, Mar 2020
+
+%% create a new model
 newModel = model;
 %% collapse metabolite and reactions
+% removing the reactions
 Xrxns = model.rxns(cellfun(@(x) ~isempty(regexp(x, ['_',compID,'$'], 'once')),model.rxns));
 newModel = removeRxns(newModel,Xrxns);
+% removing the metabolites
 Xmets = model.mets(cellfun(@(x) ~isempty(regexp(x, ['_',compID,'\[.\]$'], 'once')),model.mets));
 newModel = removeMetabolites(newModel,Xmets);
-%collapsing genes in X is skipped since reshaping the GR matrix is slow
-%Xgenes = cellfun(@(x) ~isempty(regexp(x, ['_',compID,'$'], 'once')),model.genes);
-%newModel =  removeFieldEntriesForType(newModel,Xgenes,'genes',numel(newModel.genes));
-
-
-%note: a scar is left: the sideConstraints (the NonsenseMets) for X
-%compartement is not deleted. but they are now essentially all zero vector,
-%which will not influence the modeling 
-%% add psudo-exchange rxns
-% calculate the flux demand for each metabolite based on transport
-% reactions
+%% a special notice on genes
+% collapsing genes in X is skipped since reshaping the GR matrix is slow
+% one can still do it by uncomment the following codes
+% Xgenes = cellfun(@(x) ~isempty(regexp(x, ['_',compID,'$'], 'once')),model.genes);
+% newModel =  removeFieldEntriesForType(newModel,Xgenes,'genes',numel(newModel.genes));
+%% special notice for dual model
+% For dual tissue model, a scar is left in the new model: the side metabolites constraints (named NonsenseMets in model.mets) for X
+% compartement is not deleted, but they are now essentially all zero vector
+% in the S matrix. So, it will not influence the modeling.
+%% add (new)psudo-exchange rxns
+% calculate the flux burden for each metabolite based on transport reactions
 % find the X_E metabolites
 numericalTol = 0; % tolerance could be larger or equal to solver tolerance; zero gives strigency but may cause solver instability
 allExMets = model.mets(cellfun(@(x) ~isempty(regexp(x, '\[e\]$', 'once')),model.mets));
 allXmets = model.mets(any(model.S(:,ismember(model.rxns,Xrxns)),2)); % all metablites used in a X reaction
-targetMets = intersect(allExMets, allXmets);
+targetMets = intersect(allExMets, allXmets);%target metablite to proxy by a new exchange reaction
 % add reactions
 for i = 1:length(targetMets)
     % determine the lb and ub
@@ -38,7 +61,7 @@ for i = 1:length(targetMets)
     else
         deltaV = numericalTol;
     end
-    % construct the reaction
+    % construct the new reaction
     newModel = addReaction(newModel,['EX',model.MetMachineID{strcmp(targetMets{i},model.mets)}(2:end),['_',compID]],...
         'metaboliteList',targetMets(i),...
         'stoichCoeffList',-1,...
