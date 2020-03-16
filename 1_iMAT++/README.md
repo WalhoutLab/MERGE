@@ -11,7 +11,7 @@ matlab < myFlux.m
 ```
 Output(Flux distribution and other metrics) will be written in output/TissueName.mat
 
-Please refer to the [integration function](scripts/autoIntegration_latent.m) for output format.
+Please refer to the [integration function](scripts/IMATplusplus.m) for output format.
 
 ### Run iMAT++ analysis on generic C. elegans model with a given expression dataset
 
