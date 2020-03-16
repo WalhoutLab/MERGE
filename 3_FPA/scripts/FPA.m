@@ -1,5 +1,97 @@
-function [fluxEfficiency,fluxEfficiency_plus] = FPA(model,targetRxns,master_expression,distMat,labels,n,manualPenalty,manualDist,maxDist,blockList, constantPenalty,parforFlag,penalty_defined)
-%%
+function [FluxPotentials,FluxPotential_solutions] = FPA(model,targetRxns,master_expression,distMat,labels,n,manualPenalty,manualDist,maxDist,blockList, constantPenalty,parforFlag,penalty_defined)
+% Uses the FPA algorithm (`Yilmaz et al., 2020`) to calculate the relative flux
+% potential of a given reaction across conditions. This algorithm finds the
+% objective value of a linear optimization (i.e, maximum flux of a
+% reaction) that best represents the relative expression levels of all
+% related gene in a certain network neighberhood or the global network. The key
+% concept is to penalties the flux of reactions according to the relative
+% expression level of those associated genes. A distance order parameter
+% supports to perform such integration at a tunable scale of metabolite
+% neighbers.
+% 
+% USAGE:
+%
+%    FluxPotentials = FPA(model,targetRxns,master_expression,distMat,labels,n,manualPenalty,manualDist,maxDist,blockList, constantPenalty,parforFlag,penalty_defined)
+%
+% INPUTS:
+%    model:             input model (COBRA model structure)
+%    targetRxns:        the target reactions to run FPA on. By default,
+%                       both forward and reverse directions of a queried
+%                       reaction will be calculated, regardless of the
+%                       reaction reversibility. The non-applicable
+%                       direction will return NaN in the FPA output.
+%    master_expression: the expression profiles of queried conditions. The
+%                       master expression variable is reqired to be a cell
+%                       array of structure variables. Each structure
+%                       variable corresponds to the expression profile of a
+%                       condition in comparison. The structure variable
+%                       should have two fields, "genes" and "value"
+%                       respectively. For instructions on forming the
+%                       master expression variable from a expression table
+%                       (i.e, TPM table in text format), please see
+%                       "FPA_walkthrough_generic.m"
+%    distMat:           the distance matrix for the input model. The matrix
+%                       should be distance measures of a irreversible model. Please see
+%                       "FPA_walkthrough_generic.m" and "MetabolicDistance" section on GitHub
+%                       for how to generate a valid distance matrix
+%    labels:            the reaction ID labels for distMat. Note that
+%                       labels should be for the irreversible version of the model. (it will
+%                       be automatically provided in the output of the distance calculator)
+% OPTIONAL INPUTS:
+%    n:                 the distance order for FPA calculation. We
+%                       suggest 1.5 for C. elegans network. User can vary it from 0 (global
+%                       integration) to 10 (or larger, essentially only integrate the
+%                       expression data associated with the target reaction)
+%    manualPenalty:     the user defined penalty for specific reactions.
+%                       This input will overide all penalty calculation based on expression
+%                       data.
+%    manualDist:        the user defined distance for specific reactions.
+%                       This manual distance is define as a single value, that is saying, the
+%                       distance of ALL reactions to the specified reaction will be override
+%                       to the designated value
+%    maxDist:           the user-defined maximum value of the metabolic
+%                       distance. All distance values greater than maxDist will be overrided
+%                       with MaxDist. By default, the maximum non-infinite value in the
+%                       distance matrix is chosen.
+%    blockList:         a list of reactions to block (constrianed to zero
+%                       flux) during the FPA analysis. Used to conjoin with iMAT++ result to
+%                       perform FPA on a context-specific metabolic network
+%    constantPenalty:   a specifc parameter used in dual tissue integration
+%                       in C. elegans tissue modeling. It is similar to manualPenalty which override the user-defined penalties for special reactions. 
+%                       However, the constantPenalty will NOT override the
+%                       original penalty of the super condition, so that FPA of X
+%                       tissue is comparable with that of Intestine. May
+%                       not be useful for generic using of FPA
+%     parforFlag:       we support to run the FPA in a parallel manner (by default). User can disable the parfor run by setting the parforFlag to false 
+%                       (we used in metabolite-centric calculation, to
+%                       avoid overwhelming time consuming in redundant
+%                       penalty calculation). When disable the parfor, user
+%                       must supply the pre-defined penalty matrix by
+%                       "penalty_defined"
+%     penalty_defined:  the pre-defined complete penalty matrix for FPA.
+%                       Only needed when parforFlag is set to false. For
+%                       calculating predefined penalty matrix, see
+%                       "calculatePenalty.m"
+%
+%
+% OUTPUT:
+%   FluxPotentials:     the raw flux potential values of the target
+%                       reactions. Potentials are given for both forward and reverse direction
+%                       of each reaction; The column order is the same order as the
+%                       master_expression input, giving the FPA for each input conditions. The
+%                       last column is the flux potential of the super condition. For best
+%                       evaluation of flux potential, we recommand users to normalize the raw
+%                       flux potential values of each condition to the corresponding value of
+%                       super condition, so that user will get the relative flux potential
+%                       (rFP) between 0 to 1.
+% OPTIONAL OUTPUTS:
+%   FluxPotential_solutions:    the FPA solution outputs of each flux
+%                               potential objective values. This could be used to inspect and
+%                               understand the pathway chosen in getting the maximum calculating flux potential.
+%
+% `Yilmaz et al. (2020). Final Tittle and journal.
+%
+% .. Author: - (COBRA implementation) Xuhang Li, Mar 2020
 if (nargin < 6)
     n = 1.5;
 end
@@ -84,8 +176,8 @@ end
 penalty = penalty_new;
 %% part3 merge penalty and calculate the LP
 %form and calculate the LP
-fluxEfficiency = cell(length(targetRxns),size(penalty,2));
-fluxEfficiency_plus = cell(length(targetRxns),size(penalty,2));
+FluxPotentials = cell(length(targetRxns),size(penalty,2));
+FluxPotential_solutions = cell(length(targetRxns),size(penalty,2));
 fprintf('FPA calculation started:\n');
 if parforFlag
     fprintf(['\n' repmat('.',1,length(targetRxns)) '\n\n']);
@@ -130,8 +222,8 @@ if parforFlag
                 efficiencyVector_plus{1,j}(2) = {''};
             end
         end
-        fluxEfficiency(i,:) = efficiencyVector;
-        fluxEfficiency_plus(i,:) = efficiencyVector_plus;
+        FluxPotentials(i,:) = efficiencyVector;
+        FluxPotential_solutions(i,:) = efficiencyVector_plus;
         fprintf('\b|\n');
     end
 else %run the same code on a for loop mode
@@ -171,8 +263,8 @@ else %run the same code on a for loop mode
                 efficiencyVector_plus{1,j}(2) = {''};
             end
         end
-        fluxEfficiency(i,:) = efficiencyVector;
-        fluxEfficiency_plus(i,:) = efficiencyVector_plus;
+        FluxPotentials(i,:) = efficiencyVector;
+        FluxPotential_solutions(i,:) = efficiencyVector_plus;
         fprintf('done!\n');
     end
 end
