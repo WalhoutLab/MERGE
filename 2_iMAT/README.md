@@ -1,4 +1,4 @@
-This guidance shows how to reproduce the flux prediction in Fig X by original iMAT algorithm. 
+This guidance shows how to reproduce the flux prediction in Fig 2D by original iMAT algorithm. 
 
 ### Run the integration for dual model
 

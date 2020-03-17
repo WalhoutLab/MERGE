@@ -1,4 +1,4 @@
-This guidance shows how to reproduce the flux prediction in Fig 3A by iMAT++. Additionally, we provided user-friendly walkthrough guidance to run iMAT++ with any given dataset or metabolic model.
+This guidance shows how to reproduce the flux prediction in Figures 2C, 2D, and 3A by iMAT++. Additionally, we provided user-friendly walkthrough guidance to run iMAT++ with any given dataset or metabolic model.
 
 ### Reproducing the integration for C. elegans' dual tissue model
 

@@ -1,4 +1,4 @@
-This guidance shows how to reproduce the flux potential analysis (FPA) result in Fig 6 by FPA. Additionally, we provided a walkthrough guidance for running FPA on the generic model of iCEL1314 as well as any other metabolic network model, with any given expression dataset.
+This guidance shows how to reproduce the flux potential analysis (FPA) results in Figures 5B, 6, and S7 by FPA. Additionally, we provided a walkthrough guidance for running FPA on the generic model of iCEL1314 as well as any other metabolic network model, with any given expression dataset.
 
 ### Reproducing the FPA result for C. elegans' dual tissue model
 
