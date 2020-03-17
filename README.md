@@ -16,7 +16,7 @@ The Linear Program (LP) and Mixed-Integer Linear Problem (MILP) solver used in t
 
 ### Installing
 
-This package doesn't require any installation or compiling. Please see the following section for reproducing the tissue expression integration result in this study, or perform the analysis on a desired metabolic network reconstruction. 
+This package doesn't require any installation or compiling. Please see the following section for reproducing the tissue expression integration result in this study, or perform the analysis on a desired metabolic network model and gene expression dataset. 
 
 ## Running the tests
 
@@ -24,17 +24,17 @@ The repo includes four independent modules, [iMAT++ algorithm](1_iMAT++), [origi
 
 The followings are descriptions on each module (folder) listed.
 
-[1_iMAT++](1_iMAT++): The iMAT++ module. This folder contains all the input, scripts and example codes for running the iMAT++ for C. elegans Tissue Expression integration and application on other models/datasets. 
+[1_iMAT++](1_iMAT++): The iMAT++ module. This folder contains all the input, scripts and example codes for running the iMAT++ for C. elegans tissue-level integration and application on other models/datasets. 
 
-[2_iMAT](2_iMAT): The original iMAT module. This folder contains all the input, scripts and example codes for running the original iMAT for C. elegans Tissue Expression integration. 
+[2_iMAT](2_iMAT): The original iMAT module. This folder contains all the input, scripts and example codes for running the original iMAT for C. elegans tissue-level integration. 
 
-[3_FPA](3_FPA): The Flux Potential Analysis (FPA) module. This folder contains all the input, scripts and example codes for running the FPA for C. elegans Tissue Expression integration and application on other models/datasets. 
+[3_FPA](3_FPA): The Flux Potential Analysis (FPA) module. This folder contains all the input, scripts and example codes for running the FPA for C. elegans tissue-level integration and application on other models/datasets. 
 
-[MetabolicDistance](MetabolicDistance): The metabolic distance calculator module. This folder contains all the input, scripts and example codes for calculating the metabolic distance for any metabolic network reconstruction. The output distance matrix is required to run FPA on a non-C. elegans model.
+[MetabolicDistance](MetabolicDistance): The metabolic distance calculator module. This folder contains all the input, scripts and example codes for calculating the metabolic distance for any metabolic network model. The output distance matrix is required to run FPA. The output for the C. elegans models used in the reference study are available in the pertaining folders. 
 
-[bins](bins): The shared functions for running the above mentioned analysis. These functions include modified version of some COBRA Toolbox functions and common new functions such as molecular weight calculator.
+[bins](bins): The shared functions for running the above mentioned analysis. These functions include modified version of some COBRA Toolbox functions and common new functions such as a molecular weight calculator.
 
-[input](input): The shared input for running the above mentioned analysis. These inputs include C. elegans metabolic model and other input informations.
+[input](input): The shared input for running the above mentioned analysis. These inputs include C. elegans metabolic model and other input information.
 
 
 ## Contributing
@@ -44,7 +44,7 @@ Please contact us for reporting bugs or contributing purposes. Email contacting 
 
 ## Authors
 
-* **Safak Yilmaz** - *Development of iMAT++ and FPA and Metabolic Distance Calculator* - [lsafak](https://github.com/lsafak)
+* **Safak Yilmaz** - *Development of iMAT++, FPA and Metabolic Distance Calculator* - [lsafak](https://github.com/lsafak)
 * **Xuhang Li** - *Matlab implementation of iMAT++/iMAT/FPA* - [XuhangLi](https://github.com/XuhangLi)
 
 ## License
