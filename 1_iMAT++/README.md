@@ -16,13 +16,13 @@ Output(Flux distribution and other metrics) will be written in output/TissueName
 
 Please refer to the [integration function](scripts/IMATplusplus.m) for the output format.
 
-### Running iMAT++ analysis on generic C. elegans model with a given expression dataset
+### Running iMAT++ analysis on generic <i>C. elegans</i> model with a given expression dataset
 
-We provided a step-by-step walkthrough script for running iMAT++ on the generic iCEL1314 with any given expression dataset. Users can start with this script to perform iMAT++ analysis on their own expression data. 
+We provided a step-by-step walkthrough script for running iMAT++ on the generic [iCEL1314](http://wormflux.umassmed.edu/index.html) model with any given expression dataset. Users can start with this script to perform iMAT++ analysis on their own expression data. 
 
-We recommand to go over this script interactively in MATLAB graphic interface. Please launch a MATLAB instance and set your current directory in this folder (1_iMAT++). Then, open and go through [the walkthrough script](walkthrough_generic.m) according to the instructions in it.
+We recommand to go over this script interactively in MATLAB graphic interface. Please launch a MATLAB instance and set your current directory in this folder (1_iMAT++). Then, open and go through [the walkthrough script](walkthrough_generic.m) according to the instructions therein.
 
 ### Running iMAT++ analysis on other metabolic model with a given expression dataset
 
-We provided a walkthrough guidance of how to run the iMAT++ analysis on human metabolic model RECON 2.2. The expression profile of NCI-60 Cancer Cell lines [Reinhold WC et all, 2019](https://cancerres.aacrjournals.org/content/79/13/3514.long) was used as an example.
+We provided a walkthrough guidance of how to run the iMAT++ analysis on human metabolic model [RECON 2.2](https://pubmed.ncbi.nlm.nih.gov/27358602/). The expression profile of NCI-60 Cancer Cell lines [Reinhold WC et all, 2019](https://cancerres.aacrjournals.org/content/79/13/3514.long) was used as an example.
 /*To be completed.*/
