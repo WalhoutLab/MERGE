@@ -2,8 +2,8 @@
 %% PART I: THE APPLICATION TO THE GENERIC C. ELEGANS MODEL
 %% prepare the model
 % add paths
-addpath ~/cobratoolbox/
-addpath /share/pkg/gurobi/810/linux64/matlab/
+addpath ~/cobratoolbox/%your cobra toolbox path
+addpath /share/pkg/gurobi/810/linux64/matlab/%the gurobi path
 addpath ./../bins/
 addpath ./../input/
 addpath scripts/
@@ -19,9 +19,9 @@ parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
 model.parsedGPR = parsedGPR;
 %% load the gene expression data
 % For making the gene category file from raw expression quantification
-% (i.e, TPM), please refer to "./scripts/makeGeneCategories.m". Here we
+% (i.e, TPM), please refer to "./scripts/makeGeneCategories.m" (run "open makeGeneCategories"). Here we
 % directly load the premade gene categories
-load('input/geneCategory_example.mat')
+load('input/exampleGeneCategories/categ_N2_OP50.mat')
 % Please note the variable naminclature difference: the high refers to
 % "highly expressed genes" in the paper, "dynamic" to "moderately
 % expressed", "low" to "lowly expressed" and "zero" to "rarely expressed"
@@ -33,7 +33,7 @@ load('input/geneCategory_example.mat')
 % we provide an epsilon generator following the methods described in the
 % paper
 [epsilon_f, epsilon_r] = makeEpsilonSeq(model, model.rxns, 0.01, 0.5);
-% NOTE: this may take ~10 mins
+% NOTE: this may take ~5 mins
 %% run the integration function 
 % we reset some constraints to make the model ready for integration 
 % release the input constraints for integration 

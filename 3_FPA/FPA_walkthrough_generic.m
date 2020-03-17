@@ -29,6 +29,7 @@ model.parsedGPR = parsedGPR;
 % load expression files
 % expression matrix can be in plain text and in any normalized
 % quantification metric like TPM or FPKM.
+% we use the RNA-seq data from Bulcha et al, Cell Rep (2019) as an example
 expTbl = readtable('exampleExpression.csv');
 % preprocess the expression table
 % to facilate the future use of the expression of many samples, we
