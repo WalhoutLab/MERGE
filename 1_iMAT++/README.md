@@ -24,5 +24,5 @@ We recommand to go over this script interactively in MATLAB graphic interface. P
 
 ### Running iMAT++ analysis on other metabolic model with a given expression dataset
 
-We provided a walkthrough guidance of how to run the iMAT++ analysis on human metabolic model [RECON 2.2](https://pubmed.ncbi.nlm.nih.gov/27358602/). The expression profile of NCI-60 Cancer Cell lines [Reinhold WC <i>et al.</i>, 2019](https://cancerres.aacrjournals.org/content/79/13/3514.long) was used as an example.
+We provided a walkthrough guidance of how to run the iMAT++ analysis on human metabolic model [Recon 2.2](https://pubmed.ncbi.nlm.nih.gov/27358602/). The expression profile of NCI-60 Cancer Cell lines [Reinhold WC <i>et al.</i>, 2019](https://cancerres.aacrjournals.org/content/79/13/3514.long) was used as an example.
 /*To be completed.*/
