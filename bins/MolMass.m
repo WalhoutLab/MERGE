@@ -23,7 +23,8 @@
 % ultimate Date:     18.12.2009
 % version:           1.4
 % copyright:         E. Giebler, TU Dresden, IfA (1999-2009)
-% 07082019 Xuhang Li: modified for decimal in the formula
+% Modified By: Xuhang Li: 2020 
+%               - modified for existance of decimals in the formula
 
 
 function MM = MolMass(substance)

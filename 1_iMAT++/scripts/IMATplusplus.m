@@ -127,7 +127,7 @@ elseif modelType == 3
     fprintf('Doing integration for a non-C. elegans model. Make sure you constrained the ATPm before run the integration! \n');
 end
 % perform the gene-centric MILP fitting of highly expressed genes and reactions dependent on rarely expressed genes
-[~, ~,~,solution, MILProblem] = ExpressionIntegrationByMILP_NoATP_xl(worm, RHNames, RLNames,HGenes, epsilon_f, epsilon_r);
+[~, ~,~,solution, MILProblem] = ExpressionIntegrationByMILP(worm, RHNames, RLNames,HGenes, epsilon_f, epsilon_r);
 toc()
 %% Step2: do minimization of low reactions
 fprintf('Minimizing low flux... \n');

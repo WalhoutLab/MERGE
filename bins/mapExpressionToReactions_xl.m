@@ -3,7 +3,7 @@ function [expressionRxns] = mapExpressionToReactions_xl(model, expressionData)
 % the model 
 %
 % USAGE:
-%    [expressionRxns parsedGPR] = mapExpressionToReactions(model, expressionData) 
+%    [expressionRxns parsedGPR] = mapExpressionToReactions_xl(model, expressionData) 
 %
 % INPUTS:
 %	model                   model strusture
@@ -19,6 +19,9 @@ function [expressionRxns] = mapExpressionToReactions_xl(model, expressionData)
 %
 % .. Authors:
 %       - Anne Richelle, May 2017 - integration of new extraction methods 
+% Modified By: Xuhang Li
+%           - slightly modified for saving time: instead of parsing GPR,
+%               use the preparsed GPR in the model
 
 parsedGPR = model.parsedGPR;% Extracting GPR data from model
 % Find wich genes in expression data are used in the model

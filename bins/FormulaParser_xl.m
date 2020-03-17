@@ -1,4 +1,8 @@
 classdef FormulaParser_xl < handle
+    % Notice: this function is identical to "FormulaParser" in COBRA
+    % toolbox. Having this as custom function is because of some historical
+    % reason in the development of the IMAT++ algorithm. 
+    
     % A FormulaParser is used to parse logic formulas in the format
     % specified for the COBRA Toolbox tules field (i.e. logical formulas
     % using | and & as OR and AND symbols and x\([0-9]+\)  as a regexp

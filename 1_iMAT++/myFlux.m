@@ -12,7 +12,6 @@ totalTime = tic();
 load('Tissue.mat');
 % the loaded model is already constrained with default constraints and
 % side/storage parameters. One can modify like following codes;
-% worm = addDefaultConstraint(model,'default');
 % worm = changeRxnBounds(worm,'RCC0005',10,'l');
 % % change the side proportion
 % worm.S(end-1, strcmp('EXC0050',worm.rxns)) = 0.01*9.6641833;%storage

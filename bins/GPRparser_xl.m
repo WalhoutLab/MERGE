@@ -12,6 +12,8 @@ function parsedGPR = GPRparser_xl(model)
 %   parsedGPR:   cell matrix containing parsed GPR rule
 %
 % AUTHORS: Thomas Pfau & Anne Richelle, May 2017
+% Modified By: Xuhang Li, March 2020
+%         - to fit into modified GPR parser "FormulaParser_xl"
 
 parsedGPR = {};
 fp = FormulaParser_xl();

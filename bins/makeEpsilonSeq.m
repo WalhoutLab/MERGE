@@ -1,7 +1,31 @@
 function [epsilon_f, epsilon_r,capacity_f,capacity_r] = makeEpsilonSeq(model, reactions, epsilon0, k)
-%default is take epsilon_f || epsilob_r = min(epsilon, K*Vmax_f || -K*Vmax_r)
-% 06262019: the capacity output is added. this represent the flux carrying
-%           capacity for each direction of a reaction
+% Generate the epsilon sequence for performing IMAT or IMAT++ integration.
+% The epsilons are determined by the follow equation:
+%   epsilon = min(epsilon0, K*Vmax)
+%               where Vmax is the maximum flux in FVA of the queried
+%               direction
+%
+% USAGE:
+%   [epsilon_f, epsilon_r] = makeEpsilonSeq(model, reactions, epsilon0, k)
+%
+% INPUTS:
+%   model:          COBRA model struct
+%   reactions:      the list of reactions to calculate epsilons for
+%   epsilon0:       the default epsilon (baseline espilon)
+%   k:              the coefficient for indicating the custom espilon calling
+%                   threshold
+%
+% OUTPUTS:
+%   epsilon_f:      the epsilon sequence for the forward direction of all
+%                   input reactions
+%   epsilon_r:      the epsilon sequence for the reverse direction of all
+%                   input reactions
+%   capacity_f:     A logic sequence to indicate whether the forward
+%                   direction of the input reaction could carry flux
+%   capacity_r:     A logic sequence to indicate whether the reverse
+%                   direction of the input reaction could carry flux
+% ..AUTHOR: Xuhang Li, 2018
+
 epsilon_f = epsilon0 * ones(length(reactions),1);
 epsilon_r = epsilon0 * ones(length(reactions),1);
 capacity_f = zeros(length(reactions),1);

@@ -97,7 +97,7 @@ if doMinPFD
     MILProblem.osense = 1;
     fprintf('Minimizing total flux... \n');
     tic()
-    solution = solveCobraMILP_XL(MILProblem, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', 1);
+    solution = solveCobraMILP_XL(MILProblem, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', 0);
     minTotal = solution.obj;
     if solution.stat ~= 1
         error('infeasible or violation occured!');

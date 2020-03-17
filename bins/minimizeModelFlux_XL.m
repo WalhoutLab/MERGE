@@ -1,4 +1,9 @@
 function [Flux_min]= minimizeModelFlux_XL(model)
+% THIS FUNCTION IS NOT USED IN STANDARD MERGE PIPELINE!
+% FOR DEBUGING USE ONLY
+% This is a flux minimization tool that will minimize the total flux of a
+% input model, regardless of the model format (so the csense could be
+% flexible, i.e, contains unequal ones)
 MILPproblem.A = model.S;
 MILPproblem.lb = model.lb;
 MILPproblem.ub = model.ub;

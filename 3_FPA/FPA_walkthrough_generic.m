@@ -76,8 +76,9 @@ targetRxns = {'RM04432';'RCC0005'};
 %The FPA is designed with parfor loops for better speed, so we first initial the parpool
 parpool(4)
 [fluxEfficiency,fluxEfficiency_plus] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty);
-%NOTE: If a gene is undetected, we will assume this reaction to have zero
-%expression in the calculation of weight for an associated reaction. 
+%NOTE: If a gene is undetected, we will use default value of 0 in the
+%calculation. (If a reaction is only associated with undetected genes, it
+%will have default penalty (which is 1) in the FPA calculation.)
 %% 4. run advanced FPA analysis
 % As part of the MERGE package, we recommand user to integrate the result
 % of iMAT++ to the FPA analysis. That's saying, to block all reactions that

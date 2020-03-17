@@ -1,19 +1,42 @@
 function [MILPproblem] = addGeneMaximization(MILPproblem, HGeneList, HRxnList,LRxnList, model)
-%imply Vi_gene <= Vi_rxn1 + Vi_rxn2 + ... + Vi_rxnn, while Vi_gene is a
-%binary variable
-%the S matrix should be at left top corner
-%HRxnList ... the high expressed reaction used in ordinary iMAT
-%HGeneList ... the high expressed gene list for maximization
+% add the new variables (columns in the A matrix) to a MILProblem for doing gene-centric IMAT++ fitting.
+% the binary variables G(i) are added such that:
+%       G(i) <= R(i,1) + R(i,2) + ... + R(i,n)
+%               where G(i) is the binary variable for Gene i, and R(i,1) to
+%               R(i,n) are binary variables proxying the flux state for all
+%               the high reactions associated with gene i
+%
+% USAGE:
+%   [MILPproblem] = addGeneMaximization(MILPproblem, HGeneList, HRxnList,LRxnList, model)
+%
+% INPUT:
+%   MILPproblem:    the MILProblem that the new variables will be added to
+%   HGeneList:      the list of highly expressed genes
+%   HRxnList:       the list of high reactions (associated with highly
+%                   expressed genes, but defined by GPR mapping)
+%   LRxnList:       the list of rarely expressed reactions 
+%   model:          cobra model structure
+%
+% OUTPUT:
+%   MILPproblem:    the mew MILProblem with gene-centric optimization
+%                   variables added
+%
+% WARNING:          we only recommand to use this function inside of
+%                   IMAT++ optimization package. Since A matrix is assumed to be in the
+%                   format of IMAT++ MILP, errors may occur if applied to other MILP
+%                   directly.
+%
+% ..AUTHOR:   Xuhang Li, March 2020
 
-%% find the HRxn orders in input matrix 
+% find the HRxn index in input matrix 
 HRindex0 = find(ismember(model.rxns, HRxnList));
-%create A matrix
+% create A matrix
 A = sparse(size(MILPproblem.A,1)+length(HGeneList),size(MILPproblem.A,2)+length(HGeneList));
 [m,n,s] = find(MILPproblem.A);
 for i = 1:length(m)
     A(m(i),n(i)) = s(i);
 end
-
+% add the gene-centric variables
 for i = 1:length(HGeneList)
     myRxns = model.rxns(any(model.rxnGeneMat(:,strcmp(HGeneList(i),model.genes)),2),1);
     HRNames = HRxnList(ismember(HRxnList,myRxns));
@@ -24,7 +47,7 @@ for i = 1:length(HGeneList)
     A(size(MILPproblem.A,1)+i,size(MILPproblem.A,2)+i) = -1;
 end
 
-%create other inputs
+% update other MILP fields
 lb = [MILPproblem.lb;zeros(length(HGeneList),1)];
 ub = [MILPproblem.ub;ones(length(HGeneList),1)];
 b = [MILPproblem.b;zeros(length(HGeneList),1)];
@@ -33,7 +56,7 @@ csense = [MILPproblem.csense,csense1];
 vartype1(1:length(HGeneList),1) = 'B';
 vartype = [MILPproblem.vartype;vartype1];
 
-%generate function output
+% generate output MILP
 MILPproblem.A = A;
 MILPproblem.b = b;
 MILPproblem.lb = lb;

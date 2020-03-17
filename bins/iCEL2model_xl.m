@@ -1,4 +1,6 @@
 function model = iCEL2model_xl(fileName, biomassRxnEquation, defaultbound)
+%% This function is adapted from original COBRA function "xls2model". Modifications were made to load iCEL1314 model table
+%% NOT TESTED FOR ANY OTHER MODEL TABLES
 %% Reads a model from Excel spreadsheet.
 %
 % USAGE:
@@ -77,7 +79,7 @@ function model = iCEL2model_xl(fileName, biomassRxnEquation, defaultbound)
 %    - Ronan Fleming, 08/17/10, Support for unix
 %    - Hulda S.H., 10/11/10, Modified reading of xls document.
 %      Identifies columns by their headers. Added reading of HMDB ID.
-
+%    - Xuhang Li, 03/17/2020. adapted specifically for iCEL1314 table
 warning off
 
 % test if Excel is available
@@ -339,7 +341,7 @@ end
 
 [~,fileName,extension] = fileparts(fileName);
 
-model.description = 'iCEL1311';
+model.description = 'iCEL1314';
 
 warning on
 end
