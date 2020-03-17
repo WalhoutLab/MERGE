@@ -2,7 +2,7 @@
 # this tag indicates this repo is under development
 We developped the package, MERGE, to systematically integrate gene expression data from single cell RNA-seq with the metabolic network reconstruction of C. elegans, iCEL1314. MERGE is applicable to other expression datasets and other metabolic network models. 
 
-The package includes three modules: (1) matlab implementation of [iMAT++ algorithm](1_iMAT++), (2) matlab implementation of [original iMAT algorithm](2_iMAT) (for reproducing purpose), and (3) matlab implementation of [Flux Potential Analysis (FPA)](3_FPA). Additionally, we provide a python-based metabolic distance calculator to calculate the metabolic distance in any given metabolic network reconstruction. The [metabolic distance calculator](MetabolicDistance) will generate the required input for applying FPA to any metabolic network. 
+The package includes three modules: (1) matlab implementation of [iMAT++ algorithm](1_iMAT++), which semi-quantitatively integrates categorized gene expression data with the model at system-level; (2) matlab implementation of [original iMAT algorithm](2_iMAT) (for comparison and reproduction of results in the paper), and (3) matlab implementation of [Flux Potential Analysis (FPA)](3_FPA), which quantitatively integrates continuous gene expression data with the model at pathway- and reaction-level. Additionally, we provide a python-based metabolic distance calculator that generates the shortest path from a given reaction to any other reaction in a given metabolic network. The [metabolic distance calculator](MetabolicDistance) provides the required input for applying FPA to any metabolic network. 
 
 ## Getting Started
 
