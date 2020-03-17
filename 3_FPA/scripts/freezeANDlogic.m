@@ -1,8 +1,23 @@
 function expression_logic = freezeANDlogic(expression)
-NONETYPE = '0';% by default, the undetected genes are NaN (will be ignored)
+% "Freeze" the levels for "AND" connected blocks. The principle of the GPR
+% parser is to recursively merge all non-functional "AND" connected levels
+% by the GPR rule. Once a resulted level becomes functionally "AND"
+% connected, we will freeze it (to help it be free from getting further
+% merged) by adding a text to the begining and end of the number.
+%
+% INPUTS
+%       expression - the GPR rule string that is converted to expression
+%       levels
+%
+% OUTPUTS
+%       expression_logic - the functional "AND" freezed GPR string
+%
+% Author: Xuhang Li, Mar 2020 
+
+NONETYPE = '0';% by default, the undetected genes are 0 (most will result in a default penalty at the end because normalize 0 by 0 is NaN)
 NUMBER = '[0-9\.\-e]+';
 MAYBE_NUMBER = [NUMBER '|' NONETYPE];
-%freeze the AND logic genes
+% freeze the AND logic genes
 expression = regexprep(expression,'and','&');
 expression = regexprep(expression,'or','|');
 numStarts = regexp(expression,MAYBE_NUMBER);
@@ -13,29 +28,29 @@ else
     expression_logic = '';
 end
 for i = 1:length(numStarts)-1
-    %replace and judge 
+    % replace the gene to be evaluated with "0" and then judge if it will influence the outcome of the logical expression. (if true, it is  a functional "AND" connected gene/block) 
     tmp = [expression(1:numStarts(i)-1),'0',expression(numEnds(i)+1:end)];
-    if ~eval(tmp) %if this is "AND" logic gene
+    if ~eval(tmp) %if this is "AND" logic gene, freeze
         expression_logic = [expression_logic, 'fz_',expression(numStarts(i):numEnds(i)),'_fz',expression(numEnds(i)+1:numStarts(i+1)-1)];
     else
         expression_logic = [expression_logic, expression(numStarts(i):numStarts(i+1)-1)];
     end
 end
-%the last number
+% specially treat the last number
 if numEnds(end) < length(expression)
     tmp = [expression(1:numStarts(end)-1),'0',expression(numEnds(end)+1:end)];
-    if ~eval(tmp) %if this is "AND" logic gene
+    if ~eval(tmp) % if this is "AND" logic gene
         expression_logic = [expression_logic, 'fz_', expression(numStarts(end):numEnds(end)),'_fz',expression(numEnds(end)+1:end)];
     else
         expression_logic = [expression_logic, expression(numStarts(end):end)];
     end
 else
     tmp = [expression(1:numStarts(end)-1),'0'];
-    if ~eval(tmp) %if this is "AND" logic gene
+    if ~eval(tmp) % if this is "AND" logic gene
         expression_logic = [expression_logic, 'fz_', expression(numStarts(end):numEnds(end)),'_fz'];
     else
         expression_logic = [expression_logic, expression(numStarts(end):end)];
     end
 end
-expression_logic = regexprep(expression_logic,'&','and');
-expression_logic = regexprep(expression_logic,'\|','or');
+expression_logic = regexprep(expression_logic,'&','and'); %change the symbol for evaluation back to text
+expression_logic = regexprep(expression_logic,'\|','or'); %change the symbol for evaluation back to text

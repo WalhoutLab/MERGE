@@ -108,7 +108,7 @@ if (nargin < 10)
     blockList = {};
 end
 if (nargin < 11)
-    % constant penaly will not be applied to supercondition 
+    % constant penaly will not be applied to super condition 
     constantPenalty = {};
 end
 if (nargin < 12)
@@ -123,59 +123,58 @@ if (nargin < 13)
     % save time
     penalty_defined = {};
 end
-% how to do with no data/partially no data
-% how is super condi calculated
 %% part1 prepare expression matrix and penalty 
 % calculate the penalty from expression data
 if parforFlag
     fprintf('Mapping the expression levels to penalties...\n');
     penalty = calculatePenalty(model,master_expression,manualPenalty);
 else
-    % in non-parfor mode, we need to input penalty (it costs a lot time if
-    % repeatedly calculate)
+    % in non-parfor mode, we need to provide input penalty (it costs a lot time if
+    % repeatedly calculates)
     penalty = penalty_defined;
 end
 
 % apply constant penalty to all conditions except for the super condition
-% (at the end of the vector) 
+% (at the end of the vector (last column)) 
 if ~isempty(constantPenalty)
     [A B] = ismember(model.rxns,constantPenalty(:,1));
     penalty(A,1:end-1) = repmat(cell2mat(constantPenalty(B(A),2)),1,size(penalty,2)-1);
 end
-%% part2 prepare the distance
+%% part2 prepare the distance matrix
 % prepare the distance matrix
 fprintf('Preparing the distance matrix...\n');
-model_irrev = convertToIrreversible(model);
-%unify naminclature
-tmp_ind = ~cellfun(@(x) any(regexp(x,'_(f|b|r)$')),model_irrev.rxns); %has no suffix
-model_irrev.rxns(tmp_ind) = cellfun(@(x) [x,'_f'],model_irrev.rxns(tmp_ind), 'UniformOutput',false);
+model_irrev = convertToIrreversible(model); % convert to irreversible model
+% unify naminclature - the naminclature should be consistant with the
+% distance calculator
+tmp_ind = ~cellfun(@(x) any(regexp(x,'_(f|b|r)$')),model_irrev.rxns); %reactions that have no suffix
+model_irrev.rxns(tmp_ind) = cellfun(@(x) [x,'_f'],model_irrev.rxns(tmp_ind), 'UniformOutput',false);%all "_f"
 model_irrev.rxns = regexprep(model_irrev.rxns, '_b$','_r');
-%create the full distance matrix
+% create the full distance matrix
 distMat2 = maxDist * ones(length(model_irrev.rxns),length(model_irrev.rxns)); % default distance is the maximum distance
 [A B] = ismember(model_irrev.rxns,labels);
-%filter Inf 
+% filter all Inf values
 distMat(distMat > maxDist) = maxDist;
-distMat2(A,A) = distMat(B(A),B(A)); %overlay the input distance matrix
+distMat2(A,A) = distMat(B(A),B(A)); %overlay the input distance matrix to default in case any distance is missing in the input
 if ~isempty(manualDist)
     [A B] = ismember(model_irrev.rxns,manualDist(:,1));
-    distMat2(A,:) = repmat(cell2mat(manualDist(B(A),2)),1,size(distMat2,2)); %overlay the manual defined distance (fixed distance reactions) onto the matrix
-    distMat2(:,A) = repmat(cell2mat(manualDist(B(A),2)),1,size(distMat2,2))'; %overlay the manual defined distance (fixed distance reactions) onto the matrix
+    distMat2(A,:) = repmat(cell2mat(manualDist(B(A),2)),1,size(distMat2,2)); %overlay the manual-defined distance (fixed distance) onto the matrix
+    distMat2(:,A) = repmat(cell2mat(manualDist(B(A),2)),1,size(distMat2,2))'; %overlay the manual-defined distance (fixed distance) onto the matrix
 end
 % update the distance matrix and label
 labels = model_irrev.rxns;
 distMat = distMat2;
 % reorder expression penalty matrix to match the distance matrix (which
-% is reodered to irreversible reactions)
+% is ordered to fit in the irreversible model)
 penalty_new = ones(length(labels), size(penalty,2));
 for i = 1:length(labels)
     myrxn = labels{i};
     myrxn = myrxn(1:(end-2)); %remove the direction suffix
     penalty_new(i,:) = penalty(strcmp(model.rxns,myrxn),:);
 end
-%update the penalty matrix to the reordered matrix
+% update the penalty matrix to the reordered matrix
 penalty = penalty_new;
-%% part3 merge penalty and calculate the LP
-%form and calculate the LP
+%% part3 merge penalty and calculate the FP
+%form and calculate the Flux Potential (which is a linear problem, aka, FBA problem)
 FluxPotentials = cell(length(targetRxns),size(penalty,2));
 FluxPotential_solutions = cell(length(targetRxns),size(penalty,2));
 fprintf('FPA calculation started:\n');
@@ -185,8 +184,8 @@ if parforFlag
     parfor i = 1:length(targetRxns)
         restoreEnvironment(environment);
         myrxn = targetRxns{i};
-        doForward = any(strcmp(labels, [myrxn,'_f']));%whether calculate the forward efficiency, according to the distance matrix  
-        doReverse = any(strcmp(labels, [myrxn,'_r']));
+        doForward = any(strcmp(labels, [myrxn,'_f']));%whether to calculate the forward efficiency, according to the distance matrix  
+        doReverse = any(strcmp(labels, [myrxn,'_r']));%whether to calculate the forward efficiency, according to the distance matrix  
         efficiencyVector = cell(1,size(penalty,2));
         efficiencyVector_plus = cell(1,size(penalty,2));
         for j = 1:size(penalty,2)
@@ -201,10 +200,11 @@ if parforFlag
             end
             if doForward 
                 model_irrev_tmp = model_irrev_tmp0;
-                pDist_f = 1./((1+distMat(strcmp(labels, [myrxn,'_f']),:)).^n);
-                w_f = pDist_f' .* penalty(:,j);
+                pDist_f = 1./((1+distMat(strcmp(labels, [myrxn,'_f']),:)).^n);%the distance term in the weight formula
+                w_f = pDist_f' .* penalty(:,j);%calculate final weight
                 % block the reverse rxns to avoid self-loop
                 model_irrev_tmp.ub(ismember(model_irrev_tmp.rxns,[myrxn,'_r'])) = 0;
+                % the FPA is calculated by solvePLP(Penalized Linear Problem) function
                 [efficiencyVector{1,j}(1),efficiencyVector_plus{1,j}{1}] = solvePLP(model_irrev_tmp,w_f, labels, [myrxn,'_f'],1, 'max');
             else
                 efficiencyVector{1,j}(1) = NaN;
@@ -224,7 +224,7 @@ if parforFlag
         end
         FluxPotentials(i,:) = efficiencyVector;
         FluxPotential_solutions(i,:) = efficiencyVector_plus;
-        fprintf('\b|\n');
+        fprintf('\b|\n');%for simple progress monitor
     end
 else %run the same code on a for loop mode
     for i = 1:length(targetRxns)

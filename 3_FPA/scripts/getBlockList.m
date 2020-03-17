@@ -1,4 +1,6 @@
 function blockList = getBlockList(model,FVAtbl)
+%% To be completed!!
+
 model_irrev = convertToIrreversible(model);
 %unify naminclature
 tmp_ind = ~cellfun(@(x) any(regexp(x,'_(f|b|r)$')),model_irrev.rxns); %has no suffix

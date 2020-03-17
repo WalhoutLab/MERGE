@@ -1,6 +1,9 @@
 function [reaction_levels, reaction_status] = gene_to_reaction_levels( model, genes, levels, f_and, f_or )
+% the GPR parser is built by developing the original parser in Machado,
+% Daniel, and Markus Herrgård "Systematic evaluation of methods for integration of transcriptomic data into constraint-based models of metabolism." PLoS computational biology 10, no. 4 (2014).
+% -------------------------------------------------
 % Convert gene expression levels to reaction levels using GPR associations.
-% Level is NaN if there is no GPR for the reaction or no measured genes.
+% Level is 0 if there is no GPR for the reaction or no measured genes.
 %
 % INPUTS
 %       model - cobra model
@@ -12,8 +15,9 @@ function [reaction_levels, reaction_status] = gene_to_reaction_levels( model, ge
 % OUTPUTS
 %       reaction_levels - reaction expression levels
 %
-% Author: Daniel Machado, 2013
-% adapted. the output is a string of expression levels for logic AND blocks
+% Original Author: Daniel Machado, 2013
+% Modified by: Xuhang Li, Mar 2020 
+% the output now is a string of expression levels for "AND" connected blocks
 
     reaction_levels = cell(length(model.rxns), 1);
     reaction_status = 1000*ones(length(model.rxns), 1);

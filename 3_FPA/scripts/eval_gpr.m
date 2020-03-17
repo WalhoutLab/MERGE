@@ -1,5 +1,22 @@
 function [result, status] = eval_gpr(rule, genes, levels, f_and, f_or)
-
+% the GPR parser is built by developing the original parser in Machado,
+% Daniel, and Markus Herrgård "Systematic evaluation of methods for integration of transcriptomic data into constraint-based models of metabolism." PLoS computational biology 10, no. 4 (2014).
+% -------------------------------------------------
+% Convert gene expression levels to reaction levels using GPR associations.
+% Level is 0 if there is no GPR for the reaction or no measured genes.
+%
+% INPUTS
+%       rule - the GPR rule string
+%       genes - gene names
+%       levels - gene expression levels
+%       f_and - function to replace AND
+%       f_or - function to replace OR
+%
+% OUTPUTS
+%       result - a string of expression levels for "AND" connected blocks
+%
+% Original Author: Daniel Machado, 2013
+% Modified by: Xuhang Li, Mar 2020 
 EVAL_OK = 1;
 PARTIAL_MEASUREMENTS = 0;
 NO_GPR_ERROR = -1;
@@ -36,7 +53,7 @@ else
     if total_measured < length(rule_genes)
         status = PARTIAL_MEASUREMENTS;
     end
-    if total_measured > 1 %processing multiple gene GPR measurement
+    if total_measured > 1 %processing multiple-gene GPR string
         expression_logic = freezeANDlogic(expression);
         maybe_and = @(a,b)maybe_functor(f_and, a, b);
         maybe_or = @(a,b)maybe_functor(f_or, a, b); 
@@ -44,7 +61,7 @@ else
 
         counter = 0;
 
-        %fold all the or connected genes
+        %fold all the "OR" connected genes
         while contains(expression_logic,'or') 
             counter = counter + 1;
             if counter > MAX_EVALS
