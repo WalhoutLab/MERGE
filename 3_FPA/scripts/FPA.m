@@ -4,9 +4,9 @@ function [FluxPotentials,FluxPotential_solutions] = FPA(model,targetRxns,master_
 % objective value of a linear optimization (i.e, maximum flux of a
 % reaction) that best represents the relative expression levels of all
 % related gene in a certain network neighberhood or the global network. The key
-% concept is to penalties the flux of reactions according to the relative
+% concept is to penalizes the flux of reactions according to the relative
 % expression level of those associated genes. A distance order parameter
-% supports to perform such integration at a tunable scale of metabolite
+% supports to perform such integration at a tunable scale of metabolic
 % neighbers.
 % 
 % USAGE:
