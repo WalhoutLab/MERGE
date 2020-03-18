@@ -1,16 +1,18 @@
 This guidance shows how to use MetabolicDistance.py tool to find distances between reactions in a metabolic network model. 
 
-### Reproducing the FPA results for the <i>C. elegans</i> dual tissue model
+### Finding distance from a reaction of interest to all other reactions
 
-The following guidance, which can be run as a python program by copying the text in between the long lines, shows how to find distances from a particular reaction in the network to all other (reachable) reactions. See further below for other possible analyses with the metabolic distance tool, as well as options to use this tool efficiently in a high performance computing facility.
+Step-by-step instructions to find distances from a particular reaction of interest (ROI) in the network to all other (reachable) reactions is provided in walkthrough.py. 
 
+The input for this exercise is provided in [Input](./Input/) folder and consists of a stoichioetry matrix (S; rows represent metabolites and columns reactions), list of metabolites (in the same order as in S), list of reactions (in the same order as in S), two lists showing upper and lower boundaries of these reactions (in the same order as in the reaction list), and a list of byproduct metabolites (arbirary order). The output is written to [Output](./Output/) folder. 
 
+For other types of analyses that MetabolicDistance.py can offer, use guidelines for each function of this module:
+<i>e.g.</i>
+help(MetabolicDistance.rxnnetwork.findForwardLoops)
 
-For other potential analyses, use help in other functions:
-e.g.
->help(Net.findFrowardLoops)
+### Finding distance from every reaction to every other
 
-To obtain a global distance matrix that shows the distance from every reaction (rows) to every other reaction (columns) the network must be traversed from every reaction using the above code. Doing this by placing the code in a for loop is an option, but can take many hours if not parallelized. How all distances can be efficiently calculated using a computer cluster is demonstrated using an example pipeline of three codes (see files with names formatted as "exampleCluster_xxx.py"). The example calculation was carried out in Massachusetts Green High Performance Computing Center (https://www.mghpcc.org/). This cluster uses LSF as job scheduler. The same code should be applicable in any high performance computing center using LSF, with minor modifications in job description if necessary. 
+To obtain a global distance matrix that shows the distance from every reaction (rows) to every other reaction (columns) the network must be traversed from every reaction using the commands provided in walkthrough.py. Doing this by placing the commands in a for loop is an option, but can take many hours if not parallelized. How all distances can be efficiently calculated using a computer cluster is demonstrated using an example pipeline of three codes (see files with names formatted as "exampleCluster_xxx.py"). The example calculation was carried out in [Massachusetts Green High Performance Computing Center](https://www.mghpcc.org/). This cluster uses LSF as job scheduler. The same code should be applicable in any high performance computing center using LSF, with minor modifications in job description if necessary. 
 
 
 
