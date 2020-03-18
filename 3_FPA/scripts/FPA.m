@@ -57,7 +57,7 @@ function [FluxPotentials,FluxPotential_solutions] = FPA(model,targetRxns,master_
 %                       flux) during the FPA analysis. Used to conjoin with iMAT++ result to
 %                       perform FPA on a context-specific metabolic network
 %    constantPenalty:   a specifc parameter used in dual tissue integration
-%                       in C. elegans tissue modeling. It is similar to manualPenalty which override the user-defined penalties for special reactions. 
+%                       in C. elegans tissue modeling. It is similar to manualPenalty which override the automatically calculated penalties for special reactions. 
 %                       However, the constantPenalty will NOT override the
 %                       original penalty of the super condition, so that FPA of X
 %                       tissue is comparable with that of Intestine. May
