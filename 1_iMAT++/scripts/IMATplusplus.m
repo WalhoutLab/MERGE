@@ -34,9 +34,8 @@ function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLName
 %                       0.01
 %    modelType:         an integer to specify the input COBRA model. 1 ==
 %                       dual C. elegans tissue model, 2 == generic C. elegans model, 3 ==
-%                       other COBRA models. Optional parameters to control model constraints
-%                       like ATP maintenance, side metabolite percentage and etc will be
-%                       avaible for setting modelType to 1 and 2. 
+%                       other COBRA models. Some optional parameters for defining model constraints will be
+%                       applicable when setting modelType to 1 and 2 (i.e., ATP maintenance (ATPm)).  
 %
 % OPTIONAL INPUTS:
 %    will make most inputs optional at the end. 
