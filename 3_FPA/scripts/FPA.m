@@ -87,7 +87,7 @@ function [FluxPotentials,FluxPotential_solutions] = FPA(model,targetRxns,master_
 % OPTIONAL OUTPUTS:
 %   FluxPotential_solutions:    the FPA solution outputs of each flux
 %                               potential objective values. This could be used to inspect and
-%                               understand the pathway chosen in getting the maximum calculating flux potential.
+%                               understand the flux distribution of maximum flux potential.
 %
 % `Yilmaz et al. (2020). Final Tittle and journal.
 %
