@@ -98,6 +98,10 @@ ZeroInAll = GeneID(myTPM < zero2low);
 ZeroMerge = GeneID(myTPM < zero2low);
 HighInAll = GeneID(myTPM >= dynamic2high);
 HighMerge = GeneID(myTPM >= dynamic2high);
+N_zero = [];
+N_low = [];
+N_dynamic = [];
+N_high = [];
 for myName = names
     myTPM = log2(TPM.(myName{:}));
     GeneID = TPM.GeneID;
@@ -111,11 +115,21 @@ for myName = names
     ZeroMerge = union(ZeroMerge,ExpCateg.zero);
     HighInAll = intersect(HighInAll,ExpCateg.high);
     HighMerge = union(HighMerge,ExpCateg.high);
+    N_zero = [N_zero;length(ExpCateg.zero)];
+    N_low = [N_low;length(ExpCateg.low)];
+    N_dynamic = [N_dynamic;length(ExpCateg.dynamic)];
+    N_high = [N_high;length(ExpCateg.high)];
 end
 fprintf('%d/%d are highly expressed genes in all conditions\n',length(HighInAll),length(model.genes));
 fprintf('%d/%d are highly expressed genes in at least one condition\n',length(HighMerge),length(model.genes));
 fprintf('%d/%d are rarely expressed genes in all conditions\n',length(ZeroInAll),length(model.genes));
 fprintf('%d/%d are rarely expressed genes in at least one conditions\n',length(ZeroMerge),length(model.genes));
+% we offer an additional QC figure for category making
+figure(3)
+stackN = [N_zero,N_low,N_dynamic,N_high];
+bar(1:60,stackN,'stacked')
+xlabel('cell line No.')
+legend({'zero','low','dynamic','high'});
 %% further considerations
 % Now you already have a rough gene category for each conditions. However,
 % as mentioned in the paper, we further used a heuristic algorithm to

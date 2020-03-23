@@ -1,4 +1,4 @@
-function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLNames,latentRxn,PFD,Nfit_latent,minTotal_OFD,MILP] = IMATplusplus(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCateg,doMinPFD,latentCAP,modelType)
+function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLNames,latentRxn,PFD,Nfit_latent,minTotal_OFD,MILP] = IMATplusplus(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCateg,doMinPFD,latentCAP,modelType,minLowTol,verbose)
 % Uses the iMAT++ algorithm (`Yilmaz et al., 2020`) to find the optimal flux distribution that fits into a categorized gene expression data. 
 % iMAT++ algorithm performs multi-step fitting to find a flux distribution
 % that best agrees with rarely, lowly and highly expressed genes in the
@@ -37,6 +37,17 @@ function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLName
 %                       other COBRA models. Optional parameters to control model constraints
 %                       like ATP maintenance, side metabolite percentage and etc will be
 %                       avaible for setting modelType to 1 and 2. 
+%    minLowTol:         the numerical tolerance for total flux of the reactions dependant on lowly and
+%                       rarely expressed genes. This parameter tunes the
+%                       strigency of constrianing such fluxes to the
+%                       minimal level. Default value (1e-5) provides very
+%                       strigent constriant that pushes the total flux to
+%                       the minimum level. However, in some cases where the
+%                       lowly expressed and rarely expressed genes
+%                       extensively conflict with highly expressed genes,
+%                       we recommand to use a larger tolerance such as the
+%                       default epsilon (ideally allowing one mis-fitting)
+%    verbose:           (0 or 1) to show the MILP log or not
 %
 % OPTIONAL INPUTS:
 %    will make most inputs optional at the end. 
@@ -77,6 +88,12 @@ if (nargin < 10) %fullsensitivity means sensitivity that includes negative sensi
 end
 if (nargin < 11) % which model
     modelType = 1; %1==>dual; 2==>generic; 3==>non-c.elegans
+end
+if (nargin < 12) 
+    minLowTol = 1e-5; % by default, dont show the MILP log
+end
+if (nargin < 13) 
+    verbose = 0; % by default, dont show the MILP log
 end
 %set global constant 
 bacMW=966.28583751;
@@ -127,7 +144,7 @@ elseif modelType == 3
     fprintf('Doing integration for a non-C. elegans model. Make sure you constrained the ATPm before run the integration! \n');
 end
 % perform the gene-centric MILP fitting of highly expressed genes and reactions dependent on rarely expressed genes
-[~, ~,~,solution, MILProblem] = ExpressionIntegrationByMILP(worm, RHNames, RLNames,HGenes, epsilon_f, epsilon_r);
+[~, ~,~,solution, MILProblem] = ExpressionIntegrationByMILP(worm, RHNames, RLNames,HGenes, epsilon_f, epsilon_r,[],[],verbose);
 toc()
 %% Step2: do minimization of low reactions
 fprintf('Minimizing low flux... \n');
@@ -136,6 +153,8 @@ tic()
 MILProblem =  solution2constraint(MILProblem,solution);
 % add new variables (absolute flux proxy) for flux minimization
 MILProblem = addAbsFluxVariables(MILProblem, worm);
+% set the initial solution (as the last step solution) to boost speed 
+MILProblem.x0 = [solution.full;abs(solution.full(1:length(worm.rxns)))];
 % minimize low flux (reactions dependent on lowly and rarely expressed
 % genes)
 % please note that, to use minimal variables in the MILP problem, 
@@ -156,7 +175,7 @@ MILProblem.c = c;
 % set the objective sense as minimize 
 MILProblem.osense = 1;
 % sovle the MILP problem
-solution = solveCobraMILP_XL(MILProblem, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', 0);%we use customized solver interface to fine-tune the solver parameters for gurobi.
+solution = solveCobraMILP_XL(MILProblem, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', verbose);%we use customized solver interface to fine-tune the solver parameters for gurobi.
 if solution.stat ~= 1
     error('infeasible or violation occured!');
 end
@@ -166,9 +185,10 @@ minLow = solution.obj;
 
 %% step3: minimize total flux as needed
 % set a minFlux tolerance 
-tol = 1e-5; %it could be solver tolarence or some larger number to increase the numeric stability
+tol = minLowTol; %it could be solver tolarence or some larger number to increase the numeric stability and allow flexible fitting of zero and low reactions
 solution.obj = solution.obj + tol;
 MILProblem = solution2constraint(MILProblem,solution);
+MILProblem.x0 = solution.full;
 MILP = MILProblem; %write the MILP output, this MILP contains all data-based constraints (minTotal is not data based, but minLow is)
 if doMinPFD
     % minimize total flux
@@ -186,14 +206,24 @@ if doMinPFD
     MILProblem.c = c;
     fprintf('Minimizing total flux... \n');
     tic()
-    solution = solveCobraMILP_XL(MILProblem, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', 0);
+    solution = solveCobraMILP_XL(MILProblem, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', verbose);
     minTotal = solution.obj;
     if solution.stat ~= 1
         error('infeasible or violation occured!');
     end
     solution.obj = solution.obj*(1+latentCAP); % 1% minFlux constraint!
     MILProblem2 = solution2constraint(MILProblem,solution);
+    MILProblem2.x0 = solution.full;
     MILP2 = MILProblem2; 
+    % this is a special error-handling section. In rare cases, the highly
+    % expressed genes are strongly conflicting with rarely expressed genes.
+    % so, our minimization of low reaction fluxes will essentially exlude
+    % the fitting of most or all high genes. Finally the minimal total flux
+    % could be a very small number, even zero. We raise an error for
+    % invalid fittings.
+    if solution.obj <= minLowTol %minLowTol represents a small flux tolerance 
+        error('All the highly expressed genes conflict with at least one rarely expressed gene. The flux fitting is not valid!')
+    end
 else
     minTotal = 0;
 end
@@ -210,7 +240,7 @@ N_highFit = length(OpenGene);
 N_zeroFit = length(ClosedLReaction);
 if doLatent
     %% step4. make the latent rxns fitting
-    [FluxDistribution,latentRxn,Nfit_latent,minTotal_OFD] = fitLatentFluxes(MILP2, worm,PFD, HGenes,epsilon_f,epsilon_r,latentCAP);
+    [FluxDistribution,latentRxn,Nfit_latent,minTotal_OFD] = fitLatentFluxes(MILP2, worm,PFD, HGenes,epsilon_f,epsilon_r,latentCAP,verbose);
     OFD = FluxDistribution;
 else
     OFD = [];
@@ -260,6 +290,7 @@ elseif modelType == 2
     wasteDW = bacWaste / (-FluxDistribution(strcmp(worm.rxns,'EXC0050')) * MolMass(model.metFormulas{strcmp(model.mets,'BAC[e]')}));
     fprintf('the total waste of bulk bacteria is: %f\n',wasteDW);
 else
+    wasteDW = [];
     fprintf('Please inspect the flux distribution manually for a non-C. elegans model\n');
 end
 end

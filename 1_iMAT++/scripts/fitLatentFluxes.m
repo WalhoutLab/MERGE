@@ -1,4 +1,4 @@
-function [FluxDistribution, latentRxn,Nfit_latent, minTotal] = fitLatentFluxes(MILProblem, model, PFD, Hgenes, epsilon_f,epsilon_r,latentCAP)
+function [FluxDistribution, latentRxn,Nfit_latent, minTotal] = fitLatentFluxes(MILProblem, model, PFD, Hgenes, epsilon_f,epsilon_r,latentCAP,verbose)
 % the latent reactions fitting module in iMAT++ pipeline. This function
 % works with a formated COBRA MILP input that is the product of primary
 % iMAT++ fitting. This function will find those latent reactions and apply
@@ -29,6 +29,7 @@ function [FluxDistribution, latentRxn,Nfit_latent, minTotal] = fitLatentFluxes(M
 %                       reactions. The total flux will be capped at (1 +
 %                       latentCAP)*OriginalTotalFlux; The default cap is
 %                       0.01
+%    verbose:           (0 or 1) show the MILP solving details or not
 %
 % OUTPUT:
 %   FluxDistribution:   the resulting flux distribution, Optimal Flux Distribution (OFD)
@@ -41,6 +42,9 @@ function [FluxDistribution, latentRxn,Nfit_latent, minTotal] = fitLatentFluxes(M
 %
 % `Yilmaz et al. (2020). Final Tittle and journal.
 % .. Author: - Xuhang Li, Mar 2020
+if nargin < 8 || isempty(verbose)
+    verbose = 0;
+end
 %% store the constriant index for total flux
 minTotalInd = length(MILProblem.b); %assume the total flux constriant is the last row!
 fprintf('the total flux is constrianed to %.2f \n',MILProblem.b(end));
@@ -136,8 +140,11 @@ while 1
     MILPproblem_latent.csense = csense;
     MILPproblem_latent.vartype = vartype;
     MILPproblem_latent.osense = -1;
-    MILPproblem_latent.x0 = [];
-    solution = solveCobraMILP_XL(MILPproblem_latent, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', 0);
+    % define the initial solution
+    extraX0_1 = (MILProblem.x0(latentInd) >= epsilon_f_sorted)*1;
+    extraX0_2 = (MILProblem.x0(latentInd) <= -epsilon_r_sorted)*1;
+    MILPproblem_latent.x0 = [MILProblem.x0(1:length(MILProblem.vartype)); extraX0_1; extraX0_2];
+    solution = solveCobraMILP_XL(MILPproblem_latent, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', verbose);
     if solution.stat ~= 1
         error('infeasible or violation occured!');
     end
@@ -145,6 +152,7 @@ while 1
     Nfit_latent = sum(solution.int(end-2*length(latentRxn)+1:end));
     %% minimize total flux to update the PFD
     MILPproblem_minFlux = solution2constraint(MILPproblem_latent,solution);
+    MILPproblem_minFlux.x0 = solution.full;
     % minimize total flux
     % NOTE: this section is specific to the MILP structure in previous
     % integration! We use the absolute flux proxy variables in the original MILProblem instead of creating new variables
@@ -155,7 +163,7 @@ while 1
     c = [c_minFlux;zeros(2*length(latentRxn),1)];
     MILPproblem_minFlux.c = c;
     MILPproblem_minFlux.osense = 1;
-    solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', 0);
+    solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', verbose);
     if solution.stat ~= 1
         error('infeasible or violation occured!');
     end
@@ -165,6 +173,7 @@ while 1
     fprintf('latent fitting cycle completed .... #%d \n',count);
     %% update the minTotal constriant
     MILProblem.b(minTotalInd) = minTotal*(1+latentCAP);
+    MILProblem.x0 = solution.full;% update the initial solution
     fprintf('the total flux constriant is updated to %.2f \n',MILProblem.b(minTotalInd));
     toc()
 end

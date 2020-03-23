@@ -1,4 +1,4 @@
-function [OpenGene, OpenedHReaction,ClosedLReaction,solution, MILPproblem] = ExpressionIntegrationByMILP(model, RHNames, RLNames,HGeneList,epsilon_f, epsilon_r, logfile, runtime)
+function [OpenGene, OpenedHReaction,ClosedLReaction,solution, MILPproblem] = ExpressionIntegrationByMILP(model, RHNames, RLNames,HGeneList,epsilon_f, epsilon_r, logfile, runtime,verbose)
 % the function is based on the original "iMAT.m" function in COBRA toolbox
 % with significant alteration. It implements the first step fitting of
 % highly and rarely expressed genes in IMAT++ algorithm. In short, it converts the gene expression
@@ -25,6 +25,7 @@ function [OpenGene, OpenedHReaction,ClosedLReaction,solution, MILPproblem] = Exp
 % OPTIONAL INPUTS:
 %    logfile:           name of the file to save the MILP log (string)
 %    runtime:           maximum solve time for the MILP (default value - 7200s)
+%    verbose:           (0 or 1) show the MILP solving details or not
 %
 % OUTPUT:
 %    OpenGene:       	a list of highly expressed genes that are successfully fitted
@@ -44,7 +45,9 @@ end
 if nargin < 8 || isempty(logfile)
     logfile = 'MILPlog';
 end
-
+if nargin < 9 || isempty(verbose)
+    verbose = 0;
+end
 %% step1: construct the index for highly expressed reactions (RHindex) and rarely expressed rxns
 RHindex = find(ismember(model.rxns, RHNames));
 RLindex = find(ismember(model.rxns, RLNames));
@@ -126,7 +129,7 @@ c_gene = ones(length(HGeneList),1);
 c = [c_v;c_yh1;c_yl;c_yh2;c_gene];
 MILPproblem.c = c;
 %% Step 4: solve the MILP and generate the output
-solution = solveCobraMILP_XL(MILPproblem, 'timeLimit', runtime, 'logFile', logfile, 'printLevel', 0);
+solution = solveCobraMILP_XL(MILPproblem, 'timeLimit', runtime, 'logFile', logfile, 'printLevel', verbose);
 if solution.stat ~= 1
     error('infeasible or violation occured!');
 end

@@ -1,0 +1,627 @@
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:19:53 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:20:08 2020
+
+Optimize a model with 28183 rows, 21779 columns and 85914 nonzeros
+Variable types: 15574 continuous, 6205 integer (6205 binary)
+Coefficient statistics:
+  Matrix range     [2e-04, 1e+05]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [2e-05, 1e+05]
+  RHS range        [2e+03, 1e+05]
+
+MIP start did not produce a new incumbent solution
+
+Presolve removed 22637 rows and 14370 columns
+Presolve time: 0.11s
+Presolved: 5546 rows, 7409 columns, 28766 nonzeros
+Variable types: 4099 continuous, 3310 integer (3310 binary)
+
+Root relaxation: objective 1.248417e+00, 3562 iterations, 0.16 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    1.24842    0   26          -    1.24842      -     -    0s
+Another try with MIP start
+H    0     0                       6.0049749    1.24842  79.2%     -    0s
+     0     0    3.57825    0   27    6.00497    3.57825  40.4%     -    0s
+     0     0    4.24536    0   22    6.00497    4.24536  29.3%     -    0s
+     0     0    4.74036    0   22    6.00497    4.74036  21.1%     -    0s
+     0     0    5.48737    0   13    6.00497    5.48737  8.62%     -    0s
+     0     0    5.48737    0   13    6.00497    5.48737  8.62%     -    0s
+     0     0    5.48737    0    9    6.00497    5.48737  8.62%     -    1s
+H    0     0                       5.9999749    5.48737  8.54%     -    1s
+     0     0    5.48737    0   10    5.99997    5.48737  8.54%     -    1s
+     0     0    5.48737    0   11    5.99997    5.48737  8.54%     -    1s
+     0     0    5.98914    0   10    5.99997    5.98914  0.18%     -    1s
+     0     0 infeasible    0         5.99997    5.99997  0.00%     -    1s
+
+Cutting planes:
+  Learned: 2
+  Gomory: 4
+  Cover: 3
+  StrongCG: 4
+
+Explored 1 nodes (7229 simplex iterations) in 1.42 seconds
+Thread count was 1 (of 8 available processors)
+
+Solution count 3: 5.99997 6.00497 6.00497 
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective 5.999974922884e+00, best bound 5.999974922812e+00, gap 0.0000%
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:20:10 2020
+
+Optimize a model with 28184 rows, 21779 columns and 87222 nonzeros
+Variable types: 15574 continuous, 6205 integer (6205 binary)
+Coefficient statistics:
+  Matrix range     [2e-04, 1e+05]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [2e-05, 1e+05]
+  RHS range        [6e+00, 1e+05]
+
+MIP start did not produce a new incumbent solution
+MIP start violates constraint R28183 by 2499219.783776853
+
+Presolve removed 20212 rows and 13024 columns
+Presolve time: 0.18s
+Presolved: 7972 rows, 8755 columns, 35181 nonzeros
+Variable types: 5367 continuous, 3388 integer (3388 binary)
+
+Root relaxation: objective 3.157179e+03, 13687 iterations, 1.16 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 3157.17889    0  230          - 3157.17889      -     -    1s
+Another try with MIP start
+     0     0 5228.24282    0  151          - 5228.24282      -     -    1s
+     0     0 6112.57647    0  144          - 6112.57647      -     -    1s
+     0     0 6379.07852    0  147          - 6379.07852      -     -    2s
+     0     0 6388.20568    0  147          - 6388.20568      -     -    2s
+     0     0 7119.10044    0  129          - 7119.10044      -     -    2s
+     0     0 7120.52313    0  121          - 7120.52313      -     -    2s
+     0     0 7120.56449    0  121          - 7120.56449      -     -    2s
+     0     0 7133.70224    0  129          - 7133.70224      -     -    2s
+     0     0 7133.75860    0  129          - 7133.75860      -     -    2s
+     0     0 7136.22572    0  129          - 7136.22572      -     -    2s
+     0     0 7136.42724    0  134          - 7136.42724      -     -    2s
+     0     0 7137.17592    0  120          - 7137.17592      -     -    2s
+     0     0 7137.20645    0  118          - 7137.20645      -     -    2s
+     0     0 7138.00655    0  116          - 7138.00655      -     -    2s
+     0     0 7800.27911    0  106          - 7800.27911      -     -    3s
+     0     0 7894.27907    0  120          - 7894.27907      -     -    3s
+     0     0 7936.17700    0  122          - 7936.17700      -     -    3s
+     0     0 8005.07532    0  114          - 8005.07532      -     -    3s
+     0     0 8043.92143    0  121          - 8043.92143      -     -    3s
+     0     0 8052.85600    0  112          - 8052.85600      -     -    4s
+     0     0 8052.85600    0  112          - 8052.85600      -     -    4s
+     0     2 8054.45078    0  112          - 8054.45078      -     -    5s
+   268   210 8867.98775   63   71          - 8803.29949      -  15.1   10s
+
+Cutting planes:
+  Learned: 7
+  Gomory: 61
+  Cover: 12
+  Implied bound: 21
+  Projected implied bound: 1
+  Clique: 1
+  MIR: 20
+  StrongCG: 4
+  Flow cover: 37
+
+Explored 526 nodes (44040 simplex iterations) in 14.71 seconds
+Thread count was 1 (of 8 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:25:11 2020
+
+Optimize a model with 12608 rows, 13992 columns and 53079 nonzeros
+Variable types: 7787 continuous, 6205 integer (6205 binary)
+Coefficient statistics:
+  Matrix range     [2e-04, 1e+05]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [2e-05, 1e+05]
+  RHS range        [1e+05, 1e+05]
+Presolve removed 7909 rows and 7074 columns
+Presolve time: 0.09s
+Presolved: 4699 rows, 6918 columns, 25418 nonzeros
+Variable types: 3720 continuous, 3198 integer (3198 binary)
+Found heuristic solution: objective 1044.0000000
+
+Root relaxation: objective 1.633333e+03, 5040 iterations, 0.32 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 1633.33305    0   32 1044.00000 1633.33305  56.4%     -    0s
+     0     0 1620.99990    0   30 1044.00000 1620.99990  55.3%     -    0s
+     0     0 1619.99991    0   27 1044.00000 1619.99991  55.2%     -    1s
+     0     0 1618.99992    0   29 1044.00000 1618.99992  55.1%     -    1s
+     0     0 1618.99992    0   29 1044.00000 1618.99992  55.1%     -    1s
+     0     2 1618.99992    0   29 1044.00000 1618.99992  55.1%     -    1s
+H   39    27                    1610.0000000 1618.99991  0.56%   7.7    1s
+H  275    93                    1613.0000000 1617.99994  0.31%  21.8    2s
+   577   168 1615.99995    9   49 1613.00000 1617.99993  0.31%  28.8    5s
+  1503   337 1614.99996   13    9 1613.00000 1616.99995  0.25%  17.8   10s
+* 1641   305              30    1614.0000000 1614.99999  0.06%  21.5   13s
+
+Cutting planes:
+  Learned: 7
+  Gomory: 1
+  Cover: 19
+  Implied bound: 1
+  Clique: 2
+  StrongCG: 3
+  Flow cover: 4
+  Inf proof: 1
+
+Explored 1685 nodes (41532 simplex iterations) in 13.73 seconds
+Thread count was 1 (of 8 available processors)
+
+Solution count 5: 1614 1613 1613 ... 1044
+No other solutions better than 1614
+
+Optimal solution found (tolerance 1.00e-12)
+Warning: max bound violation (2.1042e-09) exceeds tolerance
+Best objective 1.614000000000e+03, best bound 1.614000000000e+03, gap 0.0000%
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:25:26 2020
+
+Optimize a model with 28183 rows, 21779 columns and 85914 nonzeros
+Variable types: 15574 continuous, 6205 integer (6205 binary)
+Coefficient statistics:
+  Matrix range     [2e-04, 1e+05]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [2e-05, 1e+05]
+  RHS range        [2e+03, 1e+05]
+
+MIP start did not produce a new incumbent solution
+
+Presolve removed 22637 rows and 14370 columns
+Presolve time: 0.11s
+Presolved: 5546 rows, 7409 columns, 28766 nonzeros
+Variable types: 4099 continuous, 3310 integer (3310 binary)
+
+Root relaxation: objective 1.248417e+00, 3562 iterations, 0.16 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    1.24842    0   26          -    1.24842      -     -    0s
+Another try with MIP start
+H    0     0                       6.0049749    1.24842  79.2%     -    0s
+     0     0    3.57825    0   27    6.00497    3.57825  40.4%     -    0s
+     0     0    4.24536    0   22    6.00497    4.24536  29.3%     -    0s
+     0     0    4.74036    0   22    6.00497    4.74036  21.1%     -    0s
+     0     0    5.48737    0   13    6.00497    5.48737  8.62%     -    0s
+     0     0    5.48737    0   13    6.00497    5.48737  8.62%     -    0s
+     0     0    5.48737    0    9    6.00497    5.48737  8.62%     -    1s
+H    0     0                       5.9999749    5.48737  8.54%     -    1s
+     0     0    5.48737    0   10    5.99997    5.48737  8.54%     -    1s
+     0     0    5.48737    0   11    5.99997    5.48737  8.54%     -    1s
+     0     0    5.98914    0   10    5.99997    5.98914  0.18%     -    1s
+     0     0 infeasible    0         5.99997    5.99997  0.00%     -    1s
+
+Cutting planes:
+  Learned: 2
+  Gomory: 4
+  Cover: 3
+  StrongCG: 4
+
+Explored 1 nodes (7229 simplex iterations) in 1.42 seconds
+Thread count was 1 (of 8 available processors)
+
+Solution count 3: 5.99997 6.00497 6.00497 
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective 5.999974922884e+00, best bound 5.999974922812e+00, gap 0.0000%
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:25:28 2020
+
+Optimize a model with 28184 rows, 21779 columns and 87222 nonzeros
+Variable types: 15574 continuous, 6205 integer (6205 binary)
+Coefficient statistics:
+  Matrix range     [2e-04, 1e+05]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [2e-05, 1e+05]
+  RHS range        [6e+00, 1e+05]
+
+Loaded MIP start with objective 6.47901e+06
+
+Presolve removed 20212 rows and 13024 columns
+Presolve time: 0.18s
+Presolved: 7972 rows, 8755 columns, 35181 nonzeros
+Found heuristic solution: objective 1191375.0641
+Variable types: 5367 continuous, 3388 integer (3388 binary)
+
+Root relaxation: objective 3.157179e+03, 13687 iterations, 1.13 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 3157.17889    0  230 1191375.06 3157.17889   100%     -    1s
+     0     0 5228.24282    0  151 1191375.06 5228.24282   100%     -    1s
+     0     0 6112.57647    0  144 1191375.06 6112.57647  99.5%     -    1s
+     0     0 6379.07852    0  147 1191375.06 6379.07852  99.5%     -    1s
+     0     0 6388.20568    0  147 1191375.06 6388.20568  99.5%     -    1s
+     0     0 7119.10044    0  127 1191375.06 7119.10044  99.4%     -    2s
+     0     0 7120.52313    0  119 1191375.06 7120.52313  99.4%     -    2s
+     0     0 7120.56449    0  119 1191375.06 7120.56449  99.4%     -    2s
+     0     0 7133.70224    0  129 1191375.06 7133.70224  99.4%     -    2s
+     0     0 7133.75860    0  129 1191375.06 7133.75860  99.4%     -    2s
+     0     0 7136.22572    0  129 1191375.06 7136.22572  99.4%     -    2s
+     0     0 7136.42724    0  134 1191375.06 7136.42724  99.4%     -    2s
+     0     0 7137.17592    0  120 1191375.06 7137.17592  99.4%     -    2s
+     0     0 7137.20645    0  118 1191375.06 7137.20645  99.4%     -    2s
+     0     0 7138.00655    0  116 1191375.06 7138.00655  99.4%     -    2s
+     0     0 7800.27911    0  106 1191375.06 7800.27911  99.3%     -    3s
+     0     0 7894.27907    0  123 1191375.06 7894.27907  99.3%     -    3s
+     0     0 7936.17700    0  120 1191375.06 7936.17700  99.3%     -    3s
+     0     0 8005.07532    0  112 1191375.06 8005.07532  99.3%     -    3s
+     0     0 8043.92143    0  115 1191375.06 8043.92143  99.3%     -    3s
+     0     0 8052.59626    0  116 1191375.06 8052.59626  99.3%     -    4s
+     0     0 8052.59626    0  116 1191375.06 8052.59626  99.3%     -    4s
+H    0     0                    1179956.5576 8052.59626  99.3%     -    4s
+     0     2 8054.18157    0  116 1179956.56 8054.18157  99.3%     -    4s
+     4     5 8364.19699    3  110 1179956.56 8364.19699  99.3%   176    5s
+   366   326 8845.72517  345    6 1179956.56 8365.47828  99.3%   8.5   10s
+H  376   106                    8845.7251705 8365.47828  5.43%   8.4   10s
+  1017   461 infeasible   68      8845.72517 8817.76375  0.32%  14.7   15s
+* 1065   443              32    8829.5517034 8829.52156  0.00%   6.8   18s
+
+Cutting planes:
+  Gomory: 40
+  Cover: 1
+  Implied bound: 9
+  Projected implied bound: 2
+  MIR: 9
+  Flow cover: 22
+
+Explored 1086 nodes (42477 simplex iterations) in 18.31 seconds
+Thread count was 1 (of 8 available processors)
+
+Solution count 4: 8829.55 8845.73 1.17996e+06 1.19138e+06 
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective 8.829551703445e+03, best bound 8.829551703444e+03, gap 0.0000%
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:25:50 2020
+
+Optimize a model with 28747 rows, 22341 columns and 96133 nonzeros
+Variable types: 15574 continuous, 6767 integer (6767 binary)
+Coefficient statistics:
+  Matrix range     [2e-04, 1e+05]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [2e-05, 1e+05]
+  RHS range        [6e+00, 1e+05]
+
+Loaded MIP start with objective -0
+
+Presolve removed 20349 rows and 13142 columns
+Presolve time: 0.24s
+Presolved: 8398 rows, 9199 columns, 39770 nonzeros
+Variable types: 5417 continuous, 3782 integer (3782 binary)
+
+Root relaxation: objective 3.970108e+02, 8143 iterations, 0.65 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  397.01080    0  284   -0.00000  397.01080      -     -    1s
+     0     0  255.87087    0  375   -0.00000  255.87087      -     -    1s
+     0     0  255.26646    0  372   -0.00000  255.26646      -     -    2s
+     0     0  254.81719    0  375   -0.00000  254.81719      -     -    2s
+     0     0  254.81719    0  375   -0.00000  254.81719      -     -    2s
+     0     0  254.49052    0  327   -0.00000  254.49052      -     -    2s
+     0     0  254.48524    0  319   -0.00000  254.48524      -     -    2s
+     0     0  254.16439    0  227   -0.00000  254.16439      -     -    2s
+     0     0  254.16412    0  228   -0.00000  254.16412      -     -    2s
+     0     0  254.15647    0  193   -0.00000  254.15647      -     -    2s
+     0     0  254.15559    0  200   -0.00000  254.15559      -     -    2s
+     0     0  254.11973    0  187   -0.00000  254.11973      -     -    2s
+     0     0  254.04842    0  197   -0.00000  254.04842      -     -    2s
+     0     0  253.88669    0  186   -0.00000  253.88669      -     -    2s
+     0     0  253.88669    0  192   -0.00000  253.88669      -     -    2s
+     0     0  253.86521    0  176   -0.00000  253.86521      -     -    2s
+     0     0  253.85938    0  174   -0.00000  253.85938      -     -    2s
+     0     0  253.85102    0  163   -0.00000  253.85102      -     -    2s
+     0     0  253.85102    0  161   -0.00000  253.85102      -     -    3s
+     0     0  253.85102    0  165   -0.00000  253.85102      -     -    3s
+     0     0  253.13383    0  188   -0.00000  253.13383      -     -    3s
+     0     0  252.99658    0  170   -0.00000  252.99658      -     -    4s
+     0     0  252.99655    0  170   -0.00000  252.99655      -     -    4s
+     0     0  252.99655    0  170   -0.00000  252.99655      -     -    4s
+     0     2  252.01891    0  170   -0.00000  252.01891      -     -    4s
+     4     3  251.50241    4  178   -0.00000  251.50241      -   105    5s
+   255   240  208.99705  216   60   -0.00000  251.49065      -  14.5   10s
+   373   325 infeasible   20        -0.00000  239.82484      -  43.3   15s
+   519   466  208.99705  231   48   -0.00000  226.11935      -  33.6   20s
+
+Cutting planes:
+  Learned: 145
+  Gomory: 48
+  Cover: 2
+  Implied bound: 10
+  Projected implied bound: 6
+  MIR: 25
+  StrongCG: 2
+  Flow cover: 23
+
+Explored 528 nodes (51901 simplex iterations) in 22.12 seconds
+Thread count was 1 (of 8 available processors)
+
+Solution count 1: -0 
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0000%
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:26:12 2020
+
+Optimize a model with 28748 rows, 22341 columns and 96695 nonzeros
+Variable types: 15574 continuous, 6767 integer (6767 binary)
+Coefficient statistics:
+  Matrix range     [2e-04, 1e+05]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [2e-05, 1e+05]
+  RHS range        [6e+00, 1e+05]
+
+Loaded MIP start with objective 8829.55
+
+Presolve removed 20757 rows and 13547 columns
+Presolve time: 0.23s
+Presolved: 7991 rows, 8794 columns, 38910 nonzeros
+Variable types: 5407 continuous, 3387 integer (3387 binary)
+
+Root relaxation: objective 3.157179e+03, 14509 iterations, 1.22 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 3157.17889    0  240 8829.55170 3157.17889  64.2%     -    1s
+     0     0 5224.46232    0  154 8829.55170 5224.46232  40.8%     -    1s
+     0     0 5772.64109    0  158 8829.55170 5772.64109  34.6%     -    1s
+     0     0 6273.33699    0  147 8829.55170 6273.33699  29.0%     -    2s
+     0     0 6718.12899    0  143 8829.55170 6718.12899  23.9%     -    2s
+     0     0 6733.26322    0  142 8829.55170 6733.26322  23.7%     -    2s
+     0     0 6733.33536    0  142 8829.55170 6733.33536  23.7%     -    2s
+     0     0 6818.94805    0  129 8829.55170 6818.94805  22.8%     -    2s
+     0     0 6818.94805    0  117 8829.55170 6818.94805  22.8%     -    2s
+     0     0 6818.94805    0  110 8829.55170 6818.94805  22.8%     -    3s
+     0     0 6818.94805    0  116 8829.55170 6818.94805  22.8%     -    3s
+     0     0 6918.07709    0  116 8829.55170 6918.07709  21.6%     -    3s
+     0     0 6918.18103    0  117 8829.55170 6918.18103  21.6%     -    3s
+     0     0 6920.69991    0  110 8829.55170 6920.69991  21.6%     -    3s
+     0     0 6921.66199    0  105 8829.55170 6921.66199  21.6%     -    3s
+     0     0 6921.77576    0  112 8829.55170 6921.77576  21.6%     -    3s
+     0     0 6923.45784    0  113 8829.55170 6923.45784  21.6%     -    3s
+     0     0 6923.62750    0  115 8829.55170 6923.62750  21.6%     -    3s
+     0     0 6924.48216    0  117 8829.55170 6924.48216  21.6%     -    3s
+     0     0 6924.48216    0  115 8829.55170 6924.48216  21.6%     -    3s
+     0     0 6924.53036    0  118 8829.55170 6924.53036  21.6%     -    3s
+
+Cutting planes:
+  Learned: 5
+  Gomory: 57
+  Cover: 7
+  Implied bound: 90
+  Clique: 4
+  MIR: 43
+  StrongCG: 6
+
+Explored 1 nodes (24884 simplex iterations) in 3.77 seconds
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 8829.55 8829.55 
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective 8.829551703445e+03, best bound 8.829551703444e+03, gap 0.0000%
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:26:18 2020
+
+Optimize a model with 28751 rows, 22345 columns and 96141 nonzeros
+Variable types: 15574 continuous, 6771 integer (6771 binary)
+Coefficient statistics:
+  Matrix range     [2e-04, 1e+05]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [2e-05, 1e+05]
+  RHS range        [6e+00, 1e+05]
+
+Loaded MIP start with objective 2
+
+Presolve removed 18909 rows and 11672 columns
+Presolve time: 0.23s
+Presolved: 9842 rows, 10673 columns, 43257 nonzeros
+Variable types: 6897 continuous, 3776 integer (3776 binary)
+
+Root relaxation: objective 3.990108e+02, 9526 iterations, 0.85 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  399.01080    0  305    2.00000  399.01080      -     -    1s
+     0     0  257.22378    0  373    2.00000  257.22378      -     -    2s
+     0     0  256.55733    0  380    2.00000  256.55733      -     -    2s
+     0     0  256.14088    0  378    2.00000  256.14088      -     -    2s
+     0     0  256.14088    0  379    2.00000  256.14088      -     -    2s
+     0     0  255.79647    0  352    2.00000  255.79647      -     -    2s
+     0     0  255.78018    0  336    2.00000  255.78018      -     -    2s
+     0     0  255.47549    0  245    2.00000  255.47549      -     -    3s
+     0     0  255.47272    0  248    2.00000  255.47272      -     -    3s
+     0     0  255.11736    0  213    2.00000  255.11736      -     -    3s
+     0     0  254.85853    0  193    2.00000  254.85853      -     -    3s
+     0     0  254.41501    0  202    2.00000  254.41501      -     -    3s
+     0     0  254.41122    0  203    2.00000  254.41122      -     -    3s
+     0     0  254.36649    0  189    2.00000  254.36649      -     -    3s
+     0     0  254.36636    0  188    2.00000  254.36636      -     -    3s
+     0     0  254.36429    0  179    2.00000  254.36429      -     -    3s
+     0     0  254.36429    0  181    2.00000  254.36429      -     -    3s
+     0     0  254.36429    0  182    2.00000  254.36429      -     -    3s
+     0     0  254.36429    0  180    2.00000  254.36429      -     -    3s
+     0     0  254.36429    0  180    2.00000  254.36429      -     -    3s
+     0     0  254.36422    0  178    2.00000  254.36422      -     -    4s
+     0     0  254.36422    0  178    2.00000  254.36422      -     -    4s
+     0     2  254.17304    0  178    2.00000  254.17304      -     -    4s
+     1     2  253.41131    1  199    2.00000  253.41131      -   718    5s
+   216   203  214.99967  180  101    2.00000  250.91027      -  20.1   10s
+   479   462  204.05285  368    6    2.00000  250.91027      -  27.2   15s
+
+Cutting planes:
+  Learned: 148
+  Gomory: 71
+  Cover: 1
+  Implied bound: 8
+  Projected implied bound: 7
+  MIR: 14
+  StrongCG: 2
+  Flow cover: 31
+
+Explored 526 nodes (43546 simplex iterations) in 19.88 seconds
+Thread count was 1 (of 8 available processors)
+
+Solution count 1: 2 
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective 2.000000000000e+00, best bound 2.000000000000e+00, gap 0.0000%
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:26:38 2020
+
+Optimize a model with 28752 rows, 22345 columns and 96707 nonzeros
+Variable types: 15574 continuous, 6771 integer (6771 binary)
+Coefficient statistics:
+  Matrix range     [2e-04, 1e+05]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [2e-05, 1e+05]
+  RHS range        [2e+00, 1e+05]
+
+Loaded MIP start with objective 8829.55
+
+Presolve removed 20360 rows and 13151 columns
+Presolve time: 0.23s
+Presolved: 8392 rows, 9194 columns, 40111 nonzeros
+Variable types: 5407 continuous, 3787 integer (3787 binary)
+
+Root relaxation: objective 3.157179e+03, 14086 iterations, 1.29 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 3157.17889    0  240 8829.55170 3157.17889  64.2%     -    1s
+     0     0 5224.23628    0  153 8829.55170 5224.23628  40.8%     -    1s
+     0     0 5791.48856    0  159 8829.55170 5791.48856  34.4%     -    2s
+     0     0 6271.56938    0  157 8829.55170 6271.56938  29.0%     -    2s
+     0     0 6273.70858    0  158 8829.55170 6273.70858  28.9%     -    2s
+     0     0 6670.93544    0  139 8829.55170 6670.93544  24.4%     -    2s
+     0     0 6732.95381    0  129 8829.55170 6732.95381  23.7%     -    2s
+     0     0 6733.09192    0  132 8829.55170 6733.09192  23.7%     -    2s
+     0     0 6829.76763    0  131 8829.55170 6829.76763  22.6%     -    2s
+     0     0 6829.76763    0  125 8829.55170 6829.76763  22.6%     -    3s
+     0     0 6829.76763    0  110 8829.55170 6829.76763  22.6%     -    3s
+     0     0 6829.76763    0  110 8829.55170 6829.76763  22.6%     -    3s
+     0     0 6954.96038    0  107 8829.55170 6954.96038  21.2%     -    3s
+     0     0 6956.11768    0  108 8829.55170 6956.11768  21.2%     -    3s
+     0     0 6956.11768    0  108 8829.55170 6956.11768  21.2%     -    3s
+     0     0 6959.54474    0   93 8829.55170 6959.54474  21.2%     -    3s
+     0     0 6960.00668    0   98 8829.55170 6960.00668  21.2%     -    3s
+     0     0 6960.60968    0  104 8829.55170 6960.60968  21.2%     -    3s
+     0     0 6961.41679    0  104 8829.55170 6961.41679  21.2%     -    3s
+     0     0 6961.45894    0  104 8829.55170 6961.45894  21.2%     -    3s
+     0     0 6962.41859    0  108 8829.55170 6962.41859  21.1%     -    3s
+     0     0 6962.41859    0  109 8829.55170 6962.41859  21.1%     -    3s
+     0     0 6962.61576    0  108 8829.55170 6962.61576  21.1%     -    3s
+
+Cutting planes:
+  Learned: 5
+  Gomory: 52
+  Cover: 7
+  Implied bound: 93
+  Clique: 2
+  MIR: 44
+  StrongCG: 4
+
+Explored 1 nodes (24427 simplex iterations) in 3.93 seconds
+Thread count was 1 (of 8 available processors)
+
+Solution count 1: 8829.55 
+
+Optimal solution found (tolerance 1.00e-12)
+Best objective 8.829551703445e+03, best bound 8.829551703444e+03, gap 0.0000%
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:30:52 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:31:09 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:31:10 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:31:26 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:31:40 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:31:47 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:32:00 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:32:05 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:32:11 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:32:40 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:32:56 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:32:58 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:33:13 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:33:16 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:33:22 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:43:28 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:43:44 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:43:46 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:44:01 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:44:16 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:44:22 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:44:35 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:44:41 2020
+
+
+Gurobi 8.1.1 (mac64, Matlab) logging started Sat Mar 21 18:44:47 2020
+
