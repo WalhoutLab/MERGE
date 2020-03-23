@@ -4,9 +4,9 @@ function [FluxPotentials,FluxPotential_solutions] = FPA(model,targetRxns,master_
 % objective value of a linear optimization (i.e, maximum flux of a
 % reaction) that best represents the relative expression levels of all
 % related gene in a certain network neighberhood or the global network. The key
-% concept is to penalties the flux of reactions according to the relative
+% concept is to penalizes the flux of reactions according to the relative
 % expression level of those associated genes. A distance order parameter
-% supports to perform such integration at a tunable scale of metabolite
+% supports to perform such integration at a tunable scale of metabolic
 % neighbers.
 % 
 % USAGE:
@@ -57,7 +57,7 @@ function [FluxPotentials,FluxPotential_solutions] = FPA(model,targetRxns,master_
 %                       flux) during the FPA analysis. Used to conjoin with iMAT++ result to
 %                       perform FPA on a context-specific metabolic network
 %    constantPenalty:   a specifc parameter used in dual tissue integration
-%                       in C. elegans tissue modeling. It is similar to manualPenalty which override the user-defined penalties for special reactions. 
+%                       in C. elegans tissue modeling. It is similar to manualPenalty which override the automatically calculated penalties for special reactions. 
 %                       However, the constantPenalty will NOT override the
 %                       original penalty of the super condition, so that FPA of X
 %                       tissue is comparable with that of Intestine. May
@@ -87,7 +87,7 @@ function [FluxPotentials,FluxPotential_solutions] = FPA(model,targetRxns,master_
 % OPTIONAL OUTPUTS:
 %   FluxPotential_solutions:    the FPA solution outputs of each flux
 %                               potential objective values. This could be used to inspect and
-%                               understand the pathway chosen in getting the maximum calculating flux potential.
+%                               understand the flux distribution of maximum flux potential.
 %
 % `Yilmaz et al. (2020). Final Tittle and journal.
 %
