@@ -94,8 +94,8 @@ model = creategrRulesField(model);
 % we provide an epsilon generator following the methods described in the
 % paper
 
-[epsilon_f, epsilon_r] = makeEpsilonSeq(model, model.rxns, 1, 0.5);
-save('input/humanModel/epsilon.mat','epsilon_f','epsilon_r');
+% [epsilon_f, epsilon_r] = makeEpsilonSeq(model, model.rxns, 1, 0.5);
+% save('input/humanModel/epsilon.mat','epsilon_f','epsilon_r');
 
 load('input/humanModel/epsilon.mat');
 
@@ -107,7 +107,7 @@ load('input/humanModel/epsilon.mat');
 allCells = MFAdata.Properties.VariableNames(6:end);
 allCells = allCells(1:2:120);%merge replicates
 outputCollections = {};
-for i = [1,7,19]
+for i = [36,54,60]
     sampleName = allCells{i};
     %% load the gene expression data
     % For making the gene category file from raw expression quantification
@@ -147,6 +147,32 @@ for i = [1,7,19]
     % the OFD flux distribution is myCSM.OFD
     outputCollections = [outputCollections;{myCSM}];
 end
-%% NOTE
-% 1. speed concern
-% 2. local minimal 
+%% NOTES ON RUNNING INTEGRATION ON A NON-C. ELEGANS MODEL
+%% 1. slow computational speed 
+% Although the computational speed of IMAT++ is generally fast, user 
+% may experience slow speed in some cases. The reason is that rarely
+% expressed genes (related to low/zero reactions) conflict with
+% highly expressed genes, creating a very difficult MILP. It usually
+% indicates problems with the input transcriptional profile, where it
+% disagrees with the metabolic network reconstruction. We recommend users
+% to inspect the conflictions for potential biological findings. 
+% Additionally, extremely complex model may also cause speed problem. See
+% the note #3 for recommendations on dealing with complex models.
+%% 2. numerical issues 
+% Since MILP is a NP-hard problem, even the best solver cannot guarantee to
+% find the optimal solution of every MILP. In some cases, user may see solver complaining
+% "infeasible model" while the input MILP is clearly feasible. This indicates
+% the solver failed to find a feasible solution by its heuristic algorithm. Users can uncomment
+% line 157 and line 191 to enable the user-defined initial solution, in "IMATplusplus.m".
+% But user should aware that the solver may still get stuck in local
+% optimum when using this mode. We also recommend users to avoid running into 
+% numerical problems by tuning solvers or trying suggestions provided note #3.
+%% 3. running IMAT++ on complex models (such as RECON3D)
+% The complex models may experience slow speed in solving the MILP. In addition 
+% to running IMAT++ on a high-performance workstation, we recommend the following
+% model preprocessing before running IMAT++.
+% (1) removing inactive metabolic functions (reactions that cannot carry flux) in FVA
+% (2) removing reactions that dependent on rarely expressed genes
+% (3) removing reactions that cannot carry flux when reactions in #2 are removed
+% These preprocessings generally decrease the computation demand to normal level that can be 
+% done in a laptop (data not shown).

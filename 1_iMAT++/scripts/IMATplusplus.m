@@ -154,7 +154,7 @@ MILProblem =  solution2constraint(MILProblem,solution);
 % add new variables (absolute flux proxy) for flux minimization
 MILProblem = addAbsFluxVariables(MILProblem, worm);
 % set the initial solution (as the last step solution) to boost speed 
-MILProblem.x0 = [solution.full;abs(solution.full(1:length(worm.rxns)))];
+% MILProblem.x0 = [solution.full;abs(solution.full(1:length(worm.rxns)))];
 % minimize low flux (reactions dependent on lowly and rarely expressed
 % genes)
 % please note that, to use minimal variables in the MILP problem, 
@@ -188,7 +188,7 @@ minLow = solution.obj;
 tol = minLowTol; %it could be solver tolarence or some larger number to increase the numeric stability and allow flexible fitting of zero and low reactions
 solution.obj = solution.obj + tol;
 MILProblem = solution2constraint(MILProblem,solution);
-MILProblem.x0 = solution.full;
+% MILProblem.x0 = solution.full;
 MILP = MILProblem; %write the MILP output, this MILP contains all data-based constraints (minTotal is not data based, but minLow is)
 if doMinPFD
     % minimize total flux

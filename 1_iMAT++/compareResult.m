@@ -1,5 +1,5 @@
 names = {'Hypodermis','Gonad','Glia','Pharynx','Body_wall_muscle','Neurons','Intestine'};
-ref = readtable('./../input/final/ofd_table.tsv','FileType','text');
+ref = readtable('./../../../ofd_table.tsv','FileType','text');
 for i = 1:length(names)-1
     load(['output/',names{i},'.mat']);
     myFlux = myCSM.OFD;
