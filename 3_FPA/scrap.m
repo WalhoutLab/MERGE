@@ -20,3 +20,19 @@ for j = 1:length(tissueLabel)
 end
 %%
 check = intersect(intersect(intersect(intersect(intersect(intersect(wrongrxn{1},wrongrxn{2}),wrongrxn{3}),wrongrxn{4}),wrongrxn{5}),wrongrxn{6}),wrongrxn{7})
+
+%%
+compare = table();
+compare.rxnID = FPAtbl.Properties.RowNames;
+compare.rxn = FPAtbl.rxn;
+for j = 1:length(tissueLabel)
+    tissue = tissueLabel{j};
+    for i = 1:size(FPAtbl,1)
+        if strcmp(FPAtbl.Properties.RowNames{i}(end),'f')
+            compare.(tissue)(i) = relFP_f(strcmp(targetRxns,FPAtbl.Properties.RowNames{i}(1:end-1)),strcmp(tissueLabel,tissue));
+        else
+            compare.(tissue)(i) = relFP_r(strcmp(targetRxns,FPAtbl.Properties.RowNames{i}(1:end-1)),strcmp(tissueLabel,tissue));
+        end
+    end
+end
+writetable(compare,'NewFPA.txt');

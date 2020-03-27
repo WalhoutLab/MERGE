@@ -1,4 +1,4 @@
-function [FluxPotentials,FluxPotential_solutions] = FPA(model,targetRxns,master_expression,distMat,labels,n,manualPenalty,manualDist,maxDist,blockList, constantPenalty,parforFlag,penalty_defined)
+function [FluxPotentials,FluxPotential_solutions] = FPA_minAllowance(model,targetRxns,master_expression,distMat,labels,n,manualPenalty,manualDist,maxDist,blockList, constantPenalty,parforFlag,penalty_defined)
 % Uses the FPA algorithm (`Yilmaz et al., 2020`) to calculate the relative flux
 % potential of a given reaction across conditions. This algorithm finds the
 % objective value of a linear optimization (i.e, maximum flux of a
@@ -188,35 +188,65 @@ if parforFlag
         doReverse = any(strcmp(labels, [myrxn,'_r']));%whether to calculate the forward efficiency, according to the distance matrix  
         efficiencyVector = cell(1,size(penalty,2));
         efficiencyVector_plus = cell(1,size(penalty,2));
-        for j = 1:size(penalty,2)
+        %% calculate the minimal flux allowance for the target reaction (super condition)
+        % block the reactions in the block list
+        model_irrev_tmp0 = model_irrev;
+        if ~isempty(blockList)
+            % apply the block list for the super condition(could be empty)
+            model_irrev_tmp0.ub(ismember(model_irrev_tmp0.rxns,blockList{size(penalty,2)})) = 0;
+        end
+        if doForward %calculate the minAllowance of the forward reaction              
+            model_irrev_tmp = model_irrev_tmp0;
+            pDist_f = 1./((1+distMat(strcmp(labels, [myrxn,'_f']),:)).^n);%the distance term in the weight formula
+            w_f = pDist_f' .* penalty(:,size(penalty,2));%calculate final weight
+            % block the reverse rxns to avoid self-loop
+            model_irrev_tmp.ub(ismember(model_irrev_tmp.rxns,[myrxn,'_r'])) = 0;
+            [minAllowance_f,efficiencyVector{1,size(penalty,2)}(1),efficiencyVector_plus{1,size(penalty,2)}{1}] = GetMinAllowance(model_irrev_tmp,w_f, labels, [myrxn,'_f'],1, 'max');
+            % the solution for minimal allowance is also the solution for
+            % super condition
+        else
+            minAllowance_f = NaN;
+            efficiencyVector{1,size(penalty,2)}(1) = NaN;
+            efficiencyVector_plus{1,size(penalty,2)}(1) = {''};
+        end
+        if doReverse 
+            model_irrev_tmp = model_irrev_tmp0;
+            pDist_r = 1./((1+distMat(strcmp(labels, [myrxn,'_r']),:)).^n);
+            w_r = pDist_r' .* penalty(:,size(penalty,2));
+            % block the forward rxns to avoid self-loop
+            model_irrev_tmp.ub(ismember(model_irrev_tmp.rxns,[myrxn,'_f'])) = 0;
+            [minAllowance_r,efficiencyVector{1,size(penalty,2)}(2),efficiencyVector_plus{1,size(penalty,2)}{2}] = GetMinAllowance(model_irrev_tmp,w_r, labels, [myrxn,'_r'],1, 'max');
+        else
+            minAllowance_r = NaN;
+            efficiencyVector{1,size(penalty,2)}(2) = NaN;
+            efficiencyVector_plus{1,size(penalty,2)}(2) = {''};
+        end       
+        %% calculate the FP of each condition
+        for j = 1:(size(penalty,2)-1) %loop over all the queried conditions (except for super cond, which we calculated above)
             % block the reactions in the block list
             model_irrev_tmp0 = model_irrev;
             if ~isempty(blockList)
-                if j < size(penalty,2)
-                    model_irrev_tmp0.ub(ismember(model_irrev_tmp0.rxns,blockList{j})) = 0;
-                else %still block when optimizing supertissue // used to not block, now requires a supercond block list (could be empty)
-                    model_irrev_tmp0.ub(ismember(model_irrev_tmp0.rxns,blockList{j})) = 0;
-                end
+                model_irrev_tmp0.ub(ismember(model_irrev_tmp0.rxns,blockList{j})) = 0;
             end
-            if doForward 
+            if doForward && ~isnan(minAllowance_f)                
                 model_irrev_tmp = model_irrev_tmp0;
                 pDist_f = 1./((1+distMat(strcmp(labels, [myrxn,'_f']),:)).^n);%the distance term in the weight formula
                 w_f = pDist_f' .* penalty(:,j);%calculate final weight
                 % block the reverse rxns to avoid self-loop
                 model_irrev_tmp.ub(ismember(model_irrev_tmp.rxns,[myrxn,'_r'])) = 0;
                 % the FPA is calculated by solvePLP(Penalized Linear Problem) function
-                [efficiencyVector{1,j}(1),efficiencyVector_plus{1,j}{1}] = solvePLP(model_irrev_tmp,w_f, labels, [myrxn,'_f'],1, 'max');
+                [efficiencyVector{1,j}(1),efficiencyVector_plus{1,j}{1}] = solvePLP_minAllowance(model_irrev_tmp,w_f, labels, [myrxn,'_f'],1,minAllowance_f, 'max');
             else
                 efficiencyVector{1,j}(1) = NaN;
                 efficiencyVector_plus{1,j}(1) = {''};
             end
-            if doReverse 
+            if doReverse && ~isnan(minAllowance_r)
                 model_irrev_tmp = model_irrev_tmp0;
                 pDist_r = 1./((1+distMat(strcmp(labels, [myrxn,'_r']),:)).^n);
                 w_r = pDist_r' .* penalty(:,j);
                 % block the forward rxns to avoid self-loop
                 model_irrev_tmp.ub(ismember(model_irrev_tmp.rxns,[myrxn,'_f'])) = 0;
-                [efficiencyVector{1,j}(2),efficiencyVector_plus{1,j}{2}] = solvePLP(model_irrev_tmp,w_r, labels, [myrxn,'_r'],1, 'max');
+                [efficiencyVector{1,j}(2),efficiencyVector_plus{1,j}{2}] = solvePLP_minAllowance(model_irrev_tmp,w_r, labels, [myrxn,'_r'],1,minAllowance_r, 'max');
             else
                 efficiencyVector{1,j}(2) = NaN;
                 efficiencyVector_plus{1,j}(2) = {''};
@@ -229,36 +259,69 @@ if parforFlag
 else %run the same code on a for loop mode
     for i = 1:length(targetRxns)
         myrxn = targetRxns{i};
-        doForward = any(strcmp(labels, [myrxn,'_f']));%whether calculate the forward efficiency, according to the distance matrix  
-        doReverse = any(strcmp(labels, [myrxn,'_r']));
+        doForward = any(strcmp(labels, [myrxn,'_f']));%whether to calculate the forward efficiency, according to the distance matrix  
+        doReverse = any(strcmp(labels, [myrxn,'_r']));%whether to calculate the forward efficiency, according to the distance matrix  
         efficiencyVector = cell(1,size(penalty,2));
         efficiencyVector_plus = cell(1,size(penalty,2));
-        for j = 1:size(penalty,2)
+        %% calculate the minimal flux allowance for the target reaction (super condition)
+        % block the reactions in the block list
+        model_irrev_tmp0 = model_irrev;
+        if ~isempty(blockList)
+            % apply the block list for the super condition(could be empty)
+            model_irrev_tmp0.ub(ismember(model_irrev_tmp0.rxns,blockList{size(penalty,2)})) = 0;
+        end
+        if doForward %calculate the minAllowance of the forward reaction              
+            model_irrev_tmp = model_irrev_tmp0;
+            pDist_f = 1./((1+distMat(strcmp(labels, [myrxn,'_f']),:)).^n);%the distance term in the weight formula
+            w_f = pDist_f' .* penalty(:,size(penalty,2));%calculate final weight
+            % block the reverse rxns to avoid self-loop
+            model_irrev_tmp.ub(ismember(model_irrev_tmp.rxns,[myrxn,'_r'])) = 0;
+            [minAllowance_f,efficiencyVector{1,size(penalty,2)}(1),efficiencyVector_plus{1,size(penalty,2)}{1}] = GetMinAllowance(model_irrev_tmp,w_f, labels, [myrxn,'_f'],1, 'max');
+            % the solution for minimal allowance is also the solution for
+            % super condition
+        else
+            minAllowance_f = NaN;
+            efficiencyVector{1,size(penalty,2)}(1) = NaN;
+            efficiencyVector_plus{1,size(penalty,2)}(1) = {''};
+        end
+        if doReverse 
+            model_irrev_tmp = model_irrev_tmp0;
+            pDist_r = 1./((1+distMat(strcmp(labels, [myrxn,'_r']),:)).^n);
+            w_r = pDist_r' .* penalty(:,size(penalty,2));
+            % block the forward rxns to avoid self-loop
+            model_irrev_tmp.ub(ismember(model_irrev_tmp.rxns,[myrxn,'_f'])) = 0;
+            [minAllowance_r,efficiencyVector{1,size(penalty,2)}(2),efficiencyVector_plus{1,size(penalty,2)}{2}] = GetMinAllowance(model_irrev_tmp,w_r, labels, [myrxn,'_r'],1, 'max');
+        else
+            minAllowance_r = NaN;
+            efficiencyVector{1,size(penalty,2)}(2) = NaN;
+            efficiencyVector_plus{1,size(penalty,2)}(2) = {''};
+        end       
+        %% calculate the FP of each condition
+        for j = 1:(size(penalty,2)-1) %loop over all the queried conditions (except for super cond, which we calculated above)
             % block the reactions in the block list
             model_irrev_tmp0 = model_irrev;
-            if j < size(penalty,2)
+            if ~isempty(blockList)
                 model_irrev_tmp0.ub(ismember(model_irrev_tmp0.rxns,blockList{j})) = 0;
-            else %dont block when optimizing supertissue
-                % the modifications in the parfor is not added in!
             end
-            if doForward 
+            if doForward && ~isnan(minAllowance_f)                
                 model_irrev_tmp = model_irrev_tmp0;
-                pDist_f = 1./((1+distMat(strcmp(labels, [myrxn,'_f']),:)).^n);
-                w_f = pDist_f' .* penalty(:,j);
+                pDist_f = 1./((1+distMat(strcmp(labels, [myrxn,'_f']),:)).^n);%the distance term in the weight formula
+                w_f = pDist_f' .* penalty(:,j);%calculate final weight
                 % block the reverse rxns to avoid self-loop
                 model_irrev_tmp.ub(ismember(model_irrev_tmp.rxns,[myrxn,'_r'])) = 0;
-                [efficiencyVector{1,j}(1),efficiencyVector_plus{1,j}{1}] = solvePLP(model_irrev_tmp,w_f, labels, [myrxn,'_f'],1, 'max');
+                % the FPA is calculated by solvePLP(Penalized Linear Problem) function
+                [efficiencyVector{1,j}(1),efficiencyVector_plus{1,j}{1}] = solvePLP_minAllowance(model_irrev_tmp,w_f, labels, [myrxn,'_f'],1,minAllowance_f, 'max');
             else
                 efficiencyVector{1,j}(1) = NaN;
                 efficiencyVector_plus{1,j}(1) = {''};
             end
-            if doReverse 
+            if doReverse && ~isnan(minAllowance_r)
                 model_irrev_tmp = model_irrev_tmp0;
                 pDist_r = 1./((1+distMat(strcmp(labels, [myrxn,'_r']),:)).^n);
                 w_r = pDist_r' .* penalty(:,j);
                 % block the forward rxns to avoid self-loop
                 model_irrev_tmp.ub(ismember(model_irrev_tmp.rxns,[myrxn,'_f'])) = 0;
-                [efficiencyVector{1,j}(2),efficiencyVector_plus{1,j}{2}] = solvePLP(model_irrev_tmp,w_r, labels, [myrxn,'_r'],1, 'max');
+                [efficiencyVector{1,j}(2),efficiencyVector_plus{1,j}{2}] = solvePLP_minAllowance(model_irrev_tmp,w_r, labels, [myrxn,'_r'],1,minAllowance_r, 'max');
             else
                 efficiencyVector{1,j}(2) = NaN;
                 efficiencyVector_plus{1,j}(2) = {''};
@@ -266,6 +329,6 @@ else %run the same code on a for loop mode
         end
         FluxPotentials(i,:) = efficiencyVector;
         FluxPotential_solutions(i,:) = efficiencyVector_plus;
-        fprintf('done!\n');
     end
+    fprintf('done!\n');%for simple progress monitor
 end

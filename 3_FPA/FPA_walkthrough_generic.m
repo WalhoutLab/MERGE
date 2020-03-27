@@ -1,6 +1,4 @@
-% This walkthrough script helps user to learn how to set up the inputs for
-% running FPA on a generic iCEL1314 or a given COBRA model (human model
-% recon2.2 in this case). 
+%% this walkthrough guidance will take user through the application of FPA on a generic model of C. elegans, or other metabolic models (we used human model recon2.2 as an example).
 %
 % Please reference to: 
 % `xxxxx. (xxx). xxxx
@@ -12,7 +10,7 @@ addpath ./input/
 addpath ./scripts/
 addpath ./../input/
 addpath ./../bins/
-%% run FPA for generic iCEL1314
+%% Part I: THE APPLICATION TO THE GENERIC C. ELEGANS MODEL
 %% 1. load the model and prepare the model
 load('iCEL1314.mat');
 % users may add their own constraints here (i.e., nutriential input
@@ -93,9 +91,30 @@ load('FVAtbl.mat')
 blockList = getBlockList(model,FVAtbl);
 % run the FPA again
 [fluxEfficiency2,fluxEfficiency_plus2] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty,{},max(distMat(~isinf(distMat))),blockList);
-%% run FPA for human model RECON 2.2
+%% PART II: THE APPLICATION TO ANY METABOLIC MODEL
+% applying FPA to other models is similair. Like the guidence for iMAT++, 
+% here we provide an example of integrating RNA-seq data of NCI-60 cancer 
+% cell lines (Reinhold WC et al., 2019) to human model, RECON2.2 (Swainston et al., 2016)
+%% 1. load the model and prepare the model
+load('./../1_IMAT++/input/humanModel/Recon2_2.mat');
+% users may add their own constraints here (i.e., nutriential input
+% constraints)
+% we define the media condition by the measured fluxes from Jain et al, Science, 2012 
+MFAdata = readtable('input/humanModel/mappedFluxData.xlsx','sheet','cleanData');
+% since the flux scale is controled by flux allowance
+model = defineConstriants(model, 1e5,0.01, MFAdata);
 
-
+% parseGPR takes hugh amount of time, so preparse and integrate with model
+% here 
+parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
+model.parsedGPR = parsedGPR;
+model = buildRxnGeneMat(model);
+model = creategrRulesField(model);
+% The FPA analysis requires to pre-parse the GPR and attached it as a field
+% in the model. Otherwise parsing GPR in each FPA calculation wastes a lot
+% of time. 
+parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
+model.parsedGPR = parsedGPR;
 %% 2. generate the distance matrix
 % this section will guide users to generate the input for metabolic
 % distance calculator from the matlab model.
