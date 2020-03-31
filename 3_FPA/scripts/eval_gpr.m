@@ -36,7 +36,9 @@ status = EVAL_OK;
 if isempty(expression)
     status = NO_GPR_ERROR;
 else
-    rule_genes = setdiff(regexp(expression,'\<(\w|\-|\.)+\>','match'), {'and', 'or'});
+    % we allow letters, numbers, dot, dash and colon in gene names. Any
+    % other special symbol needs to be added below.
+    rule_genes = setdiff(regexp(expression,'\<(\w|\-|\.|:)+\>','match'), {'and', 'or'});
 
     total_measured = 0;
 
@@ -45,7 +47,7 @@ else
         if isempty(j)
             level = NONETYPE;
         else
-            level = num2str(levels(j));
+            level = num2str(sum(levels(j)));% if a gene appears multiple time, we use the sum of levels!
             total_measured = total_measured + 1;
         end
         expression = regexprep(expression, ['\<', rule_genes{i}, '\>'], level );

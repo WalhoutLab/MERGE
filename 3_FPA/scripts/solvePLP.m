@@ -58,11 +58,22 @@ else
     model.csense(end+1) = 'G';
 end
 model.b(end+1) = 1; %flux allowance. 1 by default; This number only matters for numeric solubility
-model.BiGG(end+1) = {'NA'};
-model.metCharges(end+1) = 0;
-model.metFormulas(end+1) = {'NA'};
-model.metNames(end+1) = {'Nonsense Metabolites which is a constraint'};
-model.mets(end+1) = {['NonMetConst',num2str(length(model.mets))]};
+% also update other related fields (could be skiped)
+if isfield(model,'BiGG')
+    model.BiGG(end+1) = {'NA'};
+end
+if isfield(model,'metCharges')
+    model.metCharges(end+1) = 0;
+end
+if isfield(model,'metFormulas')
+    model.metFormulas(end+1) = {'NA'};
+end
+if isfield(model,'metNames')
+    model.metNames(end+1) = {'Nonsense Metabolites which is a constraint'};
+end
+if isfield(model,'mets')
+    model.mets(end+1) = {['NonMetConst',num2str(length(model.mets))]};
+end
 % solve the LP 
 model = changeObjective(model,obj_rxn);
 solution = optimizeCbModel(model,minMax);

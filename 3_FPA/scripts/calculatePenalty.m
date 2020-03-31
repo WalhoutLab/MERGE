@@ -44,6 +44,7 @@ for i = 1:length(master_expression)
     expression = master_expression{i};
     expression.value = expression.value + 1; %add 1 pseudocount to avoid numerical error
     [levels(:,i), status(:,i)] = gene_to_reaction_levels(model, expression.genes, expression.value, @min, @(x,y)(x+y));%GPR parser to convert the expression of genes to levels of "AND" gated blocks
+    fprintf('mapped expression levels to penalties for condition #%d\n',i);
 end
 %% step2: calculate penalty
 normalizedLevel = nan(size(levels,1),size(levels,2));%the levels normalized to super condition
