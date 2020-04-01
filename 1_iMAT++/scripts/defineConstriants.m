@@ -1,16 +1,15 @@
-function model = defineConstriants(model, infDefault,smallFluxDefault, MFAdata)
+function model = defineConstriants(model, infDefault,smallFluxDefault)
 % This function is to define the uptake constrainst for a native human
 % model RECON2.2. It is not designed or tested for any other model.
 %
 % USAGE:
 %
-%    model = defineConstriants(model, infDefault,smallFluxDefault, FVA)
+%    model = defineConstriants(model, infDefault,smallFluxDefault)
 %
 % INPUTS:
 %    model:             input RECON2.2 model (COBRA model structure)
 %    infDefault:        the default value for infinite fluxes
 %    smallFluxDefault:  the default value for trace uptake fluxes
-%    MFA:               the Metabolic Flux Measurement data
 %
 % OUTPUT:
 %   model:              the constrianed model
@@ -50,26 +49,17 @@ vitamins = {'EX_btn(e)',...
         'EX_thm(e)',...
         'EX_adpcbl(e)',...
         };
-model.lb(ismember(model.rxns,vitamins)) = -1;%artificially set as -1
+model.lb(ismember(model.rxns,vitamins)) = -0.005;%artificially set as a small number
 % set the maintaince
-model = changeRxnBounds(model,'DM_atp_c_','l',1.833);%1.833 mmol gDW?1 h?1 (Kilburn et al., 1969)
-% the flux in the analysis is reported as fmol/cell/h; accoring to https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005698#sec011
-% 1mmol/gdw ~ 10^12fmol/10^12 cells ~ 1 fmol/cell
-% because only cell volume data is available yet the density is not, we
-% ignore the dW/cell variation across 60 lines. so the growth rate is
+model = changeRxnBounds(model,'DM_atp_c_','l',1.833);%1.833 mmol /gDW/h (Kilburn et al., 1969)
 
-% we use the minimal uptake rate for a metabolite when multiple conditions are provided (this will be used to calculate epsilon)
-% and the constriant will be the real uptake rate when only one condition
-% is provided
-for i = 1:size(MFAdata,1)
-    myrxn = MFAdata.rxnID{i};
-    fluxes = MFAdata{i,6:size(MFAdata,2)};
-    if any(fluxes < 0) %could be uptaken
-        model.lb(strcmp(model.rxns,myrxn)) = max(fluxes(fluxes < 0));
-    else %don't allow uptake
-        model.lb(strcmp(model.rxns,myrxn)) = 0;
-    end
-end
+AA = {'EX_his_L(e)';'EX_ala_L(e)';'EX_arg_L(e)';'EX_asn_L(e)';'EX_asp_L(e)';'EX_thr_L(e)';'EX_gln_L(e)';'EX_glu_L(e)';'EX_gly(e)';'EX_ile_L(e)';'EX_leu_L(e)';'EX_lys_L(e)';'EX_met_L(e)';'EX_phe_L(e)';'EX_pro_L(e)';'EX_ser_L(e)';'EX_trp_L(e)';'EX_tyr_L(e)';'EX_val_L(e)';'EX_cys_L(e)'};
+model.lb(ismember(model.rxns,AA)) = -0.05;
+model.lb(ismember(model.rxns,{'EX_gln_L(e)'})) = -0.5;
+model.lb(ismember(model.rxns,{'EX_gthrd(e)'})) = -0.05;
+model.lb(ismember(model.rxns,{'EX_glc(e)'})) = -5;%major carbon source in the media
+
+% we fix few blocked reactions by adding transporters
 if ~any(strcmp(model.rxns,'transport_dhap'))%not modified model
     % fix some conflicts between model reconstruction and the flux data
     % dhap can only be uptaken but cannot carry influx ==> add a transport rxn
@@ -80,9 +70,4 @@ if ~any(strcmp(model.rxns,'transport_dhap'))%not modified model
     % EX_sbt-d(e) can only be uptaken but cannot carry influx ==> change transport reversibility
     model.lb(strcmp(model.rxns,'SBTle')) = -infDefault;
 end
-% additionally, the essential aa histidine and nonessential aa cys has no data
-% we give sufficient amout of histidine to make sure it is not limiting the
-% system, but we keep cys at default due to lack of data
-AA = {'EX_his_L(e)'};%,'EX_cys_L(e)'};
-model.lb(ismember(model.rxns,AA)) = -10;
 end

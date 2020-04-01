@@ -1,4 +1,4 @@
-function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLNames,latentRxn,PFD,Nfit_latent,minTotal_OFD,MILP] = IMATplusplus(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCateg,doMinPFD,latentCAP,modelType,minLowTol,verbose)
+function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLNames,latentRxn,PFD,Nfit_latent,minTotal_OFD,MILP] = IMATplusplus(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCateg,doMinPFD,latentCAP,modelType,minLowTol,BigModel,verbose)
 % Uses the iMAT++ algorithm (`Yilmaz et al., 2020`) to find the optimal flux distribution that fits into a categorized gene expression data. 
 % iMAT++ algorithm performs multi-step fitting to find a flux distribution
 % that best agrees with rarely, lowly and highly expressed genes in the
@@ -24,6 +24,7 @@ function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLName
 %                       ExpCateg should be a structure variable with "high", "low", "dynamic" and
 %                       "zero" four fields. See the walkthrough scripts on how to generate
 %                       them from raw expression quantification data (i.e., TPM)
+% OPTIONAL INPUTS:
 %    doMinPFD:          whether to perform flux minimization of PFD (after
 %                       minimizing the total flux for lowly and rarely expressed genes). PFD
 %                       flux minimization is required to obtain OFD, but could be omitted if
@@ -47,13 +48,18 @@ function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLName
 %                       extensively conflict with highly expressed genes,
 %                       we recommand to use a larger tolerance such as the
 %                       default epsilon (ideally allowing one mis-fitting)
+%    BigModel:          (0 or 1) to indicate if the "big model" mode is
+%                       used. This mode is recommanded for all complex models. 
+%                       In this mode, the low reactions (dependent on rarely and lowly
+%                       expressed genes) will be constrained by rigid boundaries after flux
+%                       minimization. The original integer variables and minLow total flux
+%                       constriants will be removed. In general, this mode gives almost
+%                       identical flux prediction as the normal mode.
 %    verbose:           (0 or 1) to show the MILP log or not
 %
-% OPTIONAL INPUTS:
-%    will make most inputs optional at the end. 
 %
 % OUTPUT:
-%   OFD:               the Optimal Flux Distribution (OFD)
+%   OFD:                the Optimal Flux Distribution (OFD)
 % OPTIONAL OUTPUTS:
 %   N_highFit:          the number of highly expressed genes fitted
 %   N_zeroFit:          the number of rarely expressed genes fitted
@@ -83,20 +89,23 @@ function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLName
 if (nargin < 9)
     doMinPFD = true;
 end
-if (nargin < 10) %fullsensitivity means sensitivity that includes negative sensitivity score (confident no flux), and due to technical reason, in full sensitivity, -1/+1 score means violation of minTotal flux
-    latentCAP = 0.01;
+if (nargin < 10) % the flux tolerence cap of total flux in the latent fitting. By default, we use 5%
+    latentCAP = 0.05;
 end
-if (nargin < 11) % which model
-    modelType = 1; %1==>dual; 2==>generic; 3==>non-c.elegans
+if (nargin < 11) % type of the input model 
+    modelType = 1; %1==>dual C.elegans; 2==>generic C. elegans; 3==>non-c.elegans
 end
 if (nargin < 12) 
-    minLowTol = 1e-5; % by default, dont show the MILP log
+    minLowTol = 1e-5; % default value of low flux tolerance 
 end
 if (nargin < 13) 
-    verbose = 0; % by default, dont show the MILP log
+    BigModel = 0; % by default, do normal IMAT++
+end
+if (nargin < 14) 
+    verbose = 0; % by default, don't show the MILP details
 end
 %set global constant 
-bacMW=966.28583751;
+bacMW=966.28583751; %only will be used for C. elegans model
 %changeCobraSolverParams('LP','optTol', 10e-9);
 %changeCobraSolverParams('LP','feasTol', 10e-9);
 %% mapping the gene categories to reactions
@@ -112,6 +121,7 @@ expression_gene.gene = [ExpCateg.high;ExpCateg.dynamic;ExpCateg.low;ExpCateg.zer
 RHNames = worm.rxns(expressionRxns == 3);
 RLNames = worm.rxns(expressionRxns == 0); % for the first step integration
 % only genes associated with high reactions are high genes!
+
 HGenes = {};
 for i = 1: length(ExpCateg.high)
     myrxns = worm.rxns(any(worm.rxnGeneMat(:,strcmp(ExpCateg.high(i),worm.genes)),2),1);
@@ -151,6 +161,7 @@ fprintf('Minimizing low flux... \n');
 tic()
 % convert the objective value in a solution to the model constraints
 MILProblem =  solution2constraint(MILProblem,solution);
+NfitInd = length(MILProblem.b);%save the index of this constraint for later use
 % add new variables (absolute flux proxy) for flux minimization
 MILProblem = addAbsFluxVariables(MILProblem, worm);
 % set the initial solution (as the last step solution) to boost speed 
@@ -182,12 +193,33 @@ end
 toc()
 fprintf('Minimizing low flux completed! \n');
 minLow = solution.obj;
-
 %% step3: minimize total flux as needed
-% set a minFlux tolerance 
-tol = minLowTol; %it could be solver tolarence or some larger number to increase the numeric stability and allow flexible fitting of zero and low reactions
-solution.obj = solution.obj + tol;
-MILProblem = solution2constraint(MILProblem,solution);
+if BigModel
+    % in big model mode, we also fix all the effectively eliminated flux
+    MILProblem.ub(expressionRxns == 1 | expressionRxns == 0) = abs(solution.full(expressionRxns == 1 | expressionRxns == 0));
+    MILProblem.lb(expressionRxns == 1 | expressionRxns == 0) = -abs(solution.full(expressionRxns == 1 | expressionRxns == 0));
+    % then remove redundant variables (the zero reaction integer variables)
+    c_v = zeros(size(worm.S,2),1);
+    c_yh1 = zeros(length(RHNames),1);
+    c_yl = ones(length(RLNames),1);
+    c_yh2 = zeros(length(RHNames),1);
+    c_minFluxLowRxns = zeros(length(worm.rxns),1);
+    c_gene = zeros(length(HGenes),1);
+    lowInd = boolean([c_v;c_yh1;c_yl;c_yh2;c_gene;c_minFluxLowRxns]);
+    MILProblem.A(:,lowInd) = [];%remove variables
+    NfitZero = sum(abs(solution.full(expressionRxns == 0)) <= 1e-9);
+    MILProblem.b(NfitInd) = MILProblem.b(NfitInd) - NfitZero; %update the Nfit constraints
+    MILProblem.lb(lowInd) = [];%update boundary
+    MILProblem.ub(lowInd) = [];%update boundary 
+    MILProblem.vartype(lowInd) = [];%update variable type
+    RLNames_ori = RLNames;
+    RLNames = [];%update RLNames (should be empty because variables are deleted)
+else
+    % set a minFlux tolerance 
+    tol = minLowTol; %it could be solver tolarence or some larger number to increase the numeric stability and allow flexible fitting of zero and low reactions
+    solution.obj = solution.obj + tol;
+    MILProblem = solution2constraint(MILProblem,solution);
+end
 % MILProblem.x0 = solution.full;
 MILP = MILProblem; %write the MILP output, this MILP contains all data-based constraints (minTotal is not data based, but minLow is)
 if doMinPFD
@@ -232,9 +264,15 @@ toc()
 % make output of primary flux distribution and some optional outputs
 FluxDistribution = solution.full(1:length(worm.rxns));
 PFD = solution.full(1:length(worm.rxns));
-nameL = worm.rxns(ismember(worm.rxns,RLNames));
-yL = boolean(solution.int((length(RHNames)+1):(length(RHNames)+length(RLNames))));
-ClosedLReaction = nameL(yL);
+if BigModel %the low fitting is not controled by binary variable
+    nameL = worm.rxns(ismember(worm.rxns,RLNames_ori));
+    fluxL = solution.full(ismember(worm.rxns,RLNames_ori));
+    ClosedLReaction = nameL(abs(fluxL)<1e-9);
+else
+    nameL = worm.rxns(ismember(worm.rxns,RLNames));
+    yL = boolean(solution.int((length(RHNames)+1):(length(RHNames)+length(RLNames))));
+    ClosedLReaction = nameL(yL);
+end
 OpenGene = HGenes(boolean(solution.int((2*length(RHNames)+length(RLNames))+1:end)));
 N_highFit = length(OpenGene);
 N_zeroFit = length(ClosedLReaction);
@@ -292,5 +330,9 @@ elseif modelType == 2
 else
     wasteDW = [];
     fprintf('Please inspect the flux distribution manually for a non-C. elegans model\n');
+end
+%% fix the output for big model mode
+if BigModel
+    RLNames = RLNames_ori;%recover RLNames list for output
 end
 end
