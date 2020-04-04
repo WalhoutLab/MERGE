@@ -74,12 +74,9 @@ function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLName
 %   PFD:                the primary flux distribution (PFD)
 %   Nfit_latent:        the (total) number of latent reactions fitted
 %   minTotal_OFD:       the minimal total flux of OFD
-%   MILP:               the MILP problem (in COBRA format) right before
-%                       flux minimization of PFD. This MILP is constrianed for fitting of
-%                       highly and rarely expressed gene as well as minimal total flux of
-%                       rarely/lowly genes-dependent reactions. This MILP can serve as a
-%                       startpoint for any custom analysis such as flux minimization we
-%                       perform in IMAT++.
+%   MILP:               the MILP problem (in COBRA format) in the final
+%                       flux minimization of OFD. This MILP can serve as a
+%                       startpoint for any custom analysis such as flux minimization or FVA.
 %
 % `Yilmaz et al. (2020). Final Tittle and journal.
 %
@@ -221,7 +218,7 @@ else
     MILProblem = solution2constraint(MILProblem,solution);
 end
 % MILProblem.x0 = solution.full;
-MILP = MILProblem; %write the MILP output, this MILP contains all data-based constraints (minTotal is not data based, but minLow is)
+MILP = MILProblem; %write the MILP output. If latent is done, this MILP will be updated.
 if doMinPFD
     % minimize total flux
     % again, to reduce computational burdon, we use the same proxy
@@ -278,7 +275,7 @@ N_highFit = length(OpenGene);
 N_zeroFit = length(ClosedLReaction);
 if doLatent
     %% step4. make the latent rxns fitting
-    [FluxDistribution,latentRxn,Nfit_latent,minTotal_OFD] = fitLatentFluxes(MILP2, worm,PFD, HGenes,epsilon_f,epsilon_r,latentCAP,verbose);
+    [FluxDistribution,latentRxn,Nfit_latent,minTotal_OFD,MILP] = fitLatentFluxes(MILP2, worm,PFD, HGenes,epsilon_f,epsilon_r,latentCAP,verbose);
     OFD = FluxDistribution;
 else
     OFD = [];

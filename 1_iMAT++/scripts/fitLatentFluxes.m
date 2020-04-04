@@ -1,4 +1,4 @@
-function [FluxDistribution, latentRxn,Nfit_latent, minTotal] = fitLatentFluxes(MILProblem, model, PFD, Hgenes, epsilon_f,epsilon_r,latentCAP,verbose)
+function [FluxDistribution, latentRxn,Nfit_latent, minTotal,MILPproblem_minFlux] = fitLatentFluxes(MILProblem, model, PFD, Hgenes, epsilon_f,epsilon_r,latentCAP,verbose)
 % the latent reactions fitting module in iMAT++ pipeline. This function
 % works with a formated COBRA MILP input that is the product of primary
 % iMAT++ fitting. This function will find those latent reactions and apply
@@ -37,6 +37,7 @@ function [FluxDistribution, latentRxn,Nfit_latent, minTotal] = fitLatentFluxes(M
 %   latentRxn:          the list of all identified latent reactions to be fitted 
 %   Nfit_latent:        the (total) number of latent reactions fitted
 %   minTotal:           the minimal total flux of PFD (primary flux distribution)
+%   MILPproblem_minFlux:the final MILP structure in the latent calculation
 %
 % Additional Notice:    Please make sure the S matrix of the input MILP follows the structure of iMAT++ MILP. Some variables such as absolute flux proxy will be assumed to be at specifc positions, so errors will occur if the S matrix is not formed as standard iMAT++. 
 %
@@ -179,4 +180,8 @@ while 1
 end
 % return the PFD
 FluxDistribution = PFD;
+% return the MILP (the total flux is constrained by the 5% cap of total
+% OFD)
+MILPproblem_minFlux.b(minTotalInd) = minTotal*(1+latentCAP);
+MILPproblem_minFlux.x0 = solution.full;% start from minimal flux state may speed up MILP solving
 end

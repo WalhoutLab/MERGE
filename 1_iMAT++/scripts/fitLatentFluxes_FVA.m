@@ -1,4 +1,4 @@
-function [FVA_lb, FVA_ub] = fitLatentFluxes_FVA(MILProblem, model, PFD, Hgenes, epsilon_f,epsilon_r,latentCAP,targetRxns)
+function [FVA_lb, FVA_ub] = fitLatentFluxes_FVA(MILProblem, model, PFD, Hgenes, epsilon_f,epsilon_r,latentCAP,targetRxns,parforFlag)
 % the modified latent reactions fitting module for doing FVA analysis. This function
 % works with a formated COBRA MILP input that is the product of primary
 % iMAT++ fitting. This function will find those latent reactions and apply
@@ -30,6 +30,7 @@ function [FVA_lb, FVA_ub] = fitLatentFluxes_FVA(MILProblem, model, PFD, Hgenes, 
 %                       latentCAP)*OriginalTotalFlux; The default cap is
 %                       0.01
 %    targetRxns:        cell of target reactions to perform FVA on
+%    parforFlag:        (0 or 1) whether to use parallel computing
 %
 % OUTPUT:
 %   ub:                 a vector of upper boundaries of queried reactions
@@ -42,6 +43,10 @@ function [FVA_lb, FVA_ub] = fitLatentFluxes_FVA(MILProblem, model, PFD, Hgenes, 
 if nargin < 8 || isempty(targetRxns)
     targetRxns = model.rxns;
 end
+if nargin < 9 || isempty(parforFlag)
+    parforFlag = true;
+end
+verbose = 0;
 %% store the constriant index for total flux
 minTotalInd = length(MILProblem.b); %assume the total flux constriant is the last row!
 fprintf('the total flux is constrianed to %.2f \n',MILProblem.b(end));
@@ -177,31 +182,65 @@ end
 fprintf('All latent reactions were found! Start to perform the FVA...\n');
 %% analyze FVA
 MILPproblem_minFlux.x0 = solution.full;% start from minimal flux state may speed up MILP solving
-for i = 1:length(targetRxns)
-    targetRxn = targetRxns(i);
-    FluxObj = find(ismember(model.rxns,targetRxn)); 
-    %create a new objective function
-    c_minFlux = zeros(size(MILProblem.A,2),1);
-    c_minFlux(FluxObj) = 1;
-    c = [c_minFlux;zeros(2*length(latentRxn),1)];
-    MILPproblem_minFlux.c = c;
-    MILPproblem_minFlux.osense = 1;
-    fprintf('optimizing for the lb of %s...\n',targetRxn{:});
-    solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', 0);
-    if solution.stat ~= 1
-        error('infeasible or violation occured!');
-    else
-        FVA_lb(i) = solution.obj;
-        fprintf('lower boundary found to be %f. \n',solution.obj);
-    end
-    fprintf('optimizing the the ub of %s...\n',targetRxn{:});
-    MILPproblem_minFlux.osense = -1;
+% update the flux cap
+MILPproblem_minFlux.b(minTotalInd) = minTotal*(1+latentCAP);
+if parforFlag
+    environment = getEnvironment();
+    MILPproblem_minFlux_ori = MILPproblem_minFlux;
+    parfor i = 1:length(targetRxns)
+        restoreEnvironment(environment);
+        MILPproblem_minFlux = MILPproblem_minFlux_ori;
+        targetRxn = targetRxns(i);
+        FluxObj = find(ismember(model.rxns,targetRxn)); 
+        %create a new objective function
+        c = zeros(size(MILPproblem_minFlux.A,2),1);
+        c(FluxObj) = 1;
+        MILPproblem_minFlux.c = c;
+        MILPproblem_minFlux.osense = 1;
+        %fprintf('optimizing for the lb of %s...\n',targetRxn{:});
         solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', 0);
-    if solution.stat ~= 1
-        error('infeasible or violation occured!');
-    else
-        FVA_ub(i) = solution.obj;
-        fprintf('upper boundary found to be %f. \n',solution.obj);
+        if solution.stat ~= 1
+            error('infeasible or violation occured!');
+        else
+            FVA_lb(i) = solution.obj;
+            fprintf('lower boundary of %s found to be %f. \n',targetRxn{:},solution.obj);
+        end
+        %fprintf('optimizing the the ub of %s...\n',targetRxn{:});
+        MILPproblem_minFlux.osense = -1;
+            solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', 0);
+        if solution.stat ~= 1
+            error('infeasible or violation occured!');
+        else
+            FVA_ub(i) = solution.obj;
+            fprintf('upper boundary of %s found to be %f. \n',targetRxn{:},solution.obj);
+        end
+    end
+else %same thing but in for loop
+    for i = 1:length(targetRxns)
+        targetRxn = targetRxns(i);
+        FluxObj = find(ismember(model.rxns,targetRxn)); 
+        %create a new objective function
+        c = zeros(size(MILPproblem_minFlux.A,2),1);
+        c(FluxObj) = 1;
+        MILPproblem_minFlux.c = c;
+        MILPproblem_minFlux.osense = 1;
+        %fprintf('optimizing for the lb of %s...\n',targetRxn{:});
+        solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', 0);
+        if solution.stat ~= 1
+            error('infeasible or violation occured!');
+        else
+            FVA_lb(i) = solution.obj;
+            fprintf('lower boundary of %s found to be %f. \n',targetRxn{:},solution.obj);
+        end
+        %fprintf('optimizing the the ub of %s...\n',targetRxn{:});
+        MILPproblem_minFlux.osense = -1;
+            solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', 0);
+        if solution.stat ~= 1
+            error('infeasible or violation occured!');
+        else
+            FVA_ub(i) = solution.obj;
+            fprintf('upper boundary of %s found to be %f. \n',targetRxn{:}, solution.obj);
+        end
     end
 end
 end

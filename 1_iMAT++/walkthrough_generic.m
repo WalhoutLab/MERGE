@@ -33,6 +33,7 @@ load('input/exampleGeneCategories/categ_N2_OP50.mat')
 % we provide an epsilon generator following the methods described in the
 % paper
 [epsilon_f, epsilon_r] = makeEpsilonSeq(model, model.rxns, 0.01, 0.5);
+save('input/epsilon_generic.mat','epsilon_f', 'epsilon_r');
 % NOTE: this may take ~5 mins
 %% run the integration function 
 % we reset some constraints to make the model ready for integration 
@@ -54,7 +55,31 @@ myCSM = struct(); %myCSM: my Context Specific Model
 % the result is stored in variable "myCSM"
 % For understanding each output field, please see IMATplusplus.m
 % the OFD flux distribution is myCSM.OFD
+%% advanced analysis: FVA
+% as in the paper, we further performed FVA analysis to measure the
+% feasible space of each reaction, which in turn provides a set of
+% reactions to block in FPA analysis. Users can also perform this analysis for
+% their own dataset/model. However, considering the computational
+% intensity, we recommend user to run FVA (of all reactions) on a modern lab server (i.e.,
+% >=20 cores, >= 32g mems). For running FVA on all reactions and getting
+% the list of reactions to block, please see large_scale_FVA_walkthrough.m
 
+% Here, we provide a demo for running FVA of few reactions.
+% we provided two ways of running FVA. 
+% we can calculate the FVA interval by the MILP output in IMAT++
+% calculation
+targetRxns = {'BIO0010','BIO0001','BIO0002'};% change this to all reactions when doing 
+parforFlag = 0;
+[FVA_lb, FVA_ub] = FVA_MILP(myCSM.MILP, model, targetRxns,parforFlag);
+
+% alternatively, the FVA could be a standalone analysis. Users could supply the same
+% input for IMATplusplus to the following function, for the boudaries of
+% query reactions. This is useful when you only need to know the
+% active/inactive status of a set of reactions.
+minLowTol = 1e-5;
+[myFVA.lb, myFVA.ub] = IMATplusplus_FVA(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCateg,doMinPFD,latentCAP,modelType,minLowTol,targetRxns,parforFlag);
+% this gives the FVA boundaries of three queried reactions for N2_OP50
+% sample
 %% PART II: THE APPLICATION TO ANY METABOLIC MODEL
 % applying IMAT++ to other models is not much different from above.
 % However, attentions need to be paid to input preparation to make sure it

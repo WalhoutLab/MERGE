@@ -10,6 +10,7 @@ addpath ./input/
 addpath ./scripts/
 addpath ./../input/
 addpath ./../bins/
+initCobraToolbox(false);
 %% Part I: THE APPLICATION TO THE GENERIC C. ELEGANS MODEL
 %% 1. load the model and prepare the model
 load('iCEL1314.mat');
@@ -73,38 +74,78 @@ changeCobraSolverParams('LP','feasTol', 10e-9);
 targetRxns = {'RM04432';'RCC0005'};
 %The FPA is designed with parfor loops for better speed, so we first initial the parpool
 parpool(4)
-[fluxEfficiency,fluxEfficiency_plus] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty);
+[FP,FP_solutions] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty);
 %NOTE: If a gene is undetected, we will use default value of 0 in the
 %calculation. (If a reaction is only associated with undetected genes, it
 %will have default penalty (which is 1) in the FPA calculation.)
+% make relative flux potential
+relFP_f = nan(size(FP,1),length(master_expression));%flux potential for forward rxns
+relFP_r = nan(size(FP,1),length(master_expression));%flux potential for reverse rxns
+for i = 1:size(FP,1)
+    for j = 1:length(master_expression)
+        relFP_f(i,j) = FP{i,j}(1) ./ FP{i,end}(1);
+        relFP_r(i,j) = FP{i,j}(2) ./ FP{i,end}(2);
+    end
+end
 %% 4. run advanced FPA analysis
 % As part of the MERGE package, we recommand user to integrate the result
 % of iMAT++ to the FPA analysis. That's saying, to block all reactions that
-% don't carry flux in the feasible solution space. (Please refer to "FVA
-% analysis of iMAT++" for getting this reaction list)
+% don't carry flux in the feasible solution space. These reactions are
+% identified by FVA analysis conjoined with IMAT++. Please refer to walkthrough
+% tutorial of IMAT++ and "1_IMAT++/large_scale_FVA_walkthrough.m"
+% for getting required inputs.
 
-% assume the FVA is done, we have the list of no-flux reactions 
-load('FVAtbl.mat')
+% assume the FVA is done, we have level table for each condition. 
+% Note, we only performed FVA for four conditions. So, only perform this
+% advanced FPA for these four conditions.
+conditions = {'N2_OP50', 'N2_B12', 'nhr10_OP50','nhr10_B12'};
+% make a new master_expression for these four conditions.
+master_expression = {};%we call this variable "master_expression"
+geneInd = ismember(expTbl.Gene_name, model.genes); %get the index of genes in the model
+for i = 1:length(conditions)
+    expression = struct();
+    expression.genes = expTbl.Gene_name(geneInd);
+    expression.value = expTbl.(conditions{i})(geneInd);
+    master_expression{i} = expression;
+end
+% then, let's merge the level tables for each condition
+for i = 1:length(conditions)
+    load(['./../1_iMAT++/output/genericModelDemo/FVA/',conditions{i},'levels_.mat']);
+    levelTbl_f(:,i) = levels_f;
+    levelTbl_r(:,i) = levels_r;
+end
 % because the FPA is done using the irreversible model, so the rxnID is
 % different from the original. We provided a function to get the rxn list
-% for blockList input of FPA
-blockList = getBlockList(model,FVAtbl);
+% to block from the level tables
+blockList = getBlockList(model,levelTbl_f,levelTbl_r);
 % run the FPA again
-[fluxEfficiency2,fluxEfficiency_plus2] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty,{},max(distMat(~isinf(distMat))),blockList);
+[FP_adv,FP_solutions_adv] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty,{},max(distMat(~isinf(distMat))),blockList);
+% relative potential
+relFP_f_adv = nan(size(FP_adv,1),length(master_expression));%flux potential for forward rxns
+relFP_r_adv = nan(size(FP_adv,1),length(master_expression));%flux potential for reverse rxns
+for i = 1:size(FP_adv,1)
+    for j = 1:length(master_expression)
+        relFP_f_adv(i,j) = FP_adv{i,j}(1) ./ FP_adv{i,end}(1);
+        relFP_r_adv(i,j) = FP_adv{i,j}(2) ./ FP_adv{i,end}(2);
+    end
+end
+%% Compare the advance FPA with basic FPA
+
+
+
 %% PART II: THE APPLICATION TO ANY METABOLIC MODEL
-% applying FPA to other models is similair. Like the guidence for iMAT++, 
+% applying FPA to other models is similair. Consistent with the guidence for iMAT++, 
 % here we provide an example of integrating RNA-seq data of NCI-60 cancer 
 % cell lines (Reinhold WC et al., 2019) to human model, RECON2.2 (Swainston et al., 2016)
 %% 1. load the model and prepare the model
 load('./../1_IMAT++/input/humanModel/Recon2_2.mat');
 % users may add their own constraints here (i.e., nutriential input
 % constraints)
-% we define the media condition by the measured fluxes from Jain et al, Science, 2012 
-MFAdata = readtable('./../1_IMAT++/input/humanModel/mappedFluxData.xlsx','sheet','cleanData');
-% since the flux scale is controled by flux allowance, only the binary
-% state (open or closed) of the nutrient uptake matters. So, we allow the
-% free uptake for all avaiable nutrient, according to the MFA data
-model = defineConstriants(model, 1000,0, MFAdata);%NOTE: This function is different from the same-name function in IMAT++ folder!
+% we define the constraints according to the media composition
+model = defineConstriants(model, 1000,0);%NOTE: This function is different from the same-name function in IMAT++ folder!
+% remove parentathsis in the reaction ID (which causes problem in distance
+% calculation)
+model.rxns = regexprep(model.rxns,'\(|\)|\[|\]|-','_');
 
 % special treatment for recon2.2
 % we disassociate the lysozomal ATPase reaction with its genes, because it
@@ -195,7 +236,7 @@ n = 1.5;
 changeCobraSolverParams('LP','optTol', 10e-9);
 changeCobraSolverParams('LP','feasTol', 10e-9);
 % we perform FPA analysis for two reactions as an example
-targetRxns = {'LDH_L','biomass_reaction'};
+targetRxns = {'ICDHyrm','EX_ach_e_'}; % we use the isocitrate dehydrogenase reaction and production of GABA as an example
 %The FPA is designed with parfor loops for better speed, so we first initial the parpool
 parpool(4)
 [FP,FP_solutions] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty);
@@ -211,15 +252,10 @@ for i = 1:size(FP,1)
         relFP_r(i,j) = FP{i,j}(2) ./ FP{i,end}(2);
     end
 end
-%% 6. compare with measured lactate production
-Lact = MFAdata(49,:);
-predSampleName = expTbl.Properties.VariableNames(3:12);
-for i = 1:length(predSampleName)
-    exp(i) = mean([Lact.(predSampleName{i}),Lact.([predSampleName{i},'_1'])]);
-end
-fit = fitlm(exp,relFP_r(1,:));
-plot(fit)
-
+% the relative flux potentials (rFP) of 'ICDHym' and 'EX_4abut_e_' are in
+% the relFP_f and relFP_r. Rows are queried reactions and columns are
+% queried conditions. For example, relFP_f(1,1) is the rFP of the forward
+% direction of ICDHym for the first cell line, BR_MCF7.
 %% NOTES FOR RUNNING FPA
 %% 1. inspect the flux distribution for reported FP values
 % the flux distribution is reported for the irreversible model, in the
@@ -227,7 +263,8 @@ plot(fit)
 % to get irreversible model
 model_irrev = convertToIrreversible(model); % convert to irreversible model
 % to inspect the flux distribution, we provide a simple flux tracker 
-mytbl = listRxn(model_irrev,FP_solutions{1,1}{2}.full,'lac_L[c]')
+mytbl = listRxn(model_irrev,FP_solutions{1,1}{1}.full,'icit[m]');
+% you can view the mytbl variable for details
 
 %% 2. about gene names and expression data
 % we allow letters, numbers, dot, dash and colon in gene names. Any other 

@@ -1,13 +1,15 @@
-function [FVA_lb, FVA_ub] = IMATplusplus_FVA(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCateg,doMinPFD,latentCAP,modelType,minLowTol,targetRxns)
+function [FVA_lb, FVA_ub] = IMATplusplus_FVA(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCateg,doMinPFD,latentCAP,modelType,minLowTol,targetRxns,parforFlag)
 % Uses the iMAT++ algorithm (`Yilmaz et al., 2020`) to find the optimal flux distribution that fits into a categorized gene expression data. 
 % iMAT++ algorithm performs multi-step fitting to find a flux distribution
 % that best agrees with rarely, lowly and highly expressed genes in the
 % expression profile. It employs a gene-centric feature that minimizes
 % false fitting and conflicts due to ambiguous GPR assignment. 
+% The FVA version of IMAT++ calculates the upper and lower bounds of all
+% queried reactions.
 %
 % USAGE:
 %
-%    OFD = IMATplusplus(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCatag,doMinPFD,latentCAP,modelType)
+%    [FVA_lb, FVA_ub] = IMATplusplus_FVA(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCatag,doMinPFD,latentCAP,modelType,minLowTol,targetRxns)
 %
 % INPUTS:
 %    model:             input model (COBRA model structure)
@@ -48,9 +50,8 @@ function [FVA_lb, FVA_ub] = IMATplusplus_FVA(model,doLatent,storeProp,SideProp,e
 %                       we recommand to use a larger tolerance such as the
 %                       default epsilon (ideally allowing one mis-fitting)
 %    targetRxns:        cell of reactions to do FVA on
+%    parforFlag:        (0 or 1) whether to use parallel computing
 %
-% OPTIONAL INPUTS:
-%    will make most inputs optional at the end. 
 %
 % OUTPUT:
 %   FVA_lb:             the lower boundries of the queried reactions
@@ -64,7 +65,7 @@ function [FVA_lb, FVA_ub] = IMATplusplus_FVA(model,doLatent,storeProp,SideProp,e
 if (nargin < 9)
     doMinPFD = true;
 end
-if (nargin < 10) %fullsensitivity means sensitivity that includes negative sensitivity score (confident no flux), and due to technical reason, in full sensitivity, -1/+1 score means violation of minTotal flux
+if (nargin < 10)
     latentCAP = 0.01;
 end
 if (nargin < 11) % which model
@@ -76,8 +77,12 @@ end
 if (nargin < 13) 
     targetRxns = model.rxns; % by default, we do FVA on all rxns
 end
+if nargin < 14 || isempty(parforFlag)
+    parforFlag = true;
+end
 %set global constant 
 bacMW=966.28583751;
+verbose = 0;
 %changeCobraSolverParams('LP','optTol', 10e-9);
 %changeCobraSolverParams('LP','feasTol', 10e-9);
 %% mapping the gene categories to reactions
@@ -221,7 +226,7 @@ N_highFit = length(OpenGene);
 N_zeroFit = length(ClosedLReaction);
 if doLatent
     %% step4. make the latent rxns fitting
-    [FVA_lb, FVA_ub] = fitLatentFluxes_FVA(MILP2, worm,PFD, HGenes,epsilon_f,epsilon_r,latentCAP,targetRxns);
+    [FVA_lb, FVA_ub] = fitLatentFluxes_FVA(MILP2, worm,PFD, HGenes,epsilon_f,epsilon_r,latentCAP,targetRxns,parforFlag);
     OFD = FluxDistribution;
 else
     OFD = [];
