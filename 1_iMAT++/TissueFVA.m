@@ -73,7 +73,6 @@ saveProfile(myCluster);
 parpool(20,'SpmdEnabled',false); % we tested this program in a 20-core server
 %% do FVA for the six non-intestinal tissues.
 names = {'Body_wall_muscle','Glia','Gonad','Hypodermis','Neurons','Pharynx'};
-names = names(1:end-1);
 Xrxns = model.rxns; % we calculate the FVA of both X tissue and I tissue
 for i = 1:length(names)
     fprintf('now starting to calculate for %s... \n',names{i});
