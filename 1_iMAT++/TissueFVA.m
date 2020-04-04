@@ -1,4 +1,4 @@
-%% this is the main program to generate tissue OFDs
+%% this is the main program to generate tissue FVA in TableS5
 %% load model
 addpath ~/cobratoolbox/
 addpath /share/pkg/gurobi/810/linux64/matlab/
@@ -40,12 +40,11 @@ model = changeRxnBounds(model,'RMC0005_I',0,'l');
 model = changeRxnBounds(model,'RMC0005_X',0,'l');
 model = changeRxnBounds(model,'RMC0005_I',0,'u');
 model = changeRxnBounds(model,'RMC0005_X',0,'u');
-% parseGPR takes hugh amount of time, so preparse and integrate with model
-% here 
+% parseGPR takes hugh amount of time, so preparse and save result in model
 parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
 model.parsedGPR = parsedGPR;
 %% load epsilon
-% epsilon is also supplied as a jason file. We convert it to a vecter
+% epsilon is also supplied as a jason file. We convert it to a vector
 % variable that in the same order as model.rxns.
 fname = 'epsilon.json';
 str = fileread(fname);
@@ -71,11 +70,11 @@ end
 myCluster = parcluster('local');
 myCluster.NumWorkers = 128;
 saveProfile(myCluster);
-parpool(20,'SpmdEnabled',false);
+parpool(20,'SpmdEnabled',false); % we tested this program in a 20-core server
 %% do FVA for the six non-intestinal tissues.
 names = {'Body_wall_muscle','Glia','Gonad','Hypodermis','Neurons','Pharynx'};
 names = names(1:end-1);
-Xrxns = model.rxns;
+Xrxns = model.rxns; % we calculate the FVA of both X tissue and I tissue
 for i = 1:length(names)
     fprintf('now starting to calculate for %s... \n',names{i});
     fitTime = tic();
@@ -124,6 +123,7 @@ myCSM.MILP.lb(cellfun(@(x) ~isempty(regexp(x, '_X$','once')) ,IntestineModel_OFD
 fprintf('now starting to calculate for %s... \n','Intestine');
 fitTime = tic();
 parforFlag=1;
+% we only calculate the FVA of the I tissue
 targetRxns = IntestineModel_OFD.rxns(cellfun(@(x) isempty(regexp(x, '_X$','once')) ,IntestineModel_OFD.rxns));
 myFVA = struct(); %my context specific model
 % OFD fitting
@@ -133,5 +133,5 @@ toc(fitTime);
 fprintf('C. elegans Tissue Model FVA Completed! \n');
 toc(totalTime);
 
-% for generating the list of reactions to block, see the section #2 of
-% large_scale_FVA_walkthrough.m
+% for generating the list of reactions to block, see the step #3 of
+% walkthrough_large_scale_FVA.m

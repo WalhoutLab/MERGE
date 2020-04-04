@@ -1,4 +1,4 @@
-%% this walkthrough guidance will take user through the application of IMAT++ on a generic model of C. elegans, or other metabolic models (we used human model recon2.2 as an example).
+%% This walkthrough guidance will take user through the application of IMAT++ on a generic model of C. elegans, or other metabolic models (we used human model recon2.2 as an example).
 %% PART I: THE APPLICATION TO THE GENERIC C. ELEGANS MODEL
 %% prepare the model
 % add paths
@@ -10,11 +10,10 @@ addpath scripts/
 initCobraToolbox(false);
 % load model
 load('iCEL1314.mat');
-% the loaded model is already constrained with default constraints. One can
-% further modify it as followings:
+% the loaded model is already constrained with default constraints. 
+% One can further modify it as followings:
 model = changeRxnBounds(model,'EXC0050',-1,'l');% we allow 1 unit of bacteria for epsilon calculation
-% parseGPR takes hugh amount of time, so preparse and integrate with model
-% here 
+% parseGPR takes hugh amount of time, so preparse and save result in model
 parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
 model.parsedGPR = parsedGPR;
 %% load the gene expression data
@@ -22,12 +21,12 @@ model.parsedGPR = parsedGPR;
 % (i.e, TPM), please refer to "./scripts/makeGeneCategories.m" (run "open makeGeneCategories"). Here we
 % directly load the premade gene categories
 load('input/exampleGeneCategories/categ_N2_OP50.mat')
-% Please note the variable naminclature difference: the high refers to
+% Please note the category naminclature difference: the "high" refers to
 % "highly expressed genes" in the paper, "dynamic" to "moderately
 % expressed", "low" to "lowly expressed" and "zero" to "rarely expressed"
 %% prepare epsilons
 % users can supply their own epsilon sequence for their own purpose. The
-% epsilons should be supplies in the order of reactions in the model, and
+% epsilons should be supplied in the order of reactions in the model, and
 % should be equal length of the reactions. The forward direction and
 % reverse direction should be supplied seperately.
 % we provide an epsilon generator following the methods described in the
@@ -37,7 +36,7 @@ save('input/epsilon_generic.mat','epsilon_f', 'epsilon_r');
 % NOTE: this may take ~5 mins
 %% run the integration function 
 % we reset some constraints to make the model ready for integration 
-% release the input constraints for integration 
+% release the nutrient constraints for integration 
 model = changeRxnBounds(model,'EXC0050',-1000,'l');% free bacteria uptake
 % set parameters
 doLatent = 1;
@@ -55,35 +54,36 @@ myCSM = struct(); %myCSM: my Context Specific Model
 % the result is stored in variable "myCSM"
 % For understanding each output field, please see IMATplusplus.m
 % the OFD flux distribution is myCSM.OFD
-%% advanced analysis: FVA
+%% advanced IMAT++ analysis: Flux Variability Analysis (FVA)
 % as in the paper, we further performed FVA analysis to measure the
 % feasible space of each reaction, which in turn provides a set of
 % reactions to block in FPA analysis. Users can also perform this analysis for
 % their own dataset/model. However, considering the computational
 % intensity, we recommend user to run FVA (of all reactions) on a modern lab server (i.e.,
 % >=20 cores, >= 32g mems). For running FVA on all reactions and getting
-% the list of reactions to block, please see large_scale_FVA_walkthrough.m
+% the list of reactions to block, please see walkthrough_large_scale_FVA.m
 
-% Here, we provide a demo for running FVA of few reactions.
+% Here, we provide a demo for running FVA on a few reactions.
 % we provided two ways of running FVA. 
 % we can calculate the FVA interval by the MILP output in IMAT++
-% calculation
-targetRxns = {'BIO0010','BIO0001','BIO0002'};% change this to all reactions when doing 
-parforFlag = 0;
+targetRxns = {'BIO0010','BIO0001','BIO0002'};
+parforFlag = 0; % whether to run FVA in parallel; we choose "no" for demo
 [FVA_lb, FVA_ub] = FVA_MILP(myCSM.MILP, model, targetRxns,parforFlag);
 
 % alternatively, the FVA could be a standalone analysis. Users could supply the same
-% input for IMATplusplus to the following function, for the boudaries of
-% query reactions. This is useful when you only need to know the
+% input for IMATplusplus to the following function, to get the boudaries of
+% queried reactions. This is useful when you only want to know the
 % active/inactive status of a set of reactions.
 minLowTol = 1e-5;
 [myFVA.lb, myFVA.ub] = IMATplusplus_FVA(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCateg,doMinPFD,latentCAP,modelType,minLowTol,targetRxns,parforFlag);
-% this gives the FVA boundaries of three queried reactions for N2_OP50
-% sample
+
+% Together, we show how to calculate the FVA boundaries of three queried reactions for N2_OP50 condition
+
+
 %% PART II: THE APPLICATION TO ANY METABOLIC MODEL
 % applying IMAT++ to other models is not much different from above.
-% However, attentions need to be paid to input preparation to make sure it
-% is in the correct format. Here we provide an example of integrating
+% However, attentions need to be paid to inputs to make sure they
+% are in the correct format. Here we provide an example of integrating
 % RNA-seq data of NCI-60 cancer cell lines (Reinhold WC et al., 2019) to
 % human model, RECON2.2 (Swainston et al., 2016)
 %% prepare the model
@@ -99,11 +99,10 @@ load('./input/humanModel/Recon2_2.mat');
 % we need to constrain the human model according to the media composition
 model = defineConstriants(model, 1000,0.005);
 
-% parseGPR takes hugh amount of time, so preparse and integrate with model
-% here 
+% parseGPR takes hugh amount of time, so preparse and integrate with the model
 parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
 model.parsedGPR = parsedGPR;
-model = buildRxnGeneMat(model);
+model = buildRxnGeneMat(model); % some standard fields are missing in the original model. We generate them
 model = creategrRulesField(model);
 %% prepare epsilons
 % users can supply their own epsilon sequence for their own purpose. The
@@ -112,8 +111,8 @@ model = creategrRulesField(model);
 % reverse direction should be supplied seperately.
 % we provide an epsilon generator following the methods described in the paper
 
-% NOTE: calculating epsilon for human model may take 20 mins, so we just
-% load the pre-calculated value. One can uncomment the codes and run it again
+% NOTE: calculating epsilon for human model may take 20 mins (in a laptop), so we just
+% load the pre-calculated value. One can use the following codes and run it again
 
 % [epsilon_f, epsilon_r,capacity_f,capacity_r] = makeEpsilonSeq(model, model.rxns, 0.1, 0.5);
 % save('input/humanModel/epsilon.mat','epsilon_f','epsilon_r','capacity_f','capacity_r');
@@ -138,12 +137,12 @@ for i = 1:length(ExampleCells)
     % Additionally, we provided the original script we used to categorize NCI_60 data,
     % named "./scripts/makeGeneCategories_NCI_60.m", for users' reference.
     load(['input/humanModel/categ_',sampleName,'.mat']);
-    % Please note the variable naminclature difference: the high refers to
+    % Please note the category naminclature difference: the "high" refers to
     % "highly expressed genes" in the paper, "dynamic" to "moderately
     % expressed", "low" to "lowly expressed" and "zero" to "rarely expressed"
     %% run the integration function 
     % we reset the constraint of major carbon source to make the model
-    % ready for integration (user needs to determine which nutrient they
+    % ready for integration (user needs to determine which nutrient(s) they
     % want to release to free)
     modelTmp = model;
     modelTmp.lb(ismember(modelTmp.rxns,{'EX_glc(e)'})) = -1000;% free the main carbon source 
@@ -154,16 +153,16 @@ for i = 1:length(ExampleCells)
     latentCAP = 0.05;
     modelType = 3; % 3 for non-C. elegans model
     
-    % The following is the only special parameter for non-C. elegans model.
+    % The following is the only special parameter for (some) non-C. elegans model.
     % For few very big models like human model, user may use the big model
     % mode in iMAT++ to increase the computational speed. In this mode,
     % the flexible fitting of rarely and lowly expressed genes are changed
     % to rigid fitting (by boudaries)
     bigModel = true;
-    % we recommand users to first try normal mode for any custom model. The
+    % we recommand users to first try normal mode (bigModel = false) for any custom model. The
     % big model mode is recommended when experiencing extreme low
     % speed. This mode uses rigid boundary constriants (ub and lb) instead
-    % of flexible objective constraints (total flux and integer Nfit) for eliminating
+    % of flexible objective constraints (total flux and integer Nfit) in eliminating
     % flux in lowly and rarely expressed reactions. But it generally
     % makes near-identical result as the normal mode.
     
@@ -201,7 +200,7 @@ end
 % find the optimal solution of every MILP. In some cases, user may see solver complaining
 % "infeasible model" while the input MILP is clearly feasible. This indicates
 % the solver failed to find a feasible solution by its heuristic algorithm. Users can uncomment
-% line 168 and line 223 to enable the pre-defined initial solution, in "IMATplusplus.m".
+% line 165 and line 220 to enable the pre-defined initial solution, in "IMATplusplus.m".
 % But user should aware that the solver may still get stuck in local
 % optimum when using this option. We recommend users to avoid running into 
 % numerical problems by tuning solvers or trying suggestions provided note #3.

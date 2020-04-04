@@ -14,11 +14,10 @@ initCobraToolbox(false);
 %% Part I: THE APPLICATION TO THE GENERIC C. ELEGANS MODEL
 %% 1. load the model and prepare the model
 load('iCEL1314.mat');
-% users may add their own constraints here (i.e., nutriential input
-% constraints)
-model = changeRxnBounds(model,'EXC0050',-1000,'l');%we allow unlimited bacteria uptake
-model = changeRxnBounds(model,'RCC0005',0,'l');%remove the NGAM 
-model.S(ismember(model.mets,{'atp_I[c]','h2o_I[c]','adp_I[c]','h_I[c]','pi_I[c]'}), strcmp('DGR0007_L',model.rxns)) = 0;%remove the energy cost for bacteria digestion
+% users may add their own constraints here (i.e., nutriential input constraints)
+model = changeRxnBounds(model,'EXC0050',-1000,'l');% we allow unlimited bacteria uptake
+model = changeRxnBounds(model,'RCC0005',0,'l');% remove the NGAM 
+model.S(ismember(model.mets,{'atp_I[c]','h2o_I[c]','adp_I[c]','h_I[c]','pi_I[c]'}), strcmp('DGR0007_L',model.rxns)) = 0;% remove the energy cost for bacteria digestion
 % The FPA analysis requires to pre-parse the GPR and attached it as a field
 % in the model. Otherwise parsing GPR in each FPA calculation wastes a lot
 % of time. 
@@ -28,18 +27,21 @@ model.parsedGPR = parsedGPR;
 % load expression files
 % expression matrix can be in plain text and in any normalized
 % quantification metric like TPM or FPKM.
+
 % we use the RNA-seq data from Bulcha et al, Cell Rep (2019) as an example
 expTbl = readtable('exampleExpression.csv');
+
 % preprocess the expression table
 % to facilate the future use of the expression of many samples, we
 % re-organize it into a structure variable.
-% the FPA matrix will be in the same order as the master_expression
+% NOTE: the FPA matrix will be in the same order as the master_expression!
+
 % For demo purpose, we only analyze the FPA of four conditions in the
 % expression dataset.
 conditions = {'N2_OP50', 'N2_B12', 'nhr10_OP50','nhr10_B12'};
 % make a new master_expression for these four conditions.
-master_expression = {};%we call this variable "master_expression"
-geneInd = ismember(expTbl.Gene_name, model.genes); %get the index of genes in the model
+master_expression = {};% we call this variable "master_expression"
+geneInd = ismember(expTbl.Gene_name, model.genes); % get the index of genes in the model
 for i = 1:length(conditions)
     expression = struct();
     expression.genes = expTbl.Gene_name(geneInd);
@@ -48,7 +50,7 @@ for i = 1:length(conditions)
 end
 
 % load the distance matrix
-distance_raw = readtable('./../MetabolicDistance/Output/distanceMatrix.txt','FileType','text','ReadRowNames',true); %we load from the output of the distance calculator. For usage of distance calculator, please refer to the section in Github
+distance_raw = readtable('./../MetabolicDistance/Output/distanceMatrix.txt','FileType','text','ReadRowNames',true); % we load from the output of the distance calculator. For usage of distance calculator, please refer to the section in Github
 labels = distance_raw.Properties.VariableNames;
 labels = cellfun(@(x) [x(1:end-1),'_',x(end)],labels,'UniformOutput',false);
 distMat_raw = table2array(distance_raw);
@@ -60,9 +62,9 @@ for i = 1:size(distMat_min,1)
 end
 distMat = distMat_min;
 % load the special penalties - We set penalty for all Exchange, Demand,
-% Degradation and Sink reactions to 0 to not penaltize the external
-% reactions
+% Degradation and Sink reactions to 0, to not penaltize the external reactions
 manualPenalty = table2cell(readtable('manualPenalty_generic.csv','ReadVariableNames',false,'Delimiter',','));
+
 % we dont recomand any specific special distance for generic model; In the
 % dual model, the special distance was used to discourage using of side
 % metabolites. Since side/storage metabolites are not applicable for
@@ -71,20 +73,26 @@ manualPenalty = table2cell(readtable('manualPenalty_generic.csv','ReadVariableNa
 
 %% 3. run basic FPA analysis
 % setup some basic parameters for FPA
-n = 1.5;
+n = 1.5; % distance order
 changeCobraSolverParams('LP','optTol', 10e-9);
 changeCobraSolverParams('LP','feasTol', 10e-9);
+
 % we perform FPA analysis for two reactions as an example
 targetRxns = {'RM04432';'RCC0005'};
-%The FPA is designed with parfor loops for better speed, so we first initial the parpool
+
+% The FPA is designed with parfor loops for better speed, so we first initial the parpool
 parpool(4)
+
+% Then, run FPA by calling:
 [FP,FP_solutions] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty);
-%NOTE: If a gene is undetected, we will use default value of 0 in the
-%calculation. (If a reaction is only associated with undetected genes, it
-%will have default penalty (which is 1) in the FPA calculation.)
-% make relative flux potential
-relFP_f = nan(size(FP,1),length(master_expression));%flux potential for forward rxns
-relFP_r = nan(size(FP,1),length(master_expression));%flux potential for reverse rxns
+
+% NOTE: If a gene is undetected, we will use default value of 0 in the
+% penalty calculation. (but if a reaction is only associated with undetected genes, it
+% will have default penalty (which is 1) in the FPA calculation.)
+
+% optionally, we can make relative flux potential (rFP) by
+relFP_f = nan(size(FP,1),length(master_expression));% flux potential for forward rxns
+relFP_r = nan(size(FP,1),length(master_expression));% flux potential for reverse rxns
 for i = 1:size(FP,1)
     for j = 1:length(master_expression)
         relFP_f(i,j) = FP{i,j}(1) ./ FP{i,end}(1);
@@ -92,25 +100,27 @@ for i = 1:size(FP,1)
     end
 end
 %% 4. run advanced FPA analysis
-% As part of the MERGE package, we recommand user to integrate the result
+% As part of the MERGE package, we recommend user to integrate the result
 % of iMAT++ to the FPA analysis. That's saying, to block all reactions that
 % don't carry flux in the feasible solution space. These reactions are
 % identified by FVA analysis conjoined with IMAT++. Please refer to walkthrough
-% tutorial of IMAT++ and "1_IMAT++/large_scale_FVA_walkthrough.m"
-% for getting required inputs.
+% tutorial of IMAT++ and "1_IMAT++/walkthrough_large_scale_FVA.m" for getting the FVA result.
 
-% assume the FVA is done, we have level table for each condition. (we
-% calculate the level tables for these four conditions in the FVA walkthrough)
+% assume the FVA is done, we have the level table for each condition. (we
+% calculated the level tables for these four conditions in the FVA walkthrough)
+
 % then, let's merge the level tables for each condition
 for i = 1:length(conditions)
     load(['./../1_iMAT++/output/genericModelDemo/FVA/',conditions{i},'levels_.mat']);
     levelTbl_f(:,i) = levels_f;
     levelTbl_r(:,i) = levels_r;
 end
+
 % because the FPA is done using the irreversible model, so the rxnID is
 % different from the original. We provided a function to get the rxn list
-% to block from the level tables
+% to block according to the level tables
 blockList = getBlockList(model,levelTbl_f,levelTbl_r);
+
 % run the FPA again
 [FP_adv,FP_solutions_adv] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty,{},max(distMat(~isinf(distMat))),blockList);
 % relative potential
@@ -131,7 +141,7 @@ figure(2)
 c = categorical(regexprep(conditions,'_','-'));
 bar(c,relFP_f_adv(1,:))
 title('advanced rFP of Propanoyl-CoA:(acceptor) 2,3-oxidoreductase flux')
-% note that the rFP of nhr10-B12 condition is pushed to 0 when the block
+% we can see that the rFP of nhr10-B12 condition is pushed to 0 when the block
 % list is applied.
 %% PART II: THE APPLICATION TO ANY METABOLIC MODEL
 % applying FPA to other models is similair. Consistent with the guidence for iMAT++, 

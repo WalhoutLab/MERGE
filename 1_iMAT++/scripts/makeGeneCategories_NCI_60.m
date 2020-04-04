@@ -12,11 +12,11 @@ TPM{:,3:end} = 2.^TPM{:,3:end}-1;
 TPM{:,3:end} = FPKM{:,3:end} ./ sum(FPKM{:,3:end},1) * 1e6;
 % the format adjustment procedure varies from data to data, generally we need to make sure:
 % 1. the columns are conditions to be analyzed
-% 2. the rows are genes with gene ID used in the model (gene label should be
-% unique)
-% the following is the codes we used to adapt raw RNA-seq data input
-%generate the mat file 
-load('./input/humanModel/Recon2_2.mat');%load model
+% 2. the rows are genes with gene ID used in the model (gene label should be unique)
+% the following is the codes we used to adapt NCI-60 raw RNA-seq data
+
+% generate the mat file 
+load('./input/humanModel/Recon2_2.mat');% load model
 GOI = intersect(model.genes,TPM.GeneID);
 output(1,:) = [{'Gene'},TPM.Properties.VariableNames(3:end)];
 for i = 1:length(GOI)
@@ -24,7 +24,7 @@ for i = 1:length(GOI)
     for j = 2:length(output(1,:))
         ind = ismember(TPM.GeneID,GOI(i));
         output(i+1,j) = {TPM.(output{1,j})(ind)};
-        if sum(ind) ~= 1 %skip these non-uniquely mapped genes
+        if sum(ind) ~= 1 % skip these non-uniquely mapped genes
             output(i+1,1) = {'Delete'};
         end
     end
@@ -38,7 +38,7 @@ output = cell2table(output(2:end,:),'VariableNames',output(1,:));
 % the tissue modeling is uniformly best choices for all dataset. User needs
 % to inspect their own data for making the optimal decision. Indeed, we
 % change the thresholding criteria for avoiding falsely putting expressed
-% genes into zero category
+% genes into zero category for NCI-60 dataset
 
 % visualize the distribution of all genes and metabolic genes
 histogram(log2(mean(TPM{:,3:end},2)))% average for all genes
@@ -66,9 +66,9 @@ hold off
 xlabel('x')
 ylabel('Probability Density')
 %% label the desired cutoff
-xline( fit.mu(2) -  2*sqrt(fit.Sigma(2)),'--r');%low/zero
-xline(fit.mu(1),'--r');%dynamic/high
-xline(fit.mu(2),'--r');%low/dynamic
+xline( fit.mu(2) -  2*sqrt(fit.Sigma(2)),'--r');% low/zero
+xline(fit.mu(1),'--r');% dynamic/high
+xline(fit.mu(2),'--r');% low/dynamic
 
 figure(1)
 histogram(log2(mean(TPM{:,3:end},2)))% all genes
@@ -81,10 +81,10 @@ xline(fit.mu(2),'--r');
 % not be representing unexpressed genes. So we altered the thresholding
 % criteria for zero category
 %% build the gene catagories
-zero2low = fit.mu(2) - 2*sqrt(fit.Sigma(2));%set thresholds
-low2dynamic = fit.mu(2);%set thresholds
-dynamic2high = fit.mu(1);%set thresholds
-names = output.Properties.VariableNames(2:end);%choose all the sample names
+zero2low = fit.mu(2) - 2*sqrt(fit.Sigma(2));% set thresholds
+low2dynamic = fit.mu(2);% set thresholds
+dynamic2high = fit.mu(1);% set thresholds
+names = output.Properties.VariableNames(2:end);% choose all the sample names
 metgenes = model.genes;
 for myName = names
     myTPM = log2(output.(myName{:}));% we only categorize the metabolic genes
@@ -149,6 +149,5 @@ legend({'zero','low','dynamic','high'});
 % further refine the moderately expressed genes (aka, dynamic category).
 % The limitation for it is that the heuristic algoritm works best with our
 % tissue modeling task as we use single cell sequencing data. For general
-% application on bulk RNA-seq dataset, we recommand to start with the rough
-% category, or use the "refinementTool.m" to refine the category based on
-% pair-wise differential expression.
+% application on bulk RNA-seq dataset, we recommend to start with the rough
+% category, or refine the category based on pair-wise differential expression.
