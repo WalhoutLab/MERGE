@@ -34,12 +34,16 @@ expTbl = readtable('exampleExpression.csv');
 % to facilate the future use of the expression of many samples, we
 % re-organize it into a structure variable.
 % the FPA matrix will be in the same order as the master_expression
+% For demo purpose, we only analyze the FPA of four conditions in the
+% expression dataset.
+conditions = {'N2_OP50', 'N2_B12', 'nhr10_OP50','nhr10_B12'};
+% make a new master_expression for these four conditions.
 master_expression = {};%we call this variable "master_expression"
 geneInd = ismember(expTbl.Gene_name, model.genes); %get the index of genes in the model
-for i = 1:size(expTbl,2)-4 %we have 12 samples in the example matrix 
+for i = 1:length(conditions)
     expression = struct();
     expression.genes = expTbl.Gene_name(geneInd);
-    expression.value = expTbl{geneInd,i+4};
+    expression.value = expTbl.(conditions{i})(geneInd);
     master_expression{i} = expression;
 end
 
@@ -95,19 +99,8 @@ end
 % tutorial of IMAT++ and "1_IMAT++/large_scale_FVA_walkthrough.m"
 % for getting required inputs.
 
-% assume the FVA is done, we have level table for each condition. 
-% Note, we only performed FVA for four conditions. So, only perform this
-% advanced FPA for these four conditions.
-conditions = {'N2_OP50', 'N2_B12', 'nhr10_OP50','nhr10_B12'};
-% make a new master_expression for these four conditions.
-master_expression = {};%we call this variable "master_expression"
-geneInd = ismember(expTbl.Gene_name, model.genes); %get the index of genes in the model
-for i = 1:length(conditions)
-    expression = struct();
-    expression.genes = expTbl.Gene_name(geneInd);
-    expression.value = expTbl.(conditions{i})(geneInd);
-    master_expression{i} = expression;
-end
+% assume the FVA is done, we have level table for each condition. (we
+% calculate the level tables for these four conditions in the FVA walkthrough)
 % then, let's merge the level tables for each condition
 for i = 1:length(conditions)
     load(['./../1_iMAT++/output/genericModelDemo/FVA/',conditions{i},'levels_.mat']);
@@ -130,9 +123,16 @@ for i = 1:size(FP_adv,1)
     end
 end
 %% Compare the advance FPA with basic FPA
-
-
-
+figure(1)
+c = categorical(regexprep(conditions,'_','-'));
+bar(c,relFP_f(1,:))
+title('rFP of Propanoyl-CoA:(acceptor) 2,3-oxidoreductase flux')
+figure(2)
+c = categorical(regexprep(conditions,'_','-'));
+bar(c,relFP_f_adv(1,:))
+title('advanced rFP of Propanoyl-CoA:(acceptor) 2,3-oxidoreductase flux')
+% note that the rFP of nhr10-B12 condition is pushed to 0 when the block
+% list is applied.
 %% PART II: THE APPLICATION TO ANY METABOLIC MODEL
 % applying FPA to other models is similair. Consistent with the guidence for iMAT++, 
 % here we provide an example of integrating RNA-seq data of NCI-60 cancer 
@@ -202,7 +202,10 @@ end
 % users can uncomment the following codes to load from distance calculator
 % output; here we load directly from saved matlab variable because of file
 % size restriction of GitHub
-distance_raw = readtable('./../MetabolicDistance/Output/distanceMatrix_recon2_2.txt','FileType','text','ReadRowNames',true); %we load from the output of the distance calculator. For usage of distance calculator, please refer to the section in Github
+% if you are loading from the output of distance calculator, use the following line
+% distance_raw = readtable('./../MetabolicDistance/Output/distanceMatrix_recon2_2.txt','FileType','text','ReadRowNames',true); %we load from the output of the distance calculator. For usage of distance calculator, please refer to the section in Github
+load('./input/distance_raw_recon2_2.mat');% the original text file is too large for GitHub
+% the original text file is too large for GitHub
 labels = distance_raw.Properties.VariableNames;
 labels = cellfun(@(x) [x(1:end-1),'_',x(end)],labels,'UniformOutput',false);
 distMat_raw = table2array(distance_raw);
