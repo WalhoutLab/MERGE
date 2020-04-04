@@ -1,4 +1,22 @@
 function mytbl = listRxn(model,flux,myMet)
+% This is a simple flux tracker to show the flux around a metabolite
+% according to a flux distribution
+%
+% USAGE:
+%
+%    mytbl = listRxn(model,flux,myMet)
+%
+% INPUTS:
+%    model:             input RECON2.2 model (COBRA model structure)
+%    flux:              the flux distribution to inspect
+%    myMet:             the metabolite of interest to list flux around
+%
+% OUTPUT:
+%   mytbl:             	a table showing all the flux that produces or
+%                       comsumes myMet
+%
+% `Yilmaz et al. (2020). Final Tittle and journal.
+% .. Author: - Xuhang Li, Mar 2020
 myrxns = model.rxns(any(model.S(strcmp(model.mets,myMet),:),1));
 myInds = any(model.S(strcmp(model.mets,myMet),:),1);
 myfluxP = flux(ismember(model.rxns,myrxns)) .*  model.S(strcmp(model.mets,myMet),myInds)';
