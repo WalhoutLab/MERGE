@@ -41,7 +41,10 @@ else
     rule_genes = setdiff(regexp(expression,'\<(\w|\-|\.|:)+\>','match'), {'and', 'or'});
 
     total_measured = 0;
-
+    
+    rule_genes = sort(rule_genes); % order the genes from longest to shortest if there are overlapped names. Fix some bugs in rare cases
+    rule_genes = rule_genes(length(rule_genes):-1:1);
+    
     for i = 1:length(rule_genes)
         j = find(strcmp(rule_genes{i}, genes));
         if isempty(j)
