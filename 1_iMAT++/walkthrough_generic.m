@@ -21,13 +21,13 @@ model.parsedGPR = parsedGPR;
 % (i.e, TPM), please refer to "./scripts/makeGeneCategories.m" (run "open makeGeneCategories"). Here we
 % directly load the premade gene categories
 load('input/exampleGeneCategories/categ_N2_OP50.mat')
-% Please note the category naminclature difference: the "high" refers to
+% Please note the category nomenclature difference: the "high" refers to
 % "highly expressed genes" in the paper, "dynamic" to "moderately
 % expressed", "low" to "lowly expressed" and "zero" to "rarely expressed"
 %% prepare epsilons
 % users can supply their own epsilon sequence for their own purpose. The
 % epsilons should be supplied in the order of reactions in the model, and
-% should be equal length of the reactions. The forward direction and
+% should be in equal length as that of the reactions. The forward direction and
 % reverse direction should be supplied seperately.
 % we provide an epsilon generator following the methods described in the
 % paper
@@ -55,7 +55,7 @@ myCSM = struct(); %myCSM: my Context Specific Model
 % For understanding each output field, please see IMATplusplus.m
 % the OFD flux distribution is myCSM.OFD
 %% advanced IMAT++ analysis: Flux Variability Analysis (FVA)
-% as in the paper, we further performed FVA analysis to measure the
+% As introduced in the paper, we further performed FVA analysis to measure the
 % feasible space of each reaction, which in turn provides a set of
 % reactions to block in FPA analysis. Users can also perform this analysis for
 % their own dataset/model. However, considering the computational
@@ -79,7 +79,6 @@ minLowTol = 1e-5;
 
 % Together, we show how to calculate the FVA boundaries of three queried reactions for N2_OP50 condition
 
-
 %% PART II: THE APPLICATION TO ANY METABOLIC MODEL
 % applying IMAT++ to other models is not much different from above.
 % However, attentions need to be paid to inputs to make sure they
@@ -99,7 +98,7 @@ load('./input/humanModel/Recon2_2.mat');
 % we need to constrain the human model according to the media composition
 model = defineConstriants(model, 1000,0.005);
 
-% parseGPR takes hugh amount of time, so preparse and integrate with the model
+% parseGPR takes huge amount of time, so preparse and integrate with the model
 parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
 model.parsedGPR = parsedGPR;
 model = buildRxnGeneMat(model); % some standard fields are missing in the original model. We generate them
@@ -112,7 +111,7 @@ model = creategrRulesField(model);
 % we provide an epsilon generator following the methods described in the paper
 
 % NOTE: calculating epsilon for human model may take 20 mins (in a laptop), so we just
-% load the pre-calculated value. One can use the following codes and run it again
+% load the pre-calculated value. One can use the following codes to run it again
 
 % [epsilon_f, epsilon_r,capacity_f,capacity_r] = makeEpsilonSeq(model, model.rxns, 0.1, 0.5);
 % save('input/humanModel/epsilon.mat','epsilon_f','epsilon_r','capacity_f','capacity_r');
