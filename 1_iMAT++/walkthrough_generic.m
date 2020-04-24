@@ -126,7 +126,7 @@ epsilon_r = epsilon_r(B(A));
 
 %% flux fitting for each cell line
 % we perform the fitting for 3 random cell lines as a technical demo. 
-ExampleCells = {'CO_COLO205','CNS_SF_268','BR_HS578T'};
+ExampleCells = {'CNS_SF_268','BR_HS578T','CO_COLO205'};
 outputCollections = {};
 for i = 1:length(ExampleCells)
     sampleName = ExampleCells{i};
@@ -158,8 +158,8 @@ for i = 1:length(ExampleCells)
     % the flexible fitting of rarely and lowly expressed genes are changed
     % to rigid fitting (by boudaries)
     bigModel = true;
-    % we recommand users to first try normal mode (bigModel = false) for any custom model. The
-    % big model mode is recommended when experiencing extreme low
+    % we recommend users to first try normal mode (bigModel = false) for any custom model. The
+    % big model mode is recommended when experiencing extremely low
     % speed. This mode uses rigid boundary constriants (ub and lb) instead
     % of flexible objective constraints (total flux and integer Nfit) in eliminating
     % flux in lowly and rarely expressed reactions. But it generally
@@ -168,7 +168,7 @@ for i = 1:length(ExampleCells)
     % set the non-applicable parameters to -1 (which will be ignored)
     storeProp = -1;%the storage and side is not applicable for generic model
     SideProp = -1;%the storage and side is not applicable for generic model
-    ATPm = -1;
+    ATPm = -1;%the ATPm needs to be pre-constrained in the input model
     minLowTol = 0; % not applicable to big model mode; use zero to avoid error
         
     myCSM = struct(); %myCSM: my Context Specific Model
