@@ -86,9 +86,9 @@ parpool(4)
 % Then, run FPA by calling:
 [FP,FP_solutions] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty);
 
-% NOTE: If a gene is undetected, we will use default value of 0 in the
-% penalty calculation. (but if a reaction is only associated with undetected genes, it
-% will have default penalty (which is 1) in the FPA calculation.)
+% NOTE: If a gene is undetected, this gene is ignored in the GPR parsing
+% step, but any detected genes associated with a target reaction will still 
+% be used to calculate the penalty.
 
 % optionally, we can make relative flux potential (rFP) by
 relFP_f = nan(size(FP,1),length(master_expression));% flux potential for forward rxns
@@ -255,9 +255,9 @@ parpool(4)
 
 % Finally, run FPA by simply calling:
 [FP,FP_solutions] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty);
-% NOTE: If a gene is undetected, we will use default value of 0 in the
-% calculation. (but if a reaction is only associated with undetected genes, it
-% will have default penalty (which is 1) in the FPA calculation.)
+% NOTE: If a gene is undetected, this gene is ignored in the GPR parsing
+% step, but any detected genes associated with a target reaction will still 
+% be used to calculate the penalty.
 %% 5. make relative flux potential
 relFP_f = nan(size(FP,1),length(master_expression));% flux potential for forward rxns
 relFP_r = nan(size(FP,1),length(master_expression));% flux potential for reverse rxns
@@ -285,8 +285,17 @@ mytbl = listRxn(model_irrev,FP_solutions{1,1}{1}.full,'icit[m]');
 % the FPA calculation of BR_MCF7 cell line for ICDHym. 
 
 %% 2. notice on gene names and expression data
+% Gene Name Rules:
 % we allow letters, numbers, dot, dash and colon in gene names. Any other 
 % special symbol needs to be added in the regexp function of line 41 in eval_gpr.m.
 
 % if a gene appears multiple times in the expression table, we use the
 % sumation of all levels in the GPR parsing step. 
+
+% Expression Data Notice:
+% By default, we assume a regular RNA-seq profile is used as expression
+% input. Therefore, we add a pseudocount of 1 to all the genes. This is to 
+% offset the noise when a gene is lowly expressed. If one would like to use
+% other pseudocount value, or not add pseudocount, please modify
+% ./scripts/calculatePenalty.m line 45. Please be advised that we DO NOT
+% recommend adding pseudocount for microarray dataset!
