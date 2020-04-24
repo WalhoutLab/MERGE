@@ -24,7 +24,7 @@ NO_MEASUREMENTS = -2;
 MAX_EVALS_EXCEEDED = -3;
 
 MAX_EVALS = 1000;
-NONETYPE = '0';% by default, the undetected genes are 0;
+NONETYPE = 'NaN';% by default, the undetected genes are NaN and will be ignored;
 
 NUMBER = '[0-9\.\-e]+';
 MAYBE_NUMBER = [NUMBER '|' NONETYPE];
@@ -70,7 +70,7 @@ else
         while contains(expression_logic,'or') 
             counter = counter + 1;
             if counter > MAX_EVALS
-                status = MAX_EVALS_EXCEEDED;
+                error('parsing failed for grRule "%s".\nPlease check the reason!',rule)
                 break
             end
             paren_expr = ['\(\s*(', MAYBE_NUMBER,')\s*\)'];
