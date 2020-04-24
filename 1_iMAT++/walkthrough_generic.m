@@ -125,8 +125,8 @@ epsilon_f = epsilon_f(B(A));
 epsilon_r = epsilon_r(B(A));
 
 %% flux fitting for each cell line
-% we perform the fitting for 3 random cell lines as a technical demo. 
-ExampleCells = {'CNS_SF_268','BR_HS578T','CO_COLO205'};
+% we perform the fitting for 2 cell lines as a technical demo. 
+ExampleCells = {'CNS_SF_268','BR_MDA_MB_231'};
 outputCollections = {};
 for i = 1:length(ExampleCells)
     sampleName = ExampleCells{i};
@@ -192,7 +192,7 @@ end
 % indicates problems with the input transcriptional profile, where it
 % disagrees with the metabolic network reconstruction. We recommend users
 % to inspect the conflictions for potential biological discovery. 
-% Additionally, extremely complex model may also cause speed problem. See
+% Additionally, complex model may also cause speed problem. See
 % the note #3 for recommendations on dealing with complex models.
 %% 2. numerical issues 
 % Since MILP is a NP-hard problem, even the best solver cannot guarantee to
@@ -202,18 +202,18 @@ end
 % line 165 and line 220 to enable the pre-defined initial solution, in "IMATplusplus.m".
 % But user should aware that the solver may still get stuck in local
 % optimum when using this option. We recommend users to avoid running into 
-% numerical problems by tuning solvers or trying suggestions provided note #3.
-%% 3. running IMAT++ on very complex models (such as RECON3D)
+% numerical problems by tuning solvers or trying suggestions provided in note #3.
+%% 3. running IMAT++ on very complex models (such as RECON series)
 % The complex models may experience slow speed in solving the MILP. In addition 
 % to running IMAT++ on a high-performance workstation and using "bigModel" mode, 
 % we recommend the following model preprocessing before running IMAT++.
 % (1) removing inactive metabolic functions (reactions that cannot carry
 % flux; we did this above for recon2.2)
-% (2) removing reactions that dependent on rarely expressed genes (this is
+% (2) removing reactions dependent on rarely expressed genes (this is
 % similar to bigModel mode, but directly removing reactions will more
 % effectively increase the speed).
 % (3) removing reactions that cannot carry flux when reactions in #2 are removed
-% (4) use proper (default) epsilon. Too large or too small epsilon will
+% (4) use proper epsilon. Too large or too small epsilon will
 % decrease the speed of flux minimization, and even generate invalid flux
 % distribution. User should evaluate the epsilon choice by the flux burden it generates (i.e.,
 % uptake rate of main carbon source).
