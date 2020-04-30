@@ -29,7 +29,7 @@ Users may choose to generate the distance matrix for iCEL1314 via [metabolic dis
 
 ### Running FPA on another metabolic model with a given expression dataset
 
-Similar to iMAT++, we provide a walkthrough guidance of how to run the FPA analysis on human metabolic model [Recon 2.2](https://pubmed.ncbi.nlm.nih.gov/27358602/). The expression profile of NCI-60 Cancer Cell lines [Reinhold WC et al, 2019](https://cancerres.aacrjournals.org/content/79/13/3514.long) was used as an example.
+Similar to iMAT++, we provide a walkthrough guidance of how to run the FPA analysis on human metabolic model [Recon 2.2](https://pubmed.ncbi.nlm.nih.gov/27358602/). The expression profile of human tissues [RNA HPA tissue gene data](https://www.proteinatlas.org/about/download) was used as an example.
 
 The walkthrough tutorial is in [the same walkthrough file](walkthrough_FPA_generic.m) mentioned above. Please check "PART II: THE APPLICATION TO ANY METABOLIC MODEL" in the script for further guidence. Users can start with this script to develop FPA analysis for their own model/data.
 
