@@ -218,7 +218,7 @@ set(cgo,'DisplayRange',1);
 % find the optimal solution of every MILP. In some cases, user may see solver complaining
 % "infeasible model" while the input MILP is clearly feasible. This indicates
 % the solver failed to find a feasible solution by its heuristic algorithm. Users can uncomment
-% line 165 and line 220 to enable the pre-defined initial solution, in "IMATplusplus.m".
+% line 173 and line 228 to enable the pre-defined initial solution, in "IMATplusplus.m".
 % But user should aware that the solver may still get stuck in local
 % optimum when using this option. We recommend users to avoid running into 
 % numerical problems by tuning solvers or trying suggestions provided in note #3.

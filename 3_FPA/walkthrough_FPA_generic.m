@@ -154,8 +154,7 @@ title('advanced rFP of Propanoyl-CoA:(acceptor) 2,3-oxidoreductase flux')
 
 %% PART II: THE APPLICATION TO ANY METABOLIC MODEL
 % Applying FPA to other models follows the same procedure. Consistent with the guidence for iMAT++, 
-% here we provide an example of integrating RNA-seq data of NCI-60 cancer 
-% cell lines (Reinhold WC et al., 2019) to human model, RECON2.2 (Swainston et al., 2016)
+% here we provide an example of integrating RNA-seq data of human tissue expressions to human model, RECON2.2 (Swainston et al., 2016)
 %% 1. prepare the model
 load('./../1_IMAT++/input/humanModel/Recon2_2.mat');
 % users may add their own constraints here (i.e., nutriential input constraints)
@@ -197,27 +196,31 @@ writecell(byProducts,'distance_inputs/byproducts_regular.txt');
 %% 3. load the expression files, distance matrix, and other optional inputs
 % load expression files
 % expression matrix can be in plain text and in any normalized quantification metric like TPM or FPKM.
-expTbl = readtable('./../1_IMAT++/input/humanModel/log2FPKM.csv');% this table provides log2(FPKM+1)
-% In FPA, we use the untransformed FPKM to calculate the relative expression levels
-expTbl{:,3:end} = 2.^expTbl{:,3:end}-1;
+expTbl = readtable('./../1_IMAT++/input/humanModel/rna_tissue_hpa.xlsx');% this table provides TPM for all tissue (protein coding genes only)
 
 % preprocess the expression table
 % To facilate the future use of the expression of many samples, we re-organize it into a structure variable.
 % the order of final FP matrix will be in the same order as the master_expression
 master_expression = {};% we call this variable "master_expression"
-geneInd = ismember(expTbl.GeneID, model.genes); % get the index of genes in the model
-for i = 1:size(expTbl,2)-2 % we have 60 samples in the example matrix 
+conditions = unique(expTbl.Tissue); % this is the order of conditions in the FP matrix and master_expression
+targetGenes = intersect(expTbl.HGNC, model.genes); % genes both detected and in the model
+for i = 1:length(conditions) % we have 60 samples in the example matrix 
     expression = struct();
-    expression.genes = expTbl.GeneID(geneInd);
-    expression.value = expTbl{geneInd,i+2};
+    expression.genes = targetGenes; 
+    tissueInd = strcmp(expTbl.Tissue,conditions{i});
+    geneLabel = expTbl.HGNC(tissueInd);
+    TPMval = expTbl.TPM(tissueInd);
+    % reorder
+    [A B] = ismember(targetGenes,geneLabel);
+    expression.value = TPMval(B(A));
     master_expression{i} = expression;
 end
 
 % load the distance matrix
 % users can uncomment the following codes to load from distance calculator
-% output; here we load directly from saved matlab variable because of file size restriction of GitHub
+% output; here we load directly from saved matlab variable because of the file size restriction of GitHub
 
-% if you are loading from the output of distance calculator, use the following code
+% if you are loading from the output of distance calculator, use the following code:
 % distance_raw = readtable('./../MetabolicDistance/Output/distanceMatrix_recon2_2.txt','FileType','text','ReadRowNames',true); %we load from the output of the distance calculator. For usage of distance calculator, please refer to the section in Github
 
 load('./input/distance_raw_recon2_2.mat');
@@ -235,8 +238,8 @@ distMat = distMat_min;
 % load the special penalties 
 % In general, we recommend to set penalty for all Exchange, Demand,
 % and Sink reactions to 0, to not penalize the external reactions. Users 
-% may need to interactively tune their special penalties for best flux
-% distribution in the FPA calculation
+% may need to interactively tune their special penalties for the best flux
+% distribution in FPA calculation
 extRxns = model.rxns(cellfun(@(x) ~isempty(regexp(x,'^(EX_|sink_|DM_)', 'once')),model.rxns));
 manualPenalty = extRxns;
 manualPenalty(:,2) = mat2cell(zeros(length(manualPenalty),1),ones(length(manualPenalty),1));
@@ -248,8 +251,15 @@ manualPenalty(:,2) = mat2cell(zeros(length(manualPenalty),1),ones(length(manualP
 % manualDist = {};
 
 %% 4. run basic FPA analysis
-% we only compare the first 10 cell lines for the sake of time
-master_expression = master_expression(1:10);
+% we only calculate FPA for the same five tissues in iMAT++ demo, for the sake of time.
+% (calculating FPA is fast, but parsing expression levels based on GPR takes more time for many conditions)
+
+ExampleTissues = {'small intestine','skin','skeletal muscle','cerebral cortex','liver'}; 
+[A B] = ismember(ExampleTissues,conditions);
+master_expression = master_expression(B(A));
+% the FPA will be reported in the order of small intestine, skin, skeletal
+% muscle, cerebral cortex and liver.
+
 % set up some basic parameters for FPA
 n = 1.5; % distance order
 changeCobraSolverParams('LP','optTol', 10e-9);
@@ -260,7 +270,7 @@ targetRxns = {'ICDHyrm','EX_ach_e_'};
 % we use the isocitrate dehydrogenase reaction (reaction centric) and production of acetylcholine (metabolite centric) as an example
 
 % The FPA is designed with parfor loops for better speed, so we first initial the parpool
-parpool(4)
+parpool(2) % set according to your computational environment
 
 % Finally, run FPA by simply calling:
 [FP,FP_solutions] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty);
@@ -278,13 +288,30 @@ for i = 1:size(FP,1)
 end
 % the relative flux potentials (rFP) of 'ICDHym' and 'EX_ach_e_' are in
 % the relFP_f and relFP_r. Rows are the two queried reactions and columns
-% are the 10 queried conditions. For example, relFP_f(1,1) is the rFP of the forward
-% direction of ICDHym, for the first cell line, BR_MCF7.
+% are the 5 queried tissues. For example, relFP_f(1,1) is the rFP of the forward
+% direction of ICDHym, for the first tissue, small intestine.
 
-% Brief Interpretation: 
-% by inspecting the flux distribution of ICDHyrm FPA (see NOTE#1), we find that FPA
-% successfully integrates the local expression information of TCA cycle 
-% (pyr --> accoa --> cit --> icit --> akg), thus making a pathway-level prediction.
+%% 6. Brief Interpretation 
+figure(1)
+c = categorical(ExampleTissues);
+bar(c,relFP_f(1,:))
+title('Isocitrate dehydrogenase (NADP+)')
+
+figure(2)
+c = categorical(ExampleTissues);
+bar(c,relFP_f(2,:))
+title('Acetylcholine exchange')
+
+% From the rFP value, we clearly see the superiority of skeletal muscle in
+% TCA cycle flux potential (via ICDHym). Interestingly, the superiority of 
+% cerebral cortex in producing acetylcholine is not clear, through higher
+% than other tissues. 
+
+% By inspecting the flux distribution of ICDHyrm FPA (see NOTE#1), we find that FPA
+% successfully integrates the local expression information of TCA cycle
+% (with a shunt) for analyzing the flux potential of isocitrate
+% dehydrogenase. The flux route is pyr --> accoa --> cit --> icit --> akg --> mal --> oaa --> cit.
+% thus, the FPA successfully made a pathway-level prediction.
 %% TECHNICAL NOTES FOR USING FPA
 %% 1. To inspect the flux distribution for reported FP values
 % the flux distribution is reported for the irreversible model, and is in the "FP_solutions". 
@@ -292,19 +319,19 @@ end
 model_irrev = convertToIrreversible(model); % convert to irreversible model
 
 % Then, we provide a simple flux tracker for easy-inspection.
-mytbl = listRxn(model_irrev,FP_solutions{1,1}{1}.full,'icit[m]');
+mytbl = listRxn(model_irrev,FP_solutions{1,3}{1}.full,'icit[m]');
 % mytbl: column#1: rxnID, col#2: rxn flux, col#3: rxn formula, col#4: flux
 % contribution to the queried metabolite.
 
 % you can view the "mytbl" variable for flux going in and out of isocitrate in
-% the FPA calculation of BR_MCF7 cell line for ICDHym. 
+% the FPA calculation of skeletal muscle for ICDHym. 
 
 %% 2. notice on gene names and expression data
 % Gene Name Rules:
-% we allow letters, numbers, dot, dash and colon in gene names. Any other 
+% (1) we allow letters, numbers, dot, dash and colon in gene names. Any other 
 % symbol needs to be added in the regexp function of line 41 in eval_gpr.m.
 
-% if a gene appears multiple times in the expression table, we use the
+% (2) if a gene appears multiple times in the expression table, we use the
 % sumation of all levels in the GPR parsing step. 
 
 % Expression Data Type:
