@@ -38,6 +38,6 @@ We recommend to first go through the above tutorial for IMAT++, to understand th
 
 ### Running iMAT++ analysis on another metabolic model with a given expression dataset
 
-We provided a walkthrough guidance of how to run the iMAT++ analysis on human metabolic model [Recon 2.2](https://pubmed.ncbi.nlm.nih.gov/27358602/). The expression profile of NCI-60 Cancer Cell lines [Reinhold WC <i>et al.</i>, 2019](https://cancerres.aacrjournals.org/content/79/13/3514.long) was used as an example.
+We provided a walkthrough guidance of how to run the iMAT++ analysis on human metabolic model [Recon 2.2](https://pubmed.ncbi.nlm.nih.gov/27358602/). The expression profile of human tissues  [RNA HPA tissue gene data](https://www.proteinatlas.org/about/download) was used as an example.
 
 Same as the tutorial for using generic <i>C. elegans</i> model, we provide a step-by-step [walkthrough script](walkthrough_generic.m) for running iMAT++ on Recon 2.2 model with any given expression dataset. This is in the second section right after the guidance for generic <i>C. elegans</i> model. Users can start with this script to develop iMAT++ analysis for their own model/data.
