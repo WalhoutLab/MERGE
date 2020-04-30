@@ -19,7 +19,7 @@ S,rxns,metabolites,lb,ub,byproducts=loadVarsFromFilenames('Input/Smatrix_regular
 #S,rxns,metabolites,lb,ub,byproducts=loadVarsFromFilenames('Input/Smatrix_regular.npy',\
 #'Input/reactions_regular.txt','Input/metabolites_regular.txt','Input/LB_regular.txt',\
 #'Input/UB_regular.txt','Input/byproducts_regular.txt',delimiterInSmatrix=None);
-
+#NOTE: Parentheses ("(","[","]", and ")") and other special characters are not allowed in reaction names.
 
 ##2-Forming a reaction network with unidirectional reactions
 
