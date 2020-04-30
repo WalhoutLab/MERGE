@@ -521,7 +521,7 @@ switch solver
         params.FeasibilityTol = 1e-9;%/*Modified_XL*/
         params.OptimalityTol = 1e-9;%/*Modified_XL*/
         %params.Threads = 1;%/*Modified_XL*/
-        params.MIPGap = 1e-12;%/*Modified_XL*/
+        %params.MIPGap = 1e-12;%/*Modified_XL*/
         resultgurobi = gurobi(MILPproblem,params);
 
         stat = resultgurobi.status;

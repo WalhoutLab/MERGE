@@ -1,4 +1,4 @@
-function [FluxDistribution, latentRxn,Nfit_latent, minTotal,MILPproblem_minFlux] = fitLatentFluxes(MILProblem, model, PFD, Hgenes, epsilon_f,epsilon_r,latentCAP,verbose)
+function [FluxDistribution, latentRxn,Nfit_latent, minTotal,MILPproblem_minFlux] = fitLatentFluxes(MILProblem, model, PFD, Hgenes, epsilon_f,epsilon_r,latentCAP,verbose,relMipGapTol)
 % the latent reactions fitting module in iMAT++ pipeline. This function
 % works with a formated COBRA MILP input that is the product of primary
 % iMAT++ fitting. This function will find those latent reactions and apply
@@ -145,7 +145,7 @@ while 1
     extraX0_1 = (MILProblem.x0(latentInd) >= epsilon_f_sorted)*1;
     extraX0_2 = (MILProblem.x0(latentInd) <= -epsilon_r_sorted)*1;
     MILPproblem_latent.x0 = [MILProblem.x0(1:length(MILProblem.vartype)); extraX0_1; extraX0_2];
-    solution = solveCobraMILP_XL(MILPproblem_latent, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', verbose);
+    solution = solveCobraMILP_XL(MILPproblem_latent, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
     if solution.stat ~= 1
         error('infeasible or violation occured!');
     end
@@ -164,7 +164,7 @@ while 1
     c = [c_minFlux;zeros(2*length(latentRxn),1)];
     MILPproblem_minFlux.c = c;
     MILPproblem_minFlux.osense = 1;
-    solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', verbose);
+    solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
     if solution.stat ~= 1
         error('infeasible or violation occured!');
     end

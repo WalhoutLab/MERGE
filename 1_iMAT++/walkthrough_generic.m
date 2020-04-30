@@ -83,8 +83,7 @@ minLowTol = 1e-5;
 % applying IMAT++ to other models is not much different from above.
 % However, attentions need to be paid to inputs to make sure they
 % are in the correct format. Here we provide an example of integrating
-% RNA-seq data of NCI-60 cancer cell lines (Reinhold WC et al., 2019) to
-% human model, RECON2.2 (Swainston et al., 2016)
+% RNA-seq data of human tissues to human model, RECON2.2 (Swainston et al., 2016)
 %% prepare the model
 % add paths
 addpath ~/cobratoolbox/%your cobra toolbox path
@@ -95,7 +94,10 @@ addpath scripts/
 initCobraToolbox(false);
 % load model
 load('./input/humanModel/Recon2_2.mat');
-% we need to constrain the human model according to the media composition
+% we need to constrain the human model to calculate epsilons
+% As a technical demo, we didn't fine-tune the proper constraint set that
+% may represent the human blood environment. We used a set of artificial
+% constraints that allows glucose and amino acid as major nutrient sources
 model = defineConstriants(model, 1000,0.005);
 
 % parseGPR takes huge amount of time, so preparse and integrate with the model
@@ -124,17 +126,22 @@ model = removeRxns(model,model.rxns(capacity_f == 0 & capacity_r == 0));
 epsilon_f = epsilon_f(B(A));
 epsilon_r = epsilon_r(B(A));
 
-%% flux fitting for each cell line
-% we perform the fitting for 2 cell lines as a technical demo. 
-ExampleCells = {'CNS_SF_268','BR_MDA_MB_231'};
+%% flux fitting for each tissue
+% Please notice that, considering the big size of human model, the integration 
+% takes longer than that of the C. elegans model. Each tissue takes around
+% 5 mins in a testing laptop, and the liver may take around 10 mins.
+
+% we only calculate the fluxes of five major tissues as a technical demo
+ExampleTissues = {'small_intestine','skin','skeletal_muscle','cerebral_cortex','liver'}; 
 outputCollections = {};
-for i = 1:length(ExampleCells)
-    sampleName = ExampleCells{i};
+for i = 1:length(ExampleTissues)
+    sampleName = ExampleTissues{i};
+    fprintf('Start to fit %s...\n',sampleName);
     %% load the gene expression data
     % For making the gene category file from raw expression quantification
     % (i.e, TPM), please refer to "./scripts/makeGeneCategories.m";
-    % Additionally, we provided the original script we used to categorize NCI_60 data,
-    % named "./scripts/makeGeneCategories_NCI_60.m", for users' reference.
+    % Additionally, we provided the original script we used to categorize all the  
+    % human tissues, named "./scripts/makeGeneCategories_humanTissue.m", for users' reference.
     load(['input/humanModel/categ_',sampleName,'.mat']);
     % Please note the category naminclature difference: the "high" refers to
     % "highly expressed genes" in the paper, "dynamic" to "moderately
@@ -159,11 +166,12 @@ for i = 1:length(ExampleCells)
     % to rigid fitting (by boudaries)
     bigModel = true;
     % we recommend users to first try normal mode (bigModel = false) for any custom model. The
-    % big model mode is recommended when experiencing extremely low
-    % speed. This mode uses rigid boundary constriants (ub and lb) instead
+    % big model mode is recommended when experiencing extremely slow
+    % speed. This mode uses rigid boundary constraints (ub and lb) instead
     % of flexible objective constraints (total flux and integer Nfit) in eliminating
-    % flux in lowly and rarely expressed reactions. But it generally
-    % makes near-identical result as the normal mode.
+    % fluxes in lowly and rarely expressed reactions. In addition, we loosen the MILP termination 
+    % strigency by setting the MIPgap parameter to 0.1%. Therefore, the flux minimazation is sub-optimal in
+    % BigModel mode. But it generally makes near-identical result as the normal mode.
     
     % set the non-applicable parameters to -1 (which will be ignored)
     storeProp = -1;%the storage and side is not applicable for generic model
@@ -183,10 +191,21 @@ for i = 1:length(ExampleCells)
     % the OFD flux distribution is myCSM.OFD
     outputCollections = [outputCollections;{myCSM}];
 end
+%% visualize the flux distributions in a heatmap (optional)
+fluxdata = [outputCollections{1}.OFD,outputCollections{2}.OFD,outputCollections{3}.OFD,outputCollections{4}.OFD,outputCollections{5}.OFD];
+% normalize by row (/ max)
+fluxdata = fluxdata ./ max(abs(fluxdata),[],2);
+fluxdata(isnan(fluxdata)) = 0;
+cgo=clustergram(fluxdata,'RowLabels',model.rxns,'ColumnLabels',ExampleTissues);
+c=get(cgo,'ColorMap');
+cpr=[c(:,1) c(:,1) c(:,2)];
+set(cgo,'ColorMap',cpr);
+set(cgo,'Symmetric',true);
+set(cgo,'DisplayRange',1);
 %% TECHNICAL NOTES ON RUNNING IMAT++
 %% 1. slow computational speed 
 % Although the computational speed of IMAT++ is generally fast, user 
-% may experience slow speed in some cases. The reason is that rarely
+% may experience slow speed in some cases. A common cause is that rarely
 % expressed genes (related to low/zero reactions) conflict with
 % highly expressed genes, creating a very difficult MILP. It usually
 % indicates problems with the input transcriptional profile, where it
@@ -214,7 +233,7 @@ end
 % effectively increase the speed).
 % (3) removing reactions that cannot carry flux when reactions in #2 are removed
 % (4) use proper epsilon. Too large or too small epsilon will
-% decrease the speed of flux minimization, and even generate invalid flux
+% decrease the speed of flux minimization, and even generate unrealistic flux
 % distribution. User should evaluate the epsilon choice by the flux burden it generates (i.e.,
 % uptake rate of main carbon source).
 %

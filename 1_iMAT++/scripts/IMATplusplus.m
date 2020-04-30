@@ -53,7 +53,8 @@ function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLName
 %                       In this mode, the low reactions (dependent on rarely and lowly
 %                       expressed genes) will be constrained by rigid boundaries after flux
 %                       minimization. The original integer variables and minLow total flux
-%                       constriants will be removed. In general, this mode gives almost
+%                       constriants will be removed. Additionally, we release the MILP strigency 
+%                       to gain computational speed. But in general, this mode gives almost
 %                       identical flux prediction as the normal mode.
 %    verbose:           (0 or 1) to show the MILP log or not
 %
@@ -103,6 +104,13 @@ if (nargin < 14)
 end
 %set global constant 
 bacMW=966.28583751; %only will be used for C. elegans model
+if BigModel
+    relMipGapTol = 0.001; % we release the MIPgap to 0.1% 
+    % this released MipGap only applies to latent step. The strigency of PFD is still kept.
+    % users can release the MipGap for PFD manually if needed
+else
+    relMipGapTol = 1e-12;
+end
 %changeCobraSolverParams('LP','optTol', 10e-9);
 %changeCobraSolverParams('LP','feasTol', 10e-9);
 %% mapping the gene categories to reactions
@@ -275,7 +283,7 @@ N_highFit = length(OpenGene);
 N_zeroFit = length(ClosedLReaction);
 if doLatent
     %% step4. make the latent rxns fitting
-    [FluxDistribution,latentRxn,Nfit_latent,minTotal_OFD,MILP] = fitLatentFluxes(MILP2, worm,PFD, HGenes,epsilon_f,epsilon_r,latentCAP,verbose);
+    [FluxDistribution,latentRxn,Nfit_latent,minTotal_OFD,MILP] = fitLatentFluxes(MILP2, worm,PFD, HGenes,epsilon_f,epsilon_r,latentCAP,verbose,relMipGapTol);
     OFD = FluxDistribution;
 else
     OFD = [];
