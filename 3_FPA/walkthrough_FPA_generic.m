@@ -4,7 +4,11 @@
 % `xxxxx. (xxx). xxxx
 %
 % .. Author: - Xuhang Li, March, 2020
-
+%% caution about MATLAB version
+% This demo is developed and tested in MATLAB R2019a version. An earlier
+% version may encounter errors with "readtable" and "writematrix"
+% functions.
+%%
 % add path for required functions/inputs
 addpath ./input/
 addpath ./scripts/
@@ -193,6 +197,21 @@ byProducts = model.mets(ismember(cellfun(@(x) regexprep(x,'\[.\]$',''),model.met
 writecell(byProducts,'distance_inputs/byproducts_regular.txt');
 % then you can use the output files in folder "the distance_inputs" folder for
 % calculating distances. Please follow the Distance calculator section in Github
+
+% For an earlier MATLAB version, user may consider the following codes:
+
+% dlmwrite('distance_inputs/Smatrix_regular.txt',full(model.S),',');
+% fid=fopen('distance_inputs/reactions_regular.txt','w');
+% fprintf(fid,'%s\n',model.rxns{:});
+% fclose(fid);
+% fid=fopen('distance_inputs/metabolites_regular.txt','w');
+% fprintf(fid,'%s\n',model.mets{:});
+% fclose(fid);
+% dlmwrite('distance_inputs/LB_regular.txt',model.lb,',');
+% dlmwrite('distance_inputs/UB_regular.txt',model.ub,',');
+% fid=fopen('distance_inputs/byproducts_regular.txt','w');
+% fprintf(fid,'%s\n',byProducts{:});
+% fclose(fid);
 %% 3. load the expression files, distance matrix, and other optional inputs
 % load expression files
 % expression matrix can be in plain text and in any normalized quantification metric like TPM or FPKM.
@@ -266,8 +285,8 @@ changeCobraSolverParams('LP','optTol', 10e-9);
 changeCobraSolverParams('LP','feasTol', 10e-9);
 
 % we perform FPA analysis for two reactions as an example
-targetRxns = {'ICDHyrm','EX_ach_e_'}; 
-% we use the isocitrate dehydrogenase reaction (reaction centric) and production of acetylcholine (metabolite centric) as an example
+targetRxns = {'ICDHyrm','r2308'}; 
+% we use the isocitrate dehydrogenase reaction (reaction centric) and transporter of histamine (metabolite centric) as an example
 
 % The FPA is designed with parfor loops for better speed, so we first initial the parpool
 parpool(2) % set according to your computational environment
@@ -286,7 +305,7 @@ for i = 1:size(FP,1)
         relFP_r(i,j) = FP{i,j}(2) ./ FP{i,end}(2);
     end
 end
-% the relative flux potentials (rFP) of 'ICDHym' and 'EX_ach_e_' are in
+% the relative flux potentials (rFP) of 'ICDHym' and 'r2308' are in
 % the relFP_f and relFP_r. Rows are the two queried reactions and columns
 % are the 5 queried tissues. For example, relFP_f(1,1) is the rFP of the forward
 % direction of ICDHym, for the first tissue, small intestine.
@@ -299,13 +318,12 @@ title('Isocitrate dehydrogenase (NADP+)')
 
 figure(2)
 c = categorical(ExampleTissues);
-bar(c,relFP_f(2,:))
-title('Acetylcholine exchange')
+bar(c,relFP_r(2,:))
+title('Histamine transporter')
 
 % From the rFP value, we clearly see the superiority of skeletal muscle in
-% TCA cycle flux potential (via ICDHym). Interestingly, the superiority of 
-% cerebral cortex in producing acetylcholine is not clear, through higher
-% than other tissues. 
+% TCA cycle flux potential (via ICDHym), and cerebral cortex in 
+% producing/uptaking histamine.
 
 % By inspecting the flux distribution of ICDHyrm FPA (see NOTE#1), we find that FPA
 % successfully integrates the local expression information of TCA cycle
