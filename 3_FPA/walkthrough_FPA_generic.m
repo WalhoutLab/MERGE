@@ -8,7 +8,7 @@
 % This demo is developed and tested in MATLAB R2019a version. An earlier
 % version may encounter errors with "readtable" and "writematrix"
 % functions.
-%%
+%% add required path *make sure you did this every time you run the demo!*
 % add path for required functions/inputs
 addpath ./input/
 addpath ./scripts/
@@ -166,7 +166,7 @@ load('./../1_IMAT++/input/humanModel/Recon2_2.mat');
 model = defineConstriants(model, 1000,0);% NOTE: This function is different from the same-name function in IMAT++ folder!
 % in short, we made freely available for all nutrients that exist in the
 % media, since FPA is independent of quantitative exchange constraints. The
-% flux allowance will limits the flux system. 
+% flux allowance will limit the flux system. 
 
 % remove parentathsis in the reaction ID (which causes problem in distance calculation)
 model.rxns = regexprep(model.rxns,'\(|\)|\[|\]|-','_');
@@ -285,17 +285,47 @@ changeCobraSolverParams('LP','optTol', 10e-9);
 changeCobraSolverParams('LP','feasTol', 10e-9);
 
 % we perform FPA analysis for two reactions as an example
-targetRxns = {'ICDHyrm','r2308'}; 
-% we use the isocitrate dehydrogenase reaction (reaction centric) and transporter of histamine (metabolite centric) as an example
+% we use: 
+% (1) isocitrate dehydrogenase reaction (reaction centric) and 
+% (2) the cellular demand of melanin (metabolite centric)
+
+% first, let's create the new demand reaction for metabolite centric analysis of melanin
+% (You don't need to add the new reaction if the demand/sink already exists in the model)
+myMet = 'melanin[c]';
+myRxnName = ['DMN',myMet];
+model = addReaction(model,myRxnName,'reactionFormula',[myMet,' -->'],'geneRule', 'NA','printLevel',0);
+% we need to update the distance matrix because of adding the new demand reaction
+% (this may take a while)
+[distMat_raw,labels] = updateDistance(myRxnName,model,distMat_raw,labels,max(max(distMat_raw)));   
+distMat = distMat_raw;
+for ii = 1:size(distMat,1)
+    for jj = 1:size(distMat,2)
+        distMat(ii,jj) = min([distMat_raw(ii,jj),distMat_raw(jj,ii)]);% take the minimal of the raw distance
+    end
+end
+
+% Please note, you may need to block the reactions that could uptake your
+% target metabolite (i.e, the exchange reaction). These reactions cause 
+% shortcut flux in FPA (see methods for explanation). For the melanin demo,
+% we don't need to block since there isn't such reaction.
 
 % The FPA is designed with parfor loops for better speed, so we first initial the parpool
 parpool(2) % set according to your computational environment
 
+% set the target reactions for FPA
+targetRxns = {'ICDHyrm',myRxnName}; 
 % Finally, run FPA by simply calling:
 [FP,FP_solutions] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty);
+
 % NOTE: If a gene is undetected, this gene is ignored in the GPR parsing
 % step, but other detected genes associated with the same reaction will still 
 % be used to calculate the penalty.
+
+% ATTENTION: if you are doing large scale metabolite centric FPA analysis,
+% please refer to the corresponding section in "TissueFPA.m" on how to
+% programmatically block shortcuts and analyze transporter flux potentials. 
+% This demo is only to illustrate the simplest scenario where the cytosolic
+% production potential of a metabolite is in question.
 %% 5. make relative flux potential (rFP)
 relFP_f = nan(size(FP,1),length(master_expression));% flux potential for forward rxns
 relFP_r = nan(size(FP,1),length(master_expression));% flux potential for reverse rxns
@@ -318,12 +348,11 @@ title('Isocitrate dehydrogenase (NADP+)')
 
 figure(2)
 c = categorical(ExampleTissues);
-bar(c,relFP_r(2,:))
-title('Histamine transporter')
+bar(c,relFP_f(2,:))
+title('Melanin production')
 
 % From the rFP value, we clearly see the superiority of skeletal muscle in
-% TCA cycle flux potential (via ICDHym), and cerebral cortex in 
-% producing/uptaking histamine.
+% TCA cycle flux potential (via ICDHym), and skin in producing melanin.
 
 % By inspecting the flux distribution of ICDHyrm FPA (see NOTE#1), we find that FPA
 % successfully integrates the local expression information of TCA cycle
