@@ -1,4 +1,4 @@
-function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLNames,latentRxn,PFD,Nfit_latent,minTotal_OFD,MILP] = IMATplusplus(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCateg,doMinPFD,latentCAP,modelType,minLowTol,BigModel,verbose)
+function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLNames,latentRxn,PFD,Nfit_latent,minTotal_OFD,MILP, MILP_PFD] = IMATplusplus(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCateg,doMinPFD,latentCAP,modelType,minLowTol,BigModel,verbose)
 % Uses the iMAT++ algorithm (`Yilmaz et al., 2020`) to find the optimal flux distribution that fits into a categorized gene expression data. 
 % iMAT++ algorithm performs multi-step fitting to find a flux distribution
 % that best agrees with rarely, lowly and highly expressed genes in the
@@ -78,6 +78,10 @@ function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLName
 %   MILP:               the MILP problem (in COBRA format) in the final
 %                       flux minimization of OFD. This MILP can serve as a
 %                       startpoint for any custom analysis such as flux minimization or FVA.
+%   MILP_PFD:           the MILP problem (in COBRA format) right before first Flux minimization. 
+%                       This MILP is readily constrained for high/zero
+%                       fitting, and minLow flux fitting. This includes all
+%                       data-driven constraints. 
 %
 % `Yilmaz et al. (2020). Final Tittle and journal.
 %
@@ -110,6 +114,11 @@ if BigModel
     % users can release the MipGap for PFD manually if needed
 else
     relMipGapTol = 1e-12;
+end
+% Check if is running on gurobi solver
+solverOK = changeCobraSolver('gurobi', 'MILP',0);
+if ~solverOK
+    fprintf('The solver parameter auto-tuning is not supported for current solver! Please use Gurobi for best performance!\n')
 end
 %changeCobraSolverParams('LP','optTol', 10e-9);
 %changeCobraSolverParams('LP','feasTol', 10e-9);
@@ -191,9 +200,23 @@ MILProblem.c = c;
 % set the objective sense as minimize 
 MILProblem.osense = 1;
 % sovle the MILP problem
-solution = solveCobraMILP_XL(MILProblem, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', verbose);%we use customized solver interface to fine-tune the solver parameters for gurobi.
+solution = solveCobraMILP_XL(MILProblem, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', verbose);%we use customized solver interface to fine-tune the solver parameters for gurobi.
+if solution.stat ~= 1 && solverOK% when failed to solve, we start to tune solver parameter #NOTE: SPECIFIC TO GUROBI SOLVER!%
+    fprintf('initial solving failed! Start the auto-tune...#1\n')
+    gurobiParameters = struct();
+    gurobiParameters.Presolve = 0;
+    solution = solveCobraMILP_XL(MILProblem,gurobiParameters, 'timeLimit', 600, 'logFile', 'MILPlog', 'printLevel', verbose);
+    if solution.stat ~= 1
+        fprintf('initial solving failed! Start the auto-tune...#2\n')
+        gurobiParameters.NumericFocus = 3;
+        solution = solveCobraMILP_XL(MILProblem,gurobiParameters, 'timeLimit', 600, 'logFile', 'MILPlog', 'printLevel', verbose);
+        if solution.stat ~= 1
+            error('MILP solving failed! Please inspect the reason!');
+        end
+    end
+end        
 if solution.stat ~= 1
-    error('infeasible or violation occured!');
+    error('MILP solving failed! Please inspect the reason!');
 end
 toc()
 fprintf('Minimizing low flux completed! \n');
@@ -226,6 +249,7 @@ else
     MILProblem = solution2constraint(MILProblem,solution);
 end
 % MILProblem.x0 = solution.full;
+MILP_PFD = MILProblem;
 MILP = MILProblem; %write the MILP output. If latent is done, this MILP will be updated.
 if doMinPFD
     % minimize total flux
@@ -243,10 +267,24 @@ if doMinPFD
     MILProblem.c = c;
     fprintf('Minimizing total flux... \n');
     tic()
-    solution = solveCobraMILP_XL(MILProblem, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', verbose);
+    solution = solveCobraMILP_XL(MILProblem, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', verbose);
+    if solution.stat ~= 1 && solverOK% when failed to solve, we start to tune solver parameter #NOTE: SPECIFIC TO GUROBI SOLVER!%
+        fprintf('initial solving failed! Start the auto-tune...#1\n')
+        gurobiParameters = struct();
+        gurobiParameters.Presolve = 0;
+        solution = solveCobraMILP_XL(MILProblem,gurobiParameters, 'timeLimit', 600, 'logFile', 'MILPlog', 'printLevel', verbose);
+        if solution.stat ~= 1
+            fprintf('initial solving failed! Start the auto-tune...#2\n')
+            gurobiParameters.NumericFocus = 3;
+            solution = solveCobraMILP_XL(MILProblem,gurobiParameters, 'timeLimit', 600, 'logFile', 'MILPlog', 'printLevel', verbose);
+            if solution.stat ~= 1
+                error('MILP solving failed! Please inspect the reason!');
+            end
+        end
+    end        
     minTotal = solution.obj;
     if solution.stat ~= 1
-        error('infeasible or violation occured!');
+        error('MILP solving failed! Please inspect the reason!');
     end
     solution.obj = solution.obj*(1+latentCAP); % 1% minFlux constraint!
     MILProblem2 = solution2constraint(MILProblem,solution);

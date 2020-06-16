@@ -40,7 +40,7 @@ function [OpenGene, OpenedHReaction,ClosedLReaction,solution, MILPproblem] = Exp
 % ..Author:     Xuhang Li, Dec 2018 
 
 if nargin < 7 || isempty(runtime)
-    runtime = 7200;
+    runtime = 300;
 end
 if nargin < 8 || isempty(logfile)
     logfile = 'MILPlog';
@@ -131,7 +131,7 @@ MILPproblem.c = c;
 %% Step 4: solve the MILP and generate the output
 solution = solveCobraMILP_XL(MILPproblem, 'timeLimit', runtime, 'logFile', logfile, 'printLevel', verbose);
 if solution.stat ~= 1
-    error('infeasible or violation occured!');
+    error('MILP solving failed! Please inspect the reason!');
 end
 fprintf('...total high gene fitted: %d \n',sum(solution.int(end-length(c_gene)+1:end)));
 yH = boolean(solution.int(1:length(RHindex)) + solution.int((length(RHindex)+length(RLindex)+1):(2*length(RHindex)+length(RLindex))));

@@ -46,6 +46,11 @@ function [FluxDistribution, latentRxn,Nfit_latent, minTotal,MILPproblem_minFlux]
 if nargin < 8 || isempty(verbose)
     verbose = 0;
 end
+% Check if is running on gurobi solver
+solverOK = changeCobraSolver('gurobi', 'MILP',0);
+if ~solverOK
+    fprintf('The solver parameter auto-tuning is not supported for current solver! Please use Gurobi for best performance!\n')
+end
 %% store the constriant index for total flux
 minTotalInd = length(MILProblem.b); %assume the total flux constriant is the last row!
 fprintf('the total flux is constrianed to %.2f \n',MILProblem.b(end));
@@ -145,9 +150,9 @@ while 1
     extraX0_1 = (MILProblem.x0(latentInd) >= epsilon_f_sorted)*1;
     extraX0_2 = (MILProblem.x0(latentInd) <= -epsilon_r_sorted)*1;
     MILPproblem_latent.x0 = [MILProblem.x0(1:length(MILProblem.vartype)); extraX0_1; extraX0_2];
-    solution = solveCobraMILP_XL(MILPproblem_latent, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
+    solution = solveCobraMILP_XL(MILPproblem_latent, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
     if solution.stat ~= 1
-        error('infeasible or violation occured!');
+        error('MILP solving failed! Please inspect the reason!');
     end
     fprintf('...total latent fitted: %d \n',sum(solution.int(end-2*length(latentRxn)+1:end)));
     Nfit_latent = sum(solution.int(end-2*length(latentRxn)+1:end));
@@ -164,9 +169,23 @@ while 1
     c = [c_minFlux;zeros(2*length(latentRxn),1)];
     MILPproblem_minFlux.c = c;
     MILPproblem_minFlux.osense = 1;
-    solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 7200, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
+    solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
+    if solution.stat ~= 1 && solverOK% when failed to solve, we start to tune solver parameter #NOTE: SPECIFIC TO GUROBI SOLVER!%
+        fprintf('initial solving failed! Start the auto-tune...#1\n')
+        gurobiParameters = struct();
+        gurobiParameters.Presolve = 0;
+        solution = solveCobraMILP_XL(MILPproblem_minFlux,gurobiParameters, 'timeLimit', 600, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
+        if solution.stat ~= 1
+            fprintf('initial solving failed! Start the auto-tune...#2\n')
+            gurobiParameters.NumericFocus = 3;
+            solution = solveCobraMILP_XL(MILPproblem_minFlux,gurobiParameters, 'timeLimit', 600, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
+            if solution.stat ~= 1
+                error('MILP solving failed! Please inspect the reason!');
+            end
+        end
+    end   
     if solution.stat ~= 1
-        error('infeasible or violation occured!');
+        error('MILP solving failed! Please inspect the reason!');
     end
     minTotal = solution.obj;
     PFD = solution.full(1:length(model.rxns));

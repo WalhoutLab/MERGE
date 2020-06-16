@@ -64,18 +64,10 @@ myCSM = struct(); %myCSM: my Context Specific Model
 % the list of reactions to block, please see walkthrough_large_scale_FVA.m
 
 % Here, we provide a demo for running FVA on a few reactions.
-% we provided two ways of running FVA. 
 % we can calculate the FVA interval by the MILP output in IMAT++
 targetRxns = {'BIO0010','BIO0001','BIO0002'};
 parforFlag = 0; % whether to run FVA in parallel; we choose "no" for demo
 [FVA_lb, FVA_ub] = FVA_MILP(myCSM.MILP, model, targetRxns,parforFlag);
-
-% alternatively, the FVA could be a standalone analysis. Users could supply the same
-% input for IMATplusplus to the following function, to get the boudaries of
-% queried reactions. This is useful when you only want to know the
-% active/inactive status of a set of reactions.
-minLowTol = 1e-5;
-[myFVA.lb, myFVA.ub] = IMATplusplus_FVA(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCateg,doMinPFD,latentCAP,modelType,minLowTol,targetRxns,parforFlag);
 
 % Together, we show how to calculate the FVA boundaries of three queried reactions for N2_OP50 condition
 
@@ -87,13 +79,17 @@ minLowTol = 1e-5;
 %% prepare the model
 % add paths
 addpath ~/cobratoolbox/%your cobra toolbox path
-addpath /share/pkg/gurobi/810/linux64/matlab/%the gurobi path
+addpath /share/pkg/gurobi/900/linux64/matlab/%the gurobi path
 addpath ./../bins/
 addpath ./../input/
 addpath scripts/
 initCobraToolbox(false);
 % load model
 load('./input/humanModel/Recon2_2.mat');
+% fix a typo in the model
+model.genes(strcmp(model.genes,'HGNC:HGNC:2898')) = {'HGNC:2898'};
+model.genes(strcmp(model.genes,'HGNC:HGNC:987')) = {'HGNC:987'};
+
 % we need to constrain the human model to calculate epsilons
 % As a technical demo, we didn't fine-tune the proper constraint set that
 % may represent the human blood environment. We used a set of artificial
@@ -129,20 +125,27 @@ epsilon_r = epsilon_r(B(A));
 %% flux fitting for each tissue
 % Please notice that, considering the big size of human model, the integration 
 % takes longer than that of the C. elegans model. Each tissue takes around
-% 5 mins in a testing laptop, and the liver may take around 10 mins.
+% ~2 mins in a testing laptop, and some tissues may take longer (i.e, liver).
 
-% we only calculate the fluxes of five major tissues as a technical demo
-ExampleTissues = {'small_intestine','skin','skeletal_muscle','cerebral_cortex','liver'}; 
+cateTbl = readtable('input/humanModel/NX/Tcatf_nx_consensus.tsv','FileType','text');
+% for the sake of time, we only show the application of MERGE pipeline on
+% 17 major tissues.
+ExampleTissues = {'cerebralCortex','spinalCord','midbrain','ponsAndMedulla',...%neuronal tissues (<--> worm neuron/glia)
+                'duodenum','colon','smallIntestine',... % digestive tissues (<--> worm intestine)
+                'ovary','seminalVesicle','testis',... % reproductive tissues (<--> worm gonad)
+                'heartMuscle','smoothMuscle','tongue','skeletalMuscle',... (<--> worm muscle, pharnyx)
+                'skin','kidney','liver'};  %(skin and liver <--> worm hypodermis)
 outputCollections = {};
+TimeComsumed = [];
 for i = 1:length(ExampleTissues)
     sampleName = ExampleTissues{i};
     fprintf('Start to fit %s...\n',sampleName);
     %% load the gene expression data
     % For making the gene category file from raw expression quantification
-    % (i.e, TPM), please refer to "./scripts/makeGeneCategories.m";
-    % Additionally, we provided the original script we used to categorize all the  
-    % human tissues, named "./scripts/makeGeneCategories_humanTissue.m", for users' reference.
-    load(['input/humanModel/categ_',sampleName,'.mat']);
+    % (i.e, TPM), please refer to "./scripts/makeGeneCategories.m" and python tools in the repo;
+    % We premade the categories by the python tool and write results in
+    % individual .mat files.
+    load(['input/humanModel/NX/categ_',sampleName,'.mat']);
     % Please note the category naminclature difference: the "high" refers to
     % "highly expressed genes" in the paper, "dynamic" to "moderately
     % expressed", "low" to "lowly expressed" and "zero" to "rarely expressed"
@@ -181,27 +184,70 @@ for i = 1:length(ExampleTissues)
         
     myCSM = struct(); %myCSM: my Context Specific Model
     try
-        [myCSM.OFD,myCSM.N_highFit,myCSM.N_zeroFit,myCSM.minLow,myCSM.minTotal,myCSM.OpenGene,myCSM.wasteDW,myCSM.HGenes,myCSM.RLNames,myCSM.latentRxn,myCSM.PFD,myCSM.Nfit_latent,myCSM.minTotal_OFD,myCSM.MILP] = ...
+        Tstart = tic;
+        [myCSM.OFD,myCSM.N_highFit,myCSM.N_zeroFit,myCSM.minLow,myCSM.minTotal,myCSM.OpenGene,myCSM.wasteDW,myCSM.HGenes,myCSM.RLNames,myCSM.latentRxn,myCSM.PFD,myCSM.Nfit_latent,myCSM.minTotal_OFD,myCSM.MILP,myCSM.MILP_PFD] = ...
             IMATplusplus(modelTmp,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCateg,doMinPFD,latentCAP,modelType,minLowTol,bigModel);
+        Tlen = toc(Tstart);
     catch ME
         myCSM.errorMessage = getReport(ME);
+        Tlen = NaN;
     end
     % the result is stored in variable "myCSM"
     % For understanding each output field, please see IMATplusplus.m
     % the OFD flux distribution is myCSM.OFD
+    TimeComsumed = [TimeComsumed;Tlen];
     outputCollections = [outputCollections;{myCSM}];
 end
+save(['output/humanTissue/outputCollections_NX.mat'],'outputCollections','ExampleTissues','TimeComsumed');
 %% visualize the flux distributions in a heatmap (optional)
-fluxdata = [outputCollections{1}.OFD,outputCollections{2}.OFD,outputCollections{3}.OFD,outputCollections{4}.OFD,outputCollections{5}.OFD];
+fluxdata = [];
+for i = 1:length(outputCollections)
+    fluxdata = [fluxdata,outputCollections{i}.OFD];
+end
 % normalize by row (/ max)
 fluxdata = fluxdata ./ max(abs(fluxdata),[],2);
 fluxdata(isnan(fluxdata)) = 0;
-cgo=clustergram(fluxdata,'RowLabels',model.rxns,'ColumnLabels',ExampleTissues);
+% only keep internal rxns for clustering
+model.subSystems = [model.subSystems{:}]';
+transportEx = strcmp(model.subSystems,'Transport, extracellular');
+ExRxn = findExcRxns(model);
+ind = ~transportEx & ~ExRxn;
+% make clustergram
+distMethod = 'euclidean';
+cgo=clustergram(fluxdata(ind,:),'RowLabels',model.rxns(ind),'ColumnLabels',ExampleTissues,'RowPDist',distMethod,'ColumnPDist',distMethod);
 c=get(cgo,'ColorMap');
 cpr=[c(:,1) c(:,1) c(:,2)];
 set(cgo,'ColorMap',cpr);
 set(cgo,'Symmetric',true);
 set(cgo,'DisplayRange',1);
+
+%% advanced IMAT++ analysis: Flux Variability Analysis (FVA)
+% As introduced in the paper, we further performed FVA analysis to measure the
+% feasible space of each reaction, which in turn provides a set of
+% reactions to block in FPA analysis. Users can also perform this analysis for
+% their own dataset/model. However, considering the high computational
+% demand, we recommend user to run FVA (of all reactions) on a modern lab server (i.e.,
+% >=20 cores, >= 32g mems). For running FVA on all reactions and getting
+% the list of reactions to block, please see walkthrough_large_scale_FVA.m
+
+% Here, we provide a demo for running FVA on a few reactions.
+% we can calculate the FVA interval by the MILP output in IMAT++
+
+targetRxns = model.rxns([1030,1126]);% some arbitury reactions
+parforFlag = 0; % whether to run FVA in parallel; we choose "no" for demo
+myCSM = outputCollections{1}; % we pick cerebral Cortex for FVA analysis
+
+% we perform FVA also in the BigModel mode
+% In this mode, we perform optimization on a primarily constrained model,
+% right before the first flux minimization. Therefore, we supply the
+% "MILP_PFD" field to FVA_MILP function. Also, we enable bigModel mode by
+% specifying the bigModel parameter.
+[FVA_lb, FVA_ub] = FVA_MILP(myCSM.MILP_PFD, model, targetRxns,parforFlag, bigModel);
+
+% Together, we show how to calculate the FVA boundaries of two queried
+% reactions for human Cerebral Cortex tissue.
+
+
 %% TECHNICAL NOTES ON RUNNING IMAT++
 %% 1. slow computational speed 
 % Although the computational speed of IMAT++ is generally fast, user 
@@ -217,11 +263,10 @@ set(cgo,'DisplayRange',1);
 % Since MILP is a NP-hard problem, even the best solver cannot guarantee to
 % find the optimal solution of every MILP. In some cases, user may see solver complaining
 % "infeasible model" while the input MILP is clearly feasible. This indicates
-% the solver failed to find a feasible solution by its heuristic algorithm. Users can uncomment
-% line 173 and line 228 to enable the pre-defined initial solution, in "IMATplusplus.m".
-% But user should aware that the solver may still get stuck in local
-% optimum when using this option. We recommend users to avoid running into 
-% numerical problems by tuning solvers or trying suggestions provided in note #3.
+% the solver failed to find a feasible solution by its heuristic algorithm. For this, iMAT++ (
+% and FVA) can automatically tune the solver parameter if numerical issues happen. However, this 
+% auto-tune function is only designed for Gurobi. User may need to switch to Gurobi or define their 
+% own tuning process for their solvers.
 %% 3. running IMAT++ on very complex models (such as RECON series)
 % The complex models may experience slow speed in solving the MILP. In addition 
 % to running IMAT++ on a high-performance workstation and using "bigModel" mode, 
@@ -237,5 +282,6 @@ set(cgo,'DisplayRange',1);
 % distribution. User should evaluate the epsilon choice by the flux burden it generates (i.e.,
 % uptake rate of main carbon source).
 %
-% These preprocessings together generally decrease the computation demand to normal level 
-% that can be done in a routine lab server.
+% Normally, the bigModel mode is sufficient to enable MERGE integration of
+% dozens of conditions on a large model (i.e., ~5000 rxns). The above
+% treatment is only useful for super comprehensive model, such as Recon3D.

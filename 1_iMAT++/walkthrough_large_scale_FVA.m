@@ -3,7 +3,7 @@
 % This will guide user to generate the OFD, upper and lower bounds, and
 % the parsed FVA level table for blocking reactions in advanced FPA, for each queried
 % conditions.
-
+%% PART I: THE APPLICATION TO THE GENERIC C. ELEGANS MODEL
 % we continue to use the RNA-seq data from Bulcha et al, Cell Rep (2019) as an example
 
 % And we use generic C. elegans model for demo purpose. Users could run this script on 
@@ -57,7 +57,7 @@ end
 myCluster = parcluster('local');
 myCluster.NumWorkers = 128;
 saveProfile(myCluster);
-parpool(4,'SpmdEnabled',false);% adjust according to your computing environment
+parpool(20,'SpmdEnabled',false);% adjust according to your computing environment
 for i = 1:length(conditions)
     sampleName = conditions{i};
     eval(['myCSM = ',sampleName,';']);
@@ -85,6 +85,8 @@ for z = 1:length(conditions)
             levels_f(i) = 1;
         elseif myFVA.ub(i) > max(epsilon_f(i)-1e-5,1e-5)
             levels_f(i) = 0;%level 0 means "not carry flux in OFD, but in ALT"
+        elseif isnan(myFVA.ub(i))
+            levels_f(i) = nan;
         else
             levels_f(i) = -1;%level -1 means "not carry flux in SLNS"
         end
@@ -95,10 +97,112 @@ for z = 1:length(conditions)
             levels_r(i) = 1;
         elseif -myFVA.lb(i) > max(epsilon_r(i)-1e-5,1e-5)
             levels_r(i) = 0;
+        elseif isnan(myFVA.lb(i))
+            levels_r(i) = nan;
         else
             levels_r(i) = -1;
         end
     end
     save(['output/genericModelDemo/FVA/',conditions{z},'levels_.mat'],'levels_f','levels_r');
+    fprintf('level table of %s is saved!\n',conditions{z});
+end
+
+%% PART II: THE APPLICATION TO ANY METABOLIC MODEL
+% applying IMAT++ to other models is not much different from above.
+% Consistent with the walkthrough of iMAT++, we provide the example of integrating
+% RNA-seq data of 17 human tissues to human model, RECON2.2 (Swainston et al., 2016)
+
+%IMPORTANT NOTICE:
+%THE FOLLOWING COMPUTATION TAKES ~4-5 HOURS IN A 20-CORE LAB SERVER. SO, IF
+%YOU ARE RUNNING IT ON A LAPTOP, YOU MAY EXPECT LONGER TIME FOR THE PROGRAM
+%TO FINISH!
+%% step 1: make the OFDs (SKIPPED)
+% Please refer to walkthrough_generic.m on making OFDs for these 17
+% tissues. Here we directly load the outputs
+
+% prepare the model and epsilons
+% add paths
+addpath ~/cobratoolbox/%your cobra toolbox path
+addpath /share/pkg/gurobi/900/linux64/matlab/%the gurobi path
+addpath ./../bins/
+addpath ./../input/
+addpath scripts/
+initCobraToolbox(false);
+% load model
+load('./input/humanModel/Recon2_2.mat');
+% fix a typo
+model.genes(strcmp(model.genes,'HGNC:HGNC:2898')) = {'HGNC:2898'};
+model.genes(strcmp(model.genes,'HGNC:HGNC:987')) = {'HGNC:987'};
+% constrain the model
+model = defineConstriants(model, 1000,0.005);
+% parseGPR takes huge amount of time, so preparse and integrate with the model
+parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
+model.parsedGPR = parsedGPR;
+model = buildRxnGeneMat(model); % some standard fields are missing in the original model. We generate them
+model = creategrRulesField(model);
+% load epsilons
+load('input/humanModel/epsilon.mat');
+% remove the dead reactions (that cannot carry flux)
+rxns_ori = model.rxns;
+model = removeRxns(model,model.rxns(capacity_f == 0 & capacity_r == 0));
+[A B] = ismember(model.rxns,rxns_ori);
+epsilon_f = epsilon_f(B(A));
+epsilon_r = epsilon_r(B(A));
+%% step 2: calculate FVA
+% define the par cluster (skip if already done)
+% myCluster = parcluster('local');
+% myCluster.NumWorkers = 128;
+% saveProfile(myCluster);
+% parpool(20,'SpmdEnabled',false);% adjust according to your computing environment
+
+% load the OFDs for 21 tissues
+load('output/humanTissue/outputCollections_NX.mat');
+targetRxns = model.rxns; % we calculate the FVA of both X tissue and I tissue
+for i = 1:length(ExampleTissues)
+    fprintf('now starting to calculate for %s... \n',ExampleTissues{i});
+    fitTime = tic();
+    parforFlag = 1;
+    myFVA = struct(); %my context specific model
+    myCSM = outputCollections{strcmp(ExampleTissues,ExampleTissues{i})};
+    [myFVA.lb, myFVA.ub] = FVA_MILP(myCSM.MILP_PFD, model, targetRxns,parforFlag);
+    save(['output/humanTissue/FVA/',ExampleTissues{i},'.mat'],'myFVA');
+    toc(fitTime);
+end
+%% step 3: generate the list of reactions to block in FPA (level tables)
+% we will convert the FVA boundaries to different levels that indicates the
+% active/inactive status. The level 1 means "carry flux in OFD", 0 means "not carry flux in OFD, but in ALT" and
+% -1 means "not carry flux in SLNS". Please refer to the paper for more information. 
+conditions = ExampleTissues;
+for z = 1:length(conditions)
+    eval(['myCSM = ',conditions{z},';']);
+    eval(['myFVA = ',conditions{z},'_FVA;']);
+    levels_f = -1*ones(length(model.rxns),1);
+    levels_r = -1*ones(length(model.rxns),1);
+    for i = 1:length(model.rxns)
+        if myCSM.OFD(i) > 1e-5 % 1e-5 is the tol_flux, see supplement text for details
+            levels_f(i) = 1;%level 1 means "carry flux in OFD"
+        elseif myCSM.OFD(i) > 1e-7 && myFVA.lb(i) > 1e-7 % 1e-7 is the tol_zero, see supplement text for details
+            levels_f(i) = 1;
+        elseif myFVA.ub(i) > max(epsilon_f(i)-1e-5,1e-5)
+            levels_f(i) = 0;%level 0 means "not carry flux in OFD, but in ALT"
+        elseif isnan(myFVA.ub(i))
+            levels_f(i) = nan;
+        else
+            levels_f(i) = -1;%level -1 means "not carry flux in SLNS"
+        end
+
+        if -myCSM.OFD(i) > 1e-5
+            levels_r(i) = 1;
+        elseif -myCSM.OFD(i) > 1e-7 && -myFVA.ub(i) > 1e-7
+            levels_r(i) = 1;
+        elseif -myFVA.lb(i) > max(epsilon_r(i)-1e-5,1e-5)
+            levels_r(i) = 0;
+        elseif isnan(myFVA.lb(i))
+            levels_r(i) = nan;
+        else
+            levels_r(i) = -1;
+        end
+    end
+    save(['output/humanTissue/FVA_levels/',conditions{z},'levels_.mat'],'levels_f','levels_r');
     fprintf('level table of %s is saved!\n',conditions{z});
 end
