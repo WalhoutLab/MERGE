@@ -28,14 +28,14 @@ model.S(ismember(model.mets,{'atp_I[c]','h2o_I[c]','adp_I[c]','h_I[c]','pi_I[c]'
 parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
 model.parsedGPR = parsedGPR;
 %% 2. load the expression files, distance matrix, and other optional inputs
-% load expression files
+% ```load expression files```
 % expression matrix can be in plain text and in any normalized
 % quantification metric like TPM or FPKM.
 
 % we use the RNA-seq data from Bulcha et al, Cell Rep (2019) as an example
 expTbl = readtable('exampleExpression.csv');
 
-% preprocess the expression table
+% ```preprocess the expression table```
 % to facilate the future use of the expression of many samples, we
 % re-organize it into a structure variable.
 % NOTE: the FPA matrix will be in the same order as the master_expression!
@@ -45,6 +45,22 @@ expTbl = readtable('exampleExpression.csv');
 conditions = {'N2_OP50', 'N2_B12', 'nhr10_OP50','nhr10_B12'};
 % make a new master_expression for these four conditions.
 master_expression = {};% we call this variable "master_expression"
+
+% ```REQUIREMENT OF "master_expression"```
+% To standardize the format and symbols of different expression matrix, we 
+% use a "master_expression" variables as the expression input of FPA. The
+% format requirements are as follows:
+% (1) it must be a cell arrary of structure variables;
+% (2) each structure variable contains the expression information of one
+%     condition; and the order of the structure variables determines the
+%     order of FP values in the output;
+% (3) each structure variable must contain two fields: "genes" amd "value".
+%     "genes" and "value" should be of equal length.
+% (4) All the input "genes" should be measured in all conditions. In other
+%     words, it is not recommend to have different "genes" list in
+%     different conditions. 
+
+% make the master_expression variable
 geneInd = ismember(expTbl.Gene_name, model.genes); % get the index of genes in the model
 for i = 1:length(conditions)
     expression = struct();
@@ -53,7 +69,7 @@ for i = 1:length(conditions)
     master_expression{i} = expression;
 end
 
-% load the distance matrix
+% ```load the distance matrix```
 distance_raw = readtable('./../MetabolicDistance/Output/distanceMatrix.txt','FileType','text','ReadRowNames',true); % we load from the output of the distance calculator. For usage of distance calculator, please refer to the section in Github
 labels = distance_raw.Properties.VariableNames;
 labels = cellfun(@(x) [x(1:end-1),'_',x(end)],labels,'UniformOutput',false);
@@ -65,7 +81,8 @@ for i = 1:size(distMat_min,1)
     end
 end
 distMat = distMat_min;
-% load the special penalties - We set penalty for all Exchange, Demand,
+% ```load the special penalties```
+% - We set penalty for all Exchange, Demand,
 % Degradation and Sink reactions to 0, to not penalize the external reactions
 manualPenalty = table2cell(readtable('manualPenalty_generic.csv','ReadVariableNames',false,'Delimiter',','));
 
@@ -76,18 +93,18 @@ manualPenalty = table2cell(readtable('manualPenalty_generic.csv','ReadVariableNa
 % manualDist = {};
 
 %% 3. run basic FPA analysis
-% setup some basic parameters for FPA
+% ```setup some basic parameters for FPA```
 n = 1.5; % distance order
 changeCobraSolverParams('LP','optTol', 10e-9); % solver parameter
 changeCobraSolverParams('LP','feasTol', 10e-9); % solver parameter
 
-% we perform FPA analysis for two reactions as an example
+% ```we perform FPA analysis for two reactions as an example```
 targetRxns = {'RM04432';'RCC0005'};
 
 % The FPA is designed with parfor loops for better speed, so we first initial the parpool
 parpool(4)
 
-% Then, run FPA by calling:
+% ```Then, run FPA by calling:```
 [FP,FP_solutions] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty);
 
 % NOTE: If a gene is undetected, this gene is ignored in the GPR parsing
@@ -114,7 +131,7 @@ end
 % calculated the level tables for these four conditions in the FVA
 % walkthrough).
 
-% then, let's merge the level tables for each condition
+% ```then, let's merge the level tables for each condition```
 for i = 1:length(conditions)
     load(['./../1_iMAT++/output/genericModelDemo/FVA/',conditions{i},'levels_.mat']);
     levelTbl_f(:,i) = levels_f;
@@ -126,7 +143,7 @@ end
 % to block according to the level tables.
 blockList = getBlockList(model,levelTbl_f,levelTbl_r);
 
-% run the FPA again with blocklist input
+% ```run the FPA again with blocklist input```
 [FP_adv,FP_solutions_adv] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty,{},max(distMat(~isinf(distMat))),blockList);
 % relative potential
 relFP_f_adv = nan(size(FP_adv,1),length(master_expression));%flux potential for forward rxns
@@ -159,8 +176,19 @@ title('advanced rFP of Propanoyl-CoA:(acceptor) 2,3-oxidoreductase flux')
 %% PART II: THE APPLICATION TO ANY METABOLIC MODEL
 % Applying FPA to other models follows the same procedure. Consistent with the guidence for iMAT++, 
 % here we provide an example of integrating RNA-seq data of human tissue expressions to human model, RECON2.2 (Swainston et al., 2016)
+
+%% start the parpool (skip if already started)
+% The FPA is designed with parfor loops for better speed, so we first initial the parpool
+parpool(2); % set according to your computational environment
 %% 1. prepare the model
+addpath ./input/
+addpath ./scripts/
+addpath input/
+addpath ./../bins/
 load('./../1_IMAT++/input/humanModel/Recon2_2.mat');
+% fix a typo
+model.genes(strcmp(model.genes,'HGNC:HGNC:2898')) = {'HGNC:2898'};
+model.genes(strcmp(model.genes,'HGNC:HGNC:987')) = {'HGNC:987'};
 % users may add their own constraints here (i.e., nutriential input constraints)
 % we define the constraints according to the media composition
 model = defineConstriants(model, 1000,0);% NOTE: This function is different from the same-name function in IMAT++ folder!
@@ -213,29 +241,46 @@ writecell(byProducts,'distance_inputs/byproducts_regular.txt');
 % fprintf(fid,'%s\n',byProducts{:});
 % fclose(fid);
 %% 3. load the expression files, distance matrix, and other optional inputs
-% load expression files
+% ```load expression files```
 % expression matrix can be in plain text and in any normalized quantification metric like TPM or FPKM.
-expTbl = readtable('./../1_IMAT++/input/humanModel/rna_tissue_hpa.xlsx');% this table provides TPM for all tissue (protein coding genes only)
+expTbl = readtable('./../1_IMAT++/input/humanModel/NX/rna_tissue_consensus_metabolic.csv');% this table provides TPM for all tissue (protein coding genes only)
 
-% preprocess the expression table
+% ```preprocess the expression table```
 % To facilate the future use of the expression of many samples, we re-organize it into a structure variable.
 % the order of final FP matrix will be in the same order as the master_expression
 master_expression = {};% we call this variable "master_expression"
+
+% REQUIREMENT OF "master_expression"
+% (1) it must be a cell arrary of structure variables;
+% (2) each structure variable contains the expression information of one
+%     condition; and the order of the structure variables determines the
+%     order of FP values in the output;
+% (3) each structure variable must contain two fields: "genes" amd "value".
+%     "genes" and "value" should be of equal length.
+% (4) All the input "genes" should be measured in all conditions. In other
+%     words, it is not recommend to have different "genes" list in
+%     different conditions. 
+
 conditions = unique(expTbl.Tissue); % this is the order of conditions in the FP matrix and master_expression
-targetGenes = intersect(expTbl.HGNC, model.genes); % genes both detected and in the model
+% determine the genes that are measured in all conditions (requirement #4)
+targetGenes = intersect(expTbl.HGNC(strcmp(expTbl.Tissue,conditions{1})), model.genes); % genes both detected and in the model
+for i = 2: length(conditions)
+    targetGenes = intersect(expTbl.HGNC(strcmp(expTbl.Tissue,conditions{i})),targetGenes); % genes both detected and in the model
+end
+% make the "master_expression"
 for i = 1:length(conditions) % we have 60 samples in the example matrix 
     expression = struct();
     expression.genes = targetGenes; 
     tissueInd = strcmp(expTbl.Tissue,conditions{i});
     geneLabel = expTbl.HGNC(tissueInd);
-    TPMval = expTbl.TPM(tissueInd);
+    NXval = expTbl.NX(tissueInd);
     % reorder
     [A B] = ismember(targetGenes,geneLabel);
-    expression.value = TPMval(B(A));
+    expression.value = NXval(B(A));
     master_expression{i} = expression;
 end
 
-% load the distance matrix
+% ```load the distance matrix```
 % users can uncomment the following codes to load from distance calculator
 % output; here we load directly from saved matlab variable because of the file size restriction of GitHub
 
@@ -254,7 +299,7 @@ for i = 1:size(distMat_min,1)
 end
 distMat = distMat_min;
 
-% load the special penalties 
+% ```load the special penalties```
 % In general, we recommend to set penalty for all Exchange, Demand,
 % and Sink reactions to 0, to not penalize the external reactions. Users 
 % may need to interactively tune their special penalties for the best flux
@@ -270,10 +315,13 @@ manualPenalty(:,2) = mat2cell(zeros(length(manualPenalty),1),ones(length(manualP
 % manualDist = {};
 
 %% 4. run basic FPA analysis
-% we only calculate FPA for the same five tissues in iMAT++ demo, for the sake of time.
-% (calculating FPA is fast, but parsing expression levels based on GPR takes more time for many conditions)
+% we calculate FPA for the same 17 tissues in iMAT++ demo
+ExampleTissues = {'cerebral cortex','spinal cord','midbrain','pons and medulla',...%neuronal tissues (<--> worm neuron/glia)
+                'duodenum','colon','small intestine',... % digestive tissues (<--> worm intestine)
+                'ovary','seminal vesicle','testis',... % reproductive tissues (<--> worm gonad)
+                'heart muscle','smooth muscle','tongue','skeletal muscle',... (<--> worm muscle, pharnyx)
+                'skin','kidney','liver'};  %(skin and liver <--> worm hypodermis)
 
-ExampleTissues = {'small intestine','skin','skeletal muscle','cerebral cortex','liver'}; 
 [A B] = ismember(ExampleTissues,conditions);
 master_expression = master_expression(B(A));
 % the FPA will be reported in the order of small intestine, skin, skeletal
@@ -284,7 +332,7 @@ n = 1.5; % distance order
 changeCobraSolverParams('LP','optTol', 10e-9);
 changeCobraSolverParams('LP','feasTol', 10e-9);
 
-% we perform FPA analysis for two reactions as an example
+% ```we perform FPA analysis for two reactions as an example```
 % we use: 
 % (1) isocitrate dehydrogenase reaction (reaction centric) and 
 % (2) the cellular demand of melanin (metabolite centric)
@@ -293,10 +341,10 @@ changeCobraSolverParams('LP','feasTol', 10e-9);
 % (You don't need to add the new reaction if the demand/sink already exists in the model)
 myMet = 'melanin[c]';
 myRxnName = ['DMN',myMet];
-model = addReaction(model,myRxnName,'reactionFormula',[myMet,' -->'],'geneRule', 'NA','printLevel',0);
+model_new = addReaction(model,myRxnName,'reactionFormula',[myMet,' -->'],'geneRule', 'NA','printLevel',0);
 % we need to update the distance matrix because of adding the new demand reaction
 % (this may take a while)
-[distMat_raw,labels] = updateDistance(myRxnName,model,distMat_raw,labels,max(max(distMat_raw)));   
+[distMat_raw,labels] = updateDistance(myRxnName,model_new,distMat_raw,labels,max(max(distMat_raw)));   
 distMat = distMat_raw;
 for ii = 1:size(distMat,1)
     for jj = 1:size(distMat,2)
@@ -309,13 +357,12 @@ end
 % shortcut flux in FPA (see methods for explanation). For the melanin demo,
 % we don't need to block since there isn't such reaction.
 
-% The FPA is designed with parfor loops for better speed, so we first initial the parpool
-parpool(2) % set according to your computational environment
 
 % set the target reactions for FPA
 targetRxns = {'ICDHyrm',myRxnName}; 
 % Finally, run FPA by simply calling:
-[FP,FP_solutions] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty);
+[FP,FP_solutions] = FPA(model_new,targetRxns,master_expression,distMat,labels,n, manualPenalty);
+
 
 % NOTE: If a gene is undetected, this gene is ignored in the GPR parsing
 % step, but other detected genes associated with the same reaction will still 
@@ -339,22 +386,78 @@ end
 % the relFP_f and relFP_r. Rows are the two queried reactions and columns
 % are the 5 queried tissues. For example, relFP_f(1,1) is the rFP of the forward
 % direction of ICDHym, for the first tissue, small intestine.
+%% 4. run advanced FPA analysis
+% As part of the MERGE package, we recommend user to integrate the result
+% of iMAT++ to the FPA analysis. That's saying, to block all reactions that
+% don't carry flux in the feasible solution space. These reactions are
+% identified by FVA analysis conjoined with IMAT++. Please refer to walkthrough
+% tutorial of IMAT++ and "1_IMAT++/walkthrough_large_scale_FVA.m" for getting the FVA result.
 
+% Assuming the FVA is done, we should have the level table ready for each condition (we
+% calculated the level tables for these four conditions in the FVA
+% walkthrough).
+
+% then, let's merge the level tables for each tissue
+% tissue name in iMAT++ FVA is modified since space is not allowed in file names
+ExampleTissues_name2 = {'cerebralCortex','spinalCord','midbrain','ponsAndMedulla',...%neuronal tissues (<--> worm neuron/glia)
+                'duodenum','colon','smallIntestine',... % digestive tissues (<--> worm intestine)
+                'ovary','seminalVesicle','testis',... % reproductive tissues (<--> worm gonad)
+                'heartMuscle','smoothMuscle','tongue','skeletalMuscle',... (<--> worm muscle, pharnyx)
+                'skin','kidney','liver'};  %(skin and liver <--> worm hypodermis)
+
+for i = 1:length(ExampleTissues_name2)
+    load(['./../1_iMAT++/output/humanTissue/FVA_levels/',ExampleTissues_name2{i},'_levels.mat']);
+    levelTbl_f(:,i) = levels_f;
+    levelTbl_r(:,i) = levels_r;
+end
+% NOTE: the tissues in levelTbl are in the same order as that in FPA
+% analysis
+
+% because the FPA is done using the irreversible model, so the rxnID is
+% different from the original. We provided a function to get the rxnIDs
+% to block according to the level tables.
+
+blockList = getBlockList(model,levelTbl_f,levelTbl_r);
+
+% run the FPA again with blocklist input
+[FP_adv,FP_solutions_adv] = FPA(model_new,targetRxns,master_expression,distMat,labels,n, manualPenalty,{},max(distMat(~isinf(distMat))),blockList);
+% relative potential
+relFP_f_adv = nan(size(FP_adv,1),length(master_expression));%flux potential for forward rxns
+relFP_r_adv = nan(size(FP_adv,1),length(master_expression));%flux potential for reverse rxns
+for i = 1:size(FP_adv,1)
+    for j = 1:length(master_expression)
+        relFP_f_adv(i,j) = FP_adv{i,j}(1) ./ FP_adv{i,end}(1);
+        relFP_r_adv(i,j) = FP_adv{i,j}(2) ./ FP_adv{i,end}(2);
+    end
+end
 %% 6. Brief Interpretation 
 figure(1)
 c = categorical(ExampleTissues);
 bar(c,relFP_f(1,:))
-title('Isocitrate dehydrogenase (NADP+)')
+title('Isocitrate dehydrogenase (NADP+) - plain FPA')
 
 figure(2)
 c = categorical(ExampleTissues);
 bar(c,relFP_f(2,:))
-title('Melanin production')
+title('Melanin production - plain FPA')
 
-% From the rFP value, we clearly see the superiority of skeletal muscle in
+figure(3)
+c = categorical(ExampleTissues);
+bar(c,relFP_f_adv(1,:))
+title('Isocitrate dehydrogenase (NADP+) - advanced FPA')
+
+figure(4)
+c = categorical(ExampleTissues);
+bar(c,relFP_f_adv(2,:))
+title('Melanin production - advanced FPA')
+% From the rFP value, we clearly see the superiority of skeletal muscle (and other muscles) in
 % TCA cycle flux potential (via ICDHym), and skin in producing melanin.
 
-% By inspecting the flux distribution of ICDHyrm FPA (see NOTE#1), we find that FPA
+% Secondly, we can find that the tissue-specific networks from FVA blocks
+% the flux potential of melanin production in all tissues except from skin.
+% Similarly, testis is blocked for isocitrate dehydrogenase potential. 
+
+% Finally, by inspecting the flux distribution of ICDHyrm FPA (see NOTE#1), we find that FPA
 % successfully integrates the local expression information of TCA cycle
 % (with a shunt) for analyzing the flux potential of isocitrate
 % dehydrogenase. The flux route is pyr --> accoa --> cit --> icit --> akg --> mal --> oaa --> cit.
@@ -363,10 +466,10 @@ title('Melanin production')
 %% 1. To inspect the flux distribution for reported FP values
 % the flux distribution is reported for the irreversible model, and is in the "FP_solutions". 
 % To inspect the flux distribution, first get irreversible model
-model_irrev = convertToIrreversible(model); % convert to irreversible model
+model_irrev = convertToIrreversible(model_new); % convert to irreversible model
 
 % Then, we provide a simple flux tracker for easy-inspection.
-mytbl = listRxn(model_irrev,FP_solutions{1,3}{1}.full,'icit[m]');
+mytbl = listRxn(model_irrev,FP_solutions{1,14}{1}.full,'icit[m]');
 % mytbl: column#1: rxnID, col#2: rxn flux, col#3: rxn formula, col#4: flux
 % contribution to the queried metabolite.
 
@@ -382,9 +485,9 @@ mytbl = listRxn(model_irrev,FP_solutions{1,3}{1}.full,'icit[m]');
 % sumation of all levels in the GPR parsing step. 
 
 % Expression Data Type:
-% By default, we assume a regular RNA-seq profile is used as expression
+% By default, we assume that the RNA-seq profile is used as expression
 % input. Therefore, we, by default, add a pseudocount of 1 to all the genes, to 
 % offset the noise when a gene is lowly expressed. If one would like to use
 % other pseudocount value, or not add pseudocount, please modify
-% ./scripts/calculatePenalty.m line 45. Please be advised that we DO NOT
+% ./scripts/calculatePenalty.m line 48. Please be advised that we DO NOT
 % recommend adding pseudocount for microarray dataset!

@@ -12,6 +12,9 @@ function penalty = calculatePenalty(model,master_expression,manualPenalty)
 %
 %    penalty = calculatePenalty(model,master_expression,manualPenalty)
 %
+% NOTE: penalty caluclation uses parfor by default. Please change the parfor loop
+ % to for loop if parfor is not supported in your environment
+%
 % INPUTS:
 %    model:             input model (COBRA model structure)
 %    master_expression: the expression profiles of queried conditions. The
@@ -40,7 +43,7 @@ function penalty = calculatePenalty(model,master_expression,manualPenalty)
 %% step1: mapping the gene-centric expression levels to reactions
 levels = cell(length(model.rxns),length(master_expression));
 status = -1*ones(length(model.rxns),length(master_expression));
-for i = 1:length(master_expression)
+parfor i = 1:length(master_expression)
     expression = master_expression{i};
     expression.value = expression.value + 1; %add 1 pseudocount to avoid numerical error
     [levels(:,i), status(:,i)] = gene_to_reaction_levels(model, expression.genes, expression.value, @min, @(x,y)(x+y));%GPR parser to convert the expression of genes to levels of "AND" gated blocks

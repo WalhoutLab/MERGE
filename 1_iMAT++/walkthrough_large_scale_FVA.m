@@ -103,7 +103,7 @@ for z = 1:length(conditions)
             levels_r(i) = -1;
         end
     end
-    save(['output/genericModelDemo/FVA/',conditions{z},'levels_.mat'],'levels_f','levels_r');
+    save(['output/genericModelDemo/FVA/',conditions{z},'_levels.mat'],'levels_f','levels_r');
     fprintf('level table of %s is saved!\n',conditions{z});
 end
 
@@ -140,6 +140,7 @@ parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
 model.parsedGPR = parsedGPR;
 model = buildRxnGeneMat(model); % some standard fields are missing in the original model. We generate them
 model = creategrRulesField(model);
+model_ori = model;
 % load epsilons
 load('input/humanModel/epsilon.mat');
 % remove the dead reactions (that cannot carry flux)
@@ -172,37 +173,48 @@ end
 % we will convert the FVA boundaries to different levels that indicates the
 % active/inactive status. The level 1 means "carry flux in OFD", 0 means "not carry flux in OFD, but in ALT" and
 % -1 means "not carry flux in SLNS". Please refer to the paper for more information. 
-conditions = ExampleTissues;
-for z = 1:length(conditions)
-    eval(['myCSM = ',conditions{z},';']);
-    eval(['myFVA = ',conditions{z},'_FVA;']);
-    levels_f = -1*ones(length(model.rxns),1);
-    levels_r = -1*ones(length(model.rxns),1);
-    for i = 1:length(model.rxns)
-        if myCSM.OFD(i) > 1e-5 % 1e-5 is the tol_flux, see supplement text for details
-            levels_f(i) = 1;%level 1 means "carry flux in OFD"
-        elseif myCSM.OFD(i) > 1e-7 && myFVA.lb(i) > 1e-7 % 1e-7 is the tol_zero, see supplement text for details
-            levels_f(i) = 1;
-        elseif myFVA.ub(i) > max(epsilon_f(i)-1e-5,1e-5)
-            levels_f(i) = 0;%level 0 means "not carry flux in OFD, but in ALT"
-        elseif isnan(myFVA.ub(i))
-            levels_f(i) = nan;
-        else
-            levels_f(i) = -1;%level -1 means "not carry flux in SLNS"
-        end
 
-        if -myCSM.OFD(i) > 1e-5
-            levels_r(i) = 1;
-        elseif -myCSM.OFD(i) > 1e-7 && -myFVA.ub(i) > 1e-7
-            levels_r(i) = 1;
-        elseif -myFVA.lb(i) > max(epsilon_r(i)-1e-5,1e-5)
-            levels_r(i) = 0;
-        elseif isnan(myFVA.lb(i))
-            levels_r(i) = nan;
-        else
-            levels_r(i) = -1;
+% NOTICE FOR RECON2.2
+% To speed up iMAT++, we removed reactions that don't carry flux (see
+% aboved), such as dead end reactions. However, these dead-end reactions
+% may still be useful in metabolite-centric FPA analysis. So, we assign
+% these reactions level "0" to not block them in FPA.
+
+for z = 1:length(ExampleTissues)
+    myCSM = outputCollections{z};
+    load(['output/humanTissue/FVA/',ExampleTissues{z},'.mat'])
+    
+    % we assign levels for all reactions in the original model, since we use the original model in FPA
+    levels_f = zeros(length(model_ori.rxns),1);
+    levels_r = zeros(length(model_ori.rxns),1);
+    for i = 1:length(model_ori.rxns) 
+        trimedInd = strcmp(model.rxns,model_ori.rxns{i});
+        if any(trimedInd)
+            if myCSM.OFD(trimedInd) > 1e-5 % 1e-5 is the tol_flux, see supplement text for details
+                levels_f(i) = 1;%level 1 means "carry flux in OFD"
+            elseif myCSM.OFD(trimedInd) > 1e-7 && myFVA.lb(trimedInd) > 1e-7 % 1e-7 is the tol_zero, see supplement text for details
+                levels_f(i) = 1;
+            elseif myFVA.ub(trimedInd) > max(epsilon_f(trimedInd)-1e-5,1e-5)
+                levels_f(i) = 0;%level 0 means "not carry flux in OFD, but in ALT"
+            elseif isnan(myFVA.ub(trimedInd))
+                levels_f(i) = nan;
+            else
+                levels_f(i) = -1;%level -1 means "not carry flux in SLNS"
+            end
+
+            if -myCSM.OFD(trimedInd) > 1e-5
+                levels_r(i) = 1;
+            elseif -myCSM.OFD(trimedInd) > 1e-7 && -myFVA.ub(trimedInd) > 1e-7
+                levels_r(i) = 1;
+            elseif -myFVA.lb(trimedInd) > max(epsilon_r(trimedInd)-1e-5,1e-5)
+                levels_r(i) = 0;
+            elseif isnan(myFVA.lb(trimedInd))
+                levels_r(i) = nan;
+            else
+                levels_r(i) = -1;
+            end
         end
     end
-    save(['output/humanTissue/FVA_levels/',conditions{z},'levels_.mat'],'levels_f','levels_r');
-    fprintf('level table of %s is saved!\n',conditions{z});
+    save(['output/humanTissue/FVA_levels/',ExampleTissues{z},'_levels.mat'],'levels_f','levels_r');
+    fprintf('level table of %s is saved!\n',ExampleTissues{z});
 end
