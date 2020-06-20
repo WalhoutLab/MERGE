@@ -156,16 +156,17 @@ epsilon_r = epsilon_r(B(A));
 % saveProfile(myCluster);
 % parpool(20,'SpmdEnabled',false);% adjust according to your computing environment
 
-% load the OFDs for 21 tissues
+% load the OFDs for 17 tissues
 load('output/humanTissue/outputCollections_NX.mat');
 targetRxns = model.rxns; % we calculate the FVA of both X tissue and I tissue
 for i = 1:length(ExampleTissues)
     fprintf('now starting to calculate for %s... \n',ExampleTissues{i});
     fitTime = tic();
     parforFlag = 1;
+    BigModel = 1;
     myFVA = struct(); %my context specific model
     myCSM = outputCollections{strcmp(ExampleTissues,ExampleTissues{i})};
-    [myFVA.lb, myFVA.ub] = FVA_MILP(myCSM.MILP_PFD, model, targetRxns,parforFlag);
+    [myFVA.lb, myFVA.ub] = FVA_MILP(myCSM.MILP_PFD, model, targetRxns,parforFlag,BigModel);
     save(['output/humanTissue/FVA/',ExampleTissues{i},'.mat'],'myFVA');
     toc(fitTime);
 end

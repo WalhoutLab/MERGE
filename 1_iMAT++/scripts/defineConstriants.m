@@ -17,6 +17,10 @@ function model = defineConstriants(model, infDefault,smallFluxDefault)
 % `Yilmaz et al. (2020). Final Tittle and journal.
 % .. Author: - Xuhang Li, Mar 2020
 
+% since we are not aiming at precisely define nutrient condition in human
+% blood circulaton, we use a set of artificial constraints. The constriants
+% are originally used to mimic DMEM culture media. 
+
 % set infinite
 model.ub(isinf(model.ub)) = infDefault;
 model.lb(isinf(model.lb)) = -infDefault;
@@ -59,15 +63,4 @@ model.lb(ismember(model.rxns,{'EX_gln_L(e)'})) = -0.5;
 model.lb(ismember(model.rxns,{'EX_gthrd(e)'})) = -0.05;
 model.lb(ismember(model.rxns,{'EX_glc(e)'})) = -5;%major carbon source in the media
 
-% we fix few blocked reactions by adding transporters
-if ~any(strcmp(model.rxns,'transport_dhap'))%not modified model
-    % fix some conflicts between model reconstruction and the flux data
-    % dhap can only be uptaken but cannot carry influx ==> add a transport rxn
-    model = addReaction(model,['transport_dhap'],'reactionFormula','dhap[e] <==> dhap[c]','geneRule', 'NA','printLevel',1);
-    % EX_hom_L(e) cannot carry flux ==> add a celluar demand for this
-    % it is a co-transporting circular met
-    model = addDemandReaction(model,'hom_L[c]');
-    % EX_sbt-d(e) can only be uptaken but cannot carry influx ==> change transport reversibility
-    model.lb(strcmp(model.rxns,'SBTle')) = -infDefault;
-end
 end

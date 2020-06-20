@@ -125,7 +125,7 @@ epsilon_r = epsilon_r(B(A));
 %% flux fitting for each tissue
 % Please notice that, considering the big size of human model, the integration 
 % takes longer than that of the C. elegans model. Each tissue takes around
-% ~2 mins in a testing laptop, and some tissues may take longer (i.e, liver).
+% ~2 mins in a testing laptop, and few tissues may take longer (i.e, liver 20 mins).
 
 cateTbl = readtable('input/humanModel/NX/Tcatf_nx_consensus.tsv','FileType','text');
 % for the sake of time, we only show the application of MERGE pipeline on
@@ -264,7 +264,7 @@ myCSM = outputCollections{1}; % we pick cerebral Cortex for FVA analysis
 % find the optimal solution of every MILP. In some cases, user may see solver complaining
 % "infeasible model" while the input MILP is clearly feasible. This indicates
 % the solver failed to find a feasible solution by its heuristic algorithm. For this, iMAT++ (
-% and FVA) can automatically tune the solver parameter if numerical issues happen. However, this 
+% and FVA) can automatically tune the solver parameter when it happens. However, this 
 % auto-tune function is only designed for Gurobi. User may need to switch to Gurobi or define their 
 % own tuning process for their solvers.
 %% 3. running IMAT++ on very complex models (such as RECON series)

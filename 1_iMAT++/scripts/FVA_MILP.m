@@ -68,57 +68,17 @@ if parforFlag
         MILPproblem_minFlux.c = c;
         MILPproblem_minFlux.osense = 1;
         %fprintf('optimizing for the lb of %s...\n',targetRxn{:});
-        if solverOK % for best Gurobi parallel performance, we limit 1 core per parfor thread
-            gurobiParameters = struct();
-            gurobiParameters.Threads = 1;
-            solution = solveCobraMILP_XL(MILPproblem_minFlux,gurobiParameters, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', 0,'relMipGapTol',relMipGapTol);
-        else % go with default for other solvers
-            solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', 0,'relMipGapTol',relMipGapTol);
-        end
-        if solution.stat ~= 1 && solverOK% when failed to solve, we start to tune solver parameter #NOTE: SPECIFIC TO GUROBI SOLVER!%
-            gurobiParameters = struct();
-            gurobiParameters.Presolve = 0;
-            % we dont limit to 1 core to push solver search solution space
-            solution = solveCobraMILP_XL(MILPproblem_minFlux,gurobiParameters, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', 0,'relMipGapTol',relMipGapTol);
-            if solution.stat ~= 1
-                gurobiParameters.NumericFocus = 3;
-                solution = solveCobraMILP_XL(MILPproblem_minFlux,gurobiParameters, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', 0,'relMipGapTol',relMipGapTol);
-                if solution.stat ~= 1
-                    fprintf('infeasible or violation occured!(%s)\n',targetRxn{:});
-                    FVA_lb(i) = nan;
-                end
-            end
-        end        
-        if solution.stat == 1
-            FVA_lb(i) = solution.obj;
-            fprintf('lower boundary of %s found to be %f. \n',targetRxn{:},solution.obj);
-        end
+        % solve the MILP
+        solution = autoTuneSolveMILP(MILPproblem_minFlux,solverOK,relMipGapTol,targetRxn{:});       
+        FVA_lb(i) = solution.obj;
+        fprintf('lower boundary of %s found to be %f. \n',targetRxn{:},solution.obj);
+
         %fprintf('optimizing the the ub of %s...\n',targetRxn{:});
         MILPproblem_minFlux.osense = -1;
-        if solverOK % for best Gurobi parallel performance, we limit 1 core per parfor thread
-            gurobiParameters = struct();
-            gurobiParameters.Threads = 1;
-            solution = solveCobraMILP_XL(MILPproblem_minFlux,gurobiParameters, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', 0,'relMipGapTol',relMipGapTol);
-        else % go with default for other solvers
-            solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', 0,'relMipGapTol',relMipGapTol);
-        end
-        if solution.stat ~= 1 && solverOK% when failed to solve, we start to tune solver parameter #NOTE: SPECIFIC TO GUROBI SOLVER!%
-            gurobiParameters = struct();
-            gurobiParameters.Presolve = 0;
-            solution = solveCobraMILP_XL(MILPproblem_minFlux,gurobiParameters, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', 0,'relMipGapTol',relMipGapTol);
-            if solution.stat ~= 1
-                gurobiParameters.NumericFocus = 3;
-                solution = solveCobraMILP_XL(MILPproblem_minFlux,gurobiParameters, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', 0,'relMipGapTol',relMipGapTol);
-                if solution.stat ~= 1
-                    fprintf('infeasible or violation occured!(%s)\n',targetRxn{:});
-                    FVA_ub(i) = nan;
-                end
-            end
-        end   
-        if solution.stat == 1
-            FVA_ub(i) = solution.obj;
-            fprintf('upper boundary of %s found to be %f. \n',targetRxn{:},solution.obj);
-        end
+        % solve the MILP
+        solution = autoTuneSolveMILP(MILPproblem_minFlux,solverOK,relMipGapTol,targetRxn{:}); 
+        FVA_ub(i) = solution.obj;
+        fprintf('upper boundary of %s found to be %f. \n',targetRxn{:},solution.obj);
     end
 else %same thing but in for loop
     for i = 1:length(targetRxns)
@@ -131,44 +91,17 @@ else %same thing but in for loop
         MILPproblem_minFlux.osense = 1;
         %fprintf('optimizing for the lb of %s...\n',targetRxn{:});
         % when parfor is not used, go with default (use up cores)
-        solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', 0,'relMipGapTol',relMipGapTol);
-        if solution.stat ~= 1 && solverOK% when failed to solve, we start to tune solver parameter #NOTE: SPECIFIC TO GUROBI SOLVER!%
-            gurobiParameters = struct();
-            gurobiParameters.Presolve = 0;
-            solution = solveCobraMILP_XL(MILPproblem_minFlux,gurobiParameters, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', 0,'relMipGapTol',relMipGapTol);
-            if solution.stat ~= 1
-                gurobiParameters.NumericFocus = 3;
-                solution = solveCobraMILP_XL(MILPproblem_minFlux,gurobiParameters, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', 0,'relMipGapTol',relMipGapTol);
-                if solution.stat ~= 1
-                    fprintf('infeasible or violation occured!(%s)\n',targetRxn{:});
-                    FVA_lb(i) = nan;
-                end
-            end
-        end        
-        if solution.stat == 1
-            FVA_lb(i) = solution.obj;
-            fprintf('lower boundary of %s found to be %f. \n',targetRxn{:},solution.obj);
-        end
+        % solve the MILP
+        solution = autoTuneSolveMILP(MILPproblem_minFlux,solverOK,relMipGapTol,targetRxn{:},0);       
+        FVA_lb(i) = solution.obj;
+        fprintf('lower boundary of %s found to be %f. \n',targetRxn{:},solution.obj);
+
         %fprintf('optimizing the the ub of %s...\n',targetRxn{:});
         MILPproblem_minFlux.osense = -1;
-        solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', 0,'relMipGapTol',relMipGapTol);
-        if solution.stat ~= 1 && solverOK% when failed to solve, we start to tune solver parameter #NOTE: SPECIFIC TO GUROBI SOLVER!%
-            gurobiParameters = struct();
-            gurobiParameters.Presolve = 0;
-            solution = solveCobraMILP_XL(MILPproblem_minFlux,gurobiParameters, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', 0,'relMipGapTol',relMipGapTol);
-            if solution.stat ~= 1
-                gurobiParameters.NumericFocus = 3;
-                solution = solveCobraMILP_XL(MILPproblem_minFlux,gurobiParameters, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', 0,'relMipGapTol',relMipGapTol);
-                if solution.stat ~= 1
-                    fprintf('infeasible or violation occured!(%s)\n',targetRxn{:});
-                    FVA_ub(i) = nan;
-                end
-            end
-        end   
-        if solution.stat == 1
-            FVA_ub(i) = solution.obj;
-            fprintf('upper boundary of %s found to be %f. \n',targetRxn{:},solution.obj);
-        end
+        % solve the MILP
+        solution = autoTuneSolveMILP(MILPproblem_minFlux,solverOK,relMipGapTol,targetRxn{:},0); 
+        FVA_ub(i) = solution.obj;
+        fprintf('upper boundary of %s found to be %f. \n',targetRxn{:},solution.obj);
     end
 end
 end

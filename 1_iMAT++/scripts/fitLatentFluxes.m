@@ -151,8 +151,27 @@ while 1
     extraX0_2 = (MILProblem.x0(latentInd) <= -epsilon_r_sorted)*1;
     MILPproblem_latent.x0 = [MILProblem.x0(1:length(MILProblem.vartype)); extraX0_1; extraX0_2];
     solution = solveCobraMILP_XL(MILPproblem_latent, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
+    if solution.stat == 0 && solverOK% when failed to solve, we start to tune solver parameter #NOTE: SPECIFIC TO GUROBI SOLVER!%
+        fprintf('initial solving failed! Start the auto-tune...#1\n')
+        gurobiParameters = struct();
+        gurobiParameters.Presolve = 0;
+        solution = solveCobraMILP_XL(MILPproblem_latent,gurobiParameters, 'timeLimit', 600, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
+        if solution.stat == 0
+            fprintf('initial solving failed! Start the auto-tune...#2\n')
+            gurobiParameters.NumericFocus = 3;
+            solution = solveCobraMILP_XL(MILPproblem_latent,gurobiParameters, 'timeLimit', 600, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
+            if solution.stat == 0
+                error('MILP solving failed! Please inspect the reason!');
+            end
+        end
+    end   
     if solution.stat ~= 1
-        error('MILP solving failed! Please inspect the reason!');
+        if solution.stat == 3
+            % pass with warning
+            warning('Latent reactions are not fully fitted! (solver time out! Change timeLimit if needed)');
+        else % unknown error
+            error('MILP solving failed! Please inspect the reason!');
+        end
     end
     fprintf('...total latent fitted: %d \n',sum(solution.int(end-2*length(latentRxn)+1:end)));
     Nfit_latent = sum(solution.int(end-2*length(latentRxn)+1:end));
@@ -170,22 +189,27 @@ while 1
     MILPproblem_minFlux.c = c;
     MILPproblem_minFlux.osense = 1;
     solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
-    if solution.stat ~= 1 && solverOK% when failed to solve, we start to tune solver parameter #NOTE: SPECIFIC TO GUROBI SOLVER!%
+    if solution.stat == 0 && solverOK% when failed to solve, we start to tune solver parameter #NOTE: SPECIFIC TO GUROBI SOLVER!%
         fprintf('initial solving failed! Start the auto-tune...#1\n')
         gurobiParameters = struct();
         gurobiParameters.Presolve = 0;
         solution = solveCobraMILP_XL(MILPproblem_minFlux,gurobiParameters, 'timeLimit', 600, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
-        if solution.stat ~= 1
+        if solution.stat == 0
             fprintf('initial solving failed! Start the auto-tune...#2\n')
             gurobiParameters.NumericFocus = 3;
             solution = solveCobraMILP_XL(MILPproblem_minFlux,gurobiParameters, 'timeLimit', 600, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
-            if solution.stat ~= 1
+            if solution.stat == 0
                 error('MILP solving failed! Please inspect the reason!');
             end
         end
     end   
     if solution.stat ~= 1
-        error('MILP solving failed! Please inspect the reason!');
+        if solution.stat == 3
+            % pass with warning
+            warning('Latent total flux is not fully minimized! (solver time out! Change timeLimit if needed)');
+        else % unknown error
+            error('MILP solving failed! Please inspect the reason!');
+        end
     end
     minTotal = solution.obj;
     PFD = solution.full(1:length(model.rxns));

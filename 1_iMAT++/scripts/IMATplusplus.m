@@ -201,31 +201,42 @@ MILProblem.c = c;
 MILProblem.osense = 1;
 % sovle the MILP problem
 solution = solveCobraMILP_XL(MILProblem, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', verbose);%we use customized solver interface to fine-tune the solver parameters for gurobi.
-if solution.stat ~= 1 && solverOK% when failed to solve, we start to tune solver parameter #NOTE: SPECIFIC TO GUROBI SOLVER!%
+if solution.stat == 0 && solverOK% when failed to solve (infeasible), we start to tune solver parameter #NOTE: SPECIFIC TO GUROBI SOLVER!%
     fprintf('initial solving failed! Start the auto-tune...#1\n')
     gurobiParameters = struct();
     gurobiParameters.Presolve = 0;
     solution = solveCobraMILP_XL(MILProblem,gurobiParameters, 'timeLimit', 600, 'logFile', 'MILPlog', 'printLevel', verbose);
-    if solution.stat ~= 1
+    if solution.stat == 0
         fprintf('initial solving failed! Start the auto-tune...#2\n')
         gurobiParameters.NumericFocus = 3;
         solution = solveCobraMILP_XL(MILProblem,gurobiParameters, 'timeLimit', 600, 'logFile', 'MILPlog', 'printLevel', verbose);
-        if solution.stat ~= 1
+        if solution.stat == 0
             error('MILP solving failed! Please inspect the reason!');
         end
     end
 end        
 if solution.stat ~= 1
-    error('MILP solving failed! Please inspect the reason!');
+    if solution.stat == 3
+        % pass with warning
+        warning('Low fluxes are not fully eliminated! (solver time out! Change timeLimit if needed)');
+    else % unknown error
+        error('MILP solving failed! Please inspect the reason!');
+    end
 end
 toc()
 fprintf('Minimizing low flux completed! \n');
 minLow = solution.obj;
 %% step3: minimize total flux as needed
 if BigModel
+    numTol = 1e-8; % too small tolerance causes numerical instability; too large will lose the flux minimization's effect
     % in big model mode, we also fix all the effectively eliminated flux
-    MILProblem.ub(expressionRxns == 1 | expressionRxns == 0) = abs(solution.full(expressionRxns == 1 | expressionRxns == 0));
-    MILProblem.lb(expressionRxns == 1 | expressionRxns == 0) = -abs(solution.full(expressionRxns == 1 | expressionRxns == 0));
+    % constrain by current flux plus a numeric tolerance 
+    MILProblem.ub(expressionRxns == 1 | expressionRxns == 0) = abs(solution.full(expressionRxns == 1 | expressionRxns == 0)) + numTol;
+    MILProblem.lb(expressionRxns == 1 | expressionRxns == 0) = -abs(solution.full(expressionRxns == 1 | expressionRxns == 0)) - numTol;   
+    % all absolute zero fluxes stay zero
+    MILProblem.ub((expressionRxns == 1 | expressionRxns == 0) & (solution.full(1:length(worm.rxns)) == 0)) = 0;
+    MILProblem.lb((expressionRxns == 1 | expressionRxns == 0) & (solution.full(1:length(worm.rxns)) == 0)) = 0;
+    
     % then remove redundant variables (the zero reaction integer variables)
     c_v = zeros(size(worm.S,2),1);
     c_yh1 = zeros(length(RHNames),1);
@@ -235,7 +246,7 @@ if BigModel
     c_gene = zeros(length(HGenes),1);
     lowInd = boolean([c_v;c_yh1;c_yl;c_yh2;c_gene;c_minFluxLowRxns]);
     MILProblem.A(:,lowInd) = [];%remove variables
-    NfitZero = sum(abs(solution.full(expressionRxns == 0)) <= 1e-9);
+    NfitZero = sum(abs(solution.full(expressionRxns == 0)) < 1e-8); % default int tol of iMAT++
     MILProblem.b(NfitInd) = MILProblem.b(NfitInd) - NfitZero; %update the Nfit constraints
     MILProblem.lb(lowInd) = [];%update boundary
     MILProblem.ub(lowInd) = [];%update boundary 
@@ -268,24 +279,29 @@ if doMinPFD
     fprintf('Minimizing total flux... \n');
     tic()
     solution = solveCobraMILP_XL(MILProblem, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', verbose);
-    if solution.stat ~= 1 && solverOK% when failed to solve, we start to tune solver parameter #NOTE: SPECIFIC TO GUROBI SOLVER!%
+    if solution.stat == 0 && solverOK% when failed to solve, we start to tune solver parameter #NOTE: SPECIFIC TO GUROBI SOLVER!%
         fprintf('initial solving failed! Start the auto-tune...#1\n')
         gurobiParameters = struct();
         gurobiParameters.Presolve = 0;
         solution = solveCobraMILP_XL(MILProblem,gurobiParameters, 'timeLimit', 600, 'logFile', 'MILPlog', 'printLevel', verbose);
-        if solution.stat ~= 1
+        if solution.stat == 0
             fprintf('initial solving failed! Start the auto-tune...#2\n')
             gurobiParameters.NumericFocus = 3;
             solution = solveCobraMILP_XL(MILProblem,gurobiParameters, 'timeLimit', 600, 'logFile', 'MILPlog', 'printLevel', verbose);
-            if solution.stat ~= 1
+            if solution.stat == 0
                 error('MILP solving failed! Please inspect the reason!');
             end
         end
-    end        
-    minTotal = solution.obj;
+    end  
     if solution.stat ~= 1
-        error('MILP solving failed! Please inspect the reason!');
+        if solution.stat == 3
+            % pass with warning
+            warning('Total flux is not fully minimized! (solver time out! Change timeLimit if needed)');
+        else % unknown error
+            error('MILP solving failed! Please inspect the reason!');
+        end
     end
+    minTotal = solution.obj;
     solution.obj = solution.obj*(1+latentCAP); % 1% minFlux constraint!
     MILProblem2 = solution2constraint(MILProblem,solution);
     MILProblem2.x0 = solution.full;
