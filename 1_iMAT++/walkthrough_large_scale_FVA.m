@@ -163,10 +163,10 @@ for i = 1:length(ExampleTissues)
     fprintf('now starting to calculate for %s... \n',ExampleTissues{i});
     fitTime = tic();
     parforFlag = 1;
-    BigModel = 1;
+    RelMipGap = 1e-3;
     myFVA = struct(); %my context specific model
     myCSM = outputCollections{strcmp(ExampleTissues,ExampleTissues{i})};
-    [myFVA.lb, myFVA.ub] = FVA_MILP(myCSM.MILP_PFD, model, targetRxns,parforFlag,BigModel);
+    [myFVA.lb, myFVA.ub] = FVA_MILP(myCSM.MILP_PFD, model, targetRxns,parforFlag,RelMipGap);
     save(['output/humanTissue/FVA/',ExampleTissues{i},'.mat'],'myFVA');
     toc(fitTime);
 end

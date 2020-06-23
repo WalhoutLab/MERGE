@@ -1,4 +1,4 @@
-function [FVA_lb, FVA_ub] = FVA_MILP(MILPproblem_minFlux, model, targetRxns,parforFlag,BigModel)
+function [FVA_lb, FVA_ub] = FVA_MILP(MILPproblem_minFlux, model, targetRxns,parforFlag,relMipGapTol)
 % perform FVA given a setup MILProblem and target reactions. The first nRxn
 % variables in the MILProblem must be the same as reactions in the input
 % model.
@@ -15,12 +15,7 @@ function [FVA_lb, FVA_ub] = FVA_MILP(MILPproblem_minFlux, model, targetRxns,parf
 %    model:             input model (COBRA model structure)
 %    targetRxns:        cell of target reactions to perform FVA on
 %    parforFlag:        (0 or 1) whether to use parallel computing
-%    BigModel:          (0 or 1) to indicate if the "big model" mode is
-%                       used. This mode is recommanded for all complex models. 
-%                       In this mode, we release the MILP strigency 
-%                       to gain computational speed. But in general, this mode gives almost
-%                       identical flux prediction as the normal mode.
-
+%    relMipGapTol:      the relative MIP gap to use in the FVA calculation
 %
 % OUTPUT:
 %   ub:                 a vector of upper boundaries of queried reactions
@@ -37,16 +32,9 @@ if nargin < 4 || isempty(parforFlag)
     parforFlag = true;
 end
 if (nargin < 5) 
-    BigModel = 0; % by default, do normal FVA
-end
-
-if BigModel
-    relMipGapTol = 0.001; % we release the MIPgap to 0.1% 
-    % this released MipGap only applies to latent step. The strigency of PFD is still kept.
-    % users can release the MipGap for PFD manually if needed
-else
     relMipGapTol = 1e-12;
 end
+
 fprintf('Start to perform the FVA...\n');
 % Check if is running on gurobi solver
 solverOK = changeCobraSolver('gurobi', 'MILP',0);

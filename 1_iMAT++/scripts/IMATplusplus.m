@@ -1,4 +1,4 @@
-function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLNames,latentRxn,PFD,Nfit_latent,minTotal_OFD,MILP, MILP_PFD] = IMATplusplus(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCateg,doMinPFD,latentCAP,modelType,minLowTol,BigModel,verbose)
+function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLNames,latentRxn,PFD,Nfit_latent,minTotal_OFD,MILP, MILP_PFD] = IMATplusplus(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCateg,doMinPFD,latentCAP,modelType,minLowTol,speedMode,verbose)
 % Uses the iMAT++ algorithm (`Yilmaz et al., 2020`) to find the optimal flux distribution that fits into a categorized gene expression data. 
 % iMAT++ algorithm performs multi-step fitting to find a flux distribution
 % that best agrees with rarely, lowly and highly expressed genes in the
@@ -48,14 +48,15 @@ function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLName
 %                       extensively conflict with highly expressed genes,
 %                       we recommand to use a larger tolerance such as the
 %                       default epsilon (ideally allowing one mis-fitting)
-%    BigModel:          (0 or 1) to indicate if the "big model" mode is
-%                       used. This mode is recommanded for all complex models. 
-%                       In this mode, the low reactions (dependent on rarely and lowly
+%    speedMode:         (1, 2, or 3) to indicate which speed mode is
+%                       used. The level 3 gives fastest speed, so is recommanded for all complex models. 
+%                       In level 3, the low reactions (dependent on rarely and lowly
 %                       expressed genes) will be constrained by rigid boundaries after flux
 %                       minimization. The original integer variables and minLow total flux
 %                       constriants will be removed. Additionally, we release the MILP strigency 
-%                       to gain computational speed. But in general, this mode gives almost
-%                       identical flux prediction as the normal mode.
+%                       to gain computational speed. The level 2 only release MILP strigency.
+%                       But in general, the three modes give similar flux
+%                       prediction.
 %    verbose:           (0 or 1) to show the MILP log or not
 %
 %
@@ -101,14 +102,14 @@ if (nargin < 12)
     minLowTol = 1e-5; % default value of low flux tolerance 
 end
 if (nargin < 13) 
-    BigModel = 0; % by default, do normal IMAT++
+    speedMode = 1; % by default, do normal IMAT++ (speed mode = 1)
 end
 if (nargin < 14) 
     verbose = 0; % by default, don't show the MILP details
 end
 %set global constant 
 bacMW=966.28583751; %only will be used for C. elegans model
-if BigModel
+if speedMode > 1
     relMipGapTol = 0.001; % we release the MIPgap to 0.1% 
     % this released MipGap only applies to latent step. The strigency of PFD is still kept.
     % users can release the MipGap for PFD manually if needed
@@ -227,7 +228,7 @@ toc()
 fprintf('Minimizing low flux completed! \n');
 minLow = solution.obj;
 %% step3: minimize total flux as needed
-if BigModel
+if speedMode == 3
     numTol = 1e-8; % too small tolerance causes numerical instability; too large will lose the flux minimization's effect
     % in big model mode, we also fix all the effectively eliminated flux
     % constrain by current flux plus a numeric tolerance 
@@ -323,7 +324,7 @@ toc()
 % make output of primary flux distribution and some optional outputs
 FluxDistribution = solution.full(1:length(worm.rxns));
 PFD = solution.full(1:length(worm.rxns));
-if BigModel %the low fitting is not controled by binary variable
+if speedMode == 3 %the low fitting is not controled by binary variable
     nameL = worm.rxns(ismember(worm.rxns,RLNames_ori));
     fluxL = solution.full(ismember(worm.rxns,RLNames_ori));
     ClosedLReaction = nameL(abs(fluxL)<1e-9);
@@ -391,7 +392,7 @@ else
     fprintf('Please inspect the flux distribution manually for a non-C. elegans model\n');
 end
 %% fix the output for big model mode
-if BigModel
+if speedMode == 3
     RLNames = RLNames_ori;%recover RLNames list for output
 end
 end
