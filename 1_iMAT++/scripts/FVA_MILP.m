@@ -1,20 +1,20 @@
 function [FVA_lb, FVA_ub] = FVA_MILP(MILPproblem_minFlux, model, targetRxns,parforFlag,relMipGapTol)
-% perform FVA given a setup MILProblem and target reactions. The first nRxn
-% variables in the MILProblem must be the same as reactions in the input
+% Perform Flux Variability Analysis (FVA) given a MILProblem and target reactions. 
+% The first nRxn variables in the MILProblem must be the fluxes of reactions in the input
 % model.
 %
 % USAGE:
 %
-%    [lb, ub] = FVA_MILP(MILProblem, model, targetRxns,parforFlag)
+%    [lb, ub] = FVA_MILP(MILProblem, model, targetRxns, parforFlag)
 %
 % INPUTS:
-%    MILPproblem_minFlux: the input MILP problem (COBRA MILP structure).The
-%                       MILP should be readily constrained for FVA
+%    MILPproblem_minFlux: the input MILP problem (COBRA MILP structure). 
+%                       The MILP should be readily constrained for FVA
 %                       calculation. For example, the total flux cap should
 %                       be already set.
 %    model:             input model (COBRA model structure)
 %    targetRxns:        cell of target reactions to perform FVA on
-%    parforFlag:        (0 or 1) whether to use parallel computing
+%    parforFlag:        (0 or 1) whether to use parallel computing (parfor)
 %    relMipGapTol:      the relative MIP gap to use in the FVA calculation
 %
 % OUTPUT:
@@ -50,41 +50,37 @@ if parforFlag
         MILPproblem_minFlux = MILPproblem_minFlux_ori;
         targetRxn = targetRxns(i);
         FluxObj = find(ismember(model.rxns,targetRxn)); 
-        %create a new objective function
+        % create a new objective function
         c = zeros(size(MILPproblem_minFlux.A,2),1);
         c(FluxObj) = 1;
         MILPproblem_minFlux.c = c;
+        % reverse direction (lb)
         MILPproblem_minFlux.osense = 1;
-        %fprintf('optimizing for the lb of %s...\n',targetRxn{:});
         % solve the MILP
         solution = autoTuneSolveMILP(MILPproblem_minFlux,solverOK,relMipGapTol,targetRxn{:});       
         FVA_lb(i) = solution.obj;
         fprintf('lower boundary of %s found to be %f. \n',targetRxn{:},solution.obj);
-
-        %fprintf('optimizing the the ub of %s...\n',targetRxn{:});
+        % forward direction (ub)
         MILPproblem_minFlux.osense = -1;
         % solve the MILP
         solution = autoTuneSolveMILP(MILPproblem_minFlux,solverOK,relMipGapTol,targetRxn{:}); 
         FVA_ub(i) = solution.obj;
         fprintf('upper boundary of %s found to be %f. \n',targetRxn{:},solution.obj);
     end
-else %same thing but in for loop
+else % same thing but in a for loop
     for i = 1:length(targetRxns)
         targetRxn = targetRxns(i);
         FluxObj = find(ismember(model.rxns,targetRxn)); 
-        %create a new objective function
+        % create a new objective function
         c = zeros(size(MILPproblem_minFlux.A,2),1);
         c(FluxObj) = 1;
         MILPproblem_minFlux.c = c;
         MILPproblem_minFlux.osense = 1;
-        %fprintf('optimizing for the lb of %s...\n',targetRxn{:});
         % when parfor is not used, go with default (use up cores)
         % solve the MILP
         solution = autoTuneSolveMILP(MILPproblem_minFlux,solverOK,relMipGapTol,targetRxn{:},0);       
         FVA_lb(i) = solution.obj;
         fprintf('lower boundary of %s found to be %f. \n',targetRxn{:},solution.obj);
-
-        %fprintf('optimizing the the ub of %s...\n',targetRxn{:});
         MILPproblem_minFlux.osense = -1;
         % solve the MILP
         solution = autoTuneSolveMILP(MILPproblem_minFlux,solverOK,relMipGapTol,targetRxn{:},0); 

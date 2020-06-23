@@ -70,9 +70,11 @@ function solution = solveCobraMILP_XL(MILPproblem, varargin)
 %       - cplex_direct solver accesible through CPLEX m-file and CPLEX C-interface
 %       - Thomas Pfau (12/11/2015) Added support for ibm_cplex (the IBM Matlab
 %       interface) to the solvers.
+
 % ..Additional notes:
 % the original COBRA function solveCobraMILP.m was modified by Xuhang Li to
-% enable more flexible solver settings with Gurobi. The modified lines are labeled with comments "/*Modified_XL*/" 03/16/2020
+% enable flexible solver settings with Gurobi. 
+% The modified lines are labeled with comments "/*Modified_XL*/" 03/16/2020
 
 global CBT_MILP_SOLVER % Process options
 

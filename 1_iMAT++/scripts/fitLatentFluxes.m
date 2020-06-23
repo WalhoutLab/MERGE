@@ -1,11 +1,10 @@
 function [FluxDistribution, latentRxn,Nfit_latent, minTotal,MILPproblem_minFlux] = fitLatentFluxes(MILProblem, model, PFD, Hgenes, epsilon_f,epsilon_r,latentCAP,verbose,relMipGapTol)
-% the latent reactions fitting module in iMAT++ pipeline. This function
-% works with a formated COBRA MILP input that is the product of primary
-% iMAT++ fitting. This function will find those latent reactions and apply
-% fitting procedure similar to iMAT algorithm while only maximize the
+% The latent flux fitting module in iMAT++ pipeline. This function
+% works with a specific COBRA MILP input that is the product of primary
+% iMAT++ fitting. This function will find latent reactions and apply
+% fitting procedure similar to iMAT algorithm while only maximizing the
 % number of latent reactions that carry flux. This function is not a
-% standalone integration function. Please see "IMATplusplus" for standalone
-% integration.
+% standalone integration function. Please see "IMATplusplus" for details.
 %
 % USAGE:
 %
@@ -13,17 +12,17 @@ function [FluxDistribution, latentRxn,Nfit_latent, minTotal,MILPproblem_minFlux]
 %
 % INPUTS:
 %    MILProblem:        the input MILP problem (COBRA MILP structure). The
-%                       input MILP should be already constrained for Nfit,
+%                       input MILP should be already constrained with Nfit,
 %                       MinLow and total flux cap; Besides, the last row of
-%                       the S matrix must be the constriant from total flux
+%                       the S matrix must be the constraint for total flux
 %                       cap, since we will iteratively modify it in the
 %                       latent fitting procedure.
 %    model:             input model (COBRA model structure)
 %    PFD:               Primary Flux Distribution 
 %    Hgenes:            the list of highly expressed genes
-%    epsilon_f:         the epsilon sequence for the forward direction of all reactions. The non-applicable reaction (i.e., for a irreversible,
+%    epsilon_f:         the epsilon sequence for the forward direction of all reactions. Non-applicable reactions (i.e., for a irreversible,
 %                       reverse-only reaction) should have a non-zero default to avoid numeric error.
-%    epsilon_r:         the epsilon sequence for the reverse direction of all reactions. The non-applicable reaction (i.e., for a irreversible,
+%    epsilon_r:         the epsilon sequence for the reverse direction of all reactions. Non-applicable reactions (i.e., for a irreversible,
 %                       forward-only reaction) should have a non-zero default to avoid numeric error.
 %    latentCAP:         the total flux cap for recursive fitting of latent
 %                       reactions. The total flux will be capped at (1 +
@@ -36,10 +35,10 @@ function [FluxDistribution, latentRxn,Nfit_latent, minTotal,MILPproblem_minFlux]
 % OPTIONAL OUTPUTS:
 %   latentRxn:          the list of all identified latent reactions to be fitted 
 %   Nfit_latent:        the (total) number of latent reactions fitted
-%   minTotal:           the minimal total flux of PFD (primary flux distribution)
-%   MILPproblem_minFlux:the final MILP structure in the latent calculation
+%   minTotal:           the minimal total flux of OFD (Optimal Flux Distribution)
+%   MILPproblem_minFlux:the final MILP structure in the last latent calculation
 %
-% Additional Notice:    Please make sure the S matrix of the input MILP follows the structure of iMAT++ MILP. Some variables such as absolute flux proxy will be assumed to be at specifc positions, so errors will occur if the S matrix is not formed as standard iMAT++. 
+% Additional Notice:    Please make sure the S matrix of the input MILP follows the structure of iMAT++ MILP format. Some variables such as absolute flux proxy will be assumed to be at specifc positions, so errors will occur if the S matrix is not formed as standard iMAT++. 
 %
 % `Yilmaz et al. (2020). Final Tittle and journal.
 % .. Author: - Xuhang Li, Mar 2020
@@ -51,14 +50,14 @@ solverOK = changeCobraSolver('gurobi', 'MILP',0);
 if ~solverOK
     fprintf('The solver parameter auto-tuning is not supported for current solver! Please use Gurobi for best performance!\n')
 end
-%% store the constriant index for total flux
-minTotalInd = length(MILProblem.b); %assume the total flux constriant is the last row!
+%% store the constraint index for total flux
+minTotalInd = length(MILProblem.b); % assume the total flux constriant is the last row!
 fprintf('the total flux is constrianed to %.2f \n',MILProblem.b(end));
 %% define candidate reactions of latent reactions from HGene list
 latentCandi = {};
 for i = 1:length(model.rxns)
     mygenes = model.genes(logical(model.rxnGeneMat(i,:)));
-    if all(ismember(mygenes,Hgenes)) && ~isempty(mygenes) %note empty is not desired!
+    if all(ismember(mygenes,Hgenes)) && ~isempty(mygenes) % note that empty is not desired!
         latentCandi = [latentCandi;model.rxns(i)];
     end
 end
@@ -71,13 +70,13 @@ while 1
     %% define latent reactions
     % get potentially flux carrying reaction list 
     fluxProduct = model.S .* PFD';
-    MetFlux = sum(abs(fluxProduct),2) / 2; %total flux for each metabolite
-    FluxCapMet = model.mets(MetFlux >= 1e-5); %the numerical tolerance is 1e-5; these met carries valid flux
+    MetFlux = sum(abs(fluxProduct),2) / 2; % total flux for each metabolite
+    FluxCapMet = model.mets(MetFlux >= 1e-5); % the numerical tolerance is 1e-5; these met carries valid flux
     % get the new latent rxns set
     newLatent = {};
     for i = 1:length(latentCandi)
         metsF = model.mets(model.S(:,strcmp(model.rxns,latentCandi{i}))<0);
-        metsF(cellfun(@(x) ~isempty(regexp(x,'NonMetConst', 'once')),metsF)) = [];%for tissue model only, but won't cause error for other model. We remove the special mets (which are place holder for constriants)
+        metsF(cellfun(@(x) ~isempty(regexp(x,'NonMetConst', 'once')),metsF)) = [];% for tissue model only, but won't cause error for other model. We remove the special mets (which are place holder for constraints)
         metsR = model.mets(model.S(:,strcmp(model.rxns,latentCandi{i}))>0);
         metsR(cellfun(@(x) ~isempty(regexp(x,'NonMetConst', 'once')),metsR)) = [];
         % we require either side of a reaction to have active metabolite to
@@ -151,13 +150,14 @@ while 1
     extraX0_2 = (MILProblem.x0(latentInd) <= -epsilon_r_sorted)*1;
     MILPproblem_latent.x0 = [MILProblem.x0(1:length(MILProblem.vartype)); extraX0_1; extraX0_2];
     solution = solveCobraMILP_XL(MILPproblem_latent, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
-    if solution.stat == 0 && solverOK% when failed to solve, we start to tune solver parameter #NOTE: SPECIFIC TO GUROBI SOLVER!%
-        fprintf('initial solving failed! Start the auto-tune...#1\n')
+    if solution.stat == 0 && solverOK% when failed to solve, we start to tune solver parameter
+        % NOTE: SPECIFIC TO GUROBI SOLVER!
+        fprintf('Initial solving failed! Start the auto-tune...#1\n')
         gurobiParameters = struct();
         gurobiParameters.Presolve = 0;
         solution = solveCobraMILP_XL(MILPproblem_latent,gurobiParameters, 'timeLimit', 600, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
         if solution.stat == 0
-            fprintf('initial solving failed! Start the auto-tune...#2\n')
+            fprintf('Initial solving failed! Start the auto-tune...#2\n')
             gurobiParameters.NumericFocus = 3;
             solution = solveCobraMILP_XL(MILPproblem_latent,gurobiParameters, 'timeLimit', 600, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
             if solution.stat == 0
@@ -179,8 +179,8 @@ while 1
     MILPproblem_minFlux = solution2constraint(MILPproblem_latent,solution);
     MILPproblem_minFlux.x0 = solution.full;
     % minimize total flux
-    % NOTE: this section is specific to the MILP structure in previous
-    % integration! We use the absolute flux proxy variables in the original MILProblem instead of creating new variables
+    % NOTE: this section is specific to the MILP structure in iMAT++! 
+    % We use the absolute flux proxy variables in the INPUT MILProblem instead of creating new variables
     % create a new objective function
     % Creating c vector (objective function)
     c_minFlux = zeros(size(MILProblem.A,2),1);
@@ -189,13 +189,13 @@ while 1
     MILPproblem_minFlux.c = c;
     MILPproblem_minFlux.osense = 1;
     solution = solveCobraMILP_XL(MILPproblem_minFlux, 'timeLimit', 300, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
-    if solution.stat == 0 && solverOK% when failed to solve, we start to tune solver parameter #NOTE: SPECIFIC TO GUROBI SOLVER!%
-        fprintf('initial solving failed! Start the auto-tune...#1\n')
+    if solution.stat == 0 && solverOK% when failed to solve, we start to tune solver parameter 
+        fprintf('Initial solving failed! Start the auto-tune...#1\n')
         gurobiParameters = struct();
         gurobiParameters.Presolve = 0;
         solution = solveCobraMILP_XL(MILPproblem_minFlux,gurobiParameters, 'timeLimit', 600, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
         if solution.stat == 0
-            fprintf('initial solving failed! Start the auto-tune...#2\n')
+            fprintf('Initial solving failed! Start the auto-tune...#2\n')
             gurobiParameters.NumericFocus = 3;
             solution = solveCobraMILP_XL(MILPproblem_minFlux,gurobiParameters, 'timeLimit', 600, 'logFile', 'MILPlog', 'printLevel', verbose,'relMipGapTol',relMipGapTol);
             if solution.stat == 0
@@ -215,16 +215,15 @@ while 1
     PFD = solution.full(1:length(model.rxns));
     count = count +1;
     fprintf('latent fitting cycle completed .... #%d \n',count);
-    %% update the minTotal constriant
+    %% update the minTotal constraint
     MILProblem.b(minTotalInd) = minTotal*(1+latentCAP);
     MILProblem.x0 = solution.full;% update the initial solution
-    fprintf('the total flux constriant is updated to %.2f \n',MILProblem.b(minTotalInd));
+    fprintf('the total flux constraint is updated to %.2f \n',MILProblem.b(minTotalInd));
     toc()
 end
-% return the PFD
+% return the OFD (last updated PFD is OFD)
 FluxDistribution = PFD;
-% return the MILP (the total flux is constrained by the 5% cap of total
-% OFD)
+% return the MILP (the total flux is constrained by the 5% cap of the total flux of OFD)
 MILPproblem_minFlux.b(minTotalInd) = minTotal*(1+latentCAP);
 MILPproblem_minFlux.x0 = solution.full;% start from minimal flux state may speed up MILP solving
 end
