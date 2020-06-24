@@ -27,22 +27,29 @@ model.parsedGPR = parsedGPR;
 load('input/epsilon_generic.mat'); % see walkthrough_generic.m for guidance on making epsilon
 conditions = {'N2_OP50', 'N2_B12', 'nhr10_OP50','nhr10_B12'};
 % set parameters
-doLatent = 1;
-doMinPFD = 1;
-latentCAP = 0.05;
-ATPm = 10;
 modelType = 2; % 2 for generic C. elegans model. The default (if not specified) is 1, for the tissue model
-% set the non-applicable parameters to -1 (which will be ignored)
-storeProp = -1;%the storage and side is not applicable for generic model
-SideProp = -1;%the storage and side is not applicable for generic model
 
 % first calculate and save the OFDs of all these conditions
 for i = 1:length(conditions)
     sampleName = conditions{i};
     load(['input/exampleGeneCategories/categ_',sampleName,'.mat']) % load categories
     myCSM = struct(); %myCSM: my Context Specific Model
-    [myCSM.OFD,myCSM.N_highFit,myCSM.N_zeroFit,myCSM.minLow,myCSM.minTotal,myCSM.OpenGene,myCSM.wasteDW,myCSM.HGenes,myCSM.RLNames,myCSM.latentRxn,myCSM.PFD,myCSM.Nfit_latent,myCSM.minTotal_OFD,myCSM.MILP] = ...
-        IMATplusplus(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCateg,doMinPFD,latentCAP,modelType);
+    [myCSM.OFD,...
+    myCSM.PFD,...
+    myCSM.N_highFit,...
+    myCSM.N_zeroFit,...
+    myCSM.minLow,...
+    myCSM.minTotal,...
+    myCSM.minTotal_OFD,...
+    myCSM.MILP,...
+    myCSM.MILP_PFD,...
+    myCSM.HGenes,...
+    myCSM.RLNames,...
+    myCSM.OpenGene,...
+    myCSM.latentRxn,...
+    myCSM.Nfit_latent,...
+    myCSM.wasteDW]...
+    = IMATplusplus(model,epsilon_f,epsilon_r, ExpCateg, modelType);
     save(['output/genericModelDemo/',sampleName,'.mat'],'myCSM');
     eval([sampleName,' = myCSM;']);
     fprintf('OFD of %s is done!\n',sampleName);
@@ -113,7 +120,7 @@ end
 % RNA-seq data of 17 human tissues to human model, RECON2.2 (Swainston et al., 2016)
 
 %IMPORTANT NOTICE:
-%THE FOLLOWING COMPUTATION TAKES ~4-5 HOURS IN A 20-CORE LAB SERVER. SO, IF
+%THE FOLLOWING COMPUTATION TAKES ~10 HOURS IN A 20-CORE LAB SERVER. SO, IF
 %YOU ARE RUNNING IT ON A LAPTOP, YOU MAY EXPECT LONGER TIME FOR THE PROGRAM
 %TO FINISH!
 %% step 1: make the OFDs (SKIPPED)
@@ -163,8 +170,8 @@ for i = 1:length(ExampleTissues)
     fprintf('now starting to calculate for %s... \n',ExampleTissues{i});
     fitTime = tic();
     parforFlag = 1;
-    RelMipGap = 1e-3;
-    myFVA = struct(); %my context specific model
+    RelMipGap = 1e-3;% for explanation of parameter selection, see walkthrough_generic.m
+    myFVA = struct(); % my context specific model
     myCSM = outputCollections{strcmp(ExampleTissues,ExampleTissues{i})};
     [myFVA.lb, myFVA.ub] = FVA_MILP(myCSM.MILP_PFD, model, targetRxns,parforFlag,RelMipGap);
     save(['output/humanTissue/FVA/',ExampleTissues{i},'.mat'],'myFVA');

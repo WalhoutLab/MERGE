@@ -1,4 +1,4 @@
-function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLNames,latentRxn,PFD,Nfit_latent,minTotal_OFD,MILP, MILP_PFD] = IMATplusplus(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCateg,doMinPFD,latentCAP,modelType,minLowTol,speedMode,verbose)
+function [OFD, PFD, N_highFit, N_zeroFit, minLow, minTotal, minTotal_OFD, MILP, MILP_PFD, HGenes, RLNames, OpenGene, latentRxn, Nfit_latent, wasteDW] = IMATplusplus(model,epsilon_f,epsilon_r,ExpCateg, modelType, speedMode,minLowTol,doMinPFD, doLatent,latentCAP,storeProp,SideProp,ATPm,verbose)
 % Uses the iMAT++ algorithm (`Yilmaz et al., 2020`) to find the optimal flux distribution that best fit categorized gene expression data. 
 %
 % iMAT++ algorithm performs multi-step fitting to find a flux distribution
@@ -12,28 +12,15 @@ function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLName
 %
 % INPUTS:
 %    model:             input model (COBRA model structure)
-%    doLatent:          whether to perform recursive fitting of latent reactions
-%    storeProp:         (dual-C. elegans tissue network only, use empty ('[]') for other models) the maximum allowed storage molecule uptake, as w/w percentage of bacteria uptake                  
-%    SideProp:          (dual-C. elegans tissue network only, use empty ('[]') for other models) the maximum allowed side metabolites uptake, as w/w percentage of bacteria uptake                  
 %    epsilon_f:         the epsilon sequence for the forward direction of all reactions in the model. Non-applicable reactions (i.e., for a irreversible,
 %                       reverse-only reaction) should have a non-zero default to avoid numeric error.
 %    epsilon_r:         the epsilon sequence for the reverse direction of all reactions in the model. Non-applicable reaction (i.e., for a irreversible,
 %                       forward-only reaction) should have a non-zero default to avoid numeric error.
-%    ATPm:              (C. elegans network only, use empty ('[]') for other models) the Non Growth Associated Maintenance (NGAM) used in fitting               
 %    ExpCateg:          expression categories used for iMAT++ fitting. 
 %                       The `ExpCateg` should be a structure variable with "high", "low", "dynamic" and
 %                       "zero" four fields. See the walkthrough scripts (and our Github) on how to generate
 %                       them from raw expression quantification data (i.e., TPM)
 % OPTIONAL INPUTS:
-%    doMinPFD:          whether to perform flux minimization of PFD 
-%                       (after minimizing total flux for lowly and rarely expressed genes). 
-%                       PFD flux minimization is required to obtain OFD, but  
-%                       could be omitted if one only wants to get MILP fitting 
-%                       result.
-%    latentCAP:         the total flux cap for recursive fitting of latent
-%                       reactions. The total flux will be capped at (1 +
-%                       latentCAP)*OriginalTotalFlux; The default cap is
-%                       0.01 (1%)
 %    modelType:         an integer to specify the input COBRA model. 
 %                       1 == dual C. elegans tissue model
 %                       2 == generic C. elegans model
@@ -42,17 +29,6 @@ function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLName
 %                       bacteria waste) that are specific to C. elegans
 %                       models. So, user should specify the correct model
 %                       type to avoid errors from the custom actions.
-%    minLowTol:         the numerical tolerance for total flux of the 
-%                       reactions dependent on lowly and rarely expressed 
-%                       genes. This parameter tunes the strigency of 
-%                       constraining low reaction fluxes to the minimal level.
-%                       Default value (1e-5) provides very strigent constraint
-%                       that pushes the total flux to the minimal level.
-%                       However, if the lowly expressed and rarely expressed
-%                       genes extensively conflict with highly expressed
-%                       genes, we recommend to use a larger tolerance such 
-%                       as the default epsilon (ideally allowing one
-%                       mis-fitting).
 %    speedMode:         (1, 2, or 3) to indicate which speed mode is used.
 %                       We offer three modes of iMAT++ for the different 
 %                       balance between computational speed and optimization
@@ -67,24 +43,42 @@ function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLName
 %                       speed. In level 2, we only release MILP strigency.
 %                       But in general, the three modes give similar flux
 %                       predictions.
+%    minLowTol:         the numerical tolerance for total flux of the 
+%                       reactions dependent on lowly and rarely expressed 
+%                       genes. This parameter tunes the strigency of 
+%                       constraining low reaction fluxes to the minimal level.
+%                       Default value (1e-5) provides very strigent constraint
+%                       that pushes the total flux to the minimal level.
+%                       However, if the lowly expressed and rarely expressed
+%                       genes extensively conflict with highly expressed
+%                       genes, we recommend to use a larger tolerance such 
+%                       as the default epsilon (ideally allowing one
+%                       mis-fitting).
+%    doMinPFD:          whether to perform flux minimization of PFD 
+%                       (after minimizing total flux for lowly and rarely expressed genes). 
+%                       PFD flux minimization is required to obtain OFD, but  
+%                       could be omitted if one only wants to get MILP fitting 
+%                       result.
+%    doLatent:          whether to perform recursive fitting of latent reactions
+%    latentCAP:         the total flux cap for recursive fitting of latent
+%                       reactions. The total flux will be capped at (1 +
+%                       latentCAP)*OriginalTotalFlux; The default cap is
+%                       0.01 (1%)
+%    storeProp:         (dual-C. elegans tissue network only, use empty ('[]') for other models) the maximum allowed storage molecule uptake, as w/w percentage of bacteria uptake                  
+%    SideProp:          (dual-C. elegans tissue network only, use empty ('[]') for other models) the maximum allowed side metabolites uptake, as w/w percentage of bacteria uptake                  
+%    ATPm:              (C. elegans network only, use empty ('[]') for other models) the Non Growth Associated Maintenance (NGAM) used in fitting               
 %    verbose:           (0 or 1) to show the MILP log or not
 %
 %
 % OUTPUT:
 %   OFD:                the Optimal Flux Distribution (OFD)
 % OPTIONAL OUTPUTS:
+%   PFD:                the primary flux distribution (PFD)
 %   N_highFit:          the number of highly expressed genes fitted
 %   N_zeroFit:          the number of rarely expressed genes fitted
 %   minLow:             the minimal total flux of reactions dependent on
 %                       rarely and lowly expressed genes
 %   minTotal:           the minimal total flux of PFD (primary flux distribution)
-%   OpenGene:           the list of fitted (carrying flux) highly expressed genes
-%   wasteDW:            (C. elegans network only) the percentage of wasted bacterial biomass (DW/DW)
-%   HGenes:             the list of highly expressed genes to be fitted
-%   RLNames:            the list of reactions dependent on rarely expressed genes
-%   latentRxn:          the list of all identified latent reactions to be fitted 
-%   PFD:                the primary flux distribution (PFD)
-%   Nfit_latent:        the (total) number of latent reactions fitted
 %   minTotal_OFD:       the minimal total flux of OFD
 %   MILP:               the MILP problem (in COBRA format) in the final
 %                       flux minimization of OFD. This MILP can serve as a
@@ -95,30 +89,66 @@ function [OFD,N_highFit,N_zeroFit,minLow,minTotal,OpenGene,wasteDW,HGenes,RLName
 %                       minimization of low reactions. This includes all
 %                       data-driven constraints, so it is a conservative 
 %                       but good startpoint for further custom analysis.
+%   HGenes:             the list of highly expressed genes to be fitted
+%   RLNames:            the list of reactions dependent on rarely expressed genes
+%   OpenGene:           the list of fitted (carrying flux) highly expressed genes
+%   latentRxn:          the list of all identified latent reactions to be fitted 
+%   Nfit_latent:        the (total) number of latent reactions fitted
+%   wasteDW:            (C. elegans network only) the percentage of wasted bacterial biomass (DW/DW)
+
 %
 % `Yilmaz et al. (2020). Final Tittle and journal.
 %
 % .. Author: - (COBRA implementation) Xuhang Li, Mar 2020
 %% this is the main integration function
 % apply default parameters
-if (nargin < 9)
+if (nargin < 5) % type of the input model 
+    modelType = 1; % 1==>dual C.elegans; 2==>generic C. elegans; 3==>non-c.elegans
+end
+if (nargin < 6) 
+    speedMode = 1; % by default, do normal IMAT++ (speed mode = 1)
+end
+if (nargin < 7)
+    if speedMode ~= 3
+        minLowTol = 1e-5; % default value of low reaction flux tolerance
+    else
+        minLowTol = 0; % not applicable to speed mode 3
+    end
+end
+if (nargin < 8)
     doMinPFD = true;
+end
+if (nargin < 9)
+    doLatent = true;
 end
 if (nargin < 10) % the flux tolerance cap of total flux in the latent fitting. By default, we use 5%
     latentCAP = 0.05;
 end
-if (nargin < 11) % type of the input model 
-    modelType = 1; % 1==>dual C.elegans; 2==>generic C. elegans; 3==>non-c.elegans
+if (nargin < 11) % for C. elegans' dual-tissue model only
+    if modelType == 1
+        storeProp = 0.01;
+    else
+        storeProp = [];
+    end
 end
-if (nargin < 12) 
-    minLowTol = 1e-5; % default value of low reaction flux tolerance 
+if (nargin < 12) % for C. elegans' dual-tissue model only
+    if modelType == 1
+        SideProp = 0.02;
+    else
+        SideProp = [];
+    end
 end
-if (nargin < 13) 
-    speedMode = 1; % by default, do normal IMAT++ (speed mode = 1)
+if (nargin < 13) % for C. elegans' model only
+    if modelType ~= 3
+        ATPm = 10;
+    else
+        ATPm = [];
+    end
 end
 if (nargin < 14) 
     verbose = 0; % by default, don't show the MILP details
 end
+
 % set global constant 
 bacMW=966.28583751; % only will be used for C. elegans model
 if speedMode > 1
@@ -178,7 +208,7 @@ if modelType == 1
 elseif modelType == 2
     worm = changeRxnBounds(worm,'RCC0005',ATPm,'l');
 elseif modelType == 3
-    fprintf('Doing integration for a non-C. elegans model. Make sure you constrained the ATPm before run the integration! \n');
+    fprintf('Doing integration for a non-C. elegans model. Make sure you constrained the ATPm before running iMAT++! \n');
 end
 % perform the gene-centric MILP fitting of highly expressed genes and reactions dependent on rarely expressed genes
 [~, ~,~,solution, MILProblem] = ExpressionIntegrationByMILP(worm, RHNames, RLNames,HGenes, epsilon_f, epsilon_r,[],[],verbose);

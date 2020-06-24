@@ -190,8 +190,11 @@ for i = 1:length(names)
     ATPm = 10;
     doMinPFD = 1;
     latentCAP = 0.05;
+    modelType = 1;
+    speedMode = 1;
+    minLowTol = 1e-5;
     myCSM = struct(); %my context specific model
-    [myCSM.OFD,myCSM.N_highFit,myCSM.N_zeroFit,myCSM.minLow,myCSM.minTotal,myCSM.OpenGene,myCSM.wasteDW,myCSM.HGenes,myCSM.RLNames,myCSM.latentRxn,myCSM.PFD,myCSM.Nfit_latent,myCSM.minTotal_OFD,myCSM.MILP] = IMATplusplus(model,doLatent,storeProp,SideProp,epsilon_f,epsilon_r, ATPm, ExpCatag,doMinPFD,latentCAP);
+    [myCSM.OFD,myCSM.PFD,myCSM.N_highFit,myCSM.N_zeroFit,myCSM.minLow,myCSM.minTotal,myCSM.minTotal_OFD,myCSM.MILP,myCSM.MILP_PFD,myCSM.HGenes,myCSM.RLNames,myCSM.OpenGene,myCSM.latentRxn,myCSM.Nfit_latent,myCSM.wasteDW] = IMATplusplus(model,epsilon_f,epsilon_r, ExpCatag, modelType, speedMode, minLowTol, doMinPFD, doLatent,latentCAP,storeProp,SideProp, ATPm);
     save(['output/',names{i},'.mat'],'myCSM');
     eval([names{i},' = myCSM;']);
     toc(fitTime);
@@ -234,11 +237,14 @@ SideProp = 0.02;
 ATPm = 10;
 doMinPFD = 1;
 latentCAP = 0.05;
+modelType = 1;
+speedMode = 1;
+minLowTol = 1e-5;
 myCSM = struct(); %my context specific model
 % PFD fitting
-[~,myCSM.N_highFit,myCSM.N_zeroFit,myCSM.minLow,myCSM.minTotal,myCSM.OpenGene,~,myCSM.HGenes,myCSM.RLNames,~,myCSM.PFD,~,~,~] = IMATplusplus(IntestineModel_PFD,~doLatent,storeProp,SideProp,epsilon_new_f,epsilon_new_r, ATPm, ExpCatag,doMinPFD,latentCAP);
+[~,myCSM.PFD,myCSM.N_highFit,myCSM.N_zeroFit,myCSM.minLow,myCSM.minTotal,~,~,myCSM.MILP_PFD,myCSM.HGenes,myCSM.RLNames,myCSM.OpenGene] = IMATplusplus(IntestineModel_PFD,epsilon_new_f,epsilon_new_r, ExpCatag,modelType,speedMode,minLowTol,doMinPFD, ~doLatent,latentCAP, storeProp,SideProp, ATPm);
 % OFD fitting
-[myCSM.OFD,~,~,~,~,~,myCSM.wasteDW,~,~,myCSM.latentRxn,~,myCSM.Nfit_latent,myCSM.minTotal_OFD,myCSM.MILP] = IMATplusplus(IntestineModel_OFD,doLatent,storeProp,SideProp,epsilon_new_f,epsilon_new_r, ATPm, ExpCatag,doMinPFD,latentCAP);
+[myCSM.OFD,~,~,~,~,~,myCSM.minTotal_OFD,myCSM.MILP,~,~,~,~,myCSM.latentRxn,myCSM.Nfit_latent,myCSM.wasteDW] = IMATplusplus(IntestineModel_OFD,epsilon_new_f,epsilon_new_r, ExpCatag, modelType, speedMode, minLowTol, doMinPFD, doLatent,latentCAP,storeProp,SideProp, ATPm);
 save('output/Intestine.mat','myCSM');
 toc(fitTime);
 fprintf('C. elegans Tissue Model Fitting Completed! \n');
