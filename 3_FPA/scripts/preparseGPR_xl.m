@@ -14,7 +14,7 @@ function preParsedGrRules = preparseGPR_xl(grRules)
 %
 % .. Original Author: -  Laurent Heirendt - December 2017
 % .. Modified by: Xuhang Li, Mar 2020 
-% .. modified regexp formula to make it suitable for GPR parser
+% .. modified regexp formula to make it suitable for custom GPR parser
 
     preParsedGrRules = regexprep(grRules, '[\]\}]',')'); %replace other brackets by parenthesis.
     preParsedGrRules = regexprep(preParsedGrRules, '[\[\{]','('); %replace other brackets by parenthesis.

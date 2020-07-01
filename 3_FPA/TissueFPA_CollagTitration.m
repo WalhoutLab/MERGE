@@ -1,4 +1,6 @@
 %% This is to reproduce the collagen FPA titration in Fig.5D
+% THIS SCRIPT IS NOT WELL-COMMENTED AND IS ONLY FOR REPRODUCING RESULTS
+
 %% env variables
 addpath /share/pkg/gurobi/900/linux64/matlab/
 addpath ~/cobratoolbox/

@@ -16,7 +16,7 @@ addpath ./scripts/
 addpath ./../input/
 addpath ./../bins/
 initCobraToolbox(false);
-%% Part I: THE APPLICATION TO THE GENERIC C. ELEGANS MODEL
+%% Part I: APPLICATION TO THE GENERIC C. ELEGANS MODEL
 %% 1. prepare the model
 load('iCEL1314.mat');
 

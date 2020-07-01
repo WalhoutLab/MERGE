@@ -1,5 +1,5 @@
 function blockList = getBlockList(model,levelTbl_f,levelTbl_r)
-% get the rxn names to block in FPA from the FVA result in IMAT++ analysis
+% get the rxn IDs to block in FPA from the FVA result in IMAT++ analysis
 %
 % USAGE:
 %   blockList = getBlockList(model,levelTbl_f,levelTbl_r)
@@ -14,8 +14,8 @@ function blockList = getBlockList(model,levelTbl_f,levelTbl_r)
 %
 % AUTHORS:  Xuhang Li, March 2020
 model_irrev = convertToIrreversible(model);
-%unify naminclature
-tmp_ind = ~cellfun(@(x) any(regexp(x,'_(f|b|r)$')),model_irrev.rxns); %has no suffix
+% unify nomenclature
+tmp_ind = ~cellfun(@(x) any(regexp(x,'_(f|b|r)$')),model_irrev.rxns); % has no suffix
 model_irrev.rxns(tmp_ind) = cellfun(@(x) [x,'_f'],model_irrev.rxns(tmp_ind), 'UniformOutput',false);
 model_irrev.rxns = regexprep(model_irrev.rxns, '_b$','_r');
 for i = 1:size(levelTbl_f,2)
@@ -35,5 +35,5 @@ for i = 1:size(levelTbl_f,2)
         end
     end
 end
-blockList{end+1} = {};%for supercond (super condition is not blocked)
+blockList{end+1} = {};% for supercond (super condition is not blocked)
 end

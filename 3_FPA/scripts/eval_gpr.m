@@ -1,6 +1,8 @@
 function [result, status] = eval_gpr(rule, genes, levels, f_and, f_or)
 % the GPR parser is built by developing the original parser in Machado,
-% Daniel, and Markus Herrgård "Systematic evaluation of methods for integration of transcriptomic data into constraint-based models of metabolism." PLoS computational biology 10, no. 4 (2014).
+% Daniel, and Markus Herrgård "Systematic evaluation of methods for 
+% integration of transcriptomic data into constraint-based models of 
+% metabolism." PLoS computational biology 10, no. 4 (2014).
 % -------------------------------------------------
 % Convert gene expression levels to reaction levels using GPR associations.
 % Level is 0 if there is no GPR for the reaction or no measured genes.
@@ -58,7 +60,7 @@ else
     if total_measured < length(rule_genes)
         status = PARTIAL_MEASUREMENTS;
     end
-    if total_measured > 1 %processing multiple-gene GPR string
+    if total_measured > 1 % processing multiple-gene GPR string
         expression_logic = freezeANDlogic(expression);
         maybe_and = @(a,b)maybe_functor(f_and, a, b);
         maybe_or = @(a,b)maybe_functor(f_or, a, b); 
@@ -66,7 +68,7 @@ else
 
         counter = 0;
 
-        %fold all the "OR" connected genes
+        % fold all the "OR"-connected genes
         while contains(expression_logic,'or') 
             counter = counter + 1;
             if counter > MAX_EVALS
@@ -83,7 +85,7 @@ else
             if len_pre == len_post %wrap needed
                 expression_logic = regexprep(expression_logic, paren_expr, '$1');
             end
-            expression_logic = freezeANDlogic(regexprep(expression_logic,'[fz_|_fz]','')); % freeze the exposed AND
+            expression_logic = freezeANDlogic(regexprep(expression_logic,'[fz_|_fz]','')); % freeze the unfolded "AND"
         end
         result = regexprep(expression_logic,'[fz_|_fz|(|)]','');
         result = regexprep(result,' +',' ');
@@ -91,13 +93,13 @@ else
     elseif total_measured == 0
         status = NO_MEASUREMENTS;
         result = 'NaN';
-    else %only one measurement; just put the measurement there
+    else % only one measurement; just put the measurement there
         % remove all possible symbols
         result = regexprep(expression,'[ |(|)]','');
     end
 end
 
-%post processing ==> convert to the matrix in cell
+% post processing ==> convert to the matrix in cell
 result = str2double(strsplit(result,' and '));
 end
 function c = maybe_functor(f, a, b)

@@ -1,5 +1,5 @@
 function model = defineConstriants(model, infDefault,smallFluxDefault)
-% This function is to define the uptake constrainst for a native human
+% This function is to define the uptake constraints for a native human
 % model RECON2.2. It is not designed or tested for any other model.
 %
 % USAGE:
@@ -12,13 +12,13 @@ function model = defineConstriants(model, infDefault,smallFluxDefault)
 %    smallFluxDefault:  the default value for trace uptake fluxes
 %
 % OUTPUT:
-%   model:              the constrianed model
+%   model:              the constrained model
 %
 % `Yilmaz et al. (2020). Final Tittle and journal.
 % .. Author: - Xuhang Li, Mar 2020
 
-% since we are not aiming at precisely define nutrient condition in human
-% blood circulaton, we use a set of artificial constraints. The constriants
+% since we are not aiming at precisely defining nutrient condition in human
+% blood circulation, we use a set of artificial constraints. The constriants
 % are originally used to mimic DMEM culture media. 
 
 % set infinite
@@ -53,14 +53,14 @@ vitamins = {'EX_btn(e)',...
         'EX_thm(e)',...
         'EX_adpcbl(e)',...
         };
-model.lb(ismember(model.rxns,vitamins)) = -infDefault;%anything available in the media is free
+model.lb(ismember(model.rxns,vitamins)) = -infDefault;% anything available in the media is free
 % set the maintaince
-model = changeRxnBounds(model,'DM_atp_c_','l',0);%no NGAM
+model = changeRxnBounds(model,'DM_atp_c_','l',0);% no NGAM
 
 AA = {'EX_his_L(e)';'EX_ala_L(e)';'EX_arg_L(e)';'EX_asn_L(e)';'EX_asp_L(e)';'EX_thr_L(e)';'EX_gln_L(e)';'EX_glu_L(e)';'EX_gly(e)';'EX_ile_L(e)';'EX_leu_L(e)';'EX_lys_L(e)';'EX_met_L(e)';'EX_phe_L(e)';'EX_pro_L(e)';'EX_ser_L(e)';'EX_trp_L(e)';'EX_tyr_L(e)';'EX_val_L(e)';'EX_cys_L(e)'};
 model.lb(ismember(model.rxns,AA)) = -infDefault;
 model.lb(ismember(model.rxns,{'EX_gln_L(e)'})) = -infDefault;
 model.lb(ismember(model.rxns,{'EX_gthrd(e)'})) = -infDefault;
-model.lb(ismember(model.rxns,{'EX_glc(e)'})) = -infDefault;%major carbon source in the media
+model.lb(ismember(model.rxns,{'EX_glc(e)'})) = -infDefault;% major carbon source in the media
 
 end
