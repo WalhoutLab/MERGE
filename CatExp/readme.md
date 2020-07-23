@@ -17,14 +17,14 @@ Output folder includes the results (<i>i.e.</i>,tables of categorized genes) fro
 
 The function categorize_absCutoff() is used to categorize genes based on three expression level cutoffs: rare cutoff, low cutoff, and high cutoff.     
 
-Genes with expression levels less than rare cutoff are categorized as Rare. 
-Other genes with expression levels less than low cutoff are categorized as Low.
-Genes with expression levels greater than high cutoff are categorized as High.
-All other genes are categorized as Moderate.
+  - Genes with expression levels less than rare cutoff are categorized as Rare. 
+  - Other genes with expression levels less than low cutoff are categorized as Low.
+  - Genes with expression levels greater than high cutoff are categorized as High.
+  - All other genes are categorized as Moderate.
 
-These cutoffs can be determined using gene expression histograms. Arbitrary cutoffs (<i>e.g.</i>, 90th percentile for high cutoff) can be used or the histogram can be statistically analyzed to determine the thresholds according to the peaks, shoulders, and tails observed. 
+These cutoffs can be determined using gene expression histograms. Arbitrary cutoffs (<i>e.g.</i>, 90th percentile level for high cutoff) can be used or the histogram can be statistically analyzed to determine the thresholds according to the peaks, shoulders, <i>etc</i>. 
 
-For the statistical analysis of histograms, CatExp provides two curve fitting tools that deconvolute subpopulations of genes with different log-normal distributions. The first is bimodal() function that fits two Gaussian curves, as superimposed, to the histogram of logarithm (base 2) of average gene expression levels across all tissues (conditions). Zero values are excluded from the fitting. The mean and standard deviations of the two subpopulations can then be used to determine cutoffs (<i>e.g.</i>, the mean of the high expression subpopulation can be used as the high cutoff). The second tool is trimodel() function, which does the same job as bimodel(), but with three curves representing three log-normally distributed subpopulations, instead of two curves.
+For the statistical analysis of histograms, CatExp provides two curve fitting tools that deconvolute log-normally distributed subpopulations of genes. The first is the bimodal() function, which fits two Gaussian curves, as superimposed, to the histogram of logarithm (base 2) of average gene expression levels across all tissues (conditions). Zero values are excluded from the fitting. The means and standard deviations of the two subpopulations can then be used to determine cutoffs (<i>e.g.</i>, the larger of the two means can be used as the high cutoff). The second tool is the trimodel() function, which does the same job as bimodel(), but with three curves representing three log-normally distributed subpopulations, instead of two curves.
 
 
 ### Categorization based on relative expression
