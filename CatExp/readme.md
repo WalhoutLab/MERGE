@@ -37,6 +37,6 @@ The function relativeExp() is used to categorize genes based on their relative e
 CatExp also provides three plotting functions for the visualization of data.
   - Histogram plotters embedded in bimodel() and trimodel() functions.
   - stackedCat() function, which can take a table of categories (genes as rows and tissues or conditions as columns) and plots a stacked bar graph of categories (Rare, Low, Moderate, High) for each column.
-  - plotCatExp() function, which receives a particular gene name, the expression level table, the categorization table from absolute values analysis, and the categorization table from relative values analysis to plot a bar chart that shows ascending tissue (or condition) profile of the gene based on expression level table. Categories are color coded and categories that changed during relative expresison analysis are highlighted.
+  - plotCatExp() function, which receives a particular gene name, the expression level table, the categorization table from absolute values analysis, and the categorization table from relative values analysis to plot a bar chart that shows ascending tissue (or condition) profile of the gene based on expression level table. Categories are color coded and categories that were changed during relative expresison analysis are highlighted.
 
 
