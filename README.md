@@ -3,7 +3,7 @@ We developped the package, MERGE (MEtabolic models Reconciled with Gene Expressi
 
 The package includes three main programs: (1) matlab implementation of [iMAT++ algorithm](1_iMAT++), which semi-quantitatively integrates categorized gene expression data with the model at system-level; (2) matlab implementation of [original iMAT algorithm](2_iMAT) (for comparison and reproduction of results in the paper), and (3) matlab implementation of [Flux Potential Analysis (FPA)](3_FPA), which quantitatively integrates continuous gene expression data with the model at pathway- and reaction-level. 
 
-We also provide two auxiliary scriots. First is a python-based metabolic distance calculator that generates the shortest path from a given reaction to any other reaction in a given metabolic network. The [metabolic distance calculator](MetabolicDistance) provides the required input for applying FPA to any metabolic network. Second is [CatExp](CatExp), a collection of functions to categorize genes in an expression dataset into highly, moderately, lowly, and rarely expressed genes. 
+We also provide two auxiliary scripts. First is a python-based metabolic distance calculator that generates the shortest path from a given reaction to any other reaction in a given metabolic network. The [metabolic distance calculator](MetabolicDistance) provides the required input for applying FPA to any metabolic network. Second is [CatExp](CatExp), a collection of functions to categorize genes in an expression dataset into highly, moderately, lowly, and rarely expressed genes. 
 
 ## Getting Started
 
