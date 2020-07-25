@@ -35,7 +35,7 @@ The followings are descriptions on each module (folder) listed.
 
 [MetabolicDistance](MetabolicDistance): The metabolic distance calculator module. This folder contains all the input, scripts and example codes for calculating the metabolic distance for any metabolic network model. The output distance matrix is required to run FPA. The output for the <i>C. elegans</i> models used in the reference study are available in the pertaining folders. 
 
-[CatExp](CatExp): CatExp.py provides a set of functions for systematic categorization of gene expression levels. This folder also contains example inputs (gene expression datasets) and outputs (tables of categorized genes) used in the walkthrough help guide. The examples include the <i>C. elegans</i> tissue-level datasset used in the paper. 
+[CatExp](CatExp): CatExp.py provides a set of functions for systematic categorization of gene expression levels. This folder also contains example inputs (gene expression datasets) and outputs (tables of categorized genes) used in the walkthrough help guide. The examples include the <i>C. elegans</i> tissue-level dataset used in the paper. 
 
 [bins](bins): The shared functions for running the above mentioned analysis. These functions include modified version of some COBRA Toolbox functions and common new functions such as a molecular weight calculator.
 
