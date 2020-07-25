@@ -1,6 +1,8 @@
-%% This walkthrough will take user through the application of IMAT++ to a generic model of C. elegans, or other metabolic models (we used human model recon2.2 as an example).
+%% This walkthrough will take user through the application of IMAT++ to a generic model of C. elegans, or other metabolic models (we used human model Recon2.2 as an example).
+
 %% PART I: THE APPLICATION TO THE GENERIC C. ELEGANS MODEL
-%% prepare the model
+
+%% Prepare the model
 % add paths
 addpath ~/cobratoolbox/% your cobra toolbox path
 addpath /share/pkg/gurobi/810/linux64/matlab/% the gurobi path
@@ -8,47 +10,45 @@ addpath ./../bins/
 addpath ./../input/
 addpath scripts/
 initCobraToolbox(false);
-% load model
+% Load model
 load('iCEL1314.mat');
-% this model is already constrained with default constraints. 
-% One can further modify it as followings:
-model = changeRxnBounds(model,'EXC0050',-1,'l');% we allow 1 unit of bacteria for epsilon calculation
-% parseGPR takes hugh amount of time, so preparse and save the result in the model
+% This model is already constrained with default constraints. 
+% One can further modify it as in the following:
+model = changeRxnBounds(model,'EXC0050',-1,'l');% we allow 1 unit of bacteria for flux threshold (epsilon) calculation
+% parseGPR takes a significant amount of time, so preparse and save the result in the model
 parsedGPR = GPRparser_xl(model);% Extracting GPR data from the model
 model.parsedGPR = parsedGPR;
-%% load the gene expression data
+
+%% Load the gene expression data
 % For making the gene category file from raw expression quantification
-% (i.e, TPM), please refer to "./scripts/makeGeneCategories.m" (run 
+% (e.g., TPM), please refer to "./scripts/makeGeneCategories.m" (run 
 % "open makeGeneCategories"). Here we directly load the premade gene 
 % categories
-
 load('input/exampleGeneCategories/categ_N2_OP50.mat')
-% Please note the category nomenclature difference: the "high" refers to
+% Please note the category nomenclature difference: "high" refers to
 % "highly expressed genes" in the paper, "dynamic" to "moderately
 % expressed", "low" to "lowly expressed" and "zero" to "rarely expressed"
-%% prepare epsilons
-% users can supply their own epsilon sequence for their own purpose. The
-% epsilons should be supplied in the order of reactions in the model, and
-% should be in equal length of that of the reactions. The forward direction 
-% and reverse direction should be supplied seperately.
-% we provide an epsilon generator following the methods described in the
-% paper
+
+%% Prepare epsilon values
+% Users can supply their own epsilon sequence for their own purpose. The
+% epsilon values should be supplied in the order of reactions in the model as
+%a vector. The forward direction and reverse direction should be supplied seperately.
+% We provide an epsilon generator following the methods described in the
+% paper:
 [epsilon_f, epsilon_r] = makeEpsilonSeq(model, model.rxns, 0.01, 0.5);
 save('input/epsilon_generic.mat','epsilon_f', 'epsilon_r');
 % NOTE: this may take ~5 mins
-%% run the integration function 
-% we reset some constraints to make the model ready for integration 
-% release the nutrient constraints for integration 
+
+%% Run the integration function 
+% We reset some constraints to make the model ready for integration 
+% Release the nutrient constraints for integration 
 model = changeRxnBounds(model,'EXC0050',-1000,'l');% free bacteria uptake
-
-% set model type
+% Set model type
 modelType = 2; % 2 for generic C. elegans model. 
-% (The default (if not specified) is 1, for the tissue model)
-% set the non-applicable parameters to -1 (which will be ignored)
-
-% for other parameters (i.e, ATPm and latentCAP), we use default values
-
-% run iMAT++ and save outputs in a structure
+% (The default is 1, for the tissue model)
+% Set the non-applicable parameters to -1 (which will be ignored)
+% For other parameters (i.e, ATPm and latentCAP), we use default values
+% Run iMAT++ and save outputs in a structure
 myCSM = struct(); % myCSM: my Context Specific Model
 [myCSM.OFD,...
     myCSM.PFD,...
@@ -66,30 +66,30 @@ myCSM = struct(); % myCSM: my Context Specific Model
     myCSM.Nfit_latent,...
     myCSM.wasteDW]...
     = IMATplusplus(model,epsilon_f,epsilon_r, ExpCateg, modelType);
-% the result is stored in variable "myCSM"
+% The result is stored in variable "myCSM"
 % For understanding each output field, please see `IMATplusplus.m`
-% the OFD flux distribution is myCSM.OFD
-%% advanced IMAT++ analysis: Flux Variability Analysis (FVA)
+% The OFD flux distribution is myCSM.OFD
+
+%% Advanced IMAT++ analysis: Flux Variability Analysis (FVA)
 % As introduced in the paper, we further performed FVA analysis to measure 
-% the feasible space of each reaction, which in turn provides a set of
+% the feasible flux space of each reaction, which in turn provides a set of
 % reactions to block in FPA analysis. Users can also perform this analysis 
 % for their own dataset/model. However, considering the computational
 % intensity, we recommend user to run FVA (of all reactions) on a modern 
 % lab server (i.e., >=20 cores, >= 32g mems). For running FVA on all 
 % reactions and getting the list of reactions to block, please see 
 % walkthrough_large_scale_FVA.m
-
 % Here, we provide a demo for running FVA on a few reactions.
 % we can calculate the FVA interval by the `MILP` output in IMAT++
 targetRxns = {'BIO0010','BIO0001','BIO0002'};
 parforFlag = 0; % whether to run FVA in parallel; we choose "no" for demo
 [FVA_lb, FVA_ub] = FVA_MILP(myCSM.MILP, model, targetRxns,parforFlag);
-
 % Together, we show how to calculate the FVA boundaries of three queried 
 % reactions for N2_OP50 condition
 
+
 %% PART II: THE APPLICATION TO ANY METABOLIC MODEL
-% applying IMAT++ to other models is not much different from above.
+% Applying IMAT++ to other models is not very different from above.
 % However, attentions need to be paid to the inputs to make sure they
 % are in the correct format. Here we provide an example of integrating
 % RNA-seq data of human tissues to human model, RECON2.2 (Swainston et al., 
