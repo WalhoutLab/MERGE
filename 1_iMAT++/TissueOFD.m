@@ -39,9 +39,11 @@ model = changeRxnBounds(model,'RMC0005_I',0,'l');
 model = changeRxnBounds(model,'RMC0005_X',0,'l');
 model = changeRxnBounds(model,'RMC0005_I',0,'u');
 model = changeRxnBounds(model,'RMC0005_X',0,'u');
-% parseGPR takes significant amount of time, so pre-preparse and save result in the model
+%
+% parseGPR takes significant amount of time, so pre-parse and save result in the model
 parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
 model.parsedGPR = parsedGPR;
+
 %% Load the gene expression data
 %The processed gene categories are supplied in json format
 fname = 'geneCategories.json';
@@ -54,12 +56,14 @@ end
 str = regexprep(str,'set(','');
 str = regexprep(str,')','');
 GeneExpression = jsondecode(str);
-
-% we use a structure variable to store the category information
-% now, make expression set for six tissues
-
-% hypodermis
-% add compartment label and merge
+% We use a structure variable to store the category information.
+%NOTE: The categories "moderate" and "rare" in the paper are referred to in
+%MATLAB implementations as "dynamic" and "zero" for historical reasons. 
+%
+%Now, make expression set for six tissues.
+%
+% Hypodermis
+% Add compartment label
 GeneExpression.Hypodermis.high = strcat(GeneExpression.Hypodermis.high,'_X');
 GeneExpression.Hypodermis.lenient = strcat(GeneExpression.Hypodermis.lenient,'_X');
 GeneExpression.Hypodermis.low = strcat(GeneExpression.Hypodermis.low,'_X');
@@ -68,18 +72,15 @@ GeneExpression.Intestine.high = strcat(GeneExpression.Intestine.high,'_I');
 GeneExpression.Intestine.lenient = strcat(GeneExpression.Intestine.lenient,'_I');
 GeneExpression.Intestine.low = strcat(GeneExpression.Intestine.low,'_I');
 GeneExpression.Intestine.zero = strcat(GeneExpression.Intestine.zero,'_I');
-% merge
+% Merge with intestine data for dual-tissue model integration. 
 ExpCatag = struct();
 ExpCatag.high = [GeneExpression.Hypodermis.high];
 ExpCatag.low = [GeneExpression.Hypodermis.low;GeneExpression.Intestine.low];
 ExpCatag.zero = [GeneExpression.Hypodermis.zero;GeneExpression.Intestine.zero];
-% the "dynamic" category refers to lenient in the paper. The naming changing is
-% because of historical reason. We keep calling it dynamic throughout the
-% Matlab implantation package.
-% all the other genes are dynamic (no constriants on) 
+% All the other genes are dynamic
 ExpCatag.dynamic = setdiff(model.genes, unique([ExpCatag.high;ExpCatag.low;ExpCatag.zero]));
 ExpCatag_Hypodermis = ExpCatag;
-
+%
 % Gonad
 GeneExpression.Gonad.high = strcat(GeneExpression.Gonad.high,'_X');
 GeneExpression.Gonad.lenient = strcat(GeneExpression.Gonad.lenient,'_X');
@@ -91,6 +92,7 @@ ExpCatag.low = [GeneExpression.Gonad.low;GeneExpression.Intestine.low];
 ExpCatag.zero = [GeneExpression.Gonad.zero;GeneExpression.Intestine.zero];
 ExpCatag.dynamic = setdiff(model.genes, unique([ExpCatag.high;ExpCatag.low;ExpCatag.zero]));
 ExpCatag_Gonad = ExpCatag;
+%
 % Glia
 GeneExpression.Glia.high = strcat(GeneExpression.Glia.high,'_X');
 GeneExpression.Glia.lenient = strcat(GeneExpression.Glia.lenient,'_X');
@@ -102,6 +104,7 @@ ExpCatag.low = [GeneExpression.Glia.low;GeneExpression.Intestine.low];
 ExpCatag.zero = [GeneExpression.Glia.zero;GeneExpression.Intestine.zero];
 ExpCatag.dynamic = setdiff(model.genes, unique([ExpCatag.high;ExpCatag.low;ExpCatag.zero]));
 ExpCatag_Glia = ExpCatag;
+%
 % Pharynx
 GeneExpression.Pharynx.high = strcat(GeneExpression.Pharynx.high,'_X');
 GeneExpression.Pharynx.lenient = strcat(GeneExpression.Pharynx.lenient,'_X');
@@ -113,6 +116,7 @@ ExpCatag.low = [GeneExpression.Pharynx.low;GeneExpression.Intestine.low];
 ExpCatag.zero = [GeneExpression.Pharynx.zero;GeneExpression.Intestine.zero];
 ExpCatag.dynamic = setdiff(model.genes, unique([ExpCatag.high;ExpCatag.low;ExpCatag.zero]));
 ExpCatag_Pharynx = ExpCatag;
+%
 % Body_wall_muscle
 GeneExpression.Body_wall_muscle.high = strcat(GeneExpression.Body_wall_muscle.high,'_X');
 GeneExpression.Body_wall_muscle.lenient = strcat(GeneExpression.Body_wall_muscle.lenient,'_X');
@@ -124,6 +128,7 @@ ExpCatag.low = [GeneExpression.Body_wall_muscle.low;GeneExpression.Intestine.low
 ExpCatag.zero = [GeneExpression.Body_wall_muscle.zero;GeneExpression.Intestine.zero];
 ExpCatag.dynamic = setdiff(model.genes, unique([ExpCatag.high;ExpCatag.low;ExpCatag.zero]));
 ExpCatag_Body_wall_muscle = ExpCatag;
+%
 % Neurons
 GeneExpression.Neurons.high = strcat(GeneExpression.Neurons.high,'_X');
 GeneExpression.Neurons.lenient = strcat(GeneExpression.Neurons.lenient,'_X');
@@ -135,6 +140,7 @@ ExpCatag.low = [GeneExpression.Neurons.low;GeneExpression.Intestine.low];
 ExpCatag.zero = [GeneExpression.Neurons.zero;GeneExpression.Intestine.zero];
 ExpCatag.dynamic = setdiff(model.genes, unique([ExpCatag.high;ExpCatag.low;ExpCatag.zero]));
 ExpCatag_Neurons = ExpCatag;
+%
 % Intestine
 ExpCatag = struct();
 ExpCatag.high = [GeneExpression.Intestine.high];
@@ -142,8 +148,8 @@ ExpCatag.low = [GeneExpression.Intestine.low];
 ExpCatag.zero = [GeneExpression.Intestine.zero];
 ExpCatag.dynamic = setdiff(model.genes, unique([ExpCatag.high;ExpCatag.low;ExpCatag.zero]));
 ExpCatag_Intestine = ExpCatag;
-
-% merge all into one structure variable 
+%
+% Finally, merge all into one structure variable 
 tissues = struct();
 tissues.Hypodermis = ExpCatag_Hypodermis;
 tissues.Gonad = ExpCatag_Gonad;
@@ -153,9 +159,9 @@ tissues.Body_wall_muscle = ExpCatag_Body_wall_muscle;
 tissues.Neurons = ExpCatag_Neurons;
 tissues.Intestine = ExpCatag_Intestine;
 
-%% load epsilon
-% epsilon is also supplied as a jason file. We convert it to a vecter
-% variable that in the same order as model.rxns.
+%% Load flux thresholds (epsilon)
+% epsilon values are also supplied as a jason file. We convert it to a vecter
+% variable that follows the same order as model.rxns.
 fname = 'epsilon.json';
 str = fileread(fname);
 for i = 1:length(str)
@@ -176,7 +182,8 @@ for i = 1: length(fields)
         epsilon_r(strcmp(model.rxns,fields{i})) = epsilon.(fields{i})(1);
     end
 end
-%% make OFD for the six non-intestinal tissues.
+
+%% Generate Optimal Flux Distributions (OFD) for the six non-intestinal tissues.
 names = fieldnames(tissues);
 names = names(1:end-1);
 for i = 1:length(names)
@@ -198,10 +205,10 @@ for i = 1:length(names)
     eval([names{i},' = myCSM;']);
     toc(fitTime);
 end
-%% now do the intestine integration
-% first get the average flux distribution of all six non-intestinal
-% tissues.
-weights = [0.16481752424244808;0.19668335945561571;0.029394841229723516;0.055442983787911716;0.35973476877630634;0.19392652250799472];%needs to order by tissuesname
+
+%% Intestine integration
+% First get the average flux distribution of all six non-intestinal tissues.
+weights = [0.16481752424244808;0.19668335945561571;0.029394841229723516;0.055442983787911716;0.35973476877630634;0.19392652250799472];%needs to be ordered by tissue name
 fluxSum_OFD = zeros(length(model.rxns),1);
 fluxSum_PFD = zeros(length(model.rxns),1);
 for i = 1:length(names)
@@ -210,14 +217,14 @@ end
 for i = 1:length(names)
     eval(['fluxSum_PFD = ',names{i},'.PFD .* weights(i) + fluxSum_PFD;']);
 end
-% collapse the X compartment in the dual model to save computational power
+% Collapse the X compartment in the dual-tissue model to save computational power
 IntestineModel_PFD = collapseX(model,'X',fluxSum_PFD);
 IntestineModel_OFD = collapseX(model,'X',fluxSum_OFD);
-% update parsed GPR
+% Update parsed GPR
 parsedGPR = GPRparser_xl(IntestineModel_PFD);% Extracting GPR data from model
 IntestineModel_OFD.parsedGPR = parsedGPR;
 IntestineModel_PFD.parsedGPR = parsedGPR;
-% update the epsilon list
+%Update the epsilon list
 epsilon_new_f = 0.01 * ones(length(IntestineModel_PFD.rxns),1);
 epsilon_new_r = epsilon_new_f;
 for i = 1: length(IntestineModel_PFD.rxns)
@@ -226,7 +233,7 @@ for i = 1: length(IntestineModel_PFD.rxns)
         epsilon_new_r(i) = epsilon_r(ismember(model.rxns,IntestineModel_PFD.rxns(i)));
     end
 end
-% integration 
+% Integration 
 fprintf('now starting to fit %s... \n','Intestine');
 fitTime = tic();
 ExpCatag = tissues.Intestine;
