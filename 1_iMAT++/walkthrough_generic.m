@@ -80,7 +80,7 @@ myCSM = struct(); % myCSM: my Context Specific Model
 % reactions and getting the list of reactions to block, please see 
 % walkthrough_large_scale_FVA.m
 % Here, we provide a demo for running FVA on a few reactions.
-% we can calculate the FVA interval by the `MILP` output in IMAT++
+% We can calculate the FVA interval by the `MILP` output in IMAT++
 targetRxns = {'BIO0010','BIO0001','BIO0002'};
 parforFlag = 0; % whether to run FVA in parallel; we choose "no" for demo
 [FVA_lb, FVA_ub] = FVA_MILP(myCSM.MILP, model, targetRxns,parforFlag);
@@ -90,21 +90,21 @@ parforFlag = 0; % whether to run FVA in parallel; we choose "no" for demo
 
 %% PART II: THE APPLICATION TO ANY METABOLIC MODEL
 % Applying IMAT++ to other models is not very different from above.
-% However, attentions need to be paid to the inputs to make sure they
+% However, attention needs to be paid to the inputs to make sure they
 % are in the correct format. Here we provide an example of integrating
-% RNA-seq data of human tissues to human model, RECON2.2 (Swainston et al., 
-% 2016)
-%% prepare the model
-% add paths
+% RNA-seq data for human tissues to human model, RECON2.2 (Swainston et al., 2016)
+
+%% Prepare the model
+% Add paths
 addpath ~/cobratoolbox/% your cobra toolbox path
 addpath /share/pkg/gurobi/900/linux64/matlab/% the gurobi path
 addpath ./../bins/
 addpath ./../input/
 addpath scripts/
 initCobraToolbox(false);
-% load model
+% Load model
 load('./input/humanModel/Recon2_2.mat');
-% fix a typo in the model
+% Fix a typo in the model
 model.genes(strcmp(model.genes,'HGNC:HGNC:2898')) = {'HGNC:2898'};
 model.genes(strcmp(model.genes,'HGNC:HGNC:987')) = {'HGNC:987'};
 
