@@ -1,5 +1,5 @@
-%% this is the main program to generate tissue OFDs in TableS5
-%% load model
+%% This is the main program to generate tissue OFDs in TableS5
+%% Load model
 addpath ~/cobratoolbox/ %path of cobraToolBox
 addpath /share/pkg/gurobi/810/linux64/matlab/ %path of gurobi solver
 addpath ./../bins/
@@ -11,14 +11,14 @@ fprintf('loading model and input parameters... \n');
 totalTime = tic();
 load('Tissue.mat');
 % The loaded model is already constrained with default constraints and
-% side/storage parameters. One can modify by the following codes;
+% side/storage parameters. One can modify a reaction constraint by the following command:
 % worm = changeRxnBounds(worm,'RCC0005',10,'l');
-% To change the side proportion
+% To change the side proportion:
 % worm.S(end-1, strcmp('EXC0050',worm.rxns)) = 0.01*9.6641833;%storage
 % worm.S(end, strcmp('EXC0050',worm.rxns)) = 0.01*9.6641833; %side
-
-% reset some constraints to make the model ready for integration 
-% release the nutrient constraints for integration 
+%
+% Reset some constraints to make the model ready for integration. 
+% Release the nutrient constraints for integration. 
 model = changeRxnBounds(model,'EXC0050_L',-1000,'l');
 model = changeRxnBounds(model,'EX00001_E',-1000,'l');
 model = changeRxnBounds(model,'EX00007_E',-1000,'l');
@@ -35,16 +35,15 @@ model = changeRxnBounds(model,'DMN0033_X',0,'l');
 model = changeRxnBounds(model,'DMN0033_I',1,'u');
 model = changeRxnBounds(model,'DMN0033_X',1,'u');
 
-
 model = changeRxnBounds(model,'RMC0005_I',0,'l');
 model = changeRxnBounds(model,'RMC0005_X',0,'l');
 model = changeRxnBounds(model,'RMC0005_I',0,'u');
 model = changeRxnBounds(model,'RMC0005_X',0,'u');
-% parseGPR takes hugh amount of time, so pre-preparse and save result in the model
+% parseGPR takes significant amount of time, so pre-preparse and save result in the model
 parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
 model.parsedGPR = parsedGPR;
-%% load the gene expression data
-% the processed gene categories are supplied in json format
+%% Load the gene expression data
+%The processed gene categories are supplied in json format
 fname = 'geneCategories.json';
 str = fileread(fname);
 for i = 1:length(str)
