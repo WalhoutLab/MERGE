@@ -58,8 +58,8 @@ end
 %% Step 2: FVA
 % The FVA calculation is computationally intensive. We expect the speed of ~100
 % reactions per miniute in a 4-core Mac laptop. Therefore, the total FVA
-% computation time may be ~2 hour in a laptop. For best practice, we recommend to run
-% it on a multi-core lab server (>=20).
+% computation time may be ~2 hour in a laptop. For best practice, we
+% recommend running it on a multi-core lab server (>=20).
 %
 % Define the par cluster
 myCluster = parcluster('local');
@@ -69,9 +69,11 @@ parpool(20,'SpmdEnabled',false);% adjust according to your computing environment
 for i = 1:length(conditions)
     sampleName = conditions{i};
     eval(['myCSM = ',sampleName,';']);
+    % setup FVA inputs
     targetRxns = model.rxns;
     parforFlag = 1;
-    myFVA = struct(); %my context specific model
+    myFVA = struct(); % save FVA in a structure variable
+    % run FVA by calling:
     [myFVA.lb, myFVA.ub] = FVA_MILP(myCSM.MILP, model, targetRxns,parforFlag);
     eval([sampleName,'_FVA = myFVA;']);
     save(['output/genericModelDemo/FVA/',sampleName,'.mat'],'myFVA');
@@ -80,14 +82,18 @@ end
 
 %% Step 3: generate reaction status for FPA (level tables)
 % We will convert the FVA boundaries to different levels that indicates the
-% active/inactive status. The level 1 means "carry flux in OFD", 0 means "not carry flux in OFD, but in ALT" and
-% -1 means "not carry flux in SLNS". Therefore, the metabolic network for a condition consists of reactions
-%with levels 0 and 1. Please refer to the paper for more information. 
+% active/inactive status. The level 1 means "carry flux in OFD", 0 means 
+% "not carry flux in OFD, but in ALT" and -1 means "not carry flux in SLNS". 
+% Therefore, the metabolic network for a condition consists of reactions
+% with levels 0 and 1. Please refer to the paper for more information. 
 for z = 1:length(conditions)
     eval(['myCSM = ',conditions{z},';']);
     eval(['myFVA = ',conditions{z},'_FVA;']);
     levels_f = -1*ones(length(model.rxns),1);
     levels_r = -1*ones(length(model.rxns),1);
+    % the following decision making algorithm follows the description in
+    % Appendix `Flux Variability Analysis of Tissue-Level Metabolic Network
+    % Models`
     for i = 1:length(model.rxns)
         if myCSM.OFD(i) > 1e-5 % 1e-5 is the tol_flux, see supplement text for details
             levels_f(i) = 1;%level 1 means "carry flux in OFD"
@@ -117,51 +123,51 @@ for z = 1:length(conditions)
     fprintf('level table of %s is saved!\n',conditions{z});
 end
 
-
-
 %% PART II: THE APPLICATION TO ANY METABOLIC MODEL
-% Applying IMAT++ to other models is not very different from above.
-% Consistent with the walkthrough of iMAT++, we provide the example of integrating
-% RNA-seq data of 17 human tissues with human model, RECON2.2 (Swainston et al., 2016)
+% Consistent with the walkthrough of iMAT++, we provide the example of 
+% integrating RNA-seq data of 17 human tissues with human model, RECON2.2 
+% (Swainston et al., 2016)
 
-%IMPORTANT NOTICE:
-%THE FOLLOWING COMPUTATION TAKES ~10 HOURS IN A 20-CORE LAB SERVER. SO, IF
-%YOU ARE RUNNING IT ON A LAPTOP, YOU MAY EXPECT LONGER TIME FOR THE PROGRAM
-%TO FINISH!
+% IMPORTANT NOTICE:
+% THE FOLLOWING COMPUTATION TAKES ~10 HOURS IN A 20-CORE LAB SERVER. SO, IF
+% YOU ARE RUNNING IT ON A LAPTOP, YOU MAY EXPECT LONGER TIME FOR THE PROGRAM
+% TO FINISH!
 
-%% step 1: make the OFDs (SKIPPED)
+%% step 1: make the OFDs (COMPUTATION SKIPPED)
 % Please refer to walkthrough_generic.m on making OFDs for these 17
 % tissues. Here we directly load the outputs
 
-% Prepare the model and epsilons
+% load the model and other inputs
 % Add paths
-addpath ~/cobratoolbox/%your cobra toolbox path
-addpath /share/pkg/gurobi/900/linux64/matlab/%the gurobi path
+addpath ~/cobratoolbox/% your cobra toolbox path
+addpath /share/pkg/gurobi/900/linux64/matlab/% the gurobi path
 addpath ./../bins/
 addpath ./../input/
 addpath scripts/
 initCobraToolbox(false);
-% Load model
+% Load original recon2.2 model
 load('./input/humanModel/Recon2_2.mat');
 % fix a typo in the model
 model.genes(strcmp(model.genes,'HGNC:HGNC:2898')) = {'HGNC:2898'};
 model.genes(strcmp(model.genes,'HGNC:HGNC:987')) = {'HGNC:987'};
 % Constrain the model
-model = defineConstriants(model, 1000,0.005);
+model = defineConstraints_iMATpp(model, 1000,0.005);
 % parseGPR takes a significant amount of time, so preparse and integrate with the model
 parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
 model.parsedGPR = parsedGPR;
-model = buildRxnGeneMat(model); % some standard fields are missing in the original model. We generate them
+model = buildRxnGeneMat(model); % some standard fields are missing in the original model, so we generate them
 model = creategrRulesField(model);
 model_ori = model;
-% Load epsilons
-load('input/humanModel/epsilon.mat');
+% load epsilons (will be used later)
+load('input/humanModel/epsilon.mat'); 
 % Remove the dead reactions (that cannot carry flux)
 rxns_ori = model.rxns;
 model = removeRxns(model,model.rxns(capacity_f == 0 & capacity_r == 0));
 [A B] = ismember(model.rxns,rxns_ori);
 epsilon_f = epsilon_f(B(A));
 epsilon_r = epsilon_r(B(A));
+% load the pre-calculated OFDs for 17 tissues (see walkthrough_generic.m)
+load('output/humanTissue/outputCollections_NX.mat');
 %% Step 2: calculate FVA
 % define the par cluster (skip if already done)
 % myCluster = parcluster('local');
@@ -169,32 +175,46 @@ epsilon_r = epsilon_r(B(A));
 % saveProfile(myCluster);
 % parpool(20,'SpmdEnabled',false);% adjust according to your computing environment
 
-% Load the OFDs for 17 tissues
-load('output/humanTissue/outputCollections_NX.mat');
-targetRxns = model.rxns; % we calculate the FVA of both X tissue and I tissue
+targetRxns = model.rxns; % we calculate the FVA of all reactions
+% loop through each tissue to calculate the FVA
 for i = 1:length(ExampleTissues)
     fprintf('now starting to calculate for %s... \n',ExampleTissues{i});
     fitTime = tic();
+    
+    % setup parameters for FVA
+    % the parameters are important. They are related to the three speed
+    % levels discussed in the paper (appendix). Please also check the 
+    % technical notes at the end of this walkthrough for details.
     parforFlag = 1;
-    RelMipGap = 1e-3;% for explanation of parameter selection, see walkthrough_generic.m
-    myFVA = struct(); % my context specific model
+    RelMipGap = 1e-3;
+    
+    myFVA = struct(); % the FVA result is stored in a structure variable
+    % the OFD (`myCSM`) used for FVA calculation
     myCSM = outputCollections{strcmp(ExampleTissues,ExampleTissues{i})};
+    
+    % calculate FVA by calling: 
     [myFVA.lb, myFVA.ub] = FVA_MILP(myCSM.MILP_PFD, model, targetRxns,parforFlag,RelMipGap);
+    
     save(['output/humanTissue/FVA/',ExampleTissues{i},'.mat'],'myFVA');
     toc(fitTime);
 end
 
 %% Step 3: generate reaction status for FPA (level tables)
 % we will convert the FVA boundaries to different levels that indicates the
-% active/inactive status. The level 1 means "carry flux in OFD", 0 means "not carry flux in OFD, but in ALT" and
-% -1 means "not carry flux in SLNS". Therefore, the metabolic network for a condition consists of reactions
-%with levels 0 and 1. Please refer to the paper for more information. 
+% active/inactive status. The level 1 means "carry flux in OFD", 0 means 
+% "not carry flux in OFD, but in ALT" and -1 means "not carry flux in SLNS".
+% Therefore, the metabolic network for a condition consists of reactions
+% with levels 0 and 1. Please refer to the paper for more information. 
 
-% NOTICE FOR RECON2.2
+% SPECIAL TREATMENT FOR RECON2.2
 % To speed up iMAT++, we removed reactions that don't carry flux (see
 % above), such as dead end reactions. However, these dead-end reactions
-% may still be useful in metabolite-centric FPA analysis. So, we assign
-% these reactions level "0" to not block them in FPA.
+% may still be useful in metabolite-centric FPA analysis. For example, the 
+% melanin biosynthesis pathway is reconstructed in RECON2.2, but there is 
+% no reaction to drain melanin at the end. So, the pathway doesn't carry 
+% flux. However, the production potential of melanin could still be 
+% analyzed by adding in a demand reaction, as we do in metabolite-centric
+% FPA. Therefore, we assign these reactions level "0" to not block them.
 
 for z = 1:length(ExampleTissues)
     myCSM = outputCollections{z};
@@ -234,3 +254,60 @@ for z = 1:length(ExampleTissues)
     save(['output/humanTissue/FVA_levels/',ExampleTissues{z},'_levels.mat'],'levels_f','levels_r');
     fprintf('level table of %s is saved!\n',ExampleTissues{z});
 end
+
+%% TECHNICAL NOTES FOR FVA
+%% speed levels and FVA parameter
+% As mentioned in our paper (`robustness and usability of MERGE`), we
+% developed three speed levels to achieve the computational efficiency that
+% meets user's demand. In iMAT++, the speed level is internally controlled
+% by a single parameter, `speedMode`. However, it is not parameterized in 
+% FVA because it is simply achieved by entering different inputs.
+
+% The speed level of FVA is tuned by two inputs:
+% a. MILPproblem_minFlux
+% b. relMipGapTol
+
+% Specifically, we have:
+% (1) speed level 1 
+%     when speed level 1 (speedMode=1) is used in iMAT++, you may want to
+%     keep using speed level 1 for FVA. 
+%   ```
+%     MILPproblem_minFlux = myCSM.MILP (last-step MILP of OFD optimization,
+%     see the `MILP` output in iMATplusplus function)
+%     relMipGapTol = 1e-12 (default) 
+%   ```
+%     this setup is used in the FVA demo for C. elegans generic model above
+%
+% (2) speed level 2
+%     when speed level 2 (speedMode=2) is used in iMAT++, you may want to
+%     keep using speed level 2 for FVA. 
+%   ```
+%     MILPproblem_minFlux = myCSM.MILP_PFD (last-step MILP of PFD 
+%     optimization, see the `MILP_PFD` output in iMATplusplus function)
+%     relMipGapTol = 1e-3
+%   ```
+%     this setup is used in the FVA demo for human model above
+%
+% (3) speed level 3
+%     when speed level 3 (speedMode=3) is used in iMAT++, you should keep
+%     using speed level 3 for FVA. 
+%   ```
+%     MILPproblem_minFlux = myCSM.MILP_PFD (last-step MILP of PFD 
+%     optimization, see the `MILP_PFD` output in iMATplusplus function)
+%     relMipGapTol = 1e-3
+%   ```
+%     The setup of level-3 FVA is the same as level-2 FVA. However, because
+%     the level-3 iMAT++ is mathmatically different from level-2 iMAT++,
+%     the `MILP_PFD` is not the same. Indeed, the `MILP_PFD` from level-3
+%     iMAT++ increases the FVA speed a lot.
+
+% In summary, if you want to run FVA by speed level 1, please follow the
+% codes used in FVA demo of generic C. elegans model. If you want to run
+% FVA by speed level 2 or 3, please follow the codes in the human model
+% demo instead. 
+
+
+
+
+
+

@@ -24,6 +24,10 @@ model.parsedGPR = parsedGPR;
 % (e.g., TPM), please refer to "./scripts/makeGeneCategories.m" (run 
 % "open makeGeneCategories"). Here we directly load the premade gene 
 % categories
+
+% We use the RNA-seq data from Bulcha et al, Cell Rep (2019, PMID: 30625328)
+% For demo purpose, we only run iMAT++ for one condition, the N2 worm fed
+% on OP50 diet. 
 load('input/exampleGeneCategories/categ_N2_OP50.mat')
 % Please note the category nomenclature difference: "high" refers to
 % "highly expressed genes" in the paper, "dynamic" to "moderately
@@ -112,7 +116,7 @@ model.genes(strcmp(model.genes,'HGNC:HGNC:987')) = {'HGNC:987'};
 % As a technical demo, we didn't fine-tune the proper constraint set that
 % may represent the human blood environment. We used a set of artificial
 % constraints that allows glucose and amino acid as major nutrient sources
-model = defineConstriants(model, 1000,0.005);
+model = defineConstraints_iMATpp(model, 1000,0.005);
 %
 % parseGPR takes a significant amount of time, so preparse and integrate with the 
 % model
