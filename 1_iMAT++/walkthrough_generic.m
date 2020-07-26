@@ -259,7 +259,7 @@ set(cgo,'DisplayRange',1);
 %
 % Here, we provide a demo for running FVA on a few reactions.
 % We can calculate the FVA interval by the MILP output in IMAT++
-targetRxns = model.rxns([1030,1126]);% some arbitury reactions
+targetRxns = model.rxns([1030,1126]);% two arbitrary reactions used
 parforFlag = 0; % whether to run FVA in parallel; we choose "no" for demo
 myCSM = outputCollections{1}; % we pick cerebral Cortex for FVA analysis
 
@@ -276,25 +276,26 @@ myCSM = outputCollections{1}; % we pick cerebral Cortex for FVA analysis
 %     recommend to run FVA on 'myCSM.MILP_PFD' for best speed performance. 
 %     (see iMATplusplus.m for details about MILP_PFD and MILP)
 
-% In human application, we use 1e-3 and MILP_PFD.
+% In human application, we use 1e-3 and MILP_PFD, which is the same as setting the speedMode parameter at 2.
 relMipGapTol = 1e-3;
 [FVA_lb, FVA_ub] = FVA_MILP(myCSM.MILP_PFD, model, targetRxns,parforFlag, relMipGapTol);
-
 % Together, we show how to calculate the FVA boundaries of two queried
 % reactions for human Cerebral Cortex tissue.
 
 
 %% TECHNICAL NOTES ON RUNNING IMAT++
+
 %% 1. slow computational speed 
-% Although the computational speed of IMAT++ is generally fast, user 
+% Although the computational speed of IMAT++ is generally fast, users 
 % may experience slow speed in some cases. A common cause is that rarely
 % expressed genes (related to low/zero reactions) conflict with
 % highly expressed genes, creating a very difficult MILP. It usually
 % indicates problems with the input transcriptional profile, where it
 % disagrees with the metabolic network reconstruction. We recommend users
-% to inspect the conflictions for potential biological discovery. 
-% Additionally, complex model may also cause speed problem. See
+% to inspect such conflicts with regard to annotation, pathway biochemistry etc.. 
+% Additionally, complex models may also cause speed problem. See
 % the note #3 for recommendations on dealing with complex models.
+
 %% 2. numerical issues 
 % Since MILP is a NP-hard problem, even the best solver cannot guarantee to
 % find the optimal solution of every MILP. In some cases, user may see solver complaining
@@ -303,21 +304,3 @@ relMipGapTol = 1e-3;
 % and FVA) can automatically tune the solver parameter when it happens. However, this 
 % auto-tune function is only designed for Gurobi. User may need to switch to Gurobi or define their 
 % own tuning process for their solvers.
-%% 3. running IMAT++ on very complex models (such as RECON series)
-% The complex models may experience slow speed in solving the MILP. In addition 
-% to running IMAT++ on a high-performance workstation and using "bigModel" mode, 
-% we recommend the following model preprocessing before running IMAT++.
-% (1) removing inactive metabolic functions (reactions that cannot carry
-% flux; we did this above for recon2.2)
-% (2) removing reactions dependent on rarely expressed genes (this is
-% similar to bigModel mode, but directly removing reactions will more
-% effectively increase the speed).
-% (3) removing reactions that cannot carry flux when reactions in #2 are removed
-% (4) use proper epsilon. Too large or too small epsilon will
-% decrease the speed of flux minimization, and even generate unrealistic flux
-% distribution. User should evaluate the epsilon choice by the flux burden it generates (i.e.,
-% uptake rate of main carbon source).
-%
-% Normally, the bigModel mode is sufficient to enable MERGE integration of
-% dozens of conditions on a large model (i.e., ~5000 rxns). The above
-% treatment is only useful for super comprehensive model, such as Recon3D.
