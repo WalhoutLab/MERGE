@@ -129,29 +129,28 @@ model = creategrRulesField(model);
 % reverse direction should be supplied seperately.
 % We provide an epsilon generator following the methods described in the 
 % paper
-
 % NOTE: calculating epsilon for human model may take 20 mins (in a laptop), 
 % so we just load the pre-calculated value. One can use the following codes 
 % to run it again:
 % [epsilon_f, epsilon_r,capacity_f,capacity_r] = makeEpsilonSeq(model, model.rxns, 0.1, 0.5);
 % Save('input/humanModel/epsilon.mat','epsilon_f','epsilon_r','capacity_f','capacity_r');
-
+%
 load('input/humanModel/epsilon.mat');
-% remove the dead reactions (that cannot carry flux)
+% Remove the dead reactions (that cannot carry flux)
 rxns_ori = model.rxns;
 model = removeRxns(model,model.rxns(capacity_f == 0 & capacity_r == 0));
 [A B] = ismember(model.rxns,rxns_ori);
 epsilon_f = epsilon_f(B(A));
 epsilon_r = epsilon_r(B(A));
 
-%% flux fitting for each tissue
-% Please notice that, considering the big size of human model, the integration 
-% takes longer than that of the C. elegans model. Each tissue takes around
-% ~2 mins in a testing laptop, and few tissues may take longer (i.e, liver
+%% Flux fitting for each tissue
+% Please notice that, considering the larger size of the human model, the integration 
+% takes longer than with the C. elegans model. Each tissue takes around
+% ~2 mins in a testing laptop, and few tissues may take longer (e.g., liver
 % takes 20 mins).
-
+%
 cateTbl = readtable('input/humanModel/NX/Tcatf_nx_consensus.tsv','FileType','text');
-% for the sake of time, we only show the application of MERGE pipeline on
+% For the sake of simplicity, we only show the application of MERGE pipeline on
 % 17 major tissues.
 ExampleTissues = {'cerebralCortex','spinalCord','midbrain','ponsAndMedulla',...% neuronal tissues (<--> worm neuron/glia)
                 'duodenum','colon','smallIntestine',... % digestive tissues (<--> worm intestine)
@@ -162,46 +161,40 @@ outputCollections = {};
 TimeConsumed = [];
 for i = 1:length(ExampleTissues)
     sampleName = ExampleTissues{i};
-    fprintf('Start to fit %s...\n',sampleName);
-    %% load the gene expression data
+    fprintf('Starting to fit %s...\n',sampleName);
+    %% Load the gene expression data
     % For making the gene category file from raw expression quantification
-    % (i.e, TPM), please refer to "./scripts/makeGeneCategories.m" and 
-    % the python tools in the repo;
-    
-    % We premade the categories by the python tool and save results in
+    % (i.e, TPM), please go to CatExp tool provided in this repository.
+    % We premade the categories by CatExp and saved the results in
     % individual .mat files.
     load(['input/humanModel/NX/categ_',sampleName,'.mat']);
     % Please note the category nomenclature difference: the "high" refers 
     % to "highly expressed genes" in the paper, "dynamic" to "moderately
     % expressed", "low" to "lowly expressed" and "zero" to "rarely expressed"
-    %% run the integration function 
-    % we reset the constraint of major carbon source to make the model
+    %% Run the integration function 
+    % We reset the constraint of major carbon source to make the model
     % ready for integration (user needs to determine which nutrient(s) they
     % want to release to free)
     modelTmp = model;
     modelTmp.lb(ismember(modelTmp.rxns,{'EX_glc(e)'})) = -1000;% free the main carbon source 
-    
-    % set parameters
+    % Set parameters
     modelType = 3; % 3 for non-C. elegans model
-    
     % The following is the only special parameter for (some) non-C. elegans 
-    % model. For few very big models like RECON model, user may tune the  
+    % model. For large and complex models like RECON models, or when the computational
+    %equipment available is limited in power, the user may tune the  
     % `speedMode` parameter to increase the computational speed. 
     % `speedMode` Level 3 gives highest speed, at the cost of optimization 
     %  stringency; Level 1 is the original iMAT configuration used in the 
-    %  paper. Level 2 is somehow in between. We use level 2 in our human 
+    %  paper. Level 2 is somewhat in between. We use level 2 in our human 
     % demo. (see iMATplusplus.m for details of different speed modes)
     speedMode = 2;
-    
-    % we recommend users to first try speed mode 1 for any custom model. 
+    %
+    % We recommend users to first try speed mode 1 for any custom model. 
     % The other two modes are recommended when experiencing slow speed.
-    % However, we have shown that this speed tuning doesnt influence
-    % vast majority of the discoveries in C. elegans tissue modeling. So,
-    % we also recommend users to check out level 2 and 3 speedMode for 
-    % their models.
-    
-    % we use default values for other parameters.
-        
+    % However, we have shown that this speed tuning doesn't influence
+    % vast majority of the discoveries in C. elegans tissue modeling. 
+    % We use default values for other parameters.
+    %
     myCSM = struct(); %myCSM: my Context Specific Model
     try
         Tstart = tic;
@@ -233,20 +226,20 @@ for i = 1:length(ExampleTissues)
     outputCollections = [outputCollections;{myCSM}];
 end
 save(['output/humanTissue/outputCollections_NX.mat'],'outputCollections','ExampleTissues','TimeConsumed');
-%% visualize the flux distributions in a heatmap (optional)
+%% Visualize the flux distributions in a heatmap (optional)
 fluxdata = [];
 for i = 1:length(outputCollections)
     fluxdata = [fluxdata,outputCollections{i}.OFD];
 end
-% normalize by row (/ max)
+% Normalize by row (/ max)
 fluxdata = fluxdata ./ max(abs(fluxdata),[],2);
 fluxdata(isnan(fluxdata)) = 0;
-% only keep internal rxns for clustering
+% Only keep internal rxns for clustering
 model.subSystems = [model.subSystems{:}]';
 transportEx = strcmp(model.subSystems,'Transport, extracellular');
 ExRxn = findExcRxns(model);
 ind = ~transportEx & ~ExRxn;
-% make clustergram
+% Make a clustergram
 distMethod = 'euclidean';
 cgo=clustergram(fluxdata(ind,:),'RowLabels',model.rxns(ind),'ColumnLabels',ExampleTissues,'RowPDist',distMethod,'ColumnPDist',distMethod);
 c=get(cgo,'ColorMap');
@@ -255,18 +248,17 @@ set(cgo,'ColorMap',cpr);
 set(cgo,'Symmetric',true);
 set(cgo,'DisplayRange',1);
 
-%% advanced IMAT++ analysis: Flux Variability Analysis (FVA)
+%% Advanced IMAT++ analysis: Flux Variability Analysis (FVA)
 % As introduced in the paper, we further performed FVA analysis to measure the
-% feasible space of each reaction, which in turn provides a set of
+% feasible flux space of each reaction, which in turn provides a set of
 % reactions to block in FPA analysis. Users can also perform this analysis for
 % their own dataset/model. However, considering the high computational
 % demand, we recommend user to run FVA (of all reactions) on a modern lab server (i.e.,
-% >=20 cores, >= 32g mems). For running FVA on all reactions and getting
+% >=20 cores, >= 32G memory). For running FVA on all reactions and getting
 % the list of reactions to block, please see walkthrough_large_scale_FVA.m
-
+%
 % Here, we provide a demo for running FVA on a few reactions.
-% we can calculate the FVA interval by the MILP output in IMAT++
-
+% We can calculate the FVA interval by the MILP output in IMAT++
 targetRxns = model.rxns([1030,1126]);% some arbitury reactions
 parforFlag = 0; % whether to run FVA in parallel; we choose "no" for demo
 myCSM = outputCollections{1}; % we pick cerebral Cortex for FVA analysis
