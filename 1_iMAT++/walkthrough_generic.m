@@ -113,28 +113,28 @@ model.genes(strcmp(model.genes,'HGNC:HGNC:987')) = {'HGNC:987'};
 % may represent the human blood environment. We used a set of artificial
 % constraints that allows glucose and amino acid as major nutrient sources
 model = defineConstriants(model, 1000,0.005);
-
-% parseGPR takes huge amount of time, so preparse and integrate with the 
+%
+% parseGPR takes a significant amount of time, so preparse and integrate with the 
 % model
 parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
 model.parsedGPR = parsedGPR;
-% some standard fields are missing in the original model. We generate them
+% Some standard fields are missing in the original model. We generate them
 model = buildRxnGeneMat(model); 
 model = creategrRulesField(model);
-%% prepare epsilons
-% users can supply their own epsilon sequence for their own purpose. The
+
+%% Prepare epsilons
+% Users can supply their own epsilon sequence for their own purpose. The
 % epsilons should be supplied in the order of reactions in the model, and
 % should be in equal length of the reactions. The forward direction and
 % reverse direction should be supplied seperately.
-% we provide an epsilon generator following the methods described in the 
+% We provide an epsilon generator following the methods described in the 
 % paper
 
 % NOTE: calculating epsilon for human model may take 20 mins (in a laptop), 
 % so we just load the pre-calculated value. One can use the following codes 
-% to run it again
-
+% to run it again:
 % [epsilon_f, epsilon_r,capacity_f,capacity_r] = makeEpsilonSeq(model, model.rxns, 0.1, 0.5);
-% save('input/humanModel/epsilon.mat','epsilon_f','epsilon_r','capacity_f','capacity_r');
+% Save('input/humanModel/epsilon.mat','epsilon_f','epsilon_r','capacity_f','capacity_r');
 
 load('input/humanModel/epsilon.mat');
 % remove the dead reactions (that cannot carry flux)
