@@ -76,7 +76,7 @@ myCSM = struct(); % myCSM: my Context Specific Model
 % reactions to block in FPA analysis. Users can also perform this analysis 
 % for their own dataset/model. However, considering the computational
 % intensity, we recommend user to run FVA (of all reactions) on a modern 
-% lab server (i.e., >=20 cores, >= 32g mems). For running FVA on all 
+% lab server (i.e., >=20 cores, >= 32G memory). For running FVA on all 
 % reactions and getting the list of reactions to block, please see 
 % walkthrough_large_scale_FVA.m
 % Here, we provide a demo for running FVA on a few reactions.
@@ -107,8 +107,8 @@ load('./input/humanModel/Recon2_2.mat');
 % Fix a typo in the model
 model.genes(strcmp(model.genes,'HGNC:HGNC:2898')) = {'HGNC:2898'};
 model.genes(strcmp(model.genes,'HGNC:HGNC:987')) = {'HGNC:987'};
-
-% we need to constrain the human model to calculate epsilons
+%
+% We need to constrain the human model to calculate epsilons.
 % As a technical demo, we didn't fine-tune the proper constraint set that
 % may represent the human blood environment. We used a set of artificial
 % constraints that allows glucose and amino acid as major nutrient sources
