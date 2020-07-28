@@ -201,7 +201,7 @@ for i = 1:length(names)
     minLowTol = 1e-5;
     myCSM = struct(); %my context specific model
     [myCSM.OFD,myCSM.PFD,myCSM.N_highFit,myCSM.N_zeroFit,myCSM.minLow,myCSM.minTotal,myCSM.minTotal_OFD,myCSM.MILP,myCSM.MILP_PFD,myCSM.HGenes,myCSM.RLNames,myCSM.OpenGene,myCSM.latentRxn,myCSM.Nfit_latent,myCSM.wasteDW] = IMATplusplus(model,epsilon_f,epsilon_r, ExpCatag, modelType, speedMode, minLowTol, doMinPFD, doLatent,latentCAP,storeProp,SideProp, ATPm);
-    save(['output/',names{i},'.mat'],'myCSM');
+    save(['output/wormTissue/',names{i},'.mat'],'myCSM');
     eval([names{i},' = myCSM;']);
     toc(fitTime);
 end
