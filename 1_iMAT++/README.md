@@ -36,8 +36,10 @@ We provided a step-by-step walkthrough script for running FVA conjoined with iMA
 
 We recommend to first go through the above tutorial for IMAT++, to understand the framework of IMAT++ analysis. Then, the user can follow [the walkthrough script of large-scale FVA](walkthrough_large_scale_FVA.m) to build the context-specific model by iMAT++.
 
-### Running iMAT++ analysis on another metabolic model with a given expression dataset
+### Running iMAT++ and FVA analysis on another metabolic model with a given expression dataset
 
 We provided a walkthrough guidance of how to run the iMAT++ analysis on human metabolic model [Recon 2.2](https://pubmed.ncbi.nlm.nih.gov/27358602/). Publicly available consensus transcriptomes of human tissues  [RNA HPA tissue gene data](https://www.proteinatlas.org/about/download) was used as an example.
 
-As with the tutorial for using generic <i>C. elegans</i> model, we provide a step-by-step [walkthrough script](walkthrough_generic.m) for running iMAT++ on Recon 2.2 model with any given expression dataset. This is in the second section right after the guidance for generic <i>C. elegans</i> model. Users can start with this script to develop iMAT++ analysis for their own model/data.
+As with the tutorial for using generic <i>C. elegans</i> model, we provide a step-by-step [walkthrough script](walkthrough_generic.m) for running iMAT++ on Recon 2.2 model with any given expression dataset. This is in the second section right after the guidance for generic <i>C. elegans</i> model. Users can start with this script to develop iMAT++ analysis for their own model/data. Similarly, the FVA guidance can be found in the second section of [the walkthrough script of large-scale FVA](walkthrough_large_scale_FVA.m).
+
+Please be advised that we provided easy speed tuning of iMAT++ and FVA, which we mentioned as three speed levels in the paper. For Recon2.2, speed level 2 already provides acceptable computational speed, <I>i.e</I>, ~10 hours running time on a lab server. However, this could be even much faster (few hours) with speed level 3. Please test and select an appropriate speed level for your input model. For instructions on setting the speed level, please refer to the two walkthrough guidances mentioned above.
