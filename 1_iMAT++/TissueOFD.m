@@ -251,7 +251,7 @@ myCSM = struct(); %my context specific model
 [~,myCSM.PFD,myCSM.N_highFit,myCSM.N_zeroFit,myCSM.minLow,myCSM.minTotal,~,~,myCSM.MILP_PFD,myCSM.HGenes,myCSM.RLNames,myCSM.OpenGene] = IMATplusplus(IntestineModel_PFD,epsilon_new_f,epsilon_new_r, ExpCatag,modelType,speedMode,minLowTol,doMinPFD, ~doLatent,latentCAP, storeProp,SideProp, ATPm);
 % OFD fitting
 [myCSM.OFD,~,~,~,~,~,myCSM.minTotal_OFD,myCSM.MILP,~,~,~,~,myCSM.latentRxn,myCSM.Nfit_latent,myCSM.wasteDW] = IMATplusplus(IntestineModel_OFD,epsilon_new_f,epsilon_new_r, ExpCatag, modelType, speedMode, minLowTol, doMinPFD, doLatent,latentCAP,storeProp,SideProp, ATPm);
-save('output/Intestine.mat','myCSM');
+save('output/wormTissue/Intestine.mat','myCSM');
 toc(fitTime);
 fprintf('C. elegans Tissue Model Fitting Completed! \n');
 toc(totalTime);
