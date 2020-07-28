@@ -5,7 +5,7 @@
 % ..Author: Xuhang Li, Mar 2020
 %% part I: load the expression data and adjust the format
 % we use the RNA-seq data from Bulcha et al, Cell Rep (2019) as an example
-TPM = readtable('./input/exampleExpression.csv');
+TPM = readtable('./input/wormGeneric/exampleExpression.csv');
 % (specific to worm model)
 % worm expression data are often labeled with WormBase ID (WBID). So, we
 % provided a simple lookup table for iCEL1314.
@@ -63,7 +63,7 @@ xline(fit.mu(2) + sqrt(fit.Sigma(2)),'--r');
 % categories in the datasets we tested, we recommend users to interactively
 % evaluate their dataset and find the best thresholds
 %% build the gene catagories
-TPM = readtable('./input/exampleExpression.csv');
+TPM = readtable('./input/wormGeneric/exampleExpression.csv');
 zero2low = fit.mu(2);%set thresholds
 low2dynamic = fit.mu(2) + sqrt(fit.Sigma(2));%set thresholds
 dynamic2high = fit.mu(1);%set thresholds
@@ -82,7 +82,7 @@ for myName = names
     ExpCateg.high = GeneID(myTPM >= dynamic2high);
     % the uncalled genes (i.e., NA and ND)are in dynamic (moderately expressed)
     ExpCateg.dynamic = [ExpCateg.dynamic; metgenes(~ismember(metgenes,GeneID))];
-    save(['input/exampleGeneCategories/categ_',myName{:},'.mat'],'ExpCateg');
+    save(['input/wormGeneric/exampleGeneCategories/categ_',myName{:},'.mat'],'ExpCateg');
 end
 %% analyze if the thereshold makes sense
 % A critical signature of good gene categories is that most metabolic genes are
@@ -127,14 +127,13 @@ fprintf('%d/%d are rarely expressed genes in at least one conditions\n',length(Z
 % we offer an additional QC figure for category making (similar to fig. 1E
 figure(3)
 stackN = [N_zero,N_low,N_dynamic,N_high];
-bar(1:60,stackN,'stacked')
-xlabel('cell line No.')
+bar(1:12,stackN,'stacked')
+xlabel('condition No.')
 legend({'zero','low','dynamic','high'});
-%% further considerations
+%% notice
 % Now you already have a rough gene category for each conditions. However,
 % as mentioned in the paper, we further used a heuristic algorithm to
 % refine the moderately expressed genes (aka, dynamic category).
-% However, the heuristic algoritm works best with our tissue modeling task 
-% as we use single cell sequencing data. For general application on bulk RNA-seq 
-% dataset, we recommand to start with the rough category, or refine the category based on
-% pair-wise differential expression (user need to develop their own code for this).
+% This simple categorier is for users who want to have a quick and rough
+% gene categorization. Please use the CatExp in our GitHub repo for best
+% categorization result.

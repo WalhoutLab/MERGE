@@ -21,17 +21,20 @@ model.parsedGPR = parsedGPR;
 %% Load the gene expression data
 % For making the gene category file from raw expression quantification
 % (e.g., TPM), we provide two options:
-% (1) use our CatExp program to obtain a fine-tuned expression category.
-% This require users to shift 
+% (1) use our CatExp program to obtain the fine-tuned expression category. 
+% We use the output of CatExp in the human model demo in the next section;
+% (2) use a simple categorizer that only perform curve fitting and
+% categorization by absolute threshold. The categorizer is provided as "./
+% scripts/makeGeneCategories.m" (run "open makeGeneCategories"). We use  
+% this simple category in the generic C. elegans model demo. 
 
-please refer to "./scripts/makeGeneCategories.m" (run 
-% "open makeGeneCategories"). Here we directly load the premade gene 
-% categories
+% Users can select their preferred categorizer. 
 
 % We use the RNA-seq data from Bulcha et al, Cell Rep (2019, PMID: 30625328)
 % For demo purpose, we only run iMAT++ for one condition, the N2 worm fed
 % on OP50 diet. 
-load('input/exampleGeneCategories/categ_N2_OP50.mat')
+% load the gene category made by "makeGeneCategories.m"
+load('input/wormGeneric/exampleGeneCategories/categ_N2_OP50.mat')
 % Please note the category nomenclature difference: "high" refers to
 % "highly expressed genes" in the paper, "dynamic" to "moderately
 % expressed", "low" to "lowly expressed" and "zero" to "rarely expressed"
