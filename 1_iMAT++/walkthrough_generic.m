@@ -1,11 +1,10 @@
 %% This walkthrough will take user through the application of IMAT++ to a generic model of C. elegans, or other metabolic models (we used human model Recon2.2 as an example).
 
 %% PART I: THE APPLICATION TO THE GENERIC C. ELEGANS MODEL
-
 %% Prepare the model
 % add paths
-addpath ~/cobratoolbox/% your cobra toolbox path
-addpath /share/pkg/gurobi/810/linux64/matlab/% the gurobi path
+addpath ~/cobratoolbox/ % your cobra toolbox path
+addpath /share/pkg/gurobi/810/linux64/matlab/ % the gurobi path
 addpath ./../bins/
 addpath ./../input/
 addpath scripts/
@@ -21,7 +20,11 @@ model.parsedGPR = parsedGPR;
 
 %% Load the gene expression data
 % For making the gene category file from raw expression quantification
-% (e.g., TPM), please refer to "./scripts/makeGeneCategories.m" (run 
+% (e.g., TPM), we provide two options:
+% (1) use our CatExp program to obtain a fine-tuned expression category.
+% This require users to shift 
+
+please refer to "./scripts/makeGeneCategories.m" (run 
 % "open makeGeneCategories"). Here we directly load the premade gene 
 % categories
 
