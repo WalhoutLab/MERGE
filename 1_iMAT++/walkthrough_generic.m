@@ -198,25 +198,27 @@ for i = 1:length(ExampleTissues)
     % want to release to free)
     modelTmp = model;
     modelTmp.lb(ismember(modelTmp.rxns,{'EX_glc(e)'})) = -1000;% free the main carbon source 
+    
     % Set parameters
     modelType = 3; % 3 for non-C. elegans model
     % The following is the only special parameter for (some) non-C. elegans 
-    % model. For large and complex models like RECON models, or when the computational
-    %equipment available is limited in power, the user may tune the  
-    % `speedMode` parameter to increase the computational speed. 
+    % model. For large and complex models like RECON models, or when the 
+    % computational equipment available is limited in power, the user may 
+    % tune the `speedMode` parameter to increase the computational speed. 
     % `speedMode` Level 3 gives highest speed, at the cost of optimization 
-    %  stringency; Level 1 is the original iMAT configuration used in the 
-    %  paper. Level 2 is somewhat in between. We use level 2 in our human 
-    % demo. (see iMATplusplus.m for details of different speed modes)
+    % stringency; Level 1 is the original iMAT configuration used in the 
+    % paper. Level 2 is somewhat in between. We use level 2 in our human 
+    % demo. (see iMATplusplus.m for details of different speed modes; also
+    % see the 'speed level' section in the Appendix of the paper)
     speedMode = 2;
-    %
     % We recommend users to first try speed mode 1 for any custom model. 
     % The other two modes are recommended when experiencing slow speed.
     % However, we have shown that this speed tuning doesn't influence
     % vast majority of the discoveries in C. elegans tissue modeling. 
+    
     % We use default values for other parameters.
-    %
-    myCSM = struct(); %myCSM: my Context Specific Model
+    
+    myCSM = struct(); % myCSM: my Context Specific Model
     try
         Tstart = tic;
         [myCSM.OFD,...
@@ -269,7 +271,7 @@ set(cgo,'ColorMap',cpr);
 set(cgo,'Symmetric',true);
 set(cgo,'DisplayRange',1);
 
-%% Advanced IMAT++ analysis: Flux Variability Analysis (FVA)
+%% Advanced analysis: Flux Variability Analysis (FVA)
 % As introduced in the paper, we further performed FVA analysis to measure the
 % feasible flux space of each reaction, which in turn provides a set of
 % reactions to block in FPA analysis. Users can also perform this analysis for
@@ -280,7 +282,7 @@ set(cgo,'DisplayRange',1);
 %
 % Here, we provide a demo for running FVA on a few reactions.
 % We can calculate the FVA interval by the MILP output in IMAT++
-targetRxns = model.rxns([1030,1126]);% two arbitrary reactions used
+targetRxns = model.rxns([1030,1126]);% two arbitrary reactions
 parforFlag = 0; % whether to run FVA in parallel; we choose "no" for demo
 myCSM = outputCollections{1}; % we pick cerebral Cortex for FVA analysis
 
@@ -295,9 +297,12 @@ myCSM = outputCollections{1}; % we pick cerebral Cortex for FVA analysis
 %     should lower your 'relMipGapTol' to '1e-3'; You will have the choice
 %     to run FVA on either 'myCSM.MILP_PFD' or 'myCSM.MILP'. However, we
 %     recommend to run FVA on 'myCSM.MILP_PFD' for best speed performance. 
-%     (see iMATplusplus.m for details about MILP_PFD and MILP)
+%     (see iMATplusplus.m for details about MILP_PFD and MILP; and see 
+%      walkthrough_large_scale_FVA.m for more information about speed level
+%      tuning in FVA)
 
-% In human application, we use 1e-3 and MILP_PFD, which is the same as setting the speedMode parameter at 2.
+% In human application, we use 1e-3 and MILP_PFD, which is the same as 
+% setting the speed level at 2.
 relMipGapTol = 1e-3;
 [FVA_lb, FVA_ub] = FVA_MILP(myCSM.MILP_PFD, model, targetRxns,parforFlag, relMipGapTol);
 % Together, we show how to calculate the FVA boundaries of two queried
@@ -305,23 +310,22 @@ relMipGapTol = 1e-3;
 
 
 %% TECHNICAL NOTES ON RUNNING IMAT++
-
-%% 1. slow computational speed 
+%% 1. slow computational speed (even with speed level 3)
 % Although the computational speed of IMAT++ is generally fast, users 
 % may experience slow speed in some cases. A common cause is that rarely
 % expressed genes (related to low/zero reactions) conflict with
 % highly expressed genes, creating a very difficult MILP. It usually
 % indicates problems with the input transcriptional profile, where it
 % disagrees with the metabolic network reconstruction. We recommend users
-% to inspect such conflicts with regard to annotation, pathway biochemistry etc.. 
-% Additionally, complex models may also cause speed problem. See
-% the note #3 for recommendations on dealing with complex models.
+% to inspect such conflicts with regard to annotation, pathway biochemistry 
+% etc.. 
 
 %% 2. numerical issues 
 % Since MILP is a NP-hard problem, even the best solver cannot guarantee to
-% find the optimal solution of every MILP. In some cases, user may see solver complaining
-% "infeasible model" while the input MILP is clearly feasible. This indicates
-% the solver failed to find a feasible solution by its heuristic algorithm. For this, iMAT++ (
-% and FVA) can automatically tune the solver parameter when it happens. However, this 
-% auto-tune function is only designed for Gurobi. User may need to switch to Gurobi or define their 
-% own tuning process for their solvers.
+% find the optimal solution of every MILP. In some cases, user may see 
+% solver complaining "infeasible model" while the input MILP is clearly 
+% feasible. This indicates the solver failed to find a feasible solution by 
+% its heuristic algorithm. For this, iMAT++ (and FVA) can automatically 
+% tune the solver parameter when it happens. However, this auto-tune 
+% function is only designed for Gurobi. User may need to switch to Gurobi 
+% or define their  own tuning process for their solvers.
