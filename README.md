@@ -49,7 +49,7 @@ Please contact us for reporting bugs or contributing purposes. Email contacting 
 
 ## Authors
 
-* **Safak Yilmaz** - *Development of iMAT++, FPA, Metabolic Distance Calculator, and Gene Expression Categorizer* - [lsafak](https://github.com/WalhoutLab)
+* **Safak Yilmaz** - *Development of iMAT++, FPA, Metabolic Distance Calculator, and Gene Expression Categorizer* - [WalhoutLab](https://github.com/WalhoutLab)
 * **Xuhang Li** - *Matlab implementation of iMAT++/iMAT/FPA and additional applications with a human model* - [XuhangLi](https://github.com/XuhangLi)
 
 ## License
