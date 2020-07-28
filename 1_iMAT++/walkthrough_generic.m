@@ -19,7 +19,7 @@ parsedGPR = GPRparser_xl(model);% Extracting GPR data from the model
 model.parsedGPR = parsedGPR;
 
 %% Load the gene expression data
-% For making the gene category file from raw expression quantification
+% For making the gene categories from raw expression quantification
 % (e.g., TPM), we provide two options:
 % (1) use our CatExp program to obtain the fine-tuned expression category. 
 % We use the output of CatExp in the human model demo in the next section;
@@ -46,7 +46,7 @@ load('input/wormGeneric/exampleGeneCategories/categ_N2_OP50.mat')
 % We provide an epsilon generator following the methods described in the
 % paper:
 [epsilon_f, epsilon_r] = makeEpsilonSeq(model, model.rxns, 0.01, 0.5);
-save('input/epsilon_generic.mat','epsilon_f', 'epsilon_r');
+save('input/wormGeneric/epsilon_generic.mat','epsilon_f', 'epsilon_r');
 % NOTE: this may take ~5 mins
 
 %% Run the integration function 
@@ -56,7 +56,6 @@ model = changeRxnBounds(model,'EXC0050',-1000,'l');% free bacteria uptake
 % Set model type
 modelType = 2; % 2 for generic C. elegans model. 
 % (The default is 1, for the tissue model)
-% Set the non-applicable parameters to -1 (which will be ignored)
 % For other parameters (i.e, ATPm and latentCAP), we use default values
 % Run iMAT++ and save outputs in a structure
 myCSM = struct(); % myCSM: my Context Specific Model
