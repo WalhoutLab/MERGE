@@ -48,11 +48,11 @@ end
 % Check if is running on gurobi solver
 solverOK = changeCobraSolver('gurobi', 'MILP',0);
 if ~solverOK
-    fprintf('The solver parameter auto-tuning is not supported for current solver! Please use Gurobi for best performance!\n')
+    fprintf('The solver parameter auto-tuning is not supported for the current solver! Please use Gurobi for best performance!\n')
 end
 %% store the constraint index for total flux
 minTotalInd = length(MILProblem.b); % assume the total flux constriant is the last row!
-fprintf('the total flux is constrianed to %.2f \n',MILProblem.b(end));
+fprintf('the total flux is constrained to %.2f \n',MILProblem.b(end));
 %% define candidate reactions of latent reactions from HGene list
 latentCandi = {};
 for i = 1:length(model.rxns)
@@ -168,7 +168,7 @@ while 1
     if solution.stat ~= 1
         if solution.stat == 3
             % pass with warning
-            warning('Latent reactions are not fully fitted! (solver time out! Change timeLimit if needed)');
+            warning('Latent reactions are not fully fitted! (solver time out! Change timeLimit if needed!)');
         else % unknown error
             error('MILP solving failed! Please inspect the reason!');
         end
@@ -206,7 +206,7 @@ while 1
     if solution.stat ~= 1
         if solution.stat == 3
             % pass with warning
-            warning('Latent total flux is not fully minimized! (solver time out! Change timeLimit if needed)');
+            warning('Latent total flux is not fully minimized! (solver time out! Change timeLimit if needed!)');
         else % unknown error
             error('MILP solving failed! Please inspect the reason!');
         end

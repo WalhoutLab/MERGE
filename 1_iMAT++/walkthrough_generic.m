@@ -79,7 +79,7 @@ myCSM = struct(); % myCSM: my Context Specific Model
 % For understanding each output field, please see `IMATplusplus.m`
 % The OFD flux distribution is myCSM.OFD
 
-%% Advanced IMAT++ analysis: Flux Variability Analysis (FVA)
+%% Advanced analysis: Flux Variability Analysis (FVA)
 % As introduced in the paper, we further performed FVA analysis to measure 
 % the feasible flux space of each reaction, which in turn provides a set of
 % reactions to block in FPA analysis. Users can also perform this analysis 
@@ -102,7 +102,7 @@ parforFlag = 0; % whether to run FVA in parallel; we choose "no" for demo
 % However, attention needs to be paid to the inputs to make sure they
 % are in the correct format. Here we provide an example of integrating
 % RNA-seq data for human tissues to human model, RECON2.2 (Swainston et al., 2016)
-
+clear
 %% Prepare the model
 % Add paths
 addpath ~/cobratoolbox/% your cobra toolbox path
@@ -137,7 +137,7 @@ model = creategrRulesField(model);
 % should be in equal length of the reactions. The forward direction and
 % reverse direction should be supplied seperately.
 % We provide an epsilon generator following the methods described in the 
-% paper
+% paper.
 % NOTE: calculating epsilon for human model may take 20 mins (in a laptop), 
 % so we just load the pre-calculated value. One can use the following codes 
 % to run it again:
@@ -153,12 +153,19 @@ epsilon_f = epsilon_f(B(A));
 epsilon_r = epsilon_r(B(A));
 
 %% Flux fitting for each tissue
-% Please notice that, considering the larger size of the human model, the integration 
-% takes longer than with the C. elegans model. Each tissue takes around
-% ~2 mins in a testing laptop, and few tissues may take longer (e.g., liver
-% takes 20 mins).
-%
+% Please notice that, considering the larger size of the human model, the  
+% integration takes longer than that with the C. elegans model. Each tissue 
+% takes around 2 mins in a testing laptop, and few tissues may take longer 
+% (e.g., liver takes 20 mins).
+
+% load premade categories
+% For making the gene category file from raw expression quantification
+% (i.e, TPM), please go to CatExp tool provided in this repository.
+% this table is from the output of CatExp program.
 cateTbl = readtable('input/humanModel/NX/Tcatf_nx_consensus.tsv','FileType','text');
+missinggenes = setdiff(model.genes,cateTbl.Var1); 
+% we will add the missing genes (if any) to "moderate" category
+
 % For the sake of simplicity, we only show the application of MERGE pipeline on
 % 17 major tissues.
 ExampleTissues = {'cerebralCortex','spinalCord','midbrain','ponsAndMedulla',...% neuronal tissues (<--> worm neuron/glia)
@@ -171,15 +178,20 @@ TimeConsumed = [];
 for i = 1:length(ExampleTissues)
     sampleName = ExampleTissues{i};
     fprintf('Starting to fit %s...\n',sampleName);
-    %% Load the gene expression data
-    % For making the gene category file from raw expression quantification
-    % (i.e, TPM), please go to CatExp tool provided in this repository.
-    % We premade the categories by CatExp and saved the results in
-    % individual .mat files.
-    load(['input/humanModel/NX/categ_',sampleName,'.mat']);
+    %% reformat the categories into a structure variable
+    % in the input of iMAT++ function, gene categories are stored in a
+    % structure variable that contains fields for each category. So, let's
+    % make it first.
+    ExpCateg = struct();
+    ExpCateg.high = cateTbl.Var1(strcmp(cateTbl.(sampleName),'High'));
+    ExpCateg.dynamic = cateTbl.Var1(strcmp(cateTbl.(sampleName),'Moderate'));
+    ExpCateg.low = cateTbl.Var1(strcmp(cateTbl.(sampleName),'Low'));
+    ExpCateg.zero = cateTbl.Var1(strcmp(cateTbl.(sampleName),'Rare'));
+    ExpCateg.dynamic = [ExpCateg.dynamic;missinggenes];    
     % Please note the category nomenclature difference: the "high" refers 
     % to "highly expressed genes" in the paper, "dynamic" to "moderately
     % expressed", "low" to "lowly expressed" and "zero" to "rarely expressed"
+    % this nonmenclature difference is due to some historical reason.
     %% Run the integration function 
     % We reset the constraint of major carbon source to make the model
     % ready for integration (user needs to determine which nutrient(s) they

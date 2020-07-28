@@ -162,7 +162,7 @@ end
 % Check if is running on gurobi solver
 solverOK = changeCobraSolver('gurobi', 'MILP',0);
 if ~solverOK
-    fprintf('The solver parameter auto-tuning is not supported for current solver! Please use Gurobi for best performance!\n')
+    fprintf('The solver parameter auto-tuning is not supported for the current solver! Please use Gurobi for best performance!\n')
 end
 %% mapping the gene categories to reactions
 fprintf('Start flux fitting... \n');
@@ -203,7 +203,7 @@ if modelType == 1
         worm.S(end-1, strcmp('EXC0050_L',worm.rxns)) = storeProp*bacMW*0.01;
         worm.S(end, strcmp('EXC0050_L',worm.rxns)) = SideProp*bacMW*0.01;
     else
-        error('Please check your input parameter for side proportion, storage proportion, and ATPm!');
+        error('Please check your input parameters for side proportion, storage proportion, and ATPm!');
     end
 elseif modelType == 2
     worm = changeRxnBounds(worm,'RCC0005',ATPm,'l');
@@ -270,7 +270,7 @@ end
 if solution.stat ~= 1
     if solution.stat == 3
         % pass with warning
-        warning('Low fluxes are not fully eliminated! (solver time out! Change timeLimit if needed)');
+        warning('Low fluxes are not fully eliminated! (solver time out! Change timeLimit if needed!)');
     else % unknown error
         error('MILP solving failed! Please inspect the reason!');
     end
@@ -347,7 +347,7 @@ if doMinPFD
     if solution.stat ~= 1
         if solution.stat == 3
             % pass with warning
-            warning('Total flux is not fully minimized! (solver time out! Change timeLimit if needed)');
+            warning('Total flux is not fully minimized! (solver time out! Change timeLimit if needed!)');
         else % unknown error
             error('MILP solving failed! Please inspect the reason!');
         end
