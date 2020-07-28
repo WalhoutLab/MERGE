@@ -83,9 +83,9 @@ for i = 1:length(names)
     targetRxns = Xrxns;
     parforFlag = 1;
     myFVA = struct(); %my context specific model
-    load(['output/',names{i},'_speedmode_1.mat']);
+    load(['output/wormTissue/',names{i},'_speedmode_1.mat']);
     [myFVA.lb, myFVA.ub] = FVA_MILP(myCSM.MILP, model, targetRxns,parforFlag);
-    save(['output/FVA/',names{i},'_speedmode_1.mat'],'myFVA');
+    save(['output/wormTissue/FVA/',names{i},'_speedmode_1.mat'],'myFVA');
     toc(fitTime);
 end
 
@@ -116,7 +116,7 @@ for i = 1: length(IntestineModel_OFD.rxns)
     end
 end
 
-load('output/Intestine_speedmode_1.mat');
+load('output/wormTissue/Intestine_speedmode_1.mat');
 
 % Set free all X exchange
 myCSM.MILP.ub(cellfun(@(x) ~isempty(regexp(x, '_X$','once')) ,IntestineModel_OFD.rxns)) = 1000;
@@ -131,7 +131,7 @@ targetRxns = IntestineModel_OFD.rxns(cellfun(@(x) isempty(regexp(x, '_X$','once'
 myFVA = struct(); %my context specific model
 % OFD fitting
 [myFVA.lb, myFVA.ub] = FVA_MILP(myCSM.MILP, IntestineModel_OFD, targetRxns,parforFlag);
-save('output/FVA/Intestine_speedmode_1.mat','myFVA');
+save('output/wormTissue/FVA/Intestine_speedmode_1.mat','myFVA');
 toc(fitTime);
 fprintf('C. elegans Tissue Model FVA Completed! \n');
 toc(totalTime);
