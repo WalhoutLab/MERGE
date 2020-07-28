@@ -93,7 +93,7 @@ end
 % first get the average flux distribution of all six non-intestinal
 % tissues.
 for i = 1:length(names)
-    load(['output/',names{i},'.mat']);
+    load(['output/wormTissue/',names{i},'_speedmode_1.mat']);
     eval([names{i},' = myCSM;']);
 end
 weights = [0.16481752424244808;0.19668335945561571;0.029394841229723516;0.055442983787911716;0.35973476877630634;0.19392652250799472];%needs to order by tissuesname
