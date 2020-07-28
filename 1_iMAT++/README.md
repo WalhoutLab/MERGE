@@ -12,7 +12,7 @@ To reproduce the flux distribution prediction, simply run:
 ```
 matlab < TissueOFD.m
 ```
-Output (flux distribution and other metrics) will be written in output/TissueName.mat
+Output (flux distribution and other metrics) will be written in output/wormTissue/TissueName.mat
 
 Please refer to the [integration function](scripts/IMATplusplus.m) for the output format.
 
@@ -20,7 +20,7 @@ To reproduce the Flux Variability Analysis (FVA), simply run:
 ```
 matlab < TissueFVA.m
 ```
-Output (upper and lower bounds) will be written in output/FVA/
+Output (upper and lower bounds) will be written in output/wormTissue/FVA/
 
 Additionally, please be advised that the FVA analysis of tissue network is computationally intensive. One should expect the program to take couple of hours to finish in a regular 20-core lab server.
 
