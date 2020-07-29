@@ -32,9 +32,9 @@ We recommend to go over this script interactively in MATLAB graphic interface. P
 
 ### Running FVA analysis on generic <i>C. elegans</i> model with a given expression dataset
 
-We provided a step-by-step walkthrough script for running FVA conjoined with iMAT++ on the generic [iCEL1314](http://wormflux.umassmed.edu/index.html) model with any given expression dataset. Users can start with this script to perform iMAT++ analysis on their own expression data. 
+We provided a step-by-step walkthrough script for running FVA conjoined with iMAT++ on the generic [iCEL1314](http://wormflux.umassmed.edu/index.html) model with any given expression dataset. Users can start with this script to perform iMAT++/FVA/network-building analysis on their own expression data. 
 
-We recommend to first go through the above tutorial for IMAT++, to understand the framework of IMAT++ analysis. Then, the user can follow [the walkthrough script of large-scale FVA](walkthrough_large_scale_FVA.m) to build the context-specific model by iMAT++.
+We recommend to first go through the above tutorial for IMAT++, to understand the framework of IMAT++ analysis. Then, the user can follow [the walkthrough script of large-scale FVA](walkthrough_large_scale_FVA.m) to build the context-specific model by iMAT++(and FVA).
 
 ### Running iMAT++ and FVA analysis on another metabolic model with a given expression dataset
 
@@ -42,4 +42,4 @@ We provided a walkthrough guidance of how to run the iMAT++ analysis on human me
 
 As with the tutorial for using generic <i>C. elegans</i> model, we provide a step-by-step [walkthrough script](walkthrough_generic.m) for running iMAT++ on Recon 2.2 model with any given expression dataset. This is in the second section right after the guidance for generic <i>C. elegans</i> model. Users can start with this script to develop iMAT++ analysis for their own model/data. Similarly, the FVA guidance can be found in the second section of [the walkthrough script of large-scale FVA](walkthrough_large_scale_FVA.m).
 
-Please be advised that we provided easy speed tuning of iMAT++ and FVA, which we mentioned as three speed levels in the paper. For Recon2.2, speed level 2 already provides acceptable computational speed, <I>i.e</I>, ~10 hours running time on a lab server to integrate 17 tissues (iMAT++ and FVA together). However, this could be even much faster (few hours) with speed level 3. Please test and select an appropriate speed level for your input model. For instructions on setting the speed level, please refer to the two walkthrough guidances mentioned above.
+Please be advised that we provided easy speed tuning of iMAT++ and FVA, which we mentioned as the three speed levels in the paper. For Recon2.2, speed level 2 already provides acceptable computational speed, <I>i.e</I>, ~10 hours running time on a lab server to integrate 17 tissues (iMAT++ and FVA together). However, this could be even much faster (within few hours on a laptop) with speed level 3. Please test and select an appropriate speed level for your input model. For instructions on setting the speed level, please refer to the two walkthrough guidance scripts mentioned above.
