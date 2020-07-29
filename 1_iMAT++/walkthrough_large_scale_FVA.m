@@ -1,19 +1,19 @@
 %% This walkthrough will guide user to perform iMAT++ combined with FVA analysis for multiple conditions
-% We recommend users to first go through the walkthrough_generic.m before starting this walkthrough 
-% This will guide user to generate the OFD, upper and lower bounds, and
-% the parsed FVA level table for blocking reactions in advanced FPA, for each queried
-% conditions.
+% We recommend users to first go through the walkthrough_generic.m before 
+% starting this walkthrough. This will guide user to generate the OFD, 
+% upper and lower bounds, and the parsed FVA level table for blocking 
+% reactions in FPA.
 
 %% PART I: THE APPLICATION TO THE GENERIC C. ELEGANS MODEL
-% We continue to use the RNA-seq data from Bulcha et al, Cell Rep (2019) as an example
-% And we use generic C. elegans model for demo purpose. Users could run this script on 
-% other models with minor modifications.
-% As a demo, we only compare four conditions: N2_OP50, N2_B12, nhr10_OP50 and nhr10_B12
+% We continue to use the RNA-seq data from Bulcha et al, Cell Rep (2019) 
+% as an example.
+% As a demo, we only compare four conditions: N2_OP50, N2_B12, nhr10_OP50 
+% and nhr10_B12.
 
 %% Step 1: make the OFDs
 % add paths
-addpath ~/cobratoolbox/%your cobra toolbox path
-addpath /share/pkg/gurobi/810/linux64/matlab/%the gurobi path
+addpath ~/cobratoolbox/% your cobra toolbox path
+addpath /share/pkg/gurobi/810/linux64/matlab/% the gurobi path
 addpath ./../bins/
 addpath ./../input/
 addpath scripts/
@@ -33,7 +33,7 @@ modelType = 2; % 2 for generic C. elegans model. The default (if not specified) 
 for i = 1:length(conditions)
     sampleName = conditions{i};
     load(['input/wormGeneric/exampleGeneCategories/categ_',sampleName,'.mat']) % load categories
-    myCSM = struct(); %myCSM: my Context Specific Model
+    myCSM = struct(); % myCSM: my Context Specific Model
     [myCSM.OFD,...
     myCSM.PFD,...
     myCSM.N_highFit,...
@@ -56,9 +56,9 @@ for i = 1:length(conditions)
 end
 
 %% Step 2: FVA
-% The FVA calculation is computationally intensive. We expect the speed of ~100
-% reactions per miniute in a 4-core Mac laptop. Therefore, the total FVA
-% computation time may be ~2 hour in a laptop. For best practice, we
+% The FVA calculation is computationally intensive. We expect the speed of
+% ~100 reactions per miniute in a 4-core Mac laptop. Therefore, the total 
+% FVA computation time may be ~2 hour in a laptop. For best practice, we
 % recommend running it on a multi-core lab server (>=20).
 %
 % Define the par cluster
@@ -96,15 +96,15 @@ for z = 1:length(conditions)
     % Models`
     for i = 1:length(model.rxns)
         if myCSM.OFD(i) > 1e-5 % 1e-5 is the tol_flux, see supplement text for details
-            levels_f(i) = 1;%level 1 means "carry flux in OFD"
+            levels_f(i) = 1;% level 1 means "carry flux in OFD"
         elseif myCSM.OFD(i) > 1e-7 && myFVA.lb(i) > 1e-7 % 1e-7 is the tol_zero, see supplement text for details
             levels_f(i) = 1;
         elseif myFVA.ub(i) > max(epsilon_f(i)-1e-5,1e-5)
-            levels_f(i) = 0;%level 0 means "not carry flux in OFD, but in ALT"
+            levels_f(i) = 0;% level 0 means "not carry flux in OFD, but in ALT"
         elseif isnan(myFVA.ub(i))
             levels_f(i) = nan;
         else
-            levels_f(i) = -1;%level -1 means "not carry flux in SLNS"
+            levels_f(i) = -1;% level -1 means "not carry flux in SLNS"
         end
 
         if -myCSM.OFD(i) > 1e-5
@@ -183,7 +183,7 @@ for i = 1:length(ExampleTissues)
     
     % setup parameters for FVA
     % the parameters are important. They are related to the three speed
-    % levels discussed in the paper (appendix). Please also check the 
+    % levels discussed in the paper (Appendix). Please also check the 
     % technical notes at the end of this walkthrough for details.
     parforFlag = 1;
     RelMipGap = 1e-3;
@@ -227,15 +227,15 @@ for z = 1:length(ExampleTissues)
         trimedInd = strcmp(model.rxns,model_ori.rxns{i});
         if any(trimedInd)
             if myCSM.OFD(trimedInd) > 1e-5 % 1e-5 is the tol_flux, see supplement text for details
-                levels_f(i) = 1;%level 1 means "carry flux in OFD"
+                levels_f(i) = 1;% level 1 means "carry flux in OFD"
             elseif myCSM.OFD(trimedInd) > 1e-7 && myFVA.lb(trimedInd) > 1e-7 % 1e-7 is the tol_zero, see supplement text for details
                 levels_f(i) = 1;
             elseif myFVA.ub(trimedInd) > max(epsilon_f(trimedInd)-1e-5,1e-5)
-                levels_f(i) = 0;%level 0 means "not carry flux in OFD, but in ALT"
+                levels_f(i) = 0;% level 0 means "not carry flux in OFD, but in ALT"
             elseif isnan(myFVA.ub(trimedInd))
                 levels_f(i) = nan;
             else
-                levels_f(i) = -1;%level -1 means "not carry flux in SLNS"
+                levels_f(i) = -1;% level -1 means "not carry flux in SLNS"
             end
 
             if -myCSM.OFD(trimedInd) > 1e-5
