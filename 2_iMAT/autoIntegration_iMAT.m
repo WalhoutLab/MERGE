@@ -10,7 +10,7 @@ function [PFD,N_highFit,N_zeroFit,minLow,minTotal,OpenedLReaction,wasteDW,Hreact
 if (nargin < 8)
     doMinPFD = true;
 end
-if (nargin < 9) %fullsensitivity means sensitivity that includes negative sensitivity score (confident no flux), and due to technical reason, in full sensitivity, -1/+1 score means violation of minTotal flux
+if (nargin < 9) 
     type = 'canonical';
 end
 %set global constant 

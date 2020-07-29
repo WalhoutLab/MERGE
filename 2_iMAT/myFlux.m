@@ -1,3 +1,12 @@
+%% NOTICE
+% Please be advised that this module (iMAT module) is only provided for
+% reproduction purposes. We do not expect it to be used in application to
+% any task other than the C. elegans tissue modeling described in our
+% paper. Therefore, the codes in this module are NOT carefully commented.
+% There may also be some redundant/unrelated codes/functions for historical
+% reasons. We provide the original script as it is and only tested it for 
+% its function in reproducing what was shown in Fig. 2D.
+
 %% Load model
 addpath ./../bins/
 addpath ~/cobratoolbox/
