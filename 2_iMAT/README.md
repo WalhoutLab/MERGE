@@ -16,8 +16,6 @@ Output (Flux distribution and other metrics) will be written in output/TissueNam
 
 Please refer to the [integration function](iMAT_xl.m) for the output format.
 
-For more instructions on running the pipeline in a custom dataset, please refer to the header of each function included in the walkthrough script.
-
 ### Important Note on Computational Performance
 
 If you are intended to run iMAT algorithm to reproduce the results from this study, please make sure the programs are excuted in a high-performance workstation (we suggest >= 20 CPU cores and > 20G memory). In our experience, though iMAT++ is fast enough to be run in a laptop even with a large network model such as the dual-tissue model, the original iMAT is computationally intensive. It is typical to take 30mins to hours to complete the integration for all tissues in a 20-core workstation. 
