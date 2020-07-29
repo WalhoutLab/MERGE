@@ -15,7 +15,7 @@ To reproduce the titration of distance order by collagen (Figure 5D), simply run
 matlab < TissueFPA_CollagTitration.m
 ```
 
-### Running basic FPA on generic <i>C. elegans</i> model with a given expression dataset
+### Running FPA on generic <i>C. elegans</i> model with a given expression dataset
 
 We provided a step-by-step [walkthrough script](walkthrough_FPA_generic.m) for running FPA on [iCEL1314](http://wormflux.umassmed.edu/index.html) with any given expression dataset. Users can start with this script to perform FPA analysis on their own expression data. 
 
@@ -23,13 +23,11 @@ This walkthrough script will guide users to generate FPA predictions from a plai
 
 Users may choose to generate the distance matrix for iCEL1314 via [metabolic distance calculator](./../MetabolicDistance). In this walkthrough script, we will directly use the completed output (see details in the script) in the interest of time, as the calculation of the full distance matrix may take hours unless a computer cluster is being used. For generating the required input from a COBRA formatted model loaded in matlab, please see "2. generate the distance matrix" in the walkthrough section for Recon 2.2. This section will guide user to make the required inputs for running the distance calculator.
 
-### Running advanced FPA on generic <i>C. elegans</i> model with a given expression dataset
-
- In complete MERGE pipeline, we further integrate the context-specific network produced by iMAT++ with FPA anlysis. That is, when calculating the FPA, we block all the reactions that do not carry flux in solution space (SLNS) in iMAT++. To achieve this advanced FPA analysis, please follow the instructions in section "4. run advanced FPA analysis" in the above mentioned [walkthrough script](walkthrough_FPA_generic.m). Users may need also refer to [large scale FVA walkthrough](./../1_iMAT++/walkthrough_large_scale_FVA.m) for calculating the FVA intervals of each reaction.
+Notably, in the full MERGE pipeline, we integrate the context-specific network produced by iMAT++ with FPA anlysis. That is, when calculating the FPA, we block all the reactions that do not carry flux in solution space (SLNS) in iMAT++. To achieve this, please follow the instructions in section "3. Run regular FPA analysis" in the above mentioned [walkthrough script](walkthrough_FPA_generic.m). To obtain the context-specific network, users may need to follow [large scale FVA walkthrough](./../1_iMAT++/walkthrough_large_scale_FVA.m). Alternatively, users may run FPA on the full network (the naive network without removing any reaction). We have shown in our C. elegans tissue analysis that FPA on the naive network compromised the predictions, but still captured great amount (Fig EV5 and "Robustness and Usability of MERGE" section in the paper). So, it would be a good choice to perform FPA on the full network as a quick start. The instruction of this is provided in section "3.1 (OPTIONAL) FPA on the full network" in the above mentioned [walkthrough script](walkthrough_FPA_generic.m). 
 
 ### Running FPA on another metabolic model with a given expression dataset
 
 Similar to iMAT++, we provide a walkthrough guidance of how to run the FPA analysis on human metabolic model [Recon 2.2](https://pubmed.ncbi.nlm.nih.gov/27358602/). The expression profile of human tissues [RNA HPA tissue gene data](https://www.proteinatlas.org/about/download) was used as an example.
 
-The walkthrough tutorial is in [the same walkthrough file](walkthrough_FPA_generic.m) mentioned above. Please check "PART II: THE APPLICATION TO ANY METABOLIC MODEL" in the script for further guidence. Users can start with this script to develop FPA analysis for their own model/data.
+The walkthrough tutorial is in [the same walkthrough file](walkthrough_FPA_generic.m) mentioned above. Please check "PART II: THE APPLICATION TO ANY METABOLIC MODEL" in the script for further guidence. Users can start with this script to develop FPA analysis for their own model/data. We provided instructions covering the same topics in the above demo for generic C. elegans model.
 
