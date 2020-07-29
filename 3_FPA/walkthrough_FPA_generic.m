@@ -25,11 +25,6 @@ load('iCEL1314.mat');
 model = changeRxnBounds(model,'EXC0050',-1000,'l');% we allow unlimited bacteria uptake
 model = changeRxnBounds(model,'RCC0005',0,'l');% remove the NGAM 
 model.S(ismember(model.mets,{'atp_I[c]','h2o_I[c]','adp_I[c]','h_I[c]','pi_I[c]'}), strcmp('DGR0007_L',model.rxns)) = 0;% remove the energy cost for bacteria digestion
-%
-% The FPA analysis requires that the GPR be pre-parsed and attached as a field
-% in the model. Otherwise parsing GPR in each FPA calculation is extremely inefficient. 
-parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
-model.parsedGPR = parsedGPR;
 
 %% 2. Load the expression files, distance matrix, and other optional inputs
 
@@ -75,7 +70,7 @@ end
 
 % ```load the distance matrix```
 % We load from the output of the distance calculator. 
-% For usage of distance calculator, please refer to the Metabolic Distance folder
+% For usage of distance calculator, please refer to the `Metabolic Distance` folder
 distance_raw = readtable('./../MetabolicDistance/Output/distanceMatrix.txt','FileType','text','ReadRowNames',true); 
 labels = distance_raw.Properties.VariableNames;
 labels = cellfun(@(x) [x(1:end-1),'_',x(end)],labels,'UniformOutput',false);
@@ -120,7 +115,7 @@ parpool(4)
 
 % First, let's merge the level tables for each condition
 for i = 1:length(conditions)
-    load(['./../1_iMAT++/output/genericModelDemo/FVA/',conditions{i},'levels_.mat']);
+    load(['./../1_iMAT++/output/genericModelDemo/FVA/',conditions{i},'_levels.mat']);
     levelTbl_f(:,i) = levels_f;
     levelTbl_r(:,i) = levels_r;
 end
@@ -157,8 +152,8 @@ end
 % Building context-sepcific network is costly and sometimes the user may
 % want to give a quick trial of FPA. Therefore, it is also an option to run
 % FPA as a standalone algorithm without the "blocklist" input. Please refer
-% to the Appendix Supplementary MEthods of our paper for pros and cons of FPA on the
-% full network.
+% to the Appendix Supplementary MEthods of our paper for pros and cons of 
+% FPA on the full network.
 % To run FPA on the full network, simply write:
 [FP_naive,FP_solutions_naive] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty);
 %
@@ -191,15 +186,14 @@ title('rFP of Propanoyl-CoA:(acceptor) 2,3-oxidoreductase flux')
 % the guidence for iMAT++, we provide an example of integrating RNA-seq 
 % data of human tissue expressions to human model, RECON2.2 (Swainston et 
 % al., 2016)
-
+clear
 %% Initiate the parpool (skip if already initiated)
 % The FPA is designed with parfor loops for better speed, so we first 
 % initialize the parpool
 parpool(2); % set according to your computational environment
 
 %% 1. Prepare the model
-addpath ./input/
-addpath ./scripts/
+addpath scripts/
 addpath input/
 addpath ./../bins/
 
@@ -226,10 +220,7 @@ model.rxns = regexprep(model.rxns,'\(|\)|\[|\]|-','_');
 % meaningful for FBA/FPA. Keeping it will cause slow speed of GPR parsing
 model.rules(strcmp(model.rxns,'ATPasel')) = {''};
 
-% ```pre-parse GPR```
-% parseGPR takes a significant amount of time, so preparse and integrate with model
-parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
-model.parsedGPR = parsedGPR;
+% ```add in some missing fields```
 model = buildRxnGeneMat(model);% generate other missing fields
 model = creategrRulesField(model);
 
@@ -242,12 +233,12 @@ writecell(model.rxns,'distance_inputs/reactions_regular.txt');
 writecell(model.mets,'distance_inputs/metabolites_regular.txt');
 writematrix(model.lb,'distance_inputs/LB_regular.txt');
 writematrix(model.ub,'distance_inputs/UB_regular.txt');
-% User needs to determine their own byproduct metabolites (for details, see Structured Methods in our paper) 
+% Users need to determine their own byproduct metabolites (for details, see Structured Methods in our paper) 
 byProducts = {'co2';'amp';'nadp';'nadph';'ppi';'o2';'nadh';'nad';'pi';'adp';'coa';'atp';'h2o';'h';'gtp';'gdp';'etfrd';'etfox';'crn';'fad';'fadh2'};% the typical set of byproducts
 % Add compartment label to byproducts
 byProducts = model.mets(ismember(cellfun(@(x) regexprep(x,'\[.\]$',''),model.mets, 'UniformOutput',false),byProducts));
 writecell(byProducts,'distance_inputs/byproducts_regular.txt');
-% Then you can use the output files in folder "the distance_inputs" folder 
+% Then you can use the output files in folder the "distance_inputs" folder 
 % for calculating distances. Please follow the Distance calculator section 
 % in Github
 %% For an earlier MATLAB version, user may consider the following codes:
@@ -381,8 +372,9 @@ for i = 1:length(ExampleTissues_name2)
     levelTbl_r(:,i) = levels_r;
 end
 % Then, get the list of to-block reactions
-% because the FPA is done using the irreversible model, and therefore, the rxnID is
-% different from the original. We provided a function to get the new IDs.
+% because the FPA is done using the irreversible model, and therefore, 
+% the rxnID is different from the original. We provided a function to get 
+% the new IDs.
 blockList = getBlockList(model,levelTbl_f,levelTbl_r);
 %
 % IMPORTANT: the order of tissues (or conditions) in `master_expression` 
@@ -492,8 +484,8 @@ end
 % Building context-sepcific network is costly and sometimes the user may
 % want to give a quick trial of FPA. Therefore, it is also an option to run
 % FPA as a standalone algorithm without the "blocklist" input. Please refer
-% to the Appendix Supplementary Methods section of our paper for pros and cons of FPA on the
-% full network.
+% to the Appendix Supplementary Methods section of our paper for pros and 
+% cons of FPA on the full network.
 %
 % To run FPA on the full network, simply write:
 % example (1) and (2)
@@ -581,16 +573,16 @@ title('GABA import')
 % To inspect the flux distribution, first get irreversible model
 model_irrev = convertToIrreversible(model);
 % Then, we provide a flux tracker for easy-inspection.
-mytbl = listRxn(model_irrev,FP_solutions{1,14}{1}.full,'icit[m]');
+mytbl = listRxn(model_irrev,FP_solutions{1,11}{1}.full,'icit[m]');
 % mytbl: column#1: rxnID, col#2: rxn flux, col#3: rxn formula, col#4: flux
 % contribution to the queried metabolite.
 % You can view the "mytbl" variable for flux going in and out of isocitrate 
-% in the FPA calculation of skeletal muscle for ICDHym. 
+% in the FPA calculation of heart muscle for ICDHym. 
 
 %% 2. notice on gene names and expression data
 % (1) Gene Name Rules:
 %   (a) we allow letters, numbers, dot, dash and colon in gene names. Any  
-%       other symbol needs to be added in the regexp function of line 41 in 
+%       other symbol needs to be added in the regexp function of line 43 in 
 %       eval_gpr.m.
 %   (b) if a gene name appears multiple times in the expression table, we 
 %       use the sumation of all expression levels in the GPR parsing step. 
