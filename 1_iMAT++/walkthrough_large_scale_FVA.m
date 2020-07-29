@@ -24,7 +24,7 @@ model = changeRxnBounds(model,'EXC0050',-1000,'l');% free bacteria uptake for in
 parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
 model.parsedGPR = parsedGPR;
 % Prepare flux thresholds (epsilon values)
-load('input/epsilon_generic.mat'); % see walkthrough_generic.m for guidance on generating the epsilon values
+load('input/wormGeneric/epsilon_generic.mat'); % see walkthrough_generic.m for guidance on generating the epsilon values
 conditions = {'N2_OP50', 'N2_B12', 'nhr10_OP50','nhr10_B12'};
 % Set parameters
 modelType = 2; % 2 for generic C. elegans model. The default (if not specified) is 1, for the tissue model
@@ -32,7 +32,7 @@ modelType = 2; % 2 for generic C. elegans model. The default (if not specified) 
 % First calculate and save the OFDs of all these conditions
 for i = 1:length(conditions)
     sampleName = conditions{i};
-    load(['input/exampleGeneCategories/categ_',sampleName,'.mat']) % load categories
+    load(['input/wormGeneric/exampleGeneCategories/categ_',sampleName,'.mat']) % load categories
     myCSM = struct(); %myCSM: my Context Specific Model
     [myCSM.OFD,...
     myCSM.PFD,...
