@@ -14,7 +14,6 @@ matlab < myFlux.m
 ```
 Output (Flux distribution and other metrics) will be written in output/TissueName.mat
 
-Please refer to the [integration function](iMAT_xl.m) for the output format.
 
 ### Important Note on Computational Performance
 
