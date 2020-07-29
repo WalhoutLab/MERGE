@@ -29,5 +29,5 @@ Notably, in the full MERGE pipeline, we integrate the context-specific network p
 
 Similar to iMAT++, we provide a walkthrough guidance of how to run the FPA analysis on human metabolic model [Recon 2.2](https://pubmed.ncbi.nlm.nih.gov/27358602/). The expression profile of human tissues [RNA HPA tissue gene data](https://www.proteinatlas.org/about/download) was used as an example.
 
-The walkthrough tutorial is in [the same walkthrough file](walkthrough_FPA_generic.m) mentioned above. Please check "PART II: THE APPLICATION TO ANY METABOLIC MODEL" in the script for further guidence. Users can start with this script to develop FPA analysis for their own model/data. We provided instructions covering the same topics in the above demo for generic C. elegans model.
+The walkthrough tutorial is in [the same walkthrough file](walkthrough_FPA_generic.m) mentioned above. Please check "PART II: THE APPLICATION TO ANY METABOLIC MODEL" in the script for further guidence. Users can start with this script to develop FPA analysis for their own model/data. We provided instructions covering the same topics as in the above demo for generic C. elegans model.
 
