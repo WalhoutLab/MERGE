@@ -1,14 +1,14 @@
-%% this walkthrough guidance will take user through the application of FPA on a generic model of C. elegans, or other metabolic models (we used human model recon2.2 as an example).
+%% This walkthrough guidance will take user through the application of FPA on a generic model of C. elegans, or other metabolic models (we used human model recon2.2 as an example).
 %
-% Please reference to: 
-% `xxxxx. (xxx). xxxx
-%
-% .. Author: - Xuhang Li, March, 2020
+% Please refer to: 
+% Yilmaz, Li et al., 2020, in review.
+
 %% CAUTION ABOUT MATLAB VERSION
 % This demo is developed and tested in MATLAB R2019a version. An earlier
 % version may encounter errors with "readtable" and "writematrix"
 % functions.
-%% add required path 
+
+%% Add required path 
 % **** make sure you do this every time you run the demo!****
 % add path for required functions/inputs
 addpath ./input/
@@ -16,45 +16,41 @@ addpath ./scripts/
 addpath ./../input/
 addpath ./../bins/
 initCobraToolbox(false);
-%% Part I: APPLICATION TO THE GENERIC C. ELEGANS MODEL
-%% 1. prepare the model
-load('iCEL1314.mat');
 
-% users may add their own constraints here (i.e., nutritional input constraints)
+
+%% Part I: APPLICATION TO THE GENERIC C. ELEGANS MODEL
+%% 1. Prepare the model
+load('iCEL1314.mat');
+% Users may add their own constraints here (i.e., nutritional input constraints)
 model = changeRxnBounds(model,'EXC0050',-1000,'l');% we allow unlimited bacteria uptake
 model = changeRxnBounds(model,'RCC0005',0,'l');% remove the NGAM 
 model.S(ismember(model.mets,{'atp_I[c]','h2o_I[c]','adp_I[c]','h_I[c]','pi_I[c]'}), strcmp('DGR0007_L',model.rxns)) = 0;% remove the energy cost for bacteria digestion
-
-% The FPA analysis requires to pre-parse the GPR and attach it as a field
-% in the model. Otherwise parsing GPR in each FPA calculation wastes a lot
-% of time. 
+%
+% The FPA analysis requires that the GPR be pre-parsed and attached as a field
+% in the model. Otherwise parsing GPR in each FPA calculation is extremely inefficient. 
 parsedGPR = GPRparser_xl(model);% Extracting GPR data from model
 model.parsedGPR = parsedGPR;
-%% 2. load the expression files, distance matrix, and other optional inputs
+
+%% 2. Load the expression files, distance matrix, and other optional inputs
 
 % ```load expression files```
-
-% expression matrix can be in plain text and in any normalized
+% Expression matrix can be in plain text and in any normalized
 % quantification metric like TPM or FPKM.
-
-% we use the RNA-seq data from Bulcha et al, Cell Rep (2019) as an example
+% We use the RNA-seq data from Bulcha et al, Cell Rep (2019) as an example
 expTbl = readtable('exampleExpression.csv');
 % For demo purpose, we only analyze the FPA of four conditions in the
 % expression dataset.
 conditions = {'N2_OP50', 'N2_B12', 'nhr10_OP50','nhr10_B12'};
 
-
 % ```preprocess the expression table```
-
 % Since expression tables from different data source may have different
-% format, we require user to re-organize your table according to the
+% format, we require users to re-organize their table according to the
 % following procedures.
-
-% In FPA, we re-organize the expression table into a variable called
+% In FPA, we convert the expression table into a variable called
 % "master_expression".
 % ```REQUIREMENT OF "master_expression"```
 % To standardize the format and symbols of different expression matrix, we 
-% use a "master_expression" variables as the expression input of FPA. The
+% use a "master_expression" variable as the expression input of FPA. The
 % format requirements are as follows:
 % (1) it must be a cell arrary of structure variables;
 % (2) each structure variable contains the expression information of one
@@ -62,13 +58,13 @@ conditions = {'N2_OP50', 'N2_B12', 'nhr10_OP50','nhr10_B12'};
 %     determines the order of FP values in the output;
 % (3) each structure variable must contain two fields: "genes" and "value".
 %     "genes" and "value" should be of equal length.
-% (4) Every input "genes" should be measured in all conditions. In other
+% (4) every input "genes" should be measured in all conditions. In other
 %     words, it is not recommend to have different "genes" list in
 %     different conditions (although it is allowed by FPA).
-
-% make a new master_expression for these four conditions.
+%
+% Make a new master_expression for these four conditions.
 master_expression = {};
-% get the index of genes in the model
+% Get the index of genes in the model
 geneInd = ismember(expTbl.Gene_name, model.genes); 
 for i = 1:length(conditions)
     expression = struct();
@@ -77,11 +73,9 @@ for i = 1:length(conditions)
     master_expression{i} = expression;
 end
 
-
 % ```load the distance matrix```
-
-% we load from the output of the distance calculator. 
-% For usage of distance calculator, please refer to the section in Github
+% We load from the output of the distance calculator. 
+% For usage of distance calculator, please refer to the Metabolic Distance folder
 distance_raw = readtable('./../MetabolicDistance/Output/distanceMatrix.txt','FileType','text','ReadRowNames',true); 
 labels = distance_raw.Properties.VariableNames;
 labels = cellfun(@(x) [x(1:end-1),'_',x(end)],labels,'UniformOutput',false);
@@ -94,37 +88,33 @@ for i = 1:size(distMat_min,1)
 end
 distMat = distMat_min;
 
-
 % ```load the special penalties```
-
 % - We set penalty for all Exchange, Demand, Degradation and Sink reactions
 %  to 0, to not penalize the external reactions
 manualPenalty = table2cell(readtable('manualPenalty_generic.csv','ReadVariableNames',false,'Delimiter',','));
-
-% other possible inputs:
-% we don't recomend any special distance for generic model; In the
-% dual model, the special distance was used to discourage the use of side
+%
+% Other possible inputs:
+% We don't recomend any special distance for generic model; In the
+% dual-tissue model, a special distance was used to discourage the use of side
 % metabolites. Since side metabolites are not applicable for generic model,
 % we don't use any special distance. 
 % manualDist = {};
 
-%% 3. run regular FPA analysis
+%% 3. Run regular FPA analysis
 % As part of the MERGE package, we recommend user to integrate the result
 % of iMAT++ to the FPA analysis. That's saying, to block all reactions that
 % don't carry flux in the feasible solution space. These reactions are
 % identified by FVA analysis conjoined with IMAT++. Please refer to the
 % walkthrough tutorial of IMAT++ and "1_IMAT++/walkthrough_large_scale_FVA.m" 
 % for getting the FVA result.
-
+%
 % Assuming the FVA is done, we should have the level table ready for each 
 % condition (we calculated the level tables for the same four conditions in 
 % the FVA walkthrough).
-
-
+%
 % The FPA is designed with parfor loops for better speed, so we first 
-% initial the parpool
+% initialize the parpool
 parpool(4)
-
 
 % ```setup the block list (context-specific network)```
 
@@ -134,32 +124,25 @@ for i = 1:length(conditions)
     levelTbl_f(:,i) = levels_f;
     levelTbl_r(:,i) = levels_r;
 end
-% because the FPA is done using the irreversible model, so the rxnID is
+% Because the FPA is done using the irreversible model, the rxnID is
 % different from the original. We provided a function to get the new rxnIDs
 % to block according to the level tables.
 blockList = getBlockList(model,levelTbl_f,levelTbl_r);
 
-
 % ```setup some basic parameters for FPA```
-
 n = 1.5; % distance order
 changeCobraSolverParams('LP','optTol', 10e-9); % solver parameter
 changeCobraSolverParams('LP','feasTol', 10e-9); % solver parameter
 
-
 % ```setup target reactions```
-
 % we perform FPA analysis for two reactions as an example
 targetRxns = {'RM04432';'RCC0005'};
 
-
 % ```Finally, run the FPA by calling```
-
 [FP,FP_solutions] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty,{},max(distMat(~isinf(distMat))),blockList);
 
 
 % ```calculate the relative flux potential (rFP)```
-
 % Optionally, we can get relative flux potential (rFP) by the following codes
 relFP_f = nan(size(FP,1),length(master_expression));% flux potential for forward rxns
 relFP_r = nan(size(FP,1),length(master_expression));% flux potential for reverse rxns
@@ -169,18 +152,17 @@ for i = 1:size(FP,1)
         relFP_r(i,j) = FP{i,j}(2) ./ FP{i,end}(2);
     end
 end
+
 %% 3.1 (OPTIONAL) FPA on the full network
 % Building context-sepcific network is costly and sometimes the user may
 % want to give a quick trial of FPA. Therefore, it is also an option to run
 % FPA as a standalone algorithm without the "blocklist" input. Please refer
-% to the "Discussion" section of our paper for pros and cons of FPA on the
+% to the Appendix Supplementary MEthods of our paper for pros and cons of FPA on the
 % full network.
-
-% ```To run FPA on the full network, simply calling:```
-
+% To run FPA on the full network, simply write:
 [FP_naive,FP_solutions_naive] = FPA(model,targetRxns,master_expression,distMat,labels,n, manualPenalty);
-
-% make relative flux potential (rFP) 
+%
+% Calculate relative flux potential (rFP) 
 relFP_f_naive = nan(size(FP_naive,1),length(master_expression));% flux potential for forward rxns
 relFP_r_naive = nan(size(FP_naive,1),length(master_expression));% flux potential for reverse rxns
 for i = 1:size(FP_naive,1)
@@ -189,43 +171,43 @@ for i = 1:size(FP_naive,1)
         relFP_r_naive(i,j) = FP_naive{i,j}(2) ./ FP_naive{i,end}(2);
     end
 end
+
 %% 4. inspect the FPA result
 figure(1)
 c = categorical(regexprep(conditions,'_','-'));
 bar(c,relFP_f(1,:))
 title('rFP of Propanoyl-CoA:(acceptor) 2,3-oxidoreductase flux')
 
-% we can see that the FPA prediction recaptures the repressing of
+% We can see that the FPA prediction recaptures the repressing of
 % Propanoyl-CoA:(acceptor) 2,3-oxidoreductase flux by vitamin B12
 % treatment, and the loss of flux activation after nhr10 is deleted.
 % (Bulcha et al, Cell Rep (2019), PMID: 30625328). It's worth noting that 
 % the rFP of nhr10-B12 condition is pushed to 0. This is because the
 % reaction failed to carry flux in the context-specific network. 
 
+
 %% PART II: THE APPLICATION TO ANY METABOLIC MODEL
-% Applying FPA to other models follows the same procedure. Consistent with 
+% Applying FPA to other models follows the same procedure. As with 
 % the guidence for iMAT++, we provide an example of integrating RNA-seq 
 % data of human tissue expressions to human model, RECON2.2 (Swainston et 
 % al., 2016)
 
-%% initiate the parpool (skip if already initiated)
+%% Initiate the parpool (skip if already initiated)
 % The FPA is designed with parfor loops for better speed, so we first 
-% initial the parpool
+% initialize the parpool
 parpool(2); % set according to your computational environment
-%% 1. prepare the model
+
+%% 1. Prepare the model
 addpath ./input/
 addpath ./scripts/
 addpath input/
 addpath ./../bins/
 
-
 % ```load the original Recon2.2```
-
 load('./../1_IMAT++/input/humanModel/Recon2_2.mat');
 % fix a typo in the original model
 model.genes(strcmp(model.genes,'HGNC:HGNC:2898')) = {'HGNC:2898'};
 model.genes(strcmp(model.genes,'HGNC:HGNC:987')) = {'HGNC:987'};
-
 
 % ```define constraints```
 
