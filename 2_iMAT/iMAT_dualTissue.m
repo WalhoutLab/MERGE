@@ -1,6 +1,9 @@
 %% NOTICE
 % Please be advised that this module (iMAT module) is only provided for
-% reproducing results with the dual-tissue model (Figure 2D). 
+% reproducing results with the dual-tissue model of C. elegans (Figure 2D). 
+% Application to any other model requires modifications in the code such
+% as the elimination of maintenance ATP settings that were specifically
+% designed for the dual-tissue model.
 
 %% Load model
 addpath ./../bins/
