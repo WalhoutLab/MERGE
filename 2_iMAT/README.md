@@ -2,7 +2,7 @@ This guidance shows how to reproduce the flux prediction in Fig 2D by the origin
 
 ### Running the integration for the dual-tissue model
 
-This script helps run iMAT for the seven <i>C. elegans</i> tissues for which aggregated gene expression data is available from [Cao <i>et al</i>., 2017](https://pubmed.ncbi.nlm.nih.gov/28818938/).Input files used are indicated in the walkthrough script [here](myFlux.m). In short, these include [the dual-tissue version of iCEL1314](./../input/Tissue.mat), [premade gene categories](./../input/geneCategories.json) and [premade epsilon values](./../input/epsilon.json). 
+This script helps run iMAT for the seven <i>C. elegans</i> tissues for which aggregated gene expression data is available from [Cao <i>et al</i>., 2017](https://pubmed.ncbi.nlm.nih.gov/28818938/).Input files used are indicated in the walkthrough script [here](iMAT_dualTissue.m). In short, these include [the dual-tissue version of iCEL1314](./../input/Tissue.mat), [premade gene categories](./../input/geneCategories.json) and [premade epsilon values](./../input/epsilon.json). 
 
 For converting the excel-formatted model (<i>i.e.</i>, the table downloaded from supplemental material) to COBRA-version model, see [here](makeWormModel.m). For categorizing gene expression data as highly, lowly, rarely, and moderately expressed genes, please see [CatExp](../CatExp). The categories used in this study is provided in json format, and can be loaded into MATLAB following instructions in the walkthrough script. Users can view the categories after loading the file. Gene expression can be categorized using other methods as well (<i>e.g.</i>, with thresholds on percentiles, such as selecting top 10% percentile as highly expressed genes), depending on the dataset and user preferences. 
 
@@ -10,7 +10,7 @@ Finally, for defining the epsilon values (flux thresholds for each reaction that
 
 To reproduce the flux distribution prediction, simply run:
 ```
-matlab < myFlux.m
+matlab < iMAT_dualTissue.m
 ```
 Output (Flux distribution and other metrics) will be written in output/TissueName.mat
 
