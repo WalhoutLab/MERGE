@@ -395,7 +395,7 @@ parfor i = 1:length(targetExRxns)
                 model_tmp.lb(ismember(model_tmp.rxns,ToBlock)) = 0;
             end
         end
-        [FluxPotential_X_met_r,fluxEfficiency_plus_X_met_r] = FPA(model_tmp,{targetrxn_fullName},master_expression,distMat,labels,n, manualPenalty2,manualDist,maxDist,blockList,constantPenalty2,false,penalty_defined_X);
+        [FluxPotential_X_met_r,FluxPotential_solutions_X_met_r] = FPA(model_tmp,{targetrxn_fullName},master_expression,distMat,labels,n, manualPenalty2,manualDist,maxDist,blockList,constantPenalty2,false,penalty_defined_X);
 
         % then obtain the I tissue potential  
         % first to determine which reaction to target, lumen side or
@@ -460,7 +460,7 @@ parfor i = 1:length(targetExRxns)
         for z = 1:length(FluxPotential_X_tmp)
             FluxPotential_X_tmp{1,z} = [FluxPotential_X_met_f{z}(1),FluxPotential_X_met_r{z}(2)];
             FluxPotential_I_tmp{1,z} = [FluxPotential_I_met_f{z}(1),FluxPotential_I_met_r{z}(2)];
-            FluxPotential_solutions_X_tmp{1,z} = [FluxPotential_solutions_X_met_f{z}(1),fluxEfficiency_plus_X_met_r{z}(2)];
+            FluxPotential_solutions_X_tmp{1,z} = [FluxPotential_solutions_X_met_f{z}(1),FluxPotential_solutions_X_met_r{z}(2)];
             FluxPotential_solutions_I_tmp{1,z} = [FluxPotential_solutions_I_met_f{z}(1),FluxPotential_solutions_I_met_r{z}(2)];
         end       
         [FluxPotential_X_met(i,:),FluxPotential_solutions_X_met(i,:)] = deal(FluxPotential_X_tmp,FluxPotential_solutions_X_tmp);
