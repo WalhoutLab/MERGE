@@ -58,4 +58,8 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* TBD
+* We thank members of the Walhout Lab, especially Olga Ponomarova, Cedric
+Diot, and Hefei Zhang for valuable discussions, and Amy Holdorf for critical
+evaluations of the metabolic network model. This work was supported by
+grants from the National Institutes of Health GM122502 to A.J.M.W. and
+DK115690 to A.J.M.W. and F.S.
