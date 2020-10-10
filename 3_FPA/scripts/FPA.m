@@ -249,10 +249,12 @@ else % run the same code on a for loop mode
         for j = 1:size(penalty,2)
             % block the reactions in the block list
             model_irrev_tmp0 = model_irrev;
-            if j < size(penalty,2)
-                model_irrev_tmp0.ub(ismember(model_irrev_tmp0.rxns,blockList{j})) = 0;
-            else % still block when optimizing supertissue // used to not block, now changed and requires a supercond block list (could be empty)
-                model_irrev_tmp0.ub(ismember(model_irrev_tmp0.rxns,blockList{j})) = 0;
+            if ~isempty(blockList)
+                if j < size(penalty,2)
+                    model_irrev_tmp0.ub(ismember(model_irrev_tmp0.rxns,blockList{j})) = 0;
+                else % still block when optimizing supertissue // used to not block, now changed and requires a supercond block list (could be empty)
+                    model_irrev_tmp0.ub(ismember(model_irrev_tmp0.rxns,blockList{j})) = 0;
+                end
             end
             if doForward 
                 model_irrev_tmp = model_irrev_tmp0;
