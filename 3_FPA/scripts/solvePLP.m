@@ -33,7 +33,7 @@ function [obj, solution] = solvePLP(model,w, w_label, obj_rxn,default_w, minMax)
 % OPTIONAL OUTPUTS:
 %   solution:           the FPA solution
 %
-% `Yilmaz et al. (2020). Final Tittle and journal.
+% `Yilmaz, L. S., Li, X., Nanda, S., Fox, B., Schroeder, F., & Walhout, A. J. (2020). Modeling tissue‐relevant Caenorhabditis elegans metabolism at network, pathway, reaction, and metabolite levels. Molecular Systems Biology, 16(10).
 %
 % .. Author: - (COBRA implementation) Xuhang Li, Mar 2020
 
