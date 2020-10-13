@@ -24,7 +24,7 @@ function [newModel] = collapseX(model, compID, fluxDistribution)
 %   newModel:           the collapsed model with flux burden set as
 %                       exchange reaction boundaries
 %
-% `Yilmaz et al. (2020). Final Tittle and journal.
+% `Yilmaz, L. S., Li, X., Nanda, S., Fox, B., Schroeder, F., & Walhout, A. J. (2020). Modeling tissue‐relevant Caenorhabditis elegans metabolism at network, pathway, reaction, and metabolite levels. Molecular Systems Biology, 16(10).
 % .. Author: - Xuhang Li, Mar 2020
 
 %% create a new model
