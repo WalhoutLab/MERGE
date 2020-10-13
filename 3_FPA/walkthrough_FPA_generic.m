@@ -1,7 +1,7 @@
 %% This walkthrough guidance will take user through the application of FPA on a generic model of C. elegans, or other metabolic models (we used human model recon2.2 as an example).
 %
-% Please refer to: 
-% Yilmaz, Li et al., 2020, in review.
+% Please cite: 
+% Yilmaz, L. S., Li, X., Nanda, S., Fox, B., Schroeder, F., & Walhout, A. J. (2020). Modeling tissue‐relevant Caenorhabditis elegans metabolism at network, pathway, reaction, and metabolite levels. Molecular Systems Biology, 16(10).
 
 %% CAUTION ABOUT MATLAB VERSION
 % This demo is developed and tested in MATLAB R2019a version. An earlier
