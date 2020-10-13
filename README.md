@@ -48,7 +48,7 @@ Please contact us for reporting bugs or contributing purposes. Email contacting 
 
 ## Citation 
 
-If you use MERGE or any module/function from MERGE, please cite our paper:
+If you use MERGE or any module/function from MERGE in a published work, please cite our paper:
 
 <i>Yilmaz, L. S., Li, X., Nanda, S., Fox, B., Schroeder, F., & Walhout, A. J. (2020). Modeling tissue‐relevant Caenorhabditis elegans metabolism at network, pathway, reaction, and metabolite levels. Molecular Systems Biology, 16(10).<i>
 
