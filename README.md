@@ -46,6 +46,11 @@ The followings are descriptions on each module (folder) listed.
 
 Please contact us for reporting bugs or contributing purposes. Email contacting is encouraged. Please send to [Xuhang Li](mailto:xuhang.li@umassmed.edu) or [Safak Yilmaz](mailto:lutfu.yilmaz@umassmed.edu)
 
+## Citation 
+
+If you use MERGE or any module/function from MERGE, please cite our paper:
+
+<i>Yilmaz, L. S., Li, X., Nanda, S., Fox, B., Schroeder, F., & Walhout, A. J. (2020). Modeling tissue‐relevant Caenorhabditis elegans metabolism at network, pathway, reaction, and metabolite levels. Molecular Systems Biology, 16(10).<i>
 
 ## Authors
 
