@@ -14,7 +14,7 @@ function model = defineConstraints_iMATpp(model, infDefault,smallFluxDefault)
 % OUTPUT:
 %   model:              the constrained model
 %
-% `Yilmaz et al. (2020). Final Tittle and journal.
+% `Yilmaz, L. S., Li, X., Nanda, S., Fox, B., Schroeder, F., & Walhout, A. J. (2020). Modeling tissue‚Äêrelevant Caenorhabditis elegans metabolism at network, pathway, reaction, and metabolite levels. Molecular Systems Biology, 16(10).
 % .. Author: - Xuhang Li, Mar 2020
 
 % since we are not aiming at precisely defining nutrient condition in human
@@ -55,7 +55,7 @@ vitamins = {'EX_btn(e)',...
         };
 model.lb(ismember(model.rxns,vitamins)) = -0.005;% artificially set as a small number
 % set the maintenance
-model = changeRxnBounds(model,'DM_atp_c_','l',1.833);% 1.833†mmol /gDW/h (Kilburn et†al., 1969)
+model = changeRxnBounds(model,'DM_atp_c_','l',1.833);% 1.833¬†mmol /gDW/h (Kilburn et¬†al., 1969)
 
 AA = {'EX_his_L(e)';'EX_ala_L(e)';'EX_arg_L(e)';'EX_asn_L(e)';'EX_asp_L(e)';'EX_thr_L(e)';'EX_gln_L(e)';'EX_glu_L(e)';'EX_gly(e)';'EX_ile_L(e)';'EX_leu_L(e)';'EX_lys_L(e)';'EX_met_L(e)';'EX_phe_L(e)';'EX_pro_L(e)';'EX_ser_L(e)';'EX_trp_L(e)';'EX_tyr_L(e)';'EX_val_L(e)';'EX_cys_L(e)'};
 model.lb(ismember(model.rxns,AA)) = -0.05;
