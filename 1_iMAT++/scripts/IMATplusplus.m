@@ -96,8 +96,8 @@ function [OFD, PFD, N_highFit, N_zeroFit, minLow, minTotal, minTotal_OFD, MILP, 
 %   Nfit_latent:        the (total) number of latent reactions fitted
 %   wasteDW:            (C. elegans network only) the percentage of wasted bacterial biomass (DW/DW)
 
-%
-% `Yilmaz et al. (2020). Final Tittle and journal.
+% Citation:
+% Yilmaz, L. S., Li, X., Nanda, S., Fox, B., Schroeder, F., & Walhout, A. J. (2020). Modeling tissue‐relevant Caenorhabditis elegans metabolism at network, pathway, reaction, and metabolite levels. Molecular Systems Biology, 16(10).
 %
 % .. Author: - (COBRA implementation) Xuhang Li, Mar 2020
 %% this is the main integration function
