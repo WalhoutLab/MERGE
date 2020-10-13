@@ -40,7 +40,7 @@ function [FluxDistribution, latentRxn,Nfit_latent, minTotal,MILPproblem_minFlux]
 %
 % Additional Notice:    Please make sure the S matrix of the input MILP follows the structure of iMAT++ MILP format. Some variables such as absolute flux proxy will be assumed to be at specifc positions, so errors will occur if the S matrix is not formed as standard iMAT++. 
 %
-% `Yilmaz et al. (2020). Final Tittle and journal.
+% `Yilmaz, L. S., Li, X., Nanda, S., Fox, B., Schroeder, F., & Walhout, A. J. (2020). Modeling tissue‐relevant Caenorhabditis elegans metabolism at network, pathway, reaction, and metabolite levels. Molecular Systems Biology, 16(10).
 % .. Author: - Xuhang Li, Mar 2020
 if nargin < 8 || isempty(verbose)
     verbose = 0;
