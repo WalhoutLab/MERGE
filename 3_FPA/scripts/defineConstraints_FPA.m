@@ -14,7 +14,7 @@ function model = defineConstraints_FPA(model, infDefault,smallFluxDefault)
 % OUTPUT:
 %   model:              the constrained model
 %
-% `Yilmaz et al. (2020). Final Tittle and journal.
+% `Yilmaz, L. S., Li, X., Nanda, S., Fox, B., Schroeder, F., & Walhout, A. J. (2020). Modeling tissue‐relevant Caenorhabditis elegans metabolism at network, pathway, reaction, and metabolite levels. Molecular Systems Biology, 16(10).
 % .. Author: - Xuhang Li, Mar 2020
 
 % since we are not aiming at precisely defining nutrient condition in human
