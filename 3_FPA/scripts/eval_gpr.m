@@ -93,7 +93,9 @@ else
     elseif total_measured == 0
         status = NO_MEASUREMENTS;
         result = 'NaN';
-    else % only one measurement; just put the measurement there
+    else % only one valid measurement; just put the measurement there
+        % remove all NaNs and logical connections 
+        expression = regexprep(expression,'NaN|or|and','');
         % remove all possible symbols
         result = regexprep(expression,'[ |(|)]','');
     end
