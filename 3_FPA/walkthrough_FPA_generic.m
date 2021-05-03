@@ -24,7 +24,7 @@ load('iCEL1314.mat');
 % Users may add their own constraints here (i.e., nutritional input constraints)
 model = changeRxnBounds(model,'EXC0050',-1000,'l');% we allow unlimited bacteria uptake
 model = changeRxnBounds(model,'RCC0005',0,'l');% remove the NGAM 
-model.S(ismember(model.mets,{'atp_I[c]','h2o_I[c]','adp_I[c]','h_I[c]','pi_I[c]'}), strcmp('DGR0007_L',model.rxns)) = 0;% remove the energy cost for bacteria digestion
+model.S(ismember(model.mets,{'atp[c]','h2o[c]','adp[c]','h[c]','pi[c]'}), strcmp('DGR0007',model.rxns)) = 0;% remove the energy cost for bacteria digestion
 
 %% 2. Load the expression files, distance matrix, and other optional inputs
 
