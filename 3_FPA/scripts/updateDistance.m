@@ -42,8 +42,11 @@ end
 % remove the irreversible part (some reactions are actully irreversible)
 candidateRxns = intersect(candidateRxns,labels);
 % take the minimum and make output
-for i = 1:size(distMat,1)
-    distMat_new(i,size(distMat,2)+1) = min(distMat(i,ismember(labels,candidateRxns))) + 1;
-    distMat_new(size(distMat,1)+1,i) = infN; % the demand reaction can go to nowhere
+if ~isempty(candidateRxns)
+    distMat_new(1:size(distMat,1),size(distMat,2)+1) = min(distMat(:,ismember(labels,candidateRxns)),[],2) + 1;
+    distMat_new(size(distMat,1)+1,1:size(distMat,2)) = infN; % the demand reaction can go to nowhere
+else % the demand rxn is not reachable
+    distMat_new(1:size(distMat,1),size(distMat,2)+1) = infN;
+    distMat_new(size(distMat,1)+1,1:size(distMat,2)) = infN; % the demand reaction can go to nowhere
 end
 end
