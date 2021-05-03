@@ -58,7 +58,7 @@ for i = 1:length(model.rxns)
     % blocks for the same reaction in different conditions is likely
     % different. So, we check the consistency first to make sure the GPR
     % parsing is as expected.
-    lenL = zeros(length(master_expression));
+    lenL = zeros(length(master_expression),1);
     for j=1:length(master_expression)
         lenL(j)=length(levels{i,j});
     end
