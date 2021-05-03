@@ -54,6 +54,7 @@ else
         else
             level = num2str(sum(levels(j)));% if a gene appears multiple time, we use the sum of levels!
             total_measured = total_measured + 1;
+            last_valid_level = level;
         end
         expression = regexprep(expression, ['\<', rule_genes{i}, '\>'], level );
     end
@@ -94,10 +95,8 @@ else
         status = NO_MEASUREMENTS;
         result = 'NaN';
     else % only one valid measurement; just put the measurement there
-        % remove all NaNs and logical connections 
-        expression = regexprep(expression,'NaN|or|and','');
-        % remove all possible symbols
-        result = regexprep(expression,'[ |(|)]','');
+        % all GPR is ignored!
+        result = last_valid_level;
     end
 end
 
